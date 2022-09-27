@@ -10,7 +10,7 @@ export const useFeatureSection = () => {
   const featuresList = [
     {
       name: 'სისწრაფე',
-      description: 'განრიგის შედგენა რამდენჯერმე სწრაფად შეგიძლიათ',
+      description: 'განრიგის შედგენა ბევრად სწრაფად შეგიძლიათ',
       icon: BoltIcon,
     },
     {
@@ -25,7 +25,7 @@ export const useFeatureSection = () => {
       icon: CircleStackIcon,
     },
     {
-      name: 'უნივერსიტეტის განრიგი',
+      name: 'უნივერსიტეტის განრიგის შედგენა',
       description:
         'შესაძლებელია საუნივერსიტეტო განრიგის შედგენა, შესაბამისი ლექტორებისა და სემინარის ხელმძღვანელების არჩევით',
       icon: DevicePhoneMobileIcon,

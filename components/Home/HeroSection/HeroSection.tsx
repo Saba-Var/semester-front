@@ -1,41 +1,24 @@
-import { Popover } from '@headlessui/react'
+import { useHeroSection } from './useHeroSection'
+import { HeroSectionProps } from './types.d'
+import { Header } from 'components'
 import { calendar } from 'public'
 import Image from 'next/image'
 
-const HeroSection = () => {
+const HeroSection: React.FC<HeroSectionProps> = (props) => {
+  const { blurContent, setBlurContent } = props
+
+  const { mounted } = useHeroSection()
+
   return (
     <div className='relative bg-gray-50'>
-      <Popover className='relative bg-white'>
-        <div className='mx-auto w-screen shadow-md px-4 sm:px-6 fixed bg-white z-[99999] top-0 left-0'>
-          <div className='flex items-center justify-between py-6 md:justify-start md:space-x-10'>
-            <div className='flex justify-start lg:w-0 lg:flex-1'>
-              <p
-                className='text-4xl cursor-pointer font-bold tracking-tight text-gray-900'
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                Semester
-              </p>
-            </div>
+      <Header setBlurContent={setBlurContent} />
 
-            <div className='items-center justify-end md:flex md:flex-1 lg:w-0'>
-              <a
-                href='#'
-                className='whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900'
-              >
-                შესვლა
-              </a>
-              <a
-                href='#'
-                className='ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'
-              >
-                რეგისტრაცია
-              </a>
-            </div>
-          </div>
-        </div>
-      </Popover>
-
-      <main className='lg:relative h-screen mt-[80px] lg:mt-0'>
+      <main
+        onClick={() => blurContent && setBlurContent(false)}
+        className={`lg:relative h-screen mt-[80px] lg:mt-0 ${
+          blurContent ? 'blur-[2.4px]' : 'blur-0'
+        } md:blur-0`}
+      >
         <div className='mx-auto w-full pt-16 pb-20 text-center lg:py-48 lg:text-left'>
           <div className='px-4 sm:px-8 lg:w-1/2 xl:pr-16 lg:pt-[3%]'>
             <h2 className='text-4xl lg:mt-14 mb-7 font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl'>
@@ -47,21 +30,25 @@ const HeroSection = () => {
               საუნევერსიტეტო სასწავლო განრიგი.
             </p>
             <div className='mt-10 sm:flex sm:justify-center lg:justify-start'>
-              <button className='flex w-3/4 sm:w-3/5 items-center shadow-sm justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg'>
+              <button className='flex mx-auto lg:mx-0 w-3/4 sm:w-3/5 items-center shadow-sm justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg'>
                 დაწყება
               </button>
             </div>
           </div>
         </div>
+
         <div className='relative h-64 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2'>
           <div className='absolute inset-0 h-full w-full object-cover'>
-            <Image
-              className='object-cover'
-              alt='quote image'
-              priority={true}
-              src={calendar}
-              layout='fill'
-            />
+            {mounted && (
+              <Image
+                className='object-cover w-full h-full'
+                unoptimized={true}
+                alt='quote image'
+                priority={true}
+                src={calendar}
+                layout='fill'
+              />
+            )}
           </div>
         </div>
       </main>
