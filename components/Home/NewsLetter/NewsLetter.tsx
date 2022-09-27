@@ -9,8 +9,9 @@ const NewsLetter = () => {
       <div className='bg-gray-50 pt-16 sm:pt-24'>
         <div className='relative sm:py-16'>
           <div className='hidden sm:block'>
-            <div className='absolute inset-y-0 left-0 w-1/2 rounded-r-3xl bg-white' />
-            <DotsIcon />
+            <div className='absolute inset-y-0 left-0 w-1/2 rounded-r-3xl bg-white'>
+              <DotsIcon />
+            </div>
           </div>
           <div className='mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8'>
             <div className='relative overflow-hidden rounded-2xl bg-indigo-600 px-6 py-10 shadow-xl sm:px-12 sm:py-20'>
