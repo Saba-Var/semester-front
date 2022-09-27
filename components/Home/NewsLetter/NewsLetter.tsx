@@ -1,5 +1,5 @@
+import { DotsIcon, WavesIcon } from 'components'
 import { useNewsLetter } from './useNewsLetter'
-import { DotsIcon } from 'components'
 
 const NewsLetter = () => {
   const { mounted } = useNewsLetter()
@@ -14,13 +14,19 @@ const NewsLetter = () => {
           </div>
           <div className='mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8'>
             <div className='relative overflow-hidden rounded-2xl bg-indigo-600 px-6 py-10 shadow-xl sm:px-12 sm:py-20'>
+              <div
+                aria-hidden='true'
+                className='absolute inset-0 -mt-72 sm:-mt-32 md:mt-0'
+              >
+                <WavesIcon />
+              </div>
               <div className='relative'>
                 <div className='sm:text-center'>
                   <h2 className='text-2xl font-bold tracking-tight text-white sm:text-4xl'>
                     გამოიწერე ელ-ფოსტა.
                   </h2>
                   <p className='mx-auto mt-6 max-w-2xl text-lg text-indigo-200'>
-                    უნფორმაცია განახლებებისა და ახალი ფუნქციონალის შესახებ
+                    ინფორმაცია განახლებებისა და ახალი ფუნქციონალის შესახებ
                     გამოგეგზავნება ელ-ფოსტაზე
                   </p>
                 </div>
