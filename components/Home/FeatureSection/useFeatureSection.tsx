@@ -20,15 +20,15 @@ export const useFeatureSection = () => {
       icon: ComputerDesktopIcon,
     },
     {
+      name: 'არანაირი გადასახადი',
+      description: 'აპლიკაცია უფასოა ნებისმიერი მომხმარებლისთვის',
+      icon: CircleStackIcon,
+    },
+    {
       name: 'უნივერსიტეტის განრიგი',
       description:
         'შესაძლებელია საუნივერსიტეტო განრიგის შედგენა, შესაბამისი ლექტორებისა და სემინარის ხელმძღვანელების არჩევით',
       icon: DevicePhoneMobileIcon,
-    },
-    {
-      name: 'არანაირი გადასახადი',
-      description: 'Semester უფასოა ნებისმიერი მომხმარებლისთვის',
-      icon: CircleStackIcon,
     },
     {
       name: 'მოქნილობა',

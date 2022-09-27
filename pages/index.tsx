@@ -1,4 +1,4 @@
-import { HeroSection, FeatureSection } from 'components'
+import { HeroSection, FeatureSection, NewsLetter } from 'components'
 import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
@@ -6,6 +6,7 @@ const Home: NextPage = () => {
     <>
       <HeroSection />
       <FeatureSection />
+      <NewsLetter />
     </>
   )
 }
