@@ -9,11 +9,12 @@ const HeroSection = () => {
         <div className='mx-auto w-screen shadow-md px-4 sm:px-6 fixed bg-white z-[99999] top-0 left-0'>
           <div className='flex items-center justify-between py-6 md:justify-start md:space-x-10'>
             <div className='flex justify-start lg:w-0 lg:flex-1'>
-              <a href='#'>
-                <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-                  Semester
-                </h1>
-              </a>
+              <p
+                className='text-4xl cursor-pointer font-bold tracking-tight text-gray-900'
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                Semester
+              </p>
             </div>
 
             <div className='items-center justify-end md:flex md:flex-1 lg:w-0'>
