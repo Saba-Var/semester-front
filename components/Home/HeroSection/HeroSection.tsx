@@ -1,7 +1,5 @@
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Popover, Transition } from '@headlessui/react'
+import { Popover } from '@headlessui/react'
 import { calendar } from 'public'
-import { Fragment } from 'react'
 import Image from 'next/image'
 
 const HeroSection = () => {
