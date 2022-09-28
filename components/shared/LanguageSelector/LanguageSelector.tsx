@@ -1,12 +1,13 @@
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
+import { useLanguageSelector } from './useLanguageSelector'
 import { Listbox, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
 import { languagesList } from 'CONSTANTS'
 import { classNames } from 'helpers'
+import { Fragment } from 'react'
 import Image from 'next/image'
 
 const LanguageSelector = () => {
-  const [selected, setSelected] = useState(languagesList[0])
+  const { selected, setSelected } = useLanguageSelector()
 
   return (
     <Listbox value={selected} onChange={setSelected}>
@@ -14,17 +15,20 @@ const LanguageSelector = () => {
         <>
           <div className='relative'>
             <Listbox.Button className='relative w-40 cursor-pointer rounded-md border border-gray-100 bg-white py-2 pl-3 pr-10 text-left shadow-sm  sm:text-sm'>
-              <span className='flex items-center'>
+              <div className='flex items-center'>
                 <div className='relative h-6 w-6 flex-shrink-0 rounded-full'>
                   <Image
-                    src={languagesList[0].image}
+                    className='rounded-full'
                     alt='selected language'
+                    src={languagesList[0].image}
                     priority={true}
+                    layout='fill'
                   />
                 </div>
 
                 <span className='ml-3 block truncate'>{selected.lan}</span>
-              </span>
+              </div>
+
               <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
                 <ChevronDownIcon
                   className='h-5 w-5 text-gray-400'
