@@ -2,11 +2,8 @@ import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Listbox, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { languagesList } from 'CONSTANTS'
+import { classNames } from 'helpers'
 import Image from 'next/image'
-
-const classNames = (...classes: string[]) => {
-  return classes.filter(Boolean).join(' ')
-}
 
 const LanguageSelector = () => {
   const [selected, setSelected] = useState(languagesList[0])
