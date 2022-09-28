@@ -1,9 +1,6 @@
 import { DotsIcon, WavesIcon } from 'components'
-import { useNewsLetter } from './useNewsLetter'
 
 const NewsLetter = () => {
-  const { mounted } = useNewsLetter()
-
   return (
     <div className='bg-gray-50 mb-40 mt-12'>
       <div className='bg-gray-50 pt-16 sm:pt-24'>
@@ -39,13 +36,12 @@ const NewsLetter = () => {
                     <label htmlFor='cta-email' className='sr-only'>
                       ელ-ფოსტის მისამართი
                     </label>
-                    {mounted && (
-                      <input
-                        className='block w-full rounded-md border border-transparent px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600'
-                        placeholder='შეიყვანე ელ-ფოსტა'
-                        type='email'
-                      />
-                    )}
+
+                    <input
+                      className='block w-full rounded-md border border-transparent px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600'
+                      placeholder='შეიყვანე ელ-ფოსტა'
+                      type='email'
+                    />
                   </div>
                   <div className='mt-4 sm:mt-0 sm:ml-3'>
                     <button

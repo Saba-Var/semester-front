@@ -18,9 +18,8 @@ const LanguageSelector = () => {
                 <div className='relative h-6 w-6 flex-shrink-0 rounded-full'>
                   <Image
                     src={languagesList[0].image}
-                    alt='quote image'
+                    alt='selected language'
                     priority={true}
-                    layout='fill'
                   />
                 </div>
 

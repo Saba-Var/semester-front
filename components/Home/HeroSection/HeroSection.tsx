@@ -1,4 +1,3 @@
-import { useHeroSection } from './useHeroSection'
 import { HeroSectionProps } from './types.d'
 import { Header } from 'components'
 import { calendar } from 'public'
@@ -6,8 +5,6 @@ import Image from 'next/image'
 
 const HeroSection: React.FC<HeroSectionProps> = (props) => {
   const { blurContent, setBlurContent } = props
-
-  const { mounted } = useHeroSection()
 
   return (
     <div className='relative bg-gray-50'>
@@ -39,16 +36,13 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
 
         <div className='relative h-64 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2'>
           <div className='absolute inset-0 h-full w-full object-cover'>
-            {mounted && (
-              <Image
-                className='object-cover w-full h-full'
-                unoptimized={true}
-                alt='calendar image'
-                priority={true}
-                src={calendar}
-                layout='fill'
-              />
-            )}
+            <Image
+              className='object-cover w-full h-full'
+              alt='calendar image'
+              src={calendar}
+              layout='fill'
+              priority
+            />
           </div>
         </div>
       </main>
