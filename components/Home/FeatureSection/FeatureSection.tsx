@@ -1,8 +1,6 @@
-import { useFeatureSection } from './useFeatureSection'
+import { featuresList } from 'CONSTANTS'
 
 const FeatureSection = () => {
-  const { featuresList } = useFeatureSection()
-
   return (
     <div className='bg-gray-50 py-12 sm:mt-[5%] 2xl:mt-[8%]'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>

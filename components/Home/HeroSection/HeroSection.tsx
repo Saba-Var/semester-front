@@ -43,7 +43,7 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
               <Image
                 className='object-cover w-full h-full'
                 unoptimized={true}
-                alt='quote image'
+                alt='calendar image'
                 priority={true}
                 src={calendar}
                 layout='fill'
