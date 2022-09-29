@@ -1,5 +1,6 @@
 {
   "name": "semester",
+  "sideEffects": false,
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +15,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "next": "12.3.1",
+    "next-i18next": "^12.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
