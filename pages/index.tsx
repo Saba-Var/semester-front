@@ -1,5 +1,6 @@
 import { HeroSection, FeatureSection, NewsLetter, Footer } from 'components'
-import type { NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import type { NextPage, GetStaticProps } from 'next'
 import { useHome } from 'hooks'
 
 const Home: NextPage = () => {
@@ -19,6 +20,14 @@ const Home: NextPage = () => {
       </div>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale!, ['auth', 'common', 'home'])),
+    },
+  }
 }
 
 export default Home

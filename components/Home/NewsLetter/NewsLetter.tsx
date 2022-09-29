@@ -1,4 +1,5 @@
 import { DotsIcon, WavesIcon } from 'components'
+import { useTranslate } from 'hooks'
 
 const NewsLetter = () => {
   return (
@@ -21,11 +22,10 @@ const NewsLetter = () => {
               <div className='relative'>
                 <div className='sm:text-center'>
                   <h2 className='text-2xl font-bold tracking-tight text-white sm:text-4xl'>
-                    გამოიწერე ელ-ფოსტა.
+                    {useTranslate('home:subscribe-email')}
                   </h2>
                   <p className='mx-auto mt-6 max-w-2xl text-lg text-indigo-200'>
-                    ინფორმაცია განახლებებისა და ახალი ფუნქციონალის შესახებ
-                    გამოგეგზავნება ელ-ფოსტაზე
+                    {useTranslate('home:update-news')}.
                   </p>
                 </div>
                 <form
@@ -33,13 +33,9 @@ const NewsLetter = () => {
                   className='mt-12 sm:mx-auto sm:flex sm:max-w-lg'
                 >
                   <div className='min-w-0 flex-1'>
-                    <label htmlFor='cta-email' className='sr-only'>
-                      ელ-ფოსტის მისამართი
-                    </label>
-
                     <input
                       className='block w-full rounded-md border border-transparent px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600'
-                      placeholder='შეიყვანე ელ-ფოსტა'
+                      placeholder={useTranslate('home:enter-email')}
                       type='email'
                     />
                   </div>
@@ -48,7 +44,7 @@ const NewsLetter = () => {
                       className='block w-full rounded-md border border-transparent bg-indigo-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10'
                       type='submit'
                     >
-                      გამოწერა
+                      {useTranslate('home:subscribe')}
                     </button>
                   </div>
                 </form>

@@ -1,4 +1,5 @@
 import { featuresList } from 'CONSTANTS'
+import { useTranslate } from 'hooks'
 
 const FeatureSection = () => {
   return (
@@ -6,10 +7,10 @@ const FeatureSection = () => {
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='lg:text-center flex flex-col gap-1'>
           <h2 className='text-lg font-semibold text-indigo-600'>
-            ყველაფერი რაც გჭირდება
+            {useTranslate('home:everything-you-need')}
           </h2>
           <p className='mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl'>
-            განრიგის შედგენის საუკეთესო გზა
+            {useTranslate('home:best-way')}
           </p>
         </div>
 
