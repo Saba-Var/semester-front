@@ -89,6 +89,10 @@ const Header: React.FC<HeaderProps> = (props) => {
                     {useTranslate('auth:sign-in')}
                   </a>
                 </p>
+
+                <div className='text-center mx-auto mt-6 w-fit'>
+                  <LanguageSelector />
+                </div>
               </div>
             </div>
           </div>

@@ -1,4 +1,3 @@
-import { useHeroSection } from './useHeroSection'
 import { HeroSectionProps } from './types.d'
 import { useTranslate } from 'hooks'
 import { Header } from 'components'
@@ -7,8 +6,6 @@ import Image from 'next/image'
 
 const HeroSection: React.FC<HeroSectionProps> = (props) => {
   const { blurContent, setBlurContent } = props
-
-  const { locale } = useHeroSection()
 
   return (
     <div className='relative bg-gray-50'>
