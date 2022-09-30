@@ -4,6 +4,7 @@ import { LanguageSelector } from 'components'
 import { HeaderProps } from './types.d'
 import { useTranslate } from 'hooks'
 import { Fragment } from 'react'
+import Link from 'next/link'
 
 const Header: React.FC<HeaderProps> = (props) => {
   const { setBlurContent } = props
@@ -31,18 +32,17 @@ const Header: React.FC<HeaderProps> = (props) => {
           <div className='items-center hidden justify-end md:flex md:flex-1 lg:w-0'>
             <LanguageSelector />
 
-            <a
-              href='#'
-              className='ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900'
-            >
-              {useTranslate('auth:log-in')}
-            </a>
-            <a
-              href='#'
-              className='ml-6 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'
-            >
-              {useTranslate('auth:sign-in')}
-            </a>
+            <Link href='/authentication?type=sign-in'>
+              <a className='ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900'>
+                {useTranslate('auth:sign-in')}
+              </a>
+            </Link>
+
+            <Link href='/authentication?type=sign-up'>
+              <a className='ml-6 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
+                {useTranslate('auth:sign-up')}
+              </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -81,12 +81,12 @@ const Header: React.FC<HeaderProps> = (props) => {
                   href='#'
                   className='flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'
                 >
-                  {useTranslate('auth:log-in')}
+                  {useTranslate('auth:sign-in')}
                 </a>
                 <p className='mt-6 text-center text-base font-medium text-gray-500'>
                   {useTranslate('auth:no-account')}{' '}
                   <a href='#' className='text-indigo-600 hover:text-indigo-500'>
-                    {useTranslate('auth:sign-in')}
+                    {useTranslate('auth:sign-up')}
                   </a>
                 </p>
 

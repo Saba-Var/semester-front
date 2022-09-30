@@ -55,7 +55,6 @@ const LanguageSelector = () => {
                     key={language.lan}
                     href={hrefData}
                     scroll={false}
-                    rel='preload'
                   >
                     <Listbox.Option
                       onClick={() => languageChangeHandler(language.locale)}
