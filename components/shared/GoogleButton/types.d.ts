@@ -1,3 +1,3 @@
 export type GoogleButtonProps = {
-  type: 'log-in' | 'sign-up'
+  page: 'log-in' | 'sign-up'
 }

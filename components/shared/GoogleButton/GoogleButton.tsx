@@ -3,7 +3,7 @@ import { GoogleIcon } from 'components'
 import { useTranslate } from 'hooks'
 
 const GoogleButton: React.FC<GoogleButtonProps> = (props) => {
-  const { type } = props
+  const { page } = props
 
   return (
     <div className='mt-6'>

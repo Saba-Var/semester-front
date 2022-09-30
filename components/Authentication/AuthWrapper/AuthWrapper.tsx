@@ -7,7 +7,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
 
   return (
     <>
-      <div className='flex min-h-full overflow-y-auto w-full flex-col lg:justify-center pt-4 sm:pt-12 pb-4 px-4 sm:px-6 lg:px-8'>
+      <div className='flex h-screen overflow-y-auto w-full flex-col lg:justify-center pt-4 sm:pt-12 pb-4 px-4 sm:px-6 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <p className='text-4xl text-center cursor-default font-bold tracking-tight text-gray-900'>
             Semester
