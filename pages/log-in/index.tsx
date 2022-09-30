@@ -1,6 +1,7 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { AuthWrapper, GoogleIcon } from 'components'
+import { AuthWrapper, GoogleButton } from 'components'
 import { GetStaticProps } from 'next'
+import { useTranslate } from 'hooks'
 
 const LogIn = () => {
   return (
@@ -10,7 +11,7 @@ const LogIn = () => {
           <form className='space-y-6'>
             <div>
               <label className='block text-sm font-medium text-gray-700'>
-                Email address
+                {useTranslate('auth:email-address')}
               </label>
               <div className='mt-1'>
                 <input
@@ -23,7 +24,7 @@ const LogIn = () => {
 
             <div>
               <label className='block text-sm font-medium text-gray-700'>
-                Password
+                {useTranslate('auth:password')}
               </label>
               <div className='mt-1'>
                 <input
@@ -40,12 +41,14 @@ const LogIn = () => {
                   name='remember-me'
                   type='checkbox'
                 />
-                <span className='select-none'>Remember me</span>
+                <span className='select-none'>
+                  {useTranslate('auth:remember-me')}
+                </span>
               </label>
 
               <div className='text-sm'>
                 <a className='font-medium cursor-pointer text-indigo-600 hover:text-indigo-500'>
-                  Forgot your password?
+                  {useTranslate('auth:forget-password')}
                 </a>
               </div>
             </div>
@@ -55,31 +58,12 @@ const LogIn = () => {
                 className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                 type='submit'
               >
-                Log in
+                {useTranslate('auth:log-in')}
               </button>
             </div>
           </form>
 
-          <div className='mt-6'>
-            <div className='relative'>
-              <div className='absolute inset-0 flex items-center'>
-                <div className='w-full border-t border-gray-300' />
-              </div>
-              <div className='relative flex justify-center text-sm'>
-                <span className='bg-white px-2 text-gray-500'>
-                  Or continue with
-                </span>
-              </div>
-            </div>
-
-            <div className='mt-6 text-center'>
-              <div>
-                <button className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50'>
-                  <GoogleIcon />
-                </button>
-              </div>
-            </div>
-          </div>
+          <GoogleButton type='log-in' />
         </>
       </AuthWrapper>
     </div>

@@ -1,5 +1,6 @@
 import { AuthWrapperProps } from './types.d'
 import { NoAccount } from 'components/shared'
+import { useTranslate } from 'hooks'
 
 const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
   const { children, page } = props
@@ -12,9 +13,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
             Semester
           </p>
           <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>
-            {page === 'log-in'
-              ? 'Log in to your account'
-              : 'Sign in to your account'}
+            {useTranslate(`auth:${page === 'log-in' ? 'log-in-to' : 'Sign'}`)}
           </h2>
         </div>
 
