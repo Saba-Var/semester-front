@@ -1,6 +1,6 @@
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { LanguageSelector, NoAccount } from 'components'
 import { Popover, Transition } from '@headlessui/react'
-import { LanguageSelector } from 'components'
 import { HeaderProps } from './types.d'
 import { useTranslate } from 'hooks'
 import { Fragment } from 'react'
@@ -32,13 +32,13 @@ const Header: React.FC<HeaderProps> = (props) => {
           <div className='items-center hidden justify-end md:flex md:flex-1 lg:w-0'>
             <LanguageSelector />
 
-            <Link href='/authentication?type=sign-in'>
+            <Link href='/log-in'>
               <a className='ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900'>
-                {useTranslate('auth:sign-in')}
+                {useTranslate('auth:log-in')}
               </a>
             </Link>
 
-            <Link href='/authentication?type=sign-up'>
+            <Link href='/sign-up'>
               <a className='ml-6 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
                 {useTranslate('auth:sign-up')}
               </a>
@@ -77,18 +77,13 @@ const Header: React.FC<HeaderProps> = (props) => {
             </div>
             <div className='space-y-6 py-6 px-5'>
               <div>
-                <a
-                  href='#'
-                  className='flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'
-                >
-                  {useTranslate('auth:sign-in')}
-                </a>
-                <p className='mt-6 text-center text-base font-medium text-gray-500'>
-                  {useTranslate('auth:no-account')}{' '}
-                  <a href='#' className='text-indigo-600 hover:text-indigo-500'>
-                    {useTranslate('auth:sign-up')}
+                <Link href='/log-in'>
+                  <a className='flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
+                    {useTranslate('auth:log-in')}
                   </a>
-                </p>
+                </Link>
+
+                <NoAccount />
 
                 <div className='text-center mx-auto mt-6 w-fit'>
                   <LanguageSelector />

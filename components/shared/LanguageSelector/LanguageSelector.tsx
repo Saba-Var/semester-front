@@ -16,7 +16,7 @@ const LanguageSelector = () => {
       {({ open }) => (
         <>
           <div className='relative'>
-            <Listbox.Button className='relative w-40 cursor-pointer rounded-md border border-gray-100 bg-white py-2 pl-3 pr-10 text-left shadow-sm  sm:text-sm'>
+            <Listbox.Button className='relative w-[165px] cursor-pointer rounded-md border border-gray-100 bg-white py-2 pl-3 pr-10 text-left shadow-sm  sm:text-sm'>
               <div className='flex items-center'>
                 <div className='relative h-6 w-6 flex-shrink-0 rounded-full'>
                   <Image
@@ -28,7 +28,7 @@ const LanguageSelector = () => {
                   />
                 </div>
 
-                <span className='ml-3 block truncate'>
+                <span className='ml-3 block'>
                   {languagesList[selected.locale === 'en' ? 1 : 0].lan}
                 </span>
               </div>
