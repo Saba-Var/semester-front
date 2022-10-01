@@ -9,7 +9,7 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
   const { blurContent, setBlurContent } = props
 
   return (
-    <div className='relative bg-gray-50 h-screen pt-36 lg:pt-0'>
+    <div className='relative bg-gray-50 h-screen pt-48 sm:pt-36 lg:pt-0'>
       <Header setBlurContent={setBlurContent} />
 
       <main

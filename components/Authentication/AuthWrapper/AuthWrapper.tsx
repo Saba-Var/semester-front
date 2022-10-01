@@ -1,4 +1,4 @@
-import { NoAccount } from 'components/shared'
+import { AuthQuestion } from 'components/shared'
 import { AuthWrapperProps } from './types.d'
 import { useTranslate } from 'hooks'
 
@@ -13,7 +13,9 @@ const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
             Semester
           </p>
           <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>
-            {useTranslate(`auth:${page === 'log-in' ? 'log-in-to' : 'Sign'}`)}
+            {useTranslate(
+              `auth:${page === 'log-in' ? 'log-in-to' : 'create-account'}`
+            )}
           </h2>
         </div>
 
@@ -22,7 +24,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
             {children}
           </div>
 
-          {page === 'log-in' && <NoAccount />}
+          <AuthQuestion type={page} />
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { LanguageSelector, NoAccount } from 'components'
+import { LanguageSelector, AuthQuestion } from 'components'
 import { Popover, Transition } from '@headlessui/react'
 import { HeaderProps } from './types.d'
 import { useTranslate } from 'hooks'
@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                   </a>
                 </Link>
 
-                <NoAccount />
+                <AuthQuestion type='log-in' />
 
                 <div className='text-center mx-auto mt-6 w-fit'>
                   <LanguageSelector />

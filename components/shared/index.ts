@@ -1,3 +1,3 @@
 export * from './LanguageSelector'
 export * from './GoogleButton'
-export * from './NoAccount'
+export * from './AuthQuestion'

@@ -13,7 +13,11 @@ const GoogleButton: React.FC<GoogleButtonProps> = (props) => {
         </div>
         <div className='relative flex justify-center text-sm'>
           <span className='bg-white px-2 text-gray-500'>
-            {useTranslate('auth:continue-with')}
+            {useTranslate(
+              `auth:${
+                page === 'log-in' ? 'continue-with' : 'register-with-google'
+              }`
+            )}
           </span>
         </div>
       </div>
