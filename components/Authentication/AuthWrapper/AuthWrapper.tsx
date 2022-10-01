@@ -1,5 +1,5 @@
-import { AuthWrapperProps } from './types.d'
 import { NoAccount } from 'components/shared'
+import { AuthWrapperProps } from './types.d'
 import { useTranslate } from 'hooks'
 
 const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
