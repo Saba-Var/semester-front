@@ -1,5 +1,5 @@
 import { AuthQuestion } from 'components/shared'
-import { AuthWrapperProps } from './types.d'
+import { AuthWrapperProps } from './types'
 import { useTranslate } from 'hooks'
 
 const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
