@@ -16,7 +16,7 @@ const LanguageSelector = () => {
       {({ open }) => (
         <>
           <div className='relative'>
-            <Listbox.Button className='relative w-[165px] cursor-pointer rounded-md border border-gray-100 bg-white py-2 pl-3 pr-10 text-left shadow-sm  sm:text-sm'>
+            <Listbox.Button className='relative md:w-[165px] cursor-pointer rounded-md sm:border sm:border-gray-100 bg-white py-2 pl-3 pr-10 text-left sm:shadow-sm  sm:text-sm'>
               <div className='flex items-center'>
                 <div className='relative h-6 w-6 flex-shrink-0 rounded-full'>
                   <Image
@@ -28,12 +28,16 @@ const LanguageSelector = () => {
                   />
                 </div>
 
-                <span className='ml-3 block'>
+                <span className='hidden ml-3 md:block'>
                   {languagesList[selected.locale === 'en' ? 1 : 0].lan}
+                </span>
+
+                <span className='md:hidden ml-3 block'>
+                  {selected.locale === 'en' ? 'Eng' : 'ქარ'}
                 </span>
               </div>
 
-              <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
+              <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 sm:pr-2'>
                 <ChevronDownIcon
                   className='h-5 w-5 text-gray-400'
                   aria-hidden='true'
@@ -64,7 +68,7 @@ const LanguageSelector = () => {
                           'relative cursor-pointer select-none'
                         )
                       }
-                      value={language}
+                      value={language.lan}
                     >
                       {({ active }) => {
                         return (
@@ -80,8 +84,12 @@ const LanguageSelector = () => {
                                 />
                               </div>
 
-                              <span className='ml-3 block truncate'>
+                              <span className='ml-3 hidden md:block truncate'>
                                 {language.lan}
+                              </span>
+
+                              <span className='ml-3 block md:hidden truncate'>
+                                {language.locale === 'en' ? 'Eng' : 'ქარ'}
                               </span>
                             </a>
 
