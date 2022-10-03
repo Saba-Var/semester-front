@@ -1,0 +1,25 @@
+{
+  "username": "სახელი",
+  "email": "ელ-ფოსტა",
+  "password": "პაროლი",
+  "confirmPassword": "გაიმეორეთ პაროლი",
+
+  "username-required": "სახელის ველი სავალდებულოა",
+  "username-min": "შეიყვანეთ მინიმუმ 3 სიმბოლო",
+  "username-max": "შეიყვანეთ მაქსიმუმ 15 სიმბოლო",
+
+  "email-required": "ელ-ფოსტის ველი სავალდებულოა",
+  "valid-email": "მიუთითეთ ვალიდური ელ-ფოსტის მისამართი",
+
+  "password-required": "პაროლის ველი სავალდებულოა",
+  "password-min": "შეიყვანეთ მინიმუმ 6 სიმბოლო",
+
+  "password-match": "პაროლები არ ემთხვევა",
+  "confirmPassword-required": "პაროლის დადასტურების ველი სავალდებულოა",
+
+  "google-sign-up": "დარეგისტრირდით Google-ით",
+  "google-sign-in": "შედით Google-ით",
+
+  "log-in": "შესვლა",
+  "sign-up": "რეგისტრაცია"
+}

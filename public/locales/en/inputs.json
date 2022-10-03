@@ -1,0 +1,25 @@
+{
+  "username": "username",
+  "email": "email",
+  "password": "password",
+  "confirmPassword": "confirm password",
+
+  "username-required": "Username field is required",
+  "username-min": "Enter at least 3 characters",
+  "username-max": "Enter maximum 15 characters",
+
+  "email-required": "Email field is required",
+  "valid-email": "Please provide a valid email",
+
+  "password-required": "Password field is required",
+  "password-min": "Enter at least 8 characters",
+
+  "password-match": "Password don't match",
+  "confirmPassword-required": "Confirm password field is required",
+
+  "google-sign-up": "Sign up with Google",
+  "google-sign-in": "Sign in with Google",
+
+  "log-in": "Log in",
+  "sign-up": "Sign up"
+}
