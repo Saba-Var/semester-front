@@ -1,11 +1,11 @@
 import { InputField, SubmitButton } from 'components'
-import { registrationFormSchema } from 'schemas'
+import { signUpSchema } from 'schemas'
 import { Form, Formik } from 'formik'
 
 const SignUpForm = () => {
   return (
     <Formik
-      validationSchema={registrationFormSchema}
+      validationSchema={signUpSchema}
       initialValues={{
         username: '',
         email: '',

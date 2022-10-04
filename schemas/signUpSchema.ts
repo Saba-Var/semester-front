@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-export const registrationFormSchema = Yup.object({
+export const signUpSchema = Yup.object({
   username: Yup.string()
     .trim()
     .required('username-required')
