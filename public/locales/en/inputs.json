@@ -1,7 +1,7 @@
 {
-  "username": "username",
-  "email": "email",
-  "password": "password",
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
   "confirmPassword": "confirm password",
 
   "username-required": "Username field is required",

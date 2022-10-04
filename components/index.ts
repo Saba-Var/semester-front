@@ -1,4 +1,3 @@
-export * from './authentication'
 export * from './sign-up'
 export * from './shared'
 export * from './log-In'
