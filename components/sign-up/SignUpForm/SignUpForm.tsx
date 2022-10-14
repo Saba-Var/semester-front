@@ -25,7 +25,6 @@ const SignUpForm = () => {
                 setShowRequestExceedModal={setShowRequestExceedModal}
               />
             )}
-
             <Form className='flex flex-col gap-1'>
               <InputField name='username' type='text' />
               <InputField name='email' type='text' />
