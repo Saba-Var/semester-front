@@ -1,7 +1,7 @@
 const EyeIcon = () => {
   return (
     <svg
-      className='absolute hover:scale-125 transition-transform right-3 bottom-[12px] cursor-pointer'
+      className='absolute hover:scale-110 active:scale-95 transition-transform right-3 bottom-[12px] cursor-pointer'
       viewBox='0 0 14 14'
       height='14'
       fill='none'

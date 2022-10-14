@@ -9,7 +9,6 @@ const Home: NextPage = () => {
   return (
     <>
       <HeroSection blurContent={blurContent} setBlurContent={setBlurContent} />
-
       <div
         onClick={() => blurContent && setBlurContent(false)}
         className={`${blurContent ? 'blur-[2.4px]' : 'blur-0'} md:blur-0`}

@@ -18,7 +18,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
   } = useInputField(props)
 
   return (
-    <div className='h-[86px]'>
+    <div className='min-h-[86px]'>
       <label
         className={`block text-sm font-medium text-gray-700 ${
           isError && 'text-red-900'
