@@ -19,11 +19,11 @@ const LogInForm = () => {
     >
       {() => {
         return (
-          <Form className='space-y-6'>
+          <Form>
             <InputField name='username' type='text' />
             <InputField name='password' type='password' />
 
-            <div className='flex items-center justify-between'>
+            <div className='flex mb-4 mt-4 items-center justify-between'>
               <RememberMe />
               <ForgetPassword />
             </div>
