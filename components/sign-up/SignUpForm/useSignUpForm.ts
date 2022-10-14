@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 export const useSignUpForm = () => {
   const [showRequestExceedModal, setShowRequestExceedModal] = useState(false)
+  const [signUpSuccess, setSignUpSuccess] = useState(false)
 
   const formInitialValues = {
     confirmPassword: '',
@@ -17,9 +18,14 @@ export const useSignUpForm = () => {
 
   const submitHandler = (
     formData: SignUpFormData,
-    { setFieldError }: FormProperties
+    { setFieldError, resetForm }: FormProperties
   ) => {
     mutate(formData, {
+      onSuccess: () => {
+        resetForm()
+        setSignUpSuccess(true)
+      },
+
       onError: (error: any) => {
         const status = error.response.status
         if (status === 409) {
@@ -35,6 +41,8 @@ export const useSignUpForm = () => {
     setShowRequestExceedModal,
     showRequestExceedModal,
     formInitialValues,
+    setSignUpSuccess,
     submitHandler,
+    signUpSuccess,
   }
 }

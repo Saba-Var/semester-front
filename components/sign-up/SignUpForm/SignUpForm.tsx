@@ -1,7 +1,12 @@
-import { InputField, SubmitButton, RequestExceedModal } from 'components'
 import { useSignUpForm } from './useSignUpForm'
 import { signUpSchema } from 'schemas'
 import { Form, Formik } from 'formik'
+import {
+  RequestExceedModal,
+  SubmitButton,
+  SuccessModal,
+  InputField,
+} from 'components'
 
 const SignUpForm = () => {
   const {
@@ -9,6 +14,7 @@ const SignUpForm = () => {
     showRequestExceedModal,
     formInitialValues,
     submitHandler,
+    signUpSuccess,
   } = useSignUpForm()
 
   return (
@@ -25,6 +31,9 @@ const SignUpForm = () => {
                 setShowRequestExceedModal={setShowRequestExceedModal}
               />
             )}
+
+            {signUpSuccess && <SuccessModal />}
+
             <Form className='flex flex-col gap-1'>
               <InputField name='username' type='text' />
               <InputField name='email' type='text' />
