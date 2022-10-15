@@ -21,6 +21,8 @@ const Home: NextPage = () => {
   )
 }
 
+export default Home
+
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
@@ -28,5 +30,3 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     },
   }
 }
-
-export default Home

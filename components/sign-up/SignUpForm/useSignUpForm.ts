@@ -1,11 +1,13 @@
 import { SignUpFormData, FormProperties } from 'types'
 import { useMutation } from 'react-query'
 import { registerUSer } from 'services'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export const useSignUpForm = () => {
-  const [showRequestExceedModal, setShowRequestExceedModal] = useState(false)
   const [signUpSuccess, setSignUpSuccess] = useState(false)
+
+  const { push } = useRouter()
 
   const formInitialValues = {
     confirmPassword: '',
@@ -31,15 +33,13 @@ export const useSignUpForm = () => {
         if (status === 409) {
           setFieldError('email', 'email-exists')
         } else if (status === 429) {
-          setShowRequestExceedModal(true)
+          push('/requests-exceed')
         }
       },
     })
   }
 
   return {
-    setShowRequestExceedModal,
-    showRequestExceedModal,
     formInitialValues,
     setSignUpSuccess,
     submitHandler,

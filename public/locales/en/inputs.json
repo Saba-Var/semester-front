@@ -2,7 +2,7 @@
   "username": "Username",
   "email": "Email",
   "password": "Password",
-  "confirmPassword": "confirm password",
+  "confirmPassword": "Confirm password",
 
   "username-required": "Username field is required",
   "username-min": "Enter at least 3 characters",

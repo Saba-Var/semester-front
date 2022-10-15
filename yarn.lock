@@ -1600,6 +1600,11 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
+"next-api-route-middleware@^1.0.2":
+  "integrity" "sha512-GJBQWHkQ1yOddd30isD0AU3CJ/BX80jJAn/ao6Bkv+pXkWmmMT/xd/1Rx7IcucCjex4Y8pvFInZPi8XJf0lstw=="
+  "resolved" "https://registry.npmjs.org/next-api-route-middleware/-/next-api-route-middleware-1.0.2.tgz"
+  "version" "1.0.2"
+
 "next-i18next@^12.0.1":
   "integrity" "sha512-i1yLpOvokldjqnnkP4KfZtnbp2+DILlUvavzJ9rvCSu1Yk5w45IRAYrJfu20/0WDeWxea/ktYDmXw+z/2roo3g=="
   "resolved" "https://registry.npmjs.org/next-i18next/-/next-i18next-12.0.1.tgz"
@@ -1613,7 +1618,7 @@
     "i18next-fs-backend" "^1.1.5"
     "react-i18next" "^11.18.4"
 
-"next@>= 10.0.0", "next@12.3.1":
+"next@>= 10.0.0", "next@>=10", "next@12.3.1":
   "integrity" "sha512-l7bvmSeIwX5lp07WtIiP9u2ytZMv7jIeB8iacR28PuUEFG5j0HGAPnMqyG5kbZNBG2H7tRsrQ4HCjuMOPnANZw=="
   "resolved" "https://registry.npmjs.org/next/-/next-12.3.1.tgz"
   "version" "12.3.1"
