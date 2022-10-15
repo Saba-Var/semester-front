@@ -1,7 +1,11 @@
 import { Dispatch, SetStateAction } from 'react'
 import { DehydratedState } from 'react-query'
+import { Session } from 'next-auth'
 
-export type AppPropsType = { dehydratedState: DehydratedState }
+export type AppPropsType = {
+  dehydratedState: DehydratedState
+  session: Session
+}
 
 export type SetState<T> = Dispatch<SetStateAction<T>>
 

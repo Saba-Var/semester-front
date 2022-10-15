@@ -1,4 +1,4 @@
-import { AccessToken, SignUpFormData, Status } from 'types'
+import { SignUpFormData, Status } from 'types'
 import { AxiosResponse } from 'axios'
 import axios from './axios'
 

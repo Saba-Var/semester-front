@@ -1,5 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { AuthWrapper, GoogleButton, SignUpForm } from 'components'
+import { AuthWrapper, SignUpForm } from 'components'
 import { GetStaticProps } from 'next'
 
 const SignUp = () => {
@@ -7,7 +7,6 @@ const SignUp = () => {
     <AuthWrapper page='sign-up'>
       <>
         <SignUpForm />
-        <GoogleButton page='sign-up' />
       </>
     </AuthWrapper>
   )
