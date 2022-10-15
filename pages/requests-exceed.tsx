@@ -27,7 +27,7 @@ const RequestsExceed = () => {
                 <button
                   type='button'
                   onClick={() => goBack()}
-                  className='inline-flex items-center gap-1 rounded-md border border-transparent bg-indigo-600 pl-3 pr-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                  className='inline-flex items-center gap-1 rounded-md border border-transparent bg-blue-600 pl-3 pr-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                 >
                   <ArrowLeftIcon className='h-4 w-5' />
                   <p>{useTranslate('common:go-back')}</p>

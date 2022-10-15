@@ -41,9 +41,9 @@ const SuccessModal = () => {
             >
               <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
                 <div>
-                  <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100'>
+                  <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100'>
                     <CheckIcon
-                      className='h-6 w-6 text-green-600 text-emerald-600'
+                      className='h-6 w-6 text-green-600 text-blue-600'
                       aria-hidden='true'
                     />
                   </div>
@@ -64,7 +64,7 @@ const SuccessModal = () => {
                 <div className='mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3'>
                   <a
                     href='https://gmail.com'
-                    className='inline-flex w-full justify-center rounded-md border border-transparent bg-emerald-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-emerald-700 sm:col-start-2 sm:text-sm'
+                    className='inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:col-start-2 sm:text-sm'
                     rel='noreferrer'
                   >
                     {useTranslate('auth:go-to-gmail')}

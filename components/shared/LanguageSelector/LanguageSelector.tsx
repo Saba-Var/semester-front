@@ -64,7 +64,7 @@ const LanguageSelector = () => {
                       onClick={() => languageChangeHandler(language.locale)}
                       className={({ active }) =>
                         classNames(
-                          active ? 'text-white bg-indigo-500' : 'text-gray-900',
+                          active ? 'text-white bg-blue-500' : 'text-gray-900',
                           'relative cursor-pointer select-none'
                         )
                       }
@@ -96,7 +96,7 @@ const LanguageSelector = () => {
                             {selected.locale === language.locale ? (
                               <span
                                 className={classNames(
-                                  active ? 'text-white' : 'text-indigo-600',
+                                  active ? 'text-white' : 'text-blue-600',
                                   'absolute inset-y-0 right-0 flex items-center pr-4'
                                 )}
                               >

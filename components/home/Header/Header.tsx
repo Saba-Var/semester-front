@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
             <div className='-my-2 -mr-2 md:hidden'>
               <Popover.Button
-                className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
+                className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'
                 onClick={() => setBlurContent(true)}
               >
                 <Bars3Icon className='h-6 w-6' aria-hidden='true' />
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               </Link>
 
               <Link href='/sign-up'>
-                <a className='ml-6 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
+                <a className='ml-6 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700'>
                   {useTranslate('auth:sign-up')}
                 </a>
               </Link>
@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                   </p>
                 </div>
                 <div className='-mr-2' onClick={() => setBlurContent(false)}>
-                  <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
+                  <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'>
                     <XMarkIcon className='h-6 w-6' aria-hidden='true' />
                   </Popover.Button>
                 </div>
@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <div className='space-y-6 py-6 px-5'>
               <div>
                 <Link href='/log-in'>
-                  <a className='flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
+                  <a className='flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700'>
                     {useTranslate('auth:log-in')}
                   </a>
                 </Link>

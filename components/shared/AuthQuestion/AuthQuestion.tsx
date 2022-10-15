@@ -11,7 +11,7 @@ const AuthQuestion: React.FC<AuthQuestionProps> = (props) => {
         `auth:${type === 'sign-up' ? 'have-account' : 'no-account'}`
       )}{' '}
       <Link href={type === 'sign-up' ? '/log-in' : '/sign-up'}>
-        <a className='text-indigo-600 hover:text-indigo-500'>
+        <a className='text-blue-600 hover:text-blue-500'>
           {useTranslate(`auth:${type === 'sign-up' ? 'log-in' : 'sign-up'}`)}
         </a>
       </Link>

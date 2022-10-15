@@ -6,7 +6,7 @@ const FeatureSection = () => {
     <div className='bg-gray-50 py-12 sm:mt-[5%] 2xl:mt-[8%]'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='lg:text-center flex flex-col gap-1'>
-          <h2 className='text-lg font-semibold text-indigo-600'>
+          <h2 className='text-lg font-semibold text-blue-600'>
             {useTranslate('home:everything-you-need')}
           </h2>
           <p className='mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl'>
@@ -19,7 +19,7 @@ const FeatureSection = () => {
             {featuresList.map((feature) => (
               <div key={feature.name} className='relative'>
                 <dt>
-                  <div className='absolute flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500 text-white'>
+                  <div className='absolute flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white'>
                     <feature.icon className='h-6 w-6' aria-hidden='true' />
                   </div>
                   <p className='ml-16 text-lg font-medium leading-6 text-gray-900'>
