@@ -6,7 +6,7 @@ import React from 'react'
 const AuthQuestion: React.FC<AuthQuestionProps> = (props) => {
   const { type } = props
   return (
-    <p className='text-center mt-6 text-base font-medium text-gray-500'>
+    <p className='text-center mt-3 text-base font-medium text-gray-500'>
       {useTranslate(
         `auth:${type === 'sign-up' ? 'have-account' : 'no-account'}`
       )}{' '}

@@ -1,7 +1,7 @@
 export const useLogInForm = () => {
   const formInitialValues = {
-    username: '',
     password: '',
+    email: '',
   }
 
   const submitHandler = () => {}

@@ -20,8 +20,10 @@ const LogInForm = () => {
       {() => {
         return (
           <Form>
-            <InputField name='username' type='text' />
-            <InputField name='password' type='password' />
+            <div className='flex flex-col gap-2'>
+              <InputField name='email' type='text' />
+              <InputField name='password' type='password' />
+            </div>
 
             <div className='flex mb-4 mt-4 items-center justify-between'>
               <RememberMe />

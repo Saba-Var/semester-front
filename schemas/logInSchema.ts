@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 
 export const logInSchema = Yup.object({
-  username: Yup.string().trim().required('username-required'),
+  email: Yup.string().trim().required('email-required').email('valid-email'),
 
   password: Yup.string().required('password-required'),
 })
