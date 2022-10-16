@@ -1,20 +1,21 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useRef, useState } from 'react'
+import { SuccessModalProps } from './types.d'
+import { Fragment, useRef } from 'react'
 import { useTranslate } from 'hooks'
 
-const SuccessModal = () => {
-  const [open, setOpen] = useState(true)
+const SuccessModal: React.FC<SuccessModalProps> = (props) => {
+  const { setSignUpSuccess, signUpSuccess } = props
 
   const cancelButtonRef = useRef(null)
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={signUpSuccess} as={Fragment}>
       <Dialog
         as='div'
         className='relative z-10'
         initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        onClose={setSignUpSuccess}
       >
         <Transition.Child
           as={Fragment}
@@ -41,9 +42,9 @@ const SuccessModal = () => {
             >
               <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
                 <div>
-                  <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100'>
+                  <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100'>
                     <CheckIcon
-                      className='h-6 w-6 text-green-600 text-blue-600'
+                      className='h-6 w-6 text-emerald-600'
                       aria-hidden='true'
                     />
                   </div>
@@ -72,7 +73,7 @@ const SuccessModal = () => {
                   <button
                     type='button'
                     className='mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 sm:col-start-1 sm:mt-0 sm:text-sm'
-                    onClick={() => setOpen(false)}
+                    onClick={() => setSignUpSuccess(false)}
                     ref={cancelButtonRef}
                   >
                     {useTranslate('common:close')}

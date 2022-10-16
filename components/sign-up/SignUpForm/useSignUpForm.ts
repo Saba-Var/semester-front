@@ -34,6 +34,8 @@ export const useSignUpForm = () => {
           setFieldError('email', 'email-exists')
         } else if (status === 429) {
           push('/requests-exceed')
+        } else {
+          alert(error.message)
         }
       },
     })

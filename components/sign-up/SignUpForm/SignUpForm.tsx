@@ -4,7 +4,8 @@ import { signUpSchema } from 'schemas'
 import { Form, Formik } from 'formik'
 
 const SignUpForm = () => {
-  const { formInitialValues, submitHandler, signUpSuccess } = useSignUpForm()
+  const { formInitialValues, submitHandler, signUpSuccess, setSignUpSuccess } =
+    useSignUpForm()
 
   return (
     <Formik
@@ -15,7 +16,12 @@ const SignUpForm = () => {
       {() => {
         return (
           <>
-            {signUpSuccess && <SuccessModal />}
+            {signUpSuccess && (
+              <SuccessModal
+                setSignUpSuccess={setSignUpSuccess}
+                signUpSuccess={signUpSuccess}
+              />
+            )}
 
             <Form className='flex flex-col gap-1'>
               <InputField name='username' type='text' />

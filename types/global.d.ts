@@ -16,12 +16,21 @@ export type SignUpFormData = {
   email: string
 }
 
+export type SignInFormData = {
+  password: string
+  email: string
+}
+
 export type AccessToken = {
   accessToken: string
 }
 
 export type Status = {
   status: number
+}
+
+export type Message = {
+  message: string
 }
 
 export type FormProperties = {

@@ -9,10 +9,12 @@ import {
 } from 'components'
 
 const LogInForm = () => {
-  const { formInitialValues, submitHandler } = useLogInForm()
+  const { formInitialValues, submitHandler, fetchError } = useLogInForm()
 
   return (
     <Formik
+      validateOnChange={fetchError ? false : true}
+      validateOnBlur={fetchError ? false : true}
       initialValues={formInitialValues}
       validationSchema={logInSchema}
       onSubmit={submitHandler}
