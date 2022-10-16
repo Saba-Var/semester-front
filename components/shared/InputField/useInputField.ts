@@ -2,9 +2,8 @@ import { useField } from 'formik'
 import { useState } from 'react'
 
 export const useInputField = (data: { name: string; type: string }) => {
-  const [field, meta] = useField(data)
-
   const [inputType, setInputType] = useState(data.type)
+  const [field, meta] = useField(data)
 
   const isValid = meta.touched && !meta.error
   const isError = meta.error && meta.touched

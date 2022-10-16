@@ -11,5 +11,5 @@ export const registerUSer = (
 export const authorization = (
   data: SignInFormData
 ): Promise<AxiosResponse<AccessToken>> => {
-  return axios.post('/authentication/sign-in', data)
+  return axios.post('/authentication/sign-in', data, { withCredentials: true })
 }

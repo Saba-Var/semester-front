@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 export const useSignUpForm = () => {
   const [signUpSuccess, setSignUpSuccess] = useState(false)
-
+  const { mutate } = useMutation(registerUSer)
   const { push } = useRouter()
 
   const formInitialValues = {
@@ -15,8 +15,6 @@ export const useSignUpForm = () => {
     username: '',
     email: '',
   }
-
-  const { mutate } = useMutation(registerUSer)
 
   const submitHandler = (
     formData: SignUpFormData,

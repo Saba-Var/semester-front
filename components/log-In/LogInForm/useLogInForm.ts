@@ -1,13 +1,15 @@
 import { FormProperties, SignInFormData } from 'types'
 import { useMutation } from 'react-query'
+import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
+import { setAccessToken } from 'slices'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export const useLogInForm = () => {
   const [fetchError, setFetchError] = useState(false)
-
   const { mutate } = useMutation(authorization)
+  const dispatch = useDispatch()
   const { push } = useRouter()
 
   const formInitialValues = {
@@ -20,7 +22,10 @@ export const useLogInForm = () => {
     { setFieldError }: FormProperties
   ) => {
     mutate(formData, {
-      onSuccess: () => {},
+      onSuccess: (response) => {
+        dispatch(setAccessToken(response.data.accessToken))
+      },
+
       onError: (error: any) => {
         const status = error.response.status
         if (status === 401) {

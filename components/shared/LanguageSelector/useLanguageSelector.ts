@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 export const useLanguageSelector = () => {
   const router = useRouter()
-
   const [selected, setSelected] = useState(
     router.locale === 'en' ? languagesList[1] : languagesList[0]
   )
