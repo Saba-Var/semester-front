@@ -16,20 +16,26 @@ const useAxiosPrivate = () => {
         if (!config.headers['Authorization']) {
           config.headers['Authorization'] = `Bearer ${accessToken}`
         }
-
         return config
       },
-      (error) => Promise.reject(error)
+
+      (error) => {
+        return Promise.reject(error)
+      }
     )
 
     const responseIntercept = axiosPrivate.interceptors.response.use(
-      (response) => response,
+      (response) => {
+        return response
+      },
+
       async (error) => {
         const prevRequest = error?.config
-        if (error?.response?.status === 403 && !prevRequest?.sent) {
-          prevRequest.sent = true
-
+        const status = error?.response?.status
+        if (status === 403 && !prevRequest?.sent) {
           const newAccessToken = await refresh()
+
+          prevRequest.sent = true
           prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
 
           return axiosPrivate(prevRequest)
@@ -40,8 +46,8 @@ const useAxiosPrivate = () => {
     )
 
     return () => {
-      axiosPrivate.interceptors.request.eject(requestIntercept)
       axiosPrivate.interceptors.response.eject(responseIntercept)
+      axiosPrivate.interceptors.request.eject(requestIntercept)
     }
   }, [accessToken, refresh])
 

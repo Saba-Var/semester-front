@@ -1,26 +1,23 @@
 import { useDispatch } from 'react-redux'
 import { setAccessToken } from 'slices'
-import { axios } from 'services'
+import { refresh } from 'services'
 
 const useRefreshToken = () => {
   const dispatch = useDispatch()
 
-  const refresh = async () => {
+  const refreshToken = async () => {
     try {
-      const response = await axios.get('/authentication/refresh', {
-        withCredentials: true,
-      })
+      const response = await refresh()
 
       dispatch(setAccessToken(response.data.accessToken))
 
       return response.data.accessToken
     } catch (error: any) {
       alert(error.message)
-      console.log(error)
     }
   }
 
-  return refresh
+  return refreshToken
 }
 
 export default useRefreshToken

@@ -13,3 +13,7 @@ export const authorization = (
 ): Promise<AxiosResponse<AccessToken>> => {
   return axios.post('/authentication/sign-in', data, { withCredentials: true })
 }
+
+export const refresh = (): Promise<AxiosResponse<AccessToken>> => {
+  return axios.get('/authentication/refresh', { withCredentials: true })
+}
