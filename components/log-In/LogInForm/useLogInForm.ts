@@ -4,10 +4,13 @@ import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
 import { setAccessToken } from 'slices'
 import { useState } from 'react'
+import Cookies from 'js-cookie'
 
 export const useLogInForm = () => {
+  const [rememberCheckbox, setRememberCheckbox] = useState(false)
   const [fetchError, setFetchError] = useState(false)
-  const { mutate } = useMutation(authorization)
+
+  const { mutate: submitForm } = useMutation(authorization)
   const dispatch = useDispatch()
 
   const formInitialValues = {
@@ -19,9 +22,15 @@ export const useLogInForm = () => {
     formData: SignInFormData,
     { setFieldError }: FormProperties
   ) => {
-    mutate(formData, {
+    submitForm(formData, {
       onSuccess: (response) => {
         dispatch(setAccessToken(response.data.accessToken))
+
+        Cookies.set('remember-me', rememberCheckbox ? 'true' : 'false', {
+          expires: rememberCheckbox ? 30 : undefined,
+          sameSite: 'Strict',
+          secure: true,
+        })
       },
 
       onError: (error: any) => {
@@ -39,5 +48,10 @@ export const useLogInForm = () => {
     })
   }
 
-  return { formInitialValues, submitHandler, fetchError }
+  return {
+    setRememberCheckbox,
+    formInitialValues,
+    submitHandler,
+    fetchError,
+  }
 }

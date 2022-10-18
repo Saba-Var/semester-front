@@ -9,7 +9,8 @@ import {
 } from 'components'
 
 const LogInForm = () => {
-  const { formInitialValues, submitHandler, fetchError } = useLogInForm()
+  const { setRememberCheckbox, formInitialValues, submitHandler, fetchError } =
+    useLogInForm()
 
   return (
     <Formik
@@ -28,7 +29,7 @@ const LogInForm = () => {
             </div>
 
             <div className='flex mb-4 mt-4 items-center justify-between'>
-              <RememberMe />
+              <RememberMe setRememberCheckbox={setRememberCheckbox} />
               <ForgetPassword />
             </div>
 

@@ -5,7 +5,7 @@ import { Fragment, useRef } from 'react'
 import { useTranslate } from 'hooks'
 
 const SuccessModal: React.FC<SuccessModalProps> = (props) => {
-  const { setSignUpSuccess, signUpSuccess } = props
+  const { setSignUpSuccess, signUpSuccess, closeWithOverlay } = props
 
   const cancelButtonRef = useRef(null)
 
@@ -13,9 +13,9 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
     <Transition.Root show={signUpSuccess} as={Fragment}>
       <Dialog
         as='div'
-        className='relative z-10'
+        onClose={closeWithOverlay ? setSignUpSuccess : () => {}}
         initialFocus={cancelButtonRef}
-        onClose={setSignUpSuccess}
+        className='relative z-10'
       >
         <Transition.Child
           as={Fragment}
