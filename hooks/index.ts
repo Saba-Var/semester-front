@@ -1,3 +1,4 @@
+export { default as useAccountActivation } from './useAccountActivation'
 export { default as useRequestsExceed } from './useRequestsExceed'
 export { default as useRefreshToken } from './useRefreshToken'
 export { default as useAxiosPrivate } from './useAxiosPrivate'

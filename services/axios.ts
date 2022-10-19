@@ -15,7 +15,11 @@ instance.interceptors.response.use(
 
   async (error) => {
     if (error?.response?.status === 429) {
-      location.assign('/requests-exceed')
+      location.assign(
+        `${
+          localStorage.getItem('language') === 'en' ? '/en' : ''
+        }/requests-exceed`
+      )
     }
 
     return Promise.reject(error)

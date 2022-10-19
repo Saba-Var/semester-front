@@ -17,3 +17,11 @@ export const authorization = (
 export const refresh = (): Promise<AxiosResponse<AccessToken>> => {
   return axios.get('/authentication/refresh', { withCredentials: true })
 }
+
+export const accountActivation = (
+  token: string
+): Promise<AxiosResponse<Message>> => {
+  return axios.put(`/authentication/activate-account?token=${token}`, {
+    withCredentials: false,
+  })
+}
