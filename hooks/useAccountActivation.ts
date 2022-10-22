@@ -9,13 +9,17 @@ const useAccountActivation = () => {
   const [activationFail, setActivationFail] = useState(false)
 
   const { query } = useRouter()
-  const jwtToken = query.token
+  const token = query.token
 
   const { mutate: activateAccount } = useMutation(accountActivation)
 
   useEffect(() => {
-    if (jwtToken && typeof jwtToken === 'string') {
-      activateAccount(jwtToken, {
+    if (token?.length && typeof token === 'string') {
+      activateAccount(token, {
+        onSuccess: () => {
+          setActivationSuccess(true)
+        },
+
         onError: (error: any) => {
           if (error.response.status === 409) {
             setAlreadyActivated(true)
@@ -23,13 +27,9 @@ const useAccountActivation = () => {
             setActivationFail(true)
           }
         },
-
-        onSuccess: () => {
-          setActivationSuccess(true)
-        },
       })
     }
-  }, [activateAccount, jwtToken])
+  }, [activateAccount, token])
 
   return { activationSuccess, alreadyActivated, activationFail }
 }
