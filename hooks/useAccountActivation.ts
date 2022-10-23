@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 const useAccountActivation = () => {
   const [activationSuccess, setActivationSuccess] = useState(false)
   const [alreadyActivated, setAlreadyActivated] = useState(false)
+  const [accountNotFound, setAccountNotFound] = useState(false)
   const [activationFail, setActivationFail] = useState(false)
 
   const [isMounted, setIsMounted] = useState(false)
@@ -23,8 +24,11 @@ const useAccountActivation = () => {
         },
 
         onError: (error: any) => {
-          if (error.response.status === 409) {
+          const status = error.response.status
+          if (status === 409) {
             setAlreadyActivated(true)
+          } else if (status === 404) {
+            setAccountNotFound(true)
           } else {
             setActivationFail(true)
           }
@@ -38,6 +42,7 @@ const useAccountActivation = () => {
   return {
     activationSuccess,
     alreadyActivated,
+    accountNotFound,
     activationFail,
     isMounted,
     isLoading,
