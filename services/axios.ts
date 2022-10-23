@@ -9,17 +9,14 @@ const instance = axios.create({
 })
 
 instance.interceptors.response.use(
-  (response) => {
+  async (response) => {
     return response
   },
 
   async (error) => {
     if (error?.response?.status === 429) {
-      location.assign(
-        `${
-          localStorage.getItem('language') === 'en' ? '/en' : ''
-        }/requests-exceed`
-      )
+      const userLanguage = localStorage.getItem('language')
+      location.assign(`${userLanguage === 'en' ? '/en' : ''}/requests-exceed`)
     }
 
     return Promise.reject(error)

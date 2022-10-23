@@ -8,10 +8,12 @@ const useAccountActivation = () => {
   const [alreadyActivated, setAlreadyActivated] = useState(false)
   const [activationFail, setActivationFail] = useState(false)
 
+  const [isMounted, setIsMounted] = useState(false)
+
   const { query } = useRouter()
   const token = query.token
 
-  const { mutate: activateAccount } = useMutation(accountActivation)
+  const { mutate: activateAccount, isLoading } = useMutation(accountActivation)
 
   useEffect(() => {
     if (token?.length && typeof token === 'string') {
@@ -29,9 +31,17 @@ const useAccountActivation = () => {
         },
       })
     }
+
+    setIsMounted(true)
   }, [activateAccount, token])
 
-  return { activationSuccess, alreadyActivated, activationFail }
+  return {
+    activationSuccess,
+    alreadyActivated,
+    activationFail,
+    isMounted,
+    isLoading,
+  }
 }
 
 export default useAccountActivation
