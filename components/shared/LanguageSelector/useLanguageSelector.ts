@@ -2,6 +2,7 @@ import { languagesList } from 'CONSTANTS'
 import { useRouter } from 'next/router'
 import { HrefData } from './types.d'
 import { useState } from 'react'
+import Cookies from 'js-cookie'
 
 export const useLanguageSelector = () => {
   const router = useRouter()
@@ -18,7 +19,7 @@ export const useLanguageSelector = () => {
       setSelected(languagesList[0])
     }
 
-    localStorage.setItem('language', lan)
+    Cookies.set('language', lan, { expires: 365 })
   }
 
   return { selected, setSelected, hrefData, languageChangeHandler }

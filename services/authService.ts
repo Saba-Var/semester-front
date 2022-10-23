@@ -11,17 +11,17 @@ export const registerUSer = (
 export const authorization = (
   data: SignInFormData
 ): Promise<AxiosResponse<AccessToken>> => {
-  return axios.post('/authentication/sign-in', data, { withCredentials: true })
+  return axios.post('/authentication/sign-in', data)
 }
 
 export const refresh = (): Promise<AxiosResponse<AccessToken>> => {
-  return axios.get('/authentication/refresh', { withCredentials: true })
+  return axios.get('/authentication/refresh')
 }
 
 export const accountActivation = (
   token: string
 ): Promise<AxiosResponse<Message>> => {
-  return axios.put(`/authentication/activate-account?token=${token}`, {
+  return axios.post(`/authentication/activate-account?token=${token}`, {
     withCredentials: false,
   })
 }

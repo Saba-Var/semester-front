@@ -1,3 +1,4 @@
+import { carOnFire, party, girlWithLaptop, searching } from 'public'
 import { accountActivation } from 'services'
 import { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
@@ -10,6 +11,16 @@ const useAccountActivation = () => {
   const [activationFail, setActivationFail] = useState(false)
 
   const [isMounted, setIsMounted] = useState(false)
+
+  let imageSrc = activationSuccess
+    ? party
+    : alreadyActivated
+    ? girlWithLaptop
+    : accountNotFound
+    ? searching
+    : activationFail
+    ? carOnFire
+    : ''
 
   const { query } = useRouter()
   const token = query.token
@@ -46,6 +57,7 @@ const useAccountActivation = () => {
     activationFail,
     isMounted,
     isLoading,
+    imageSrc,
   }
 }
 

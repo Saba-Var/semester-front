@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import axios from 'axios'
 
 const instance = axios.create({
@@ -6,6 +7,7 @@ const instance = axios.create({
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 })
 
 instance.interceptors.response.use(
@@ -15,7 +17,7 @@ instance.interceptors.response.use(
 
   async (error) => {
     if (error?.response?.status === 429) {
-      const userLanguage = localStorage.getItem('language')
+      const userLanguage = Cookies.get('language')
       location.assign(`${userLanguage === 'en' ? '/en' : ''}/requests-exceed`)
     }
 

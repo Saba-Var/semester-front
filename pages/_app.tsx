@@ -1,15 +1,15 @@
-import { QueryClientProvider, QueryClient, Hydrate } from 'react-query'
+import { QueryClientProvider, Hydrate } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { AppPropsType } from 'types'
-import { useState } from 'react'
+import { useApp } from 'hooks'
 import '../styles/globals.css'
 import { store } from 'store'
 
 const MyApp = ({ Component, pageProps }: AppProps<AppPropsType>) => {
-  const [queryClient] = useState(() => new QueryClient())
+  const { queryClient } = useApp()
 
   return (
     <Provider store={store}>

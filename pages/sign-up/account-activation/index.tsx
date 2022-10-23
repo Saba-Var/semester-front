@@ -1,5 +1,4 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { carOnFire, party, girlWithLaptop, searching } from 'public'
 import { LoadingIcon, ActivationText } from 'components'
 import { useAccountActivation } from 'hooks'
 import { GetStaticProps } from 'next'
@@ -12,27 +11,18 @@ const AccountActivation = () => {
     accountNotFound,
     isMounted,
     isLoading,
+    imageSrc,
   } = useAccountActivation()
 
   return (
     <div className='bg-gray-200 h-screen w-full flex justify-center'>
-      {isLoading && <LoadingIcon centered={true} />}
-
-      {isMounted && !isLoading && (
+      {isMounted && !isLoading && imageSrc ? (
         <div className='flex items-center justify-center flex-col gap-5'>
           <div className='relative h-[180px] w-[280px] md:h-[300px] md:w-[450px] lg:h-[400px] lg:w-[550px] 3xl:h-[600px] 3xl:w-[700px]'>
             <Image
-              src={
-                activationSuccess
-                  ? party
-                  : alreadyActivated
-                  ? girlWithLaptop
-                  : accountNotFound
-                  ? searching
-                  : carOnFire
-              }
               alt='illustration'
               priority={true}
+              src={imageSrc}
               layout='fill'
             />
           </div>
@@ -43,6 +33,8 @@ const AccountActivation = () => {
             accountNotFound={accountNotFound}
           />
         </div>
+      ) : (
+        <LoadingIcon centered={true} />
       )}
     </div>
   )
