@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export const useSignUpForm = () => {
   const [signUpSuccess, setSignUpSuccess] = useState(false)
-  const { mutate } = useMutation(registerUSer)
+  const { mutate, isLoading: userRegistering } = useMutation(registerUSer)
 
   const formInitialValues = {
     confirmPassword: '',
@@ -35,6 +35,7 @@ export const useSignUpForm = () => {
   return {
     formInitialValues,
     setSignUpSuccess,
+    userRegistering,
     submitHandler,
     signUpSuccess,
   }

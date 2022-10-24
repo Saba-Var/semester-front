@@ -1,5 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { LoadingIcon, ActivationText } from 'components'
+import { LoadingIcon, ActivationText, ActivationButton } from 'components'
 import { useAccountActivation } from 'hooks'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
@@ -9,6 +9,7 @@ const AccountActivation = () => {
     activationSuccess,
     alreadyActivated,
     accountNotFound,
+    activationFail,
     isMounted,
     isLoading,
     imageSrc,
@@ -31,6 +32,12 @@ const AccountActivation = () => {
             activationSuccess={activationSuccess}
             alreadyActivated={alreadyActivated}
             accountNotFound={accountNotFound}
+          />
+
+          <ActivationButton
+            activationSuccess={activationSuccess}
+            accountNotFound={accountNotFound}
+            activationFail={activationFail}
           />
         </div>
       ) : (

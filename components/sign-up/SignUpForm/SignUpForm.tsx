@@ -4,8 +4,13 @@ import { signUpSchema } from 'schemas'
 import { Form, Formik } from 'formik'
 
 const SignUpForm = () => {
-  const { formInitialValues, submitHandler, signUpSuccess, setSignUpSuccess } =
-    useSignUpForm()
+  const {
+    formInitialValues,
+    setSignUpSuccess,
+    userRegistering,
+    submitHandler,
+    signUpSuccess,
+  } = useSignUpForm()
 
   return (
     <Formik
@@ -29,7 +34,11 @@ const SignUpForm = () => {
               <InputField name='password' type='password' />
               <InputField name='confirmPassword' type='password' />
 
-              <SubmitButton title='sign-up' styles='mt-4' />
+              <SubmitButton
+                disabled={userRegistering}
+                title='sign-up'
+                styles='mt-4'
+              />
             </Form>
           </>
         )
