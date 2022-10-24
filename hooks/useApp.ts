@@ -10,11 +10,12 @@ const useApp = () => {
 
   useEffect(() => {
     const language = Cookies.get('language')
+    const isValidLanguage = language === 'ka' || language === 'en'
 
-    if (language && language !== locale) {
+    if (isValidLanguage && language !== locale) {
       push(asPath, asPath, { locale: language })
     } else {
-      if (!language) {
+      if (!language || !isValidLanguage) {
         Cookies.set('language', locale!, { expires: 365 })
       }
 
