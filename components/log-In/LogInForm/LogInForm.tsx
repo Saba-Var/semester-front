@@ -9,8 +9,13 @@ import {
 } from 'components'
 
 const LogInForm = () => {
-  const { setRememberCheckbox, formInitialValues, submitHandler, fetchError } =
-    useLogInForm()
+  const {
+    setRememberCheckbox,
+    formInitialValues,
+    submitHandler,
+    authorizing,
+    fetchError,
+  } = useLogInForm()
 
   return (
     <Formik
@@ -33,7 +38,7 @@ const LogInForm = () => {
               <ForgetPassword />
             </div>
 
-            <SubmitButton title='log-in' />
+            <SubmitButton disabled={authorizing} title='log-in' />
           </Form>
         )
       }}

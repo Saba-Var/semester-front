@@ -10,7 +10,8 @@ export const useLogInForm = () => {
   const [rememberCheckbox, setRememberCheckbox] = useState(false)
   const [fetchError, setFetchError] = useState(false)
 
-  const { mutate: submitForm } = useMutation(authorization)
+  const { mutate: submitForm, isLoading: authorizing } =
+    useMutation(authorization)
   const dispatch = useDispatch()
 
   const formInitialValues = {
@@ -52,6 +53,7 @@ export const useLogInForm = () => {
     setRememberCheckbox,
     formInitialValues,
     submitHandler,
+    authorizing,
     fetchError,
   }
 }
