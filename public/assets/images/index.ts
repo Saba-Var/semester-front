@@ -1,3 +1,7 @@
+export { default as girlWithLaptop } from './girl-with-laptop.png'
 export { default as georgianFlag } from './georgian-flag.png'
 export { default as britainFlag } from './britain-flag.png'
+export { default as carOnFire } from './car-on-fire.png'
+export { default as searching } from './searching.png'
 export { default as calendar } from './calendar.jpg'
+export { default as party } from './party.png'

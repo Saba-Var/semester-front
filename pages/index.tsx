@@ -9,7 +9,6 @@ const Home: NextPage = () => {
   return (
     <>
       <HeroSection blurContent={blurContent} setBlurContent={setBlurContent} />
-
       <div
         onClick={() => blurContent && setBlurContent(false)}
         className={`${blurContent ? 'blur-[2.4px]' : 'blur-0'} md:blur-0`}
@@ -22,6 +21,8 @@ const Home: NextPage = () => {
   )
 }
 
+export default Home
+
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
@@ -29,5 +30,3 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     },
   }
 }
-
-export default Home
