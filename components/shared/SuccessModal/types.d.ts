@@ -1,7 +1,12 @@
 import { SetState } from 'types'
 
 export type SuccessModalProps = {
-  setSignUpSuccess: SetState<boolean>
+  setSuccess: SetState<boolean>
   closeWithOverlay?: boolean
-  signUpSuccess: boolean
+  clickHandler?: () => void
+  linkAction?: boolean
+  description: string
+  actionText: string
+  isSuccess: boolean
+  title: string
 }

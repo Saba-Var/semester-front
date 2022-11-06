@@ -7,8 +7,14 @@ import Cookies from 'js-cookie'
 const useApp = () => {
   const [queryClient] = useState(() => new QueryClient())
   const { push, locale, asPath } = useRouter()
+  // check if hydration is done
+  const [isHydrated, setIsHydrated] = useState(false)
 
   useEffect(() => {
+    if (!isHydrated) {
+      setIsHydrated(true)
+    }
+
     const language = Cookies.get('language')
     const isValidLanguage = language === 'ka' || language === 'en'
 
@@ -26,7 +32,7 @@ const useApp = () => {
     }
   }, [locale, asPath, push])
 
-  return { queryClient }
+  return { queryClient, isHydrated }
 }
 
 export default useApp

@@ -10,6 +10,7 @@ const SignUpForm = () => {
     userRegistering,
     submitHandler,
     signUpSuccess,
+    t,
   } = useSignUpForm()
 
   return (
@@ -23,8 +24,12 @@ const SignUpForm = () => {
           <>
             {signUpSuccess && (
               <SuccessModal
-                setSignUpSuccess={setSignUpSuccess}
-                signUpSuccess={signUpSuccess}
+                description={t('auth:confirmation-instructions')}
+                title={t('auth:confirmation-sent')}
+                actionText={t('auth:go-to-gmail')}
+                setSuccess={setSignUpSuccess}
+                isSuccess={signUpSuccess}
+                linkAction={true}
               />
             )}
 

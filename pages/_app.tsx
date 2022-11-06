@@ -9,13 +9,13 @@ import '../styles/globals.css'
 import { store } from 'store'
 
 const MyApp = ({ Component, pageProps }: AppProps<AppPropsType>) => {
-  const { queryClient } = useApp()
+  const { queryClient, isHydrated } = useApp()
 
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <Component {...pageProps} />
+          {isHydrated && <Component {...pageProps} />}
           <ReactQueryDevtools />
         </Hydrate>
       </QueryClientProvider>

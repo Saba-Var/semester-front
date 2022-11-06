@@ -1,4 +1,4 @@
-import { FormProperties, SignInFormData } from 'types'
+import { FormProperties, SignInformValues } from 'types'
 import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
@@ -12,6 +12,7 @@ export const useLogInForm = () => {
 
   const { mutate: submitForm, isLoading: authorizing } =
     useMutation(authorization)
+
   const dispatch = useDispatch()
 
   const formInitialValues = {
@@ -20,10 +21,10 @@ export const useLogInForm = () => {
   }
 
   const submitHandler = (
-    formData: SignInFormData,
+    formValues: SignInformValues,
     { setFieldError }: FormProperties
   ) => {
-    submitForm(formData, {
+    submitForm(formValues, {
       onSuccess: (response) => {
         dispatch(setAccessToken(response.data.accessToken))
 

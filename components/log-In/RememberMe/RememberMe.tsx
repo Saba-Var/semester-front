@@ -5,7 +5,7 @@ const RememberMe: React.FC<RememberMeProps> = (props) => {
   const { setRememberCheckbox } = props
 
   return (
-    <label className='text-sm text-gray-900 flex gap-2 items-center cursor-pointer'>
+    <label className='text-sm lg:text-base text-gray-900 flex gap-2 items-center cursor-pointer'>
       <input
         onChange={(e) => {
           setRememberCheckbox(e.target.checked)

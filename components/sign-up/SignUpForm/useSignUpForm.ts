@@ -1,11 +1,15 @@
-import { SignUpFormData, FormProperties } from 'types'
+import { SignUpFormValues, FormProperties } from 'types'
+import { useTranslation } from 'next-i18next'
 import { useMutation } from 'react-query'
 import { registerUSer } from 'services'
 import { useState } from 'react'
 
 export const useSignUpForm = () => {
   const [signUpSuccess, setSignUpSuccess] = useState(false)
+
   const { mutate, isLoading: userRegistering } = useMutation(registerUSer)
+
+  const { t } = useTranslation()
 
   const formInitialValues = {
     confirmPassword: '',
@@ -15,10 +19,10 @@ export const useSignUpForm = () => {
   }
 
   const submitHandler = (
-    formData: SignUpFormData,
+    formValues: SignUpFormValues,
     { setFieldError, resetForm }: FormProperties
   ) => {
-    mutate(formData, {
+    mutate(formValues, {
       onSuccess: () => {
         resetForm()
         setSignUpSuccess(true)
@@ -38,5 +42,6 @@ export const useSignUpForm = () => {
     userRegistering,
     submitHandler,
     signUpSuccess,
+    t,
   }
 }

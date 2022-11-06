@@ -25,5 +25,9 @@
 
   "email-exists": "Email is already in use",
   "incorrect-credentials": "Email or password is incorrect",
-  "inactive-account": "Account is not activated"
+  "inactive-account": "Account is not activated",
+
+  "continue": "Continue",
+  "user-not-found": "Email not found",
+  "email-sent-failed": "Email could not be sent"
 }
