@@ -1,27 +1,27 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { AuthWrapper, LogInForm } from 'components'
+import { AuthWrapper, ResetPasswordRequest } from 'components'
 import { GetStaticProps } from 'next'
 
-const LogIn = () => {
+const RequestEmail = () => {
   return (
-    <AuthWrapper page='log-in-to'>
+    <AuthWrapper page='reset'>
       <>
-        <LogInForm />
+        <ResetPasswordRequest />
       </>
     </AuthWrapper>
   )
 }
 
-export default LogIn
+export default RequestEmail
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale!, [
-        'auth',
-        'common',
-        'overview',
         'inputs',
+        'common',
+        'reset',
+        'auth',
       ])),
     },
   }

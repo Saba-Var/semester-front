@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 
 const SignUp = () => {
   return (
-    <AuthWrapper page='sign-up'>
+    <AuthWrapper page='create-account'>
       <>
         <SignUpForm />
       </>
@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         'inputs',
         'common',
         'auth',
-        'home',
+        'overview',
       ])),
     },
   }

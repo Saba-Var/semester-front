@@ -1,19 +1,29 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { Dialog, Transition } from '@headlessui/react'
+import { useSuccessModal } from './useSuccessModal'
 import { SuccessModalProps } from './types.d'
-import { Fragment, useRef } from 'react'
 import { useTranslate } from 'hooks'
+import { Fragment } from 'react'
 
 const SuccessModal: React.FC<SuccessModalProps> = (props) => {
-  const { setSignUpSuccess, signUpSuccess, closeWithOverlay } = props
+  const {
+    closeWithOverlay,
+    clickHandler,
+    description,
+    linkAction,
+    actionText,
+    setSuccess,
+    isSuccess,
+    title,
+  } = props
 
-  const cancelButtonRef = useRef(null)
+  const { cancelButtonRef, t } = useSuccessModal()
 
   return (
-    <Transition.Root show={signUpSuccess} as={Fragment}>
+    <Transition.Root show={isSuccess} as={Fragment}>
       <Dialog
         as='div'
-        onClose={closeWithOverlay ? setSignUpSuccess : () => {}}
+        onClose={closeWithOverlay ? setSuccess : () => {}}
         initialFocus={cancelButtonRef}
         className='relative z-10'
       >
@@ -30,7 +40,7 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
         </Transition.Child>
 
         <div className='fixed inset-0 z-10 overflow-y-auto'>
-          <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
+          <div className='flex min-h-full justify-center p-4 text-center items-center sm:p-0'>
             <Transition.Child
               as={Fragment}
               enter='ease-out duration-300'
@@ -53,27 +63,35 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
                       as='h3'
                       className='text-lg font-medium leading-6 text-gray-900'
                     >
-                      {useTranslate('auth:confirmation-sent')}
+                      {title}
                     </Dialog.Title>
                     <div className='mt-2'>
-                      <p className='text-sm text-gray-500'>
-                        {useTranslate('auth:confirmation-instructions')}
-                      </p>
+                      <p className='text-sm text-gray-500'>{description}</p>
                     </div>
                   </div>
                 </div>
                 <div className='mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3'>
-                  <a
-                    href='https://gmail.com'
-                    className='inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:col-start-2 sm:text-sm'
-                    rel='noreferrer'
-                  >
-                    {useTranslate('auth:go-to-gmail')}
-                  </a>
+                  {linkAction ? (
+                    <a
+                      href='https://gmail.com'
+                      className='inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:col-start-2 sm:text-sm'
+                      rel='noreferrer'
+                    >
+                      {actionText}
+                    </a>
+                  ) : (
+                    <button
+                      className='inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:col-start-2 sm:text-sm'
+                      onClick={clickHandler}
+                      ref={cancelButtonRef}
+                    >
+                      {t('common:close')}
+                    </button>
+                  )}
+
                   <button
-                    type='button'
                     className='mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 sm:col-start-1 sm:mt-0 sm:text-sm'
-                    onClick={() => setSignUpSuccess(false)}
+                    onClick={() => setSuccess(false)}
                     ref={cancelButtonRef}
                   >
                     {useTranslate('common:close')}

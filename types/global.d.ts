@@ -9,14 +9,14 @@ export type AppPropsType = {
 
 export type SetState<T> = Dispatch<SetStateAction<T>>
 
-export type SignUpFormData = {
+export type SignUpFormValues = {
   confirmPassword: string
   password: string
   username: string
   email: string
 }
 
-export type SignInFormData = {
+export type SignInformValues = {
   password: string
   email: string
 }
@@ -31,6 +31,10 @@ export type Status = {
 
 export type Message = {
   message: string
+}
+
+export type Email = {
+  email: string
 }
 
 export type FormProperties = {

@@ -1,3 +1,3 @@
 export type AuthQuestionProps = {
-  type: 'log-in' | 'sign-up'
+  type: 'log-in-to' | 'create-account' | 'reset'
 }

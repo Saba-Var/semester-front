@@ -4,7 +4,7 @@ export const useAuthWrapper = () => {
   const router = useRouter()
 
   const navigateToHome = () => {
-    router.push('/')
+    router.push('/overview')
   }
 
   return { navigateToHome }

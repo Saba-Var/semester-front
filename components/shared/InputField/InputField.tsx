@@ -22,24 +22,24 @@ const InputField: React.FC<InputFieldProps> = (props) => {
   } = useInputField(props)
 
   return (
-    <div className='min-h-[90px]'>
+    <div className='min-h-[107px]'>
       <label
-        className={`block text-sm select-none font-medium text-gray-700 ${
+        className={`block text-base select-none font-medium text-gray-700 ${
           isError && 'text-red-900'
         }`}
       >
         {useTranslate(`inputs:${name}`)}
       </label>
-      <div className='mt-1 relative'>
+      <div className='mt-2 relative'>
         <input
           {...field}
           {...props}
-          className={`block w-full pr-8 appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm ${
+          className={`block w-full pr-8 appearance-none rounded-md border border-gray-300 p-3 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm ${
             isError &&
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500'
           } ${isValid && '!border-green'} ${
             isPasswordField && (isError || isValid) && 'pr-14'
-          }`}
+          } lg:text-base`}
           placeholder={useTranslate(`inputs:${name}`)}
           type={inputType}
         />
