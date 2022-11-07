@@ -3,6 +3,7 @@ import axios from './axios'
 import {
   SignUpFormValues,
   SignInformValues,
+  ResetPasswordReq,
   AccessToken,
   Message,
   Email,
@@ -37,5 +38,14 @@ export const resetPasswordEmailReq = (
 ): Promise<AxiosResponse<Message>> => {
   return axios.get(
     `/authentication/change-password-request?email=${data.email}`
+  )
+}
+
+export const resetPassword = (
+  data: ResetPasswordReq
+): Promise<AxiosResponse<Message>> => {
+  return axios.put(
+    `/authentication/change-password?accessToken=${data.accessToken}`,
+    data
   )
 }

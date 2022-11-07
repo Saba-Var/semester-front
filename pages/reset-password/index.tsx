@@ -15,7 +15,12 @@ export default ResetPassword
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale!, ['inputs', 'auth', 'reset'])),
+      ...(await serverSideTranslations(locale!, [
+        'common',
+        'inputs',
+        'reset',
+        'auth',
+      ])),
     },
   }
 }

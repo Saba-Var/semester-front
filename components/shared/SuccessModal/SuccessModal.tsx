@@ -8,6 +8,7 @@ import { Fragment } from 'react'
 const SuccessModal: React.FC<SuccessModalProps> = (props) => {
   const {
     closeWithOverlay,
+    linkActionText,
     clickHandler,
     description,
     linkAction,
@@ -77,7 +78,7 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
                       className='inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:col-start-2 sm:text-sm'
                       rel='noreferrer'
                     >
-                      {actionText}
+                      {linkActionText}
                     </a>
                   ) : (
                     <button
@@ -85,7 +86,7 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
                       onClick={clickHandler}
                       ref={cancelButtonRef}
                     >
-                      {t('common:close')}
+                      {actionText}
                     </button>
                   )}
 
