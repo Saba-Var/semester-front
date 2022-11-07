@@ -1,3 +1,4 @@
+export * from './reset-password'
 export * from './sign-up'
 export * from './shared'
 export * from './log-In'
