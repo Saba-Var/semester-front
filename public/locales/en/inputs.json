@@ -3,30 +3,22 @@
   "email": "Email",
   "password": "Password",
   "confirmPassword": "Confirm password",
-
   "username-required": "Username field is required",
   "username-min": "Enter at least 3 characters",
   "username-max": "Enter maximum 20 characters",
-
   "email-required": "Email field is required",
   "valid-email": "Please provide a valid email",
-
   "password-required": "Password field is required",
   "password-min": "Enter at least 8 characters",
-
   "password-match": "Password don't match",
   "confirmPassword-required": "Confirm password field is required",
-
   "google-sign-up": "Sign up with Google",
   "google-sign-in": "Sign in with Google",
-
   "log-in": "Log in",
   "sign-up": "Sign up",
-
   "email-exists": "Email is already in use",
   "incorrect-credentials": "Email or password is incorrect",
   "inactive-account": "Account is not activated",
-
   "continue": "Continue",
   "user-not-found": "Email not found",
   "email-sent-failed": "Email could not be sent",
