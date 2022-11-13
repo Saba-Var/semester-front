@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                   </a>
                 </Link>
 
-                <AuthQuestion type='log-in' />
+                <AuthQuestion type='log-in-to' />
               </div>
             </div>
           </div>

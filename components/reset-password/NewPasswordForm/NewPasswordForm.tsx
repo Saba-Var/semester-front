@@ -46,8 +46,8 @@ const NewPasswordForm = () => {
                 <InputField name='confirmPassword' type='password' />
 
                 <SubmitButton
+                  title='reset-password'
                   disabled={isLoading}
-                  title='continue'
                   styles='mt-4'
                 />
               </Form>

@@ -20,7 +20,7 @@ export const useNewPasswordForm = () => {
 
   const submitHandler = (
     formValues: Passwords,
-    { setFieldError, resetForm }: FormProperties
+    { resetForm }: FormProperties
   ) => {
     const data = {
       password: formValues.password,
@@ -34,7 +34,9 @@ export const useNewPasswordForm = () => {
         resetForm()
       },
 
-      onError: (error: any) => {},
+      onError: (error: any) => {
+        console.log(error)
+      },
     })
   }
 

@@ -29,5 +29,6 @@
 
   "continue": "Continue",
   "user-not-found": "Email not found",
-  "email-sent-failed": "Email could not be sent"
+  "email-sent-failed": "Email could not be sent",
+  "reset-password": "Reset password"
 }

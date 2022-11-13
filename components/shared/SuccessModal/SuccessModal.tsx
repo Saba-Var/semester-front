@@ -18,7 +18,7 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
     title,
   } = props
 
-  const { cancelButtonRef, t } = useSuccessModal()
+  const { cancelButtonRef } = useSuccessModal()
 
   return (
     <Transition.Root show={isSuccess} as={Fragment}>

@@ -29,5 +29,6 @@
 
   "continue": "გაგრძელება",
   "user-not-found": "ელ-ფოსტა ვერ მოიძებნა",
-  "email-sent-failed": "ბმული ვერ გამოიგზავნა"
+  "email-sent-failed": "ბმული ვერ გამოიგზავნა",
+  "reset-password": "პაროლის შეცვლა"
 }
