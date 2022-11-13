@@ -1,4 +1,4 @@
-import { InputField, SubmitButton, SuccessModal } from 'components'
+import { InputField, SubmitButton, SuccessModal, ErrorModal } from 'components'
 import { useNewPasswordForm } from './useNewPasswordForm'
 import { resetPasswordSchema } from 'schemas'
 import { Form, Formik } from 'formik'
@@ -10,7 +10,9 @@ const NewPasswordForm = () => {
     setSuccessModal,
     initialValues,
     submitHandler,
+    setFetchError,
     successModal,
+    fetchError,
     isLoading,
     t,
   } = useNewPasswordForm()
@@ -30,6 +32,15 @@ const NewPasswordForm = () => {
           setSuccess={setSuccessModal}
           isSuccess={successModal}
           closeWithOverlay
+        />
+      )}
+
+      {fetchError && (
+        <ErrorModal
+          description={t('reset:reset-fail-description')}
+          title={t('reset:reset-fail')}
+          setShowModal={setFetchError}
+          showModal={fetchError}
         />
       )}
 

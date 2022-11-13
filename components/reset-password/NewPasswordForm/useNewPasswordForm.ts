@@ -7,11 +7,11 @@ import { useState } from 'react'
 
 export const useNewPasswordForm = () => {
   const [successModal, setSuccessModal] = useState(false)
+  const [fetchError, setFetchError] = useState(false)
 
   const { mutate, isLoading } = useMutation(resetPassword)
-  const { t } = useTranslation()
-
   const { query, push } = useRouter()
+  const { t } = useTranslation()
 
   const initialValues = {
     confirmPassword: '',
@@ -34,22 +34,24 @@ export const useNewPasswordForm = () => {
         resetForm()
       },
 
-      onError: (error: any) => {
-        console.log(error)
+      onError: () => {
+        setFetchError(true)
       },
     })
   }
 
   const logInClickHandler = () => {
-    push('/login')
+    push('/log-in')
   }
 
   return {
     logInClickHandler,
     setSuccessModal,
+    setFetchError,
     submitHandler,
     initialValues,
     successModal,
+    fetchError,
     isLoading,
     t,
   }
