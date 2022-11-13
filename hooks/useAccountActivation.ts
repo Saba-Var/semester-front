@@ -12,6 +12,9 @@ const useAccountActivation = () => {
 
   const [isMounted, setIsMounted] = useState(false)
 
+  const { query } = useRouter()
+  const token = query.token
+
   let imageSrc = activationSuccess
     ? party
     : alreadyActivated
@@ -21,9 +24,6 @@ const useAccountActivation = () => {
     : activationFail
     ? carOnFire
     : ''
-
-  const { query } = useRouter()
-  const token = query.token
 
   const { mutate: activateAccount, isLoading } = useMutation(accountActivation)
 

@@ -5,10 +5,10 @@ import { useState } from 'react'
 import Cookies from 'js-cookie'
 
 const useApp = () => {
+  const [isHydrated, setIsHydrated] = useState(false)
+
   const [queryClient] = useState(() => new QueryClient())
   const { push, locale, asPath } = useRouter()
-  // check if hydration is done
-  const [isHydrated, setIsHydrated] = useState(false)
 
   useEffect(() => {
     if (!isHydrated) {
@@ -30,7 +30,7 @@ const useApp = () => {
         push(uri, uri, { locale: language })
       }
     }
-  }, [locale, asPath, push])
+  }, [locale, asPath, push, isHydrated])
 
   return { queryClient, isHydrated }
 }

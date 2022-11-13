@@ -30,8 +30,9 @@ const ResetPasswordRequest = () => {
             <>
               {successModal && (
                 <SuccessModal
+                  actionText='reset:reset-password'
+                  linkActionText={t('auth:go-to-gmail')}
                   description={t('reset:check-email')}
-                  actionText={t('auth:go-to-gmail')}
                   title={t('reset:reset-lin-sent')}
                   setSuccess={setSuccessModal}
                   isSuccess={successModal}

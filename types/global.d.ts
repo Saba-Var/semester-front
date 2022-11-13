@@ -37,6 +37,17 @@ export type Email = {
   email: string
 }
 
+export type ResetPasswordReq = {
+  confirmPassword: string
+  accessToken: string
+  password: string
+}
+
+export type Passwords = {
+  confirmPassword: string
+  password: string
+}
+
 export type FormProperties = {
   setFieldError: (field: string, message: string) => void
   setFieldValue: (field: string, value: string) => void

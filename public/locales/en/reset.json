@@ -1,5 +1,8 @@
 {
   "reset-instruction": "Enter the your email address and we will send you a link to change your password",
   "reset-lin-sent": "Reset link sent",
-  "check-email": "We have sent you an email with a link to change your password. Check your inbox and click on the link to reset password."
+  "check-email": "We have sent you an email with a link to change your password. Check your inbox and click on the link to reset password.",
+  "new-password-instruction": "Enter your new password",
+  "reset-fail": "Reset password failed",
+  "reset-fail-description": "Unfortunately password reset failed. Please check url and refresh the page."
 }

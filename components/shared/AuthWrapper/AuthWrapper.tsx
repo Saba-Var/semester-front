@@ -36,7 +36,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = (props) => {
             {children}
           </div>
 
-          <AuthQuestion type={page} />
+          {page !== 'reset-password' && <AuthQuestion type={page} />}
         </div>
       </div>
     </>
