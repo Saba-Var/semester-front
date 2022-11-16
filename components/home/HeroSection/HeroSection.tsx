@@ -1,8 +1,7 @@
+import { Header, LottieAnimation } from 'components'
 import { HeroSectionProps } from './types.d'
+import { calendarAnimation } from 'public'
 import { useTranslate } from 'hooks'
-import { Header } from 'components'
-import { calendar } from 'public'
-import Image from 'next/image'
 import Link from 'next/link'
 
 const HeroSection: React.FC<HeroSectionProps> = (props) => {
@@ -14,11 +13,11 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
 
       <main
         onClick={() => blurContent && setBlurContent(false)}
-        className={`lg:relative h-full ${
+        className={`lg:relative h-[92%] sm:h-full ${
           blurContent ? 'blur-[2.4px]' : 'blur-0'
         } md:blur-0 flex flex-col justify-between`}
       >
-        <div className='mx-auto lg:h-screen lg:flex lg:items-center lg:pb-[3%] w-full text-center lg:text-left'>
+        <div className='mx-auto xl:px-14 lg:h-screen lg:flex lg:items-center lg:pb-[3%] w-full text-center lg:text-left'>
           <div className='px-4 sm:px-8 lg:w-1/2 xl:pr-16 lg:pt-[3%]'>
             <h2 className='text-4xl lg:mt-14 mb-7 font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl'>
               <span>{useTranslate('overview:plan')}</span>{' '}
@@ -39,15 +38,9 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
           </div>
         </div>
 
-        <div className='relative h-64 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2'>
-          <div className='absolute inset-0 h-full w-full object-cover'>
-            <Image
-              className='object-cover w-full h-full'
-              alt='calendar image'
-              src={calendar}
-              layout='fill'
-              priority
-            />
+        <div className='relative h-80 w-full lg:pt-16 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:flex lg:justify-center lg:items-center lg:w-1/2'>
+          <div className='inset-0 -z-10 cursor-default h-full w-full lg:h-4/5 lg:w-4/5 object-cover'>
+            <LottieAnimation animationData={calendarAnimation} />
           </div>
         </div>
       </main>
