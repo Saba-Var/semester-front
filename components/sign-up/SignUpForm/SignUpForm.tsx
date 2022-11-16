@@ -25,8 +25,8 @@ const SignUpForm = () => {
             {signUpSuccess && (
               <SuccessModal
                 description={t('auth:confirmation-instructions')}
+                linkActionText={t('auth:go-to-gmail')}
                 title={t('auth:confirmation-sent')}
-                actionText={t('auth:go-to-gmail')}
                 setSuccess={setSignUpSuccess}
                 isSuccess={signUpSuccess}
                 linkAction={true}

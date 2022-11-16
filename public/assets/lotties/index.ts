@@ -1,0 +1,6 @@
+export { default as PageNotFount } from './page-not-found.json'
+export { default as dataNotFount } from './data-not-found.json'
+export { default as calendarAnimation } from './calendar.json'
+export { default as serverError } from './server-error.json'
+export { default as partyPop } from './party-pop.json'
+export { default as identity } from './identity.json'

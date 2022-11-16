@@ -1,5 +1,6 @@
 export * from './InputErrorMessage'
 export * from './LanguageSelector'
+export * from './LottieAnimation'
 export * from './AuthQuestion'
 export * from './SubmitButton'
 export * from './SuccessModal'
