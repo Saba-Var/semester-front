@@ -1,4 +1,5 @@
 export type LottieAnimationProps = {
-  animationData: object
+  animationData: object | string
+  disableLoop?: boolean
   styles?: object
 }

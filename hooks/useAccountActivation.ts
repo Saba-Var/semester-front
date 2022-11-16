@@ -1,4 +1,4 @@
-import { carOnFire, party, girlWithLaptop, searching } from 'public'
+import { partyPop, dataNotFount, serverError, identity } from 'public'
 import { accountActivation } from 'services'
 import { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
@@ -16,13 +16,13 @@ const useAccountActivation = () => {
   const token = query.token
 
   let imageSrc = activationSuccess
-    ? party
+    ? partyPop
     : alreadyActivated
-    ? girlWithLaptop
+    ? identity
     : accountNotFound
-    ? searching
+    ? dataNotFount
     : activationFail
-    ? carOnFire
+    ? serverError
     : ''
 
   const { mutate: activateAccount, isLoading } = useMutation(accountActivation)
