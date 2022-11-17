@@ -16,9 +16,9 @@ const RequestsExceed = () => {
             </p>
             <div className='sm:ml-6'>
               <div className='sm:border-l flex flex-col gap-2 sm:border-gray-200 sm:pl-6'>
-                <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
+                <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
                   {useTranslate('auth:request-limit-exceed')}
-                </h1>
+                </h2>
                 <p className='mt-1 text-base text-gray-500'>
                   {useTranslate('auth:request-limit-exceed-info')}
                 </p>
