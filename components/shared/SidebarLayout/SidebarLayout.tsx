@@ -1,4 +1,4 @@
-import { classNames } from 'helpers'
+import { classNames } from 'utils'
 
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
