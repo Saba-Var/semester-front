@@ -3,6 +3,7 @@ import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
 import { setAccessToken } from 'slices'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 
@@ -14,6 +15,7 @@ export const useLogInForm = () => {
     useMutation(authorization)
 
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const formInitialValues = {
     password: '',
@@ -33,6 +35,8 @@ export const useLogInForm = () => {
           sameSite: 'Strict',
           secure: true,
         })
+
+        router.push('/')
       },
 
       onError: (error: any) => {

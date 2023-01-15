@@ -1,31 +1,19 @@
-import { classNames } from 'utils'
-
-import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
+import { navigation, userNavigation } from 'CONSTANTS'
+import { useSidebarLayout } from './useSidebarLayout'
+import { SidebarLayoutProps } from './types.d'
+import React, { Fragment } from 'react'
+import { classNames } from 'utils'
 import {
   Bars3BottomLeftIcon,
   BellIcon,
-  CalendarIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
-const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Profile', href: '#', icon: UsersIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
-
-const SidebarLayout: any = (props) => {
+const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
   const { children } = props
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const { setSidebarOpen, sidebarOpen } = useSidebarLayout()
 
   return (
     <>
@@ -225,11 +213,11 @@ const SidebarLayout: any = (props) => {
                 </h1>
               </div>
               <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
-                {children}
                 <div className='py-4'>
-                  <div className='h-96 rounded-lg border-4 border-dashed border-gray-200' />
+                  <div className='h-96 rounded-lg border-4 border-dashed border-gray-200'>
+                    {children}
+                  </div>
                 </div>
-                {/* /End replace */}
               </div>
             </div>
           </main>
