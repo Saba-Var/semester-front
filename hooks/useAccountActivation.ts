@@ -35,7 +35,7 @@ const useAccountActivation = () => {
         },
 
         onError: (error: any) => {
-          const status = error.response.status
+          const status = error?.response?.status
           if (status === 409) {
             setAlreadyActivated(true)
           } else if (status === 404) {

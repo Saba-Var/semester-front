@@ -1,10 +1,22 @@
+import type { ReactElement, ReactNode } from 'react'
 import { Dispatch, SetStateAction } from 'react'
 import { DehydratedState } from 'react-query'
-import { Session } from 'next-auth'
+import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
+import type { NextPage } from 'next'
 
-export type AppPropsType = {
-  dehydratedState: DehydratedState
-  session: Session
+export type AppPropsWithLayout = AppProps & {
+  Component: {
+    getLayout?: (page: ReactElement) => ReactNode
+    dehydratedState: DehydratedState
+  }
+  pageProps: {
+    dehydratedState: DehydratedState
+  }
+}
+
+export type NextPageWithSidebarLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
 }
 
 export type SetState<T> = Dispatch<SetStateAction<T>>

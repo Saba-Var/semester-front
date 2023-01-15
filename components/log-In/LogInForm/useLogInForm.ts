@@ -3,6 +3,7 @@ import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
 import { setAccessToken } from 'slices'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 
@@ -14,6 +15,7 @@ export const useLogInForm = () => {
     useMutation(authorization)
 
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const formInitialValues = {
     password: '',
@@ -26,17 +28,19 @@ export const useLogInForm = () => {
   ) => {
     submitForm(formValues, {
       onSuccess: (response) => {
-        dispatch(setAccessToken(response.data.accessToken))
+        dispatch(setAccessToken(response?.data?.accessToken))
 
         Cookies.set('remember-me', rememberCheckbox ? 'true' : 'false', {
           expires: rememberCheckbox ? 30 : undefined,
           sameSite: 'Strict',
           secure: true,
         })
+
+        router.push('/')
       },
 
       onError: (error: any) => {
-        const status = error.response.status
+        const status = error?.response?.status
         if (status === 401) {
           setFieldError('email', 'incorrect-credentials')
           setFieldError('password', 'incorrect-credentials')

@@ -28,7 +28,7 @@ export const useResetPasswordRequest = () => {
       },
 
       onError: (error: any) => {
-        if (error.response.status === 404) {
+        if (error?.response?.status === 404) {
           setFieldError('email', 'user-not-found')
         } else {
           setFieldError('email', 'email-sent-failed')

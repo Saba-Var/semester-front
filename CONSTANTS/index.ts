@@ -1,2 +1,3 @@
-export { languagesList } from './languagesList'
-export { featuresList } from './featuresList'
+export * from './languagesList'
+export * from './featuresList'
+export * from './navigation'
