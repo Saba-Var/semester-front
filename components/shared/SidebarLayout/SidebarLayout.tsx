@@ -2,8 +2,10 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 import { navigation, userNavigation } from 'CONSTANTS'
 import { useSidebarLayout } from './useSidebarLayout'
 import { SidebarLayoutProps } from './types.d'
+import { LanguageSelector } from 'components'
 import React, { Fragment } from 'react'
 import { classNames } from 'utils'
+import Link from 'next/link'
 import {
   Bars3BottomLeftIcon,
   BellIcon,
@@ -13,7 +15,7 @@ import {
 const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
   const { children } = props
 
-  const { setSidebarOpen, sidebarOpen } = useSidebarLayout()
+  const { setSidebarOpen, sidebarOpen, t, lang } = useSidebarLayout()
 
   return (
     <>
@@ -46,7 +48,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                 leaveFrom='translate-x-0'
                 leaveTo='-translate-x-full'
               >
-                <Dialog.Panel className='relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700 pt-5 pb-4'>
+                <Dialog.Panel className='relative flex w-full max-w-xs flex-1 flex-col bg-blue-700 pt-5 pb-4'>
                   <Transition.Child
                     as={Fragment}
                     enter='ease-in-out duration-300'
@@ -73,29 +75,29 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                   <div className='flex flex-shrink-0 items-center px-4'>
                     <img
                       className='h-8 w-auto'
-                      src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300'
+                      src='https://tailwindui.com/img/logos/mark.svg?color=blue&shade=300'
                       alt='Your Company'
                     />
                   </div>
                   <div className='mt-5 h-0 flex-1 overflow-y-auto'>
                     <nav className='space-y-1 px-2'>
                       {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-indigo-800 text-white'
-                              : 'text-indigo-100 hover:bg-indigo-600',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                          )}
-                        >
-                          <item.icon
-                            className='mr-4 h-6 w-6 flex-shrink-0 text-indigo-300'
-                            aria-hidden='true'
-                          />
-                          {item.name}
-                        </a>
+                        <Link key={item.name.en} href={item.href}>
+                          <a
+                            className={classNames(
+                              item.current
+                                ? 'bg-blue-800 text-white'
+                                : 'text-blue-100 hover:bg-blue-600',
+                              'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            )}
+                          >
+                            <item.icon
+                              className='mr-4 h-6 w-6 flex-shrink-0 text-blue-300'
+                              aria-hidden='true'
+                            />
+                            {t(item.name[lang])}
+                          </a>
+                        </Link>
                       ))}
                     </nav>
                   </div>
@@ -108,33 +110,35 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
 
         {/* Static sidebar for desktop */}
         <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
-          <div className='flex flex-grow flex-col overflow-y-auto bg-indigo-700 pt-5'>
+          <div className='flex flex-grow flex-col overflow-y-auto bg-blue-700 pt-5'>
             <div className='flex flex-shrink-0 items-center px-4'>
               <img
                 className='h-8 w-auto'
-                src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300'
+                src='https://tailwindui.com/img/logos/mark.svg?color=blue&shade=300'
                 alt='Your Company'
               />
             </div>
             <div className='mt-5 flex flex-1 flex-col'>
               <nav className='flex-1 space-y-1 px-2 pb-4'>
                 {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-indigo-800 text-white'
-                        : 'text-indigo-100 hover:bg-indigo-600',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                    )}
-                  >
-                    <item.icon
-                      className='mr-3 h-6 w-6 flex-shrink-0 text-indigo-300'
-                      aria-hidden='true'
-                    />
-                    {item.name}
-                  </a>
+                  <Link key={item.name.en} href={item.href}>
+                    <a
+                      className={classNames(
+                        item.current
+                          ? 'bg-blue-800 text-white'
+                          : 'text-blue-100 hover:bg-blue-600',
+                        'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      )}
+                    >
+                      <>
+                        <item.icon
+                          className='mr-3 h-6 w-6 flex-shrink-0 text-blue-300'
+                          aria-hidden='true'
+                        />
+                        <p>{item.name[lang]}</p>
+                      </>
+                    </a>
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -144,7 +148,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
           <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
             <button
               type='button'
-              className='border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden'
+              className='border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden'
               onClick={() => setSidebarOpen(true)}
             >
               <span className='sr-only'>Open sidebar</span>
@@ -155,16 +159,18 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
               <div className='ml-4 flex items-center md:ml-6'>
                 <button
                   type='button'
-                  className='rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                  className='rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2 focus:ring-offset-2'
                 >
                   <span className='sr-only'>View notifications</span>
                   <BellIcon className='h-6 w-6' aria-hidden='true' />
                 </button>
 
+                <LanguageSelector />
+
                 {/* Profile dropdown */}
                 <Menu as='div' className='relative ml-3'>
                   <div>
-                    <Menu.Button className='flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+                    <Menu.Button className='flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
                       <span className='sr-only'>Open user menu</span>
                       <img
                         className='h-8 w-8 rounded-full'
@@ -182,19 +188,19 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                     leaveFrom='transform opacity-100 scale-100'
                     leaveTo='transform opacity-0 scale-95'
                   >
-                    <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                    <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                       {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <a
-                              href={item.href}
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              {item.name}
-                            </a>
+                        <Menu.Item key={item.name.en}>
+                          {() => (
+                            <Link href={item.href}>
+                              <a
+                                className={
+                                  'block px-4 py-3 text-sm text-gray-700 hover:bg-blue-500 hover:text-white'
+                                }
+                              >
+                                {t(item.name[lang])}
+                              </a>
+                            </Link>
                           )}
                         </Menu.Item>
                       ))}

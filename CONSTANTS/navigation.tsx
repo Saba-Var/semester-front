@@ -6,13 +6,57 @@ import {
 } from '@heroicons/react/24/outline'
 
 export const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Profile', href: '#', icon: UsersIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
+  {
+    name: {
+      ka: 'მთავარი',
+      en: 'Dashboard',
+    },
+    href: '/',
+    icon: HomeIcon,
+    current: true,
+  },
+  {
+    name: {
+      ka: 'პროფილი',
+      en: 'Profile',
+    },
+    href: '/profile',
+    icon: UsersIcon,
+    current: false,
+  },
+  {
+    name: {
+      ka: 'კალენდარი',
+      en: 'Calendar',
+    },
+    href: '/calendar',
+    icon: CalendarIcon,
+    current: false,
+  },
+  {
+    name: {
+      ka: 'დოკუმენტები',
+      en: 'Documents',
+    },
+    href: '/documents',
+    icon: InboxIcon,
+    current: false,
+  },
 ]
 
 export const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Sign out', href: '#' },
+  {
+    name: {
+      ka: 'შენი პროფილი',
+      en: 'Your Profile',
+    },
+    href: '/profile',
+  },
+  {
+    name: {
+      ka: 'გასვლა',
+      en: 'Sign out',
+    },
+    href: '#',
+  },
 ]
