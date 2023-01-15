@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
 
-const useAccountActivation = () => {
+export const useAccountActivation = () => {
   const [activationSuccess, setActivationSuccess] = useState(false)
   const [alreadyActivated, setAlreadyActivated] = useState(false)
   const [accountNotFound, setAccountNotFound] = useState(false)
@@ -60,5 +60,3 @@ const useAccountActivation = () => {
     imageSrc,
   }
 }
-
-export default useAccountActivation

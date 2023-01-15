@@ -1,10 +1,10 @@
-import useRefreshToken from './useRefreshToken'
+import { useRefreshToken } from './useRefreshToken'
 import { useSelector } from 'react-redux'
 import { axiosPrivate } from 'services'
 import { useEffect } from 'react'
 import { RootState } from 'store'
 
-const useAxiosPrivate = () => {
+export const useAxiosPrivate = () => {
   const { accessToken } = useSelector(
     (state: RootState) => state.authentication
   )
@@ -57,5 +57,3 @@ const useAxiosPrivate = () => {
 
   return axiosPrivate
 }
-
-export default useAxiosPrivate

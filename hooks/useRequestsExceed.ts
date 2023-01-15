@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router'
 
-const useRequestsExceed = () => {
+export const useRequestsExceed = () => {
   const { back: goBack } = useRouter()
 
   return { goBack }
 }
-
-export default useRequestsExceed

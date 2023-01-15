@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { setAccessToken } from 'slices'
 import { refresh } from 'services'
 
-const useRefreshToken = () => {
+export const useRefreshToken = () => {
   const dispatch = useDispatch()
 
   const refreshToken = async () => {
@@ -19,5 +19,3 @@ const useRefreshToken = () => {
 
   return refreshToken
 }
-
-export default useRefreshToken
