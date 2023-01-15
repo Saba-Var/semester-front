@@ -29,7 +29,7 @@ export const useSignUpForm = () => {
       },
 
       onError: (error: any) => {
-        if (error.response.status === 409) {
+        if (error?.response?.status === 409) {
           setFieldError('email', 'email-exists')
         }
       },

@@ -28,7 +28,7 @@ export const useLogInForm = () => {
   ) => {
     submitForm(formValues, {
       onSuccess: (response) => {
-        dispatch(setAccessToken(response.data.accessToken))
+        dispatch(setAccessToken(response?.data?.accessToken))
 
         Cookies.set('remember-me', rememberCheckbox ? 'true' : 'false', {
           expires: rememberCheckbox ? 30 : undefined,
@@ -40,7 +40,7 @@ export const useLogInForm = () => {
       },
 
       onError: (error: any) => {
-        const status = error.response.status
+        const status = error?.response?.status
         if (status === 401) {
           setFieldError('email', 'incorrect-credentials')
           setFieldError('password', 'incorrect-credentials')

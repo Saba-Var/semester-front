@@ -9,11 +9,11 @@ const useRefreshToken = () => {
     try {
       const response = await refresh()
 
-      dispatch(setAccessToken(response.data.accessToken))
+      dispatch(setAccessToken(response?.data?.accessToken))
 
-      return response.data.accessToken
+      return response?.data?.accessToken
     } catch (error: any) {
-      alert(error.message)
+      alert(error?.message)
     }
   }
 
