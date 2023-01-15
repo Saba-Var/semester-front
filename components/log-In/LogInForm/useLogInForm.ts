@@ -30,6 +30,12 @@ export const useLogInForm = () => {
       onSuccess: (response) => {
         dispatch(setAccessToken(response?.data?.accessToken))
 
+        Cookies.set('id', response?.data?.id, {
+          expires: rememberCheckbox ? 30 : undefined,
+          sameSite: 'Strict',
+          secure: true,
+        })
+
         Cookies.set('remember-me', rememberCheckbox ? 'true' : 'false', {
           expires: rememberCheckbox ? 30 : undefined,
           sameSite: 'Strict',

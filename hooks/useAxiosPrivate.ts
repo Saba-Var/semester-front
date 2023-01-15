@@ -1,6 +1,7 @@
 import { useRefreshToken } from './useRefreshToken'
 import { useSelector } from 'react-redux'
 import { axiosPrivate } from 'services'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { RootState } from 'store'
 
@@ -9,6 +10,8 @@ export const useAxiosPrivate = () => {
     (state: RootState) => state.authentication
   )
   const refresh = useRefreshToken()
+
+  const router = useRouter()
 
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
@@ -32,17 +35,17 @@ export const useAxiosPrivate = () => {
       async (error) => {
         const prevRequest = error?.config
         const status = error?.response?.status
-        if (status === 403 && !prevRequest?.sent) {
-          try {
-            const newAccessToken = await refresh()
 
-            prevRequest.sent = true
-            prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
-          } catch (error) {
-            console.log(error)
-          } finally {
-            return axiosPrivate(prevRequest)
+        if (status === 403 && !prevRequest?.sent) {
+          const accessToken = await refresh()
+
+          if (!accessToken) {
+            router.push('/overview')
           }
+
+          prevRequest.sent = true
+          prevRequest.headers['Authorization'] = `Bearer ${accessToken}`
+          return axiosPrivate(prevRequest)
         }
 
         return Promise.reject(error)
@@ -53,7 +56,7 @@ export const useAxiosPrivate = () => {
       axiosPrivate.interceptors.response.eject(responseIntercept)
       axiosPrivate.interceptors.request.eject(requestIntercept)
     }
-  }, [accessToken, refresh])
+  }, [accessToken, refresh, router])
 
   return axiosPrivate
 }

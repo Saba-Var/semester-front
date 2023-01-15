@@ -1,3 +1,4 @@
+import { LoginResponseData } from './types.d'
 import { AxiosResponse } from 'axios'
 import axios from './axios'
 import {
@@ -17,7 +18,7 @@ export const registerUSer = (
 
 export const authorization = (
   data: SignInformValues
-): Promise<AxiosResponse<AccessToken>> => {
+): Promise<AxiosResponse<LoginResponseData>> => {
   return axios.post('/authentication/sign-in', data)
 }
 

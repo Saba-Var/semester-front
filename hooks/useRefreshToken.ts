@@ -11,9 +11,9 @@ export const useRefreshToken = () => {
 
       dispatch(setAccessToken(response?.data?.accessToken))
 
-      return response?.data?.accessToken
+      return response
     } catch (error: any) {
-      alert(error?.message)
+      return false
     }
   }
 
