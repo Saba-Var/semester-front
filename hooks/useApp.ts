@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 
-const useApp = () => {
+export const useApp = () => {
   const [isHydrated, setIsHydrated] = useState(false)
 
   const [queryClient] = useState(() => new QueryClient())
@@ -34,5 +34,3 @@ const useApp = () => {
 
   return { queryClient, isHydrated }
 }
-
-export default useApp
