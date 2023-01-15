@@ -1,5 +1,5 @@
+import { requestsExceed } from 'utils'
 import { axiosConfig } from 'config'
-import Cookies from 'js-cookie'
 import axios from 'axios'
 
 const instance = axios.create(axiosConfig)
@@ -11,8 +11,7 @@ instance.interceptors.response.use(
 
   async (error) => {
     if (error?.response?.status === 429) {
-      const userLanguage = Cookies.get('language')
-      location.assign(`${userLanguage === 'en' ? '/en' : ''}/requests-exceed`)
+      requestsExceed()
     }
 
     return Promise.reject(error)

@@ -2,6 +2,7 @@ import { useRefreshToken } from './useRefreshToken'
 import { useSelector } from 'react-redux'
 import { axiosPrivate } from 'services'
 import { useRouter } from 'next/router'
+import { requestsExceed } from 'utils'
 import { useEffect } from 'react'
 import { RootState } from 'store'
 
@@ -35,6 +36,10 @@ export const useAxiosPrivate = () => {
       async (error) => {
         const prevRequest = error?.config
         const status = error?.response?.status
+
+        if (status === 429) {
+          requestsExceed()
+        }
 
         if (status === 403 && !prevRequest?.sent) {
           const accessToken = await refresh()
