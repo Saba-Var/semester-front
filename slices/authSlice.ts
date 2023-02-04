@@ -1,11 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
+import { AuthState } from 'types'
 
-type authState = {
-  accessToken: string
-}
-
-const initialState: authState = {
+const initialState: AuthState = {
   accessToken: '',
 }
 

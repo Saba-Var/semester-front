@@ -37,6 +37,10 @@ export type AccessToken = {
   accessToken: string
 }
 
+export type AuthState = {
+  accessToken: string
+}
+
 export type Status = {
   status: number
 }
