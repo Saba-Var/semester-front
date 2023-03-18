@@ -2,7 +2,6 @@ import type { ReactElement, ReactNode } from 'react'
 import { Dispatch, SetStateAction } from 'react'
 import { DehydratedState } from 'react-query'
 import type { AppProps } from 'next/app'
-import type { AppProps } from 'next/app'
 import type { NextPage } from 'next'
 
 export type AppPropsWithLayout = AppProps & {
