@@ -1,4 +1,4 @@
-import { SignUpFormValues, FormProperties } from 'types'
+import type { SignUpFormValues, FormikSubmitHandler } from 'types'
 import { useTranslation } from 'next-i18next'
 import { useMutation } from 'react-query'
 import { registerUSer } from 'services'
@@ -18,11 +18,11 @@ export const useSignUpForm = () => {
     email: '',
   }
 
-  const submitHandler = (
-    formValues: SignUpFormValues,
-    { setFieldError, resetForm }: FormProperties
+  const submitHandler: FormikSubmitHandler<SignUpFormValues> = (
+    values,
+    { setFieldError, resetForm }
   ) => {
-    mutate(formValues, {
+    mutate(values, {
       onSuccess: () => {
         resetForm()
         setSignUpSuccess(true)

@@ -1,4 +1,4 @@
-import { FormProperties, Passwords } from 'types'
+import { FormikSubmitHandler, Passwords } from 'types'
 import { useTranslation } from 'next-i18next'
 import { useMutation } from 'react-query'
 import { resetPassword } from 'services'
@@ -18,14 +18,14 @@ export const useNewPasswordForm = () => {
     password: '',
   }
 
-  const submitHandler = (
-    formValues: Passwords,
-    { resetForm }: FormProperties
+  const submitHandler: FormikSubmitHandler<Passwords> = (
+    { confirmPassword, password },
+    { resetForm }
   ) => {
     const data = {
-      password: formValues.password,
-      confirmPassword: formValues.confirmPassword,
       accessToken: query.token as string,
+      confirmPassword,
+      password,
     }
 
     mutate(data, {

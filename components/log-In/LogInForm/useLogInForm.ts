@@ -1,4 +1,4 @@
-import { FormProperties, SignInformValues } from 'types'
+import type { FormikSubmitHandler, SignInformValues } from 'types'
 import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
@@ -22,9 +22,9 @@ export const useLogInForm = () => {
     email: '',
   }
 
-  const submitHandler = (
-    formValues: SignInformValues,
-    { setFieldError }: FormProperties
+  const submitHandler: FormikSubmitHandler<SignInformValues> = (
+    formValues,
+    { setFieldError }
   ) => {
     submitForm(formValues, {
       onSuccess: (response) => {
