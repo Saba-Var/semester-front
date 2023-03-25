@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import { Dispatch, SetStateAction } from 'react'
 import { DehydratedState } from 'react-query'
+import type { FormikHelpers } from 'formik'
 import type { AppProps } from 'next/app'
 import type { NextPage } from 'next'
 
@@ -63,8 +64,7 @@ export type Passwords = {
   password: string
 }
 
-export type FormProperties = {
-  setFieldError: (field: string, message: string) => void
-  setFieldValue: (field: string, value: string) => void
-  resetForm: () => void
-}
+export type FormikSubmitHandler<Values> = (
+  values: Values,
+  formikHelpers: FormikHelpers<Values>
+) => void | Promise<any>

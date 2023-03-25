@@ -1,5 +1,5 @@
+import type { FormikSubmitHandler, Email } from 'types'
 import { resetPasswordEmailReq } from 'services'
-import { FormProperties, Email } from 'types'
 import { useTranslation } from 'next-i18next'
 import { useMutation } from 'react-query'
 import { useState } from 'react'
@@ -17,11 +17,11 @@ export const useResetPasswordRequest = () => {
     email: '',
   }
 
-  const submitHandler = (
-    formValues: Email,
-    { setFieldError, resetForm }: FormProperties
+  const submitHandler: FormikSubmitHandler<Email> = (
+    values,
+    { setFieldError, resetForm }
   ) => {
-    requestResetLink(formValues, {
+    requestResetLink(values, {
       onSuccess: () => {
         setSuccessModal(true)
         resetForm()
