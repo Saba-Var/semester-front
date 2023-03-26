@@ -1,7 +1,6 @@
+import { useEffect, useState } from 'react'
 import { QueryClient } from 'react-query'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { useState } from 'react'
 import Cookies from 'js-cookie'
 
 export const useApp = () => {
