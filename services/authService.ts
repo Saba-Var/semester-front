@@ -50,3 +50,7 @@ export const resetPassword = (
     data
   )
 }
+
+export const logout = (): Promise<AxiosResponse<Message>> => {
+  return axios.get('/authentication/logout')
+}
