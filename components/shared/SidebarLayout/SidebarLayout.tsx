@@ -7,15 +7,16 @@ import React, { Fragment } from 'react'
 import { classNames } from 'utils'
 import Link from 'next/link'
 import {
+  ArrowLeftOnRectangleIcon,
   Bars3BottomLeftIcon,
-  BellIcon,
   XMarkIcon,
+  BellIcon,
 } from '@heroicons/react/24/outline'
 
 const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
   const { children } = props
 
-  const { setSidebarOpen, sidebarOpen, t, lang, canViewPage } =
+  const { setSidebarOpen, sidebarOpen, t, lang, canViewPage, logoutMutation } =
     useSidebarLayout()
 
   return (
@@ -145,7 +146,23 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                 </nav>
               </div>
             </div>
+
+            <div className='flex bg-blue-700 items-center pb-10'>
+              <div
+                className='flex items-center cursor-pointer'
+                onClick={() => {
+                  logoutMutation()
+                }}
+              >
+                <p className='text-blue-100 px-2 py-2 pl-4 text-base font-medium'>
+                  Logout
+                </p>
+
+                <ArrowLeftOnRectangleIcon className='h-6 w-6 text-white' />
+              </div>
+            </div>
           </div>
+
           <div className='flex flex-1 flex-col md:pl-64'>
             <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
               <button
