@@ -22,7 +22,7 @@ export const useSignUpForm = () => {
       username: '',
       email: '',
     },
-    mode: 'all',
+    mode: 'onTouched',
   })
 
   const { handleSubmit, reset: resetForm, setError } = form

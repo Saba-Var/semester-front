@@ -23,7 +23,7 @@ export const useLogInForm = () => {
       password: '',
       email: '',
     },
-    mode: 'all',
+    mode: 'onTouched',
   })
 
   const { handleSubmit, setError } = form
