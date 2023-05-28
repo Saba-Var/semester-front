@@ -1,28 +1,23 @@
 import { InputField, SubmitButton, SuccessModal, ErrorModal } from 'components'
 import { useNewPasswordForm } from './useNewPasswordForm'
-import { resetPasswordSchema } from 'schemas'
-import { Form, Formik } from 'formik'
-import { useTranslate } from 'hooks'
+import { FormProvider } from 'react-hook-form'
 
 const NewPasswordForm = () => {
   const {
     logInClickHandler,
     setSuccessModal,
-    initialValues,
     submitHandler,
     setFetchError,
+    handleSubmit,
     successModal,
     fetchError,
     isLoading,
+    form,
     t,
   } = useNewPasswordForm()
 
   return (
-    <div>
-      <p className='mb-10 text-gray-800 text-base lg:text-lg text-center'>
-        {useTranslate('reset:new-password-instruction')}
-      </p>
-
+    <>
       {successModal && (
         <SuccessModal
           description={t('auth:reset-success-text')}
@@ -44,29 +39,22 @@ const NewPasswordForm = () => {
         />
       )}
 
-      <Formik
-        validationSchema={resetPasswordSchema}
-        initialValues={initialValues}
-        onSubmit={submitHandler}
-      >
-        {() => {
-          return (
-            <>
-              <Form className='flex flex-col gap-1'>
-                <InputField name='password' type='password' />
-                <InputField name='confirmPassword' type='password' />
+      <FormProvider {...form}>
+        <form
+          onSubmit={handleSubmit(submitHandler)}
+          className='flex flex-col gap-1'
+        >
+          <InputField name='password' type='password' />
+          <InputField name='confirmPassword' type='password' />
 
-                <SubmitButton
-                  title='reset-password'
-                  disabled={isLoading}
-                  styles='mt-4'
-                />
-              </Form>
-            </>
-          )
-        }}
-      </Formik>
-    </div>
+          <SubmitButton
+            title='reset-password'
+            disabled={isLoading}
+            styles='mt-4'
+          />
+        </form>
+      </FormProvider>
+    </>
   )
 }
 

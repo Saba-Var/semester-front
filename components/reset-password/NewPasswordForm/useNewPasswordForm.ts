@@ -1,8 +1,11 @@
-import { FormikSubmitHandler, Passwords } from 'types'
+import { useForm, type SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useTranslation } from 'next-i18next'
+import { resetPasswordSchema } from 'schemas'
 import { useMutation } from 'react-query'
 import { resetPassword } from 'services'
 import { useRouter } from 'next/router'
+import { type Passwords } from 'types'
 import { useState } from 'react'
 
 export const useNewPasswordForm = () => {
@@ -13,17 +16,23 @@ export const useNewPasswordForm = () => {
   const { query, push } = useRouter()
   const { t } = useTranslation()
 
-  const initialValues = {
-    confirmPassword: '',
-    password: '',
-  }
+  const form = useForm({
+    resolver: yupResolver(resetPasswordSchema),
+    defaultValues: {
+      confirmPassword: '',
+      password: '',
+    },
+    mode: 'onTouched',
+  })
 
-  const submitHandler: FormikSubmitHandler<Passwords> = (
-    { confirmPassword, password },
-    { resetForm }
-  ) => {
+  const { handleSubmit, reset: resetForm } = form
+
+  const submitHandler: SubmitHandler<Passwords> = ({
+    confirmPassword,
+    password,
+  }) => {
     const data = {
-      accessToken: query.token as string,
+      accessToken: query?.token as string,
       confirmPassword,
       password,
     }
@@ -34,9 +43,7 @@ export const useNewPasswordForm = () => {
         resetForm()
       },
 
-      onError: () => {
-        setFetchError(true)
-      },
+      onError: () => setFetchError(true),
     })
   }
 
@@ -49,10 +56,11 @@ export const useNewPasswordForm = () => {
     setSuccessModal,
     setFetchError,
     submitHandler,
-    initialValues,
+    handleSubmit,
     successModal,
     fetchError,
     isLoading,
+    form,
     t,
   }
 }

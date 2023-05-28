@@ -1,7 +1,6 @@
 import type { ReactElement, ReactNode } from 'react'
 import { Dispatch, SetStateAction } from 'react'
 import { DehydratedState } from 'react-query'
-import type { FormikHelpers } from 'formik'
 import type { AppProps } from 'next/app'
 import type { NextPage } from 'next'
 
@@ -64,9 +63,3 @@ export type Passwords = {
   confirmPassword: string
   password: string
 }
-
-// should be deleted
-export type FormikSubmitHandler<Values> = (
-  values: Values,
-  formikHelpers: FormikHelpers<Values>
-) => void | Promise<any>
