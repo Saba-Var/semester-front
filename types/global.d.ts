@@ -29,6 +29,7 @@ export type SignUpFormValues = {
 }
 
 export type SignInformValues = {
+  rememberMe: boolean
   password: string
   email: string
 }

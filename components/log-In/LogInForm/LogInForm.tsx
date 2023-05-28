@@ -1,20 +1,15 @@
 import { FormProvider } from 'react-hook-form'
 import { useLogInForm } from './useLogInForm'
+import { useTranslate } from 'hooks'
 import {
+  CheckboxInputField,
   ForgetPassword,
   SubmitButton,
   InputField,
-  RememberMe,
 } from 'components'
 
 const LogInForm = () => {
-  const {
-    setRememberCheckbox,
-    submitHandler,
-    handleSubmit,
-    authorizing,
-    form,
-  } = useLogInForm()
+  const { submitHandler, handleSubmit, authorizing, form } = useLogInForm()
 
   return (
     <FormProvider {...form}>
@@ -25,7 +20,10 @@ const LogInForm = () => {
         </div>
 
         <div className='flex mb-4 mt-4 items-center justify-between'>
-          <RememberMe setRememberCheckbox={setRememberCheckbox} />
+          <CheckboxInputField
+            text={useTranslate('auth:remember-me')}
+            name='rememberMe'
+          />
           <ForgetPassword />
         </div>
 

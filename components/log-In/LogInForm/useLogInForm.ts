@@ -7,12 +7,9 @@ import { authorization } from 'services'
 import { setAccessToken } from 'slices'
 import { useRouter } from 'next/router'
 import { logInSchema } from 'schemas'
-import { useState } from 'react'
 import Cookies from 'js-cookie'
 
 export const useLogInForm = () => {
-  const [rememberCheckbox, setRememberCheckbox] = useState(false)
-
   const { mutate: submitForm, isLoading: authorizing } =
     useMutation(authorization)
 
@@ -22,6 +19,7 @@ export const useLogInForm = () => {
   const form = useForm({
     resolver: yupResolver(logInSchema),
     defaultValues: {
+      rememberMe: false,
       password: '',
       email: '',
     },
@@ -32,17 +30,19 @@ export const useLogInForm = () => {
 
   const submitHandler: SubmitHandler<SignInformValues> = (formValues) => {
     submitForm(formValues, {
-      onSuccess: (response) => {
+      onSuccess: (response, variables: SignInformValues) => {
         dispatch(setAccessToken(response?.data?.accessToken))
 
+        const { rememberMe } = variables
+
         Cookies.set('id', response?.data?.id, {
-          expires: rememberCheckbox ? 30 : undefined,
+          expires: rememberMe ? 30 : undefined,
           sameSite: 'Strict',
           secure: true,
         })
 
-        Cookies.set('remember-me', rememberCheckbox ? 'true' : 'false', {
-          expires: rememberCheckbox ? 30 : undefined,
+        Cookies.set('remember-me', rememberMe ? 'true' : 'false', {
+          expires: rememberMe ? 30 : undefined,
           sameSite: 'Strict',
           secure: true,
         })
@@ -72,7 +72,6 @@ export const useLogInForm = () => {
   }
 
   return {
-    setRememberCheckbox,
     submitHandler,
     handleSubmit,
     authorizing,
