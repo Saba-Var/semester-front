@@ -1,13 +1,11 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { AuthWrapper, ResetPasswordRequest } from 'components'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 
-const RequestEmail = () => {
+const RequestEmail: NextPage = () => {
   return (
     <AuthWrapper page='reset'>
-      <>
-        <ResetPasswordRequest />
-      </>
+      <ResetPasswordRequest />
     </AuthWrapper>
   )
 }

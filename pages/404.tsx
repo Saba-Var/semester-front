@@ -1,12 +1,12 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { LottieAnimation } from 'components'
-import type { GetStaticProps } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { PageNotFount } from 'public'
 import { useTranslate } from 'hooks'
 import Head from 'next/head'
 import Link from 'next/link'
 
-const NotFound = () => {
+const NotFound: NextPage = () => {
   return (
     <>
       <Head>

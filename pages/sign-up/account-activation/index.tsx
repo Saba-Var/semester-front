@@ -1,6 +1,6 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useAccountActivation } from 'hooks'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import {
   ActivationButton,
   LottieAnimation,
@@ -8,7 +8,7 @@ import {
   LoadingIcon,
 } from 'components'
 
-const AccountActivation = () => {
+const AccountActivation: NextPage = () => {
   const {
     activationSuccess,
     alreadyActivated,

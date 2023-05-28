@@ -1,13 +1,11 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { AuthWrapper, LogInForm } from 'components'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 
-const LogIn = () => {
+const LogIn: NextPage = () => {
   return (
     <AuthWrapper page='log-in-to'>
-      <>
-        <LogInForm />
-      </>
+      <LogInForm />
     </AuthWrapper>
   )
 }

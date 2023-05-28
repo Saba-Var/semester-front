@@ -1,9 +1,9 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useTranslate, useRequestsExceed } from 'hooks'
-import type { GetStaticProps } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 
-const RequestsExceed = () => {
+const RequestsExceed: NextPage = () => {
   const { goBack } = useRequestsExceed()
 
   return (

@@ -1,8 +1,8 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { AuthWrapper, NewPasswordForm } from 'components'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 
-const ResetPassword = () => {
+const ResetPassword: NextPage = () => {
   return (
     <AuthWrapper page='reset-password'>
       <NewPasswordForm />
