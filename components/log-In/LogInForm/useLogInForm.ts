@@ -1,43 +1,48 @@
-import type { FormikSubmitHandler, SignInformValues } from 'types'
+import { useForm, type SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import type { SignInformValues } from 'types'
 import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
 import { setAccessToken } from 'slices'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { logInSchema } from 'schemas'
 import Cookies from 'js-cookie'
 
 export const useLogInForm = () => {
-  const [rememberCheckbox, setRememberCheckbox] = useState(false)
-  const [fetchError, setFetchError] = useState(false)
-
   const { mutate: submitForm, isLoading: authorizing } =
     useMutation(authorization)
 
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const formInitialValues = {
-    password: '',
-    email: '',
-  }
+  const form = useForm({
+    resolver: yupResolver(logInSchema),
+    defaultValues: {
+      rememberMe: false,
+      password: '',
+      email: '',
+    },
+    mode: 'onTouched',
+  })
 
-  const submitHandler: FormikSubmitHandler<SignInformValues> = (
-    formValues,
-    { setFieldError }
-  ) => {
+  const { handleSubmit, setError } = form
+
+  const submitHandler: SubmitHandler<SignInformValues> = (formValues) => {
     submitForm(formValues, {
-      onSuccess: (response) => {
+      onSuccess: (response, variables: SignInformValues) => {
         dispatch(setAccessToken(response?.data?.accessToken))
 
+        const { rememberMe } = variables
+
         Cookies.set('id', response?.data?.id, {
-          expires: rememberCheckbox ? 30 : undefined,
+          expires: rememberMe ? 30 : undefined,
           sameSite: 'Strict',
           secure: true,
         })
 
-        Cookies.set('remember-me', rememberCheckbox ? 'true' : 'false', {
-          expires: rememberCheckbox ? 30 : undefined,
+        Cookies.set('remember-me', rememberMe ? 'true' : 'false', {
+          expires: rememberMe ? 30 : undefined,
           sameSite: 'Strict',
           secure: true,
         })
@@ -48,23 +53,28 @@ export const useLogInForm = () => {
       onError: (error: any) => {
         const status = error?.response?.status
         if (status === 401) {
-          setFieldError('email', 'incorrect-credentials')
-          setFieldError('password', 'incorrect-credentials')
+          setError('email', {
+            message: 'incorrect-credentials',
+          })
+          setError('password', {
+            message: 'incorrect-credentials',
+          })
         } else if (status === 403) {
-          setFieldError('email', 'inactive-account')
-          setFieldError('password', 'inactive-account')
+          setError('email', {
+            message: 'inactive-account',
+          })
+          setError('password', {
+            message: 'inactive-account',
+          })
         }
-
-        setFetchError(true)
       },
     })
   }
 
   return {
-    setRememberCheckbox,
-    formInitialValues,
     submitHandler,
+    handleSubmit,
     authorizing,
-    fetchError,
+    form,
   }
 }

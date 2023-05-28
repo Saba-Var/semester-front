@@ -1,26 +1,32 @@
-import type { FormikSubmitHandler, Email } from 'types'
+import { useForm, type SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { resetPasswordEmailReq } from 'services'
 import { useTranslation } from 'next-i18next'
 import { useMutation } from 'react-query'
+import { emailSchema } from 'schemas'
+import type { Email } from 'types'
 import { useState } from 'react'
 
-export const useResetPasswordRequest = () => {
+export const useResetPasswordRequestForm = () => {
   const [successModal, setSuccessModal] = useState(false)
 
   const { t } = useTranslation()
+
+  const form = useForm({
+    resolver: yupResolver(emailSchema),
+    defaultValues: {
+      email: '',
+    },
+    mode: 'onTouched',
+  })
+
+  const { reset: resetForm, setError, handleSubmit } = form
 
   const { mutate: requestResetLink, isLoading } = useMutation(
     resetPasswordEmailReq
   )
 
-  const initialValues = {
-    email: '',
-  }
-
-  const submitHandler: FormikSubmitHandler<Email> = (
-    values,
-    { setFieldError, resetForm }
-  ) => {
+  const submitHandler: SubmitHandler<Email> = (values) => {
     requestResetLink(values, {
       onSuccess: () => {
         setSuccessModal(true)
@@ -29,9 +35,13 @@ export const useResetPasswordRequest = () => {
 
       onError: (error: any) => {
         if (error?.response?.status === 404) {
-          setFieldError('email', 'user-not-found')
+          setError('email', {
+            message: 'user-not-found',
+          })
         } else {
-          setFieldError('email', 'email-sent-failed')
+          setError('email', {
+            message: 'email-sent-failed',
+          })
         }
       },
     })
@@ -39,10 +49,11 @@ export const useResetPasswordRequest = () => {
 
   return {
     setSuccessModal,
-    initialValues,
     submitHandler,
+    handleSubmit,
     successModal,
     isLoading,
+    form,
     t,
   }
 }

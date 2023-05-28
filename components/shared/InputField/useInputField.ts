@@ -1,14 +1,15 @@
-import { useField } from 'formik'
+import { useFormContext } from 'react-hook-form'
 import { useState } from 'react'
 
-export const useInputField = (data: { name: string; type: string }) => {
-  const [inputType, setInputType] = useState(data.type)
-  const [field, meta] = useField(data)
+export const useInputField = (name: string, type: string) => {
+  const [inputType, setInputType] = useState(type)
 
-  const isValid = meta.touched && !meta.error
-  const isError = meta.error && meta.touched
+  const {
+    formState: { errors, touchedFields },
+    register,
+  } = useFormContext()
 
-  const isPasswordField = field.name.toLocaleLowerCase().includes('password')
+  const isValid = touchedFields[name] && !errors[name]?.message
 
   const passwordShowHandler = () => {
     if (inputType === 'password') {
@@ -18,11 +19,12 @@ export const useInputField = (data: { name: string; type: string }) => {
   }
 
   return {
+    isPasswordField: type === 'password',
+    isError: !!errors[name]?.message,
     passwordShowHandler,
-    isPasswordField,
     inputType,
-    isError,
+    register,
+    errors,
     isValid,
-    field,
   }
 }
