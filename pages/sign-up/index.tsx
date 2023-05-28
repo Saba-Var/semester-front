@@ -5,9 +5,7 @@ import { GetStaticProps, NextPage } from 'next'
 const SignUp: NextPage = () => {
   return (
     <AuthWrapper page='create-account'>
-      <>
-        <SignUpForm />
-      </>
+      <SignUpForm />
     </AuthWrapper>
   )
 }
