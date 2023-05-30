@@ -13,7 +13,6 @@ export const navigation = [
     },
     href: '/',
     icon: HomeIcon,
-    current: true,
   },
   {
     name: {
@@ -22,7 +21,6 @@ export const navigation = [
     },
     href: '/profile',
     icon: UsersIcon,
-    current: false,
   },
   {
     name: {
@@ -31,7 +29,6 @@ export const navigation = [
     },
     href: '/calendar',
     icon: CalendarIcon,
-    current: false,
   },
   {
     name: {
@@ -40,7 +37,6 @@ export const navigation = [
     },
     href: '/documents',
     icon: InboxIcon,
-    current: false,
   },
 ]
 

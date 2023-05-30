@@ -38,6 +38,7 @@ export const useSidebarLayout = () => {
 
   return {
     canViewPage: !!accessToken && !!userId,
+    pathname: router.pathname,
     logoutMutation,
     setSidebarOpen,
     sidebarOpen,
