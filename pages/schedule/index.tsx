@@ -1,15 +1,20 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { NextPageWithSidebarLayout } from 'types'
+import { Calendar } from 'components'
 import { GetStaticProps } from 'next'
 import { getLayout } from 'utils'
 
-const Calendar: NextPageWithSidebarLayout = () => {
-  return <div>calendar</div>
+const Schedule: NextPageWithSidebarLayout = () => {
+  return (
+    <div className='w-full h-[82vh]'>
+      <Calendar />
+    </div>
+  )
 }
 
-Calendar.getLayout = getLayout
+Schedule.getLayout = getLayout
 
-export default Calendar
+export default Schedule
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {

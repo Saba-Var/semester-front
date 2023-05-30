@@ -24,10 +24,10 @@ export const navigation = [
   },
   {
     name: {
-      ka: 'კალენდარი',
-      en: 'Calendar',
+      ka: 'განრიგი',
+      en: 'Schedule',
     },
-    href: '/calendar',
+    href: '/schedule',
     icon: CalendarIcon,
   },
   {

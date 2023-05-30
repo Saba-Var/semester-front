@@ -1,4 +1,5 @@
 export * from './reset-password'
+export * from './schedule'
 export * from './sign-up'
 export * from './shared'
 export * from './log-In'
