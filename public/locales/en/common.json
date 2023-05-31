@@ -2,5 +2,13 @@
   "rights": "All rights reserved",
   "close": "Close",
   "go-back": "Go Back",
-  "logout": "Logout"
+  "logout": "Logout",
+  "add": "Add",
+  "mon": "Mon",
+  "tue": "Tue",
+  "wed": "Wed",
+  "thu": "Thu",
+  "fri": "Fri",
+  "sat": "Sat",
+  "sun": "Sun"
 }

@@ -19,12 +19,7 @@ export default Schedule
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale!, [
-        'auth',
-        'common',
-        'overview',
-        'inputs',
-      ])),
+      ...(await serverSideTranslations(locale!, ['common', 'schedule'])),
     },
   }
 }

@@ -27,9 +27,9 @@ export const useSidebarLayout = () => {
     }
   }, [router, userId])
 
-  useQuery('user', getUserData, {
-    enabled: !!accessToken,
-  })
+  const { data } = useQuery('user', getUserData)
+
+  console.log(data)
 
   const { mutate: logoutMutation } = useMutation(logout, {
     onSuccess: () => {
