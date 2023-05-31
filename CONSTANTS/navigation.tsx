@@ -53,6 +53,6 @@ export const userNavigation = [
       ka: 'გასვლა',
       en: 'Sign out',
     },
-    href: '#',
+    href: '/overview',
   },
 ]

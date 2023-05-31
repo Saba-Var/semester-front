@@ -1,6 +1,6 @@
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { ErrorMessage } from '@hookform/error-message'
-import { useInputField } from './useInputField'
+import { useInputField } from './useTextInputField'
 import { InputErrorMessage } from 'components'
 import { InputFieldProps } from './types.d'
 import { useTranslate } from 'hooks'
@@ -9,7 +9,7 @@ import {
   CheckCircleIcon,
 } from '@heroicons/react/20/solid'
 
-const InputField: React.FC<InputFieldProps> = (props) => {
+const TextInputField: React.FC<InputFieldProps> = (props) => {
   const { name, type } = props
 
   const {
@@ -86,4 +86,4 @@ const InputField: React.FC<InputFieldProps> = (props) => {
   )
 }
 
-export default InputField
+export default TextInputField

@@ -1,5 +1,5 @@
 import { useResetPasswordRequestForm } from './useResetPasswordRequestForm'
-import { InputField, SubmitButton, SuccessModal } from 'components'
+import { TextInputField, SubmitButton, SuccessModal } from 'components'
 import { FormProvider } from 'react-hook-form'
 
 const ResetPasswordRequestForm = () => {
@@ -33,7 +33,7 @@ const ResetPasswordRequestForm = () => {
           onSubmit={handleSubmit(submitHandler)}
           className='flex flex-col gap-1'
         >
-          <InputField name='email' type='text' />
+          <TextInputField name='email' type='text' />
 
           <SubmitButton disabled={isLoading} title='continue' styles='mt-4' />
         </form>

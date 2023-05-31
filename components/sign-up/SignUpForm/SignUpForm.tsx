@@ -1,4 +1,4 @@
-import { SubmitButton, SuccessModal, InputField } from 'components'
+import { SubmitButton, SuccessModal, TextInputField } from 'components'
 import { useSignUpForm } from './useSignUpForm'
 import { FormProvider } from 'react-hook-form'
 
@@ -31,10 +31,10 @@ const SignUpForm = () => {
           onSubmit={handleSubmit(submitHandler)}
           className='flex flex-col gap-1'
         >
-          <InputField name='username' type='text' />
-          <InputField name='email' type='text' />
-          <InputField name='password' type='password' />
-          <InputField name='confirmPassword' type='password' />
+          <TextInputField name='username' type='text' />
+          <TextInputField name='email' type='text' />
+          <TextInputField name='password' type='password' />
+          <TextInputField name='confirmPassword' type='password' />
 
           <SubmitButton
             disabled={userRegistering}

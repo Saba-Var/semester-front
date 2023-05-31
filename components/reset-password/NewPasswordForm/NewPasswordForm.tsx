@@ -1,4 +1,9 @@
-import { InputField, SubmitButton, SuccessModal, ErrorModal } from 'components'
+import {
+  TextInputField,
+  SubmitButton,
+  SuccessModal,
+  ErrorModal,
+} from 'components'
 import { useNewPasswordForm } from './useNewPasswordForm'
 import { FormProvider } from 'react-hook-form'
 
@@ -44,8 +49,8 @@ const NewPasswordForm = () => {
           onSubmit={handleSubmit(submitHandler)}
           className='flex flex-col gap-1'
         >
-          <InputField name='password' type='password' />
-          <InputField name='confirmPassword' type='password' />
+          <TextInputField name='password' type='password' />
+          <TextInputField name='confirmPassword' type='password' />
 
           <SubmitButton
             title='reset-password'

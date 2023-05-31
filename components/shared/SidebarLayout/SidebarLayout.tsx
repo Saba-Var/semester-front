@@ -211,15 +211,16 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                         {userNavigation.map((item) => (
                           <Menu.Item key={item.name.en}>
                             {() => (
-                              <Link href={item.href}>
-                                <a
-                                  className={
-                                    'block px-4 py-3 text-sm text-gray-700 hover:bg-blue-500 hover:text-white'
-                                  }
-                                >
-                                  {t(item.name[lang])}
-                                </a>
-                              </Link>
+                              <div
+                                onClick={() => {
+                                  item.href === '/overview' && logoutMutation()
+                                }}
+                                className={
+                                  'block px-4 py-3 text-sm text-gray-700 hover:bg-blue-500 hover:text-white'
+                                }
+                              >
+                                {t(item.name[lang])}
+                              </div>
                             )}
                           </Menu.Item>
                         ))}
