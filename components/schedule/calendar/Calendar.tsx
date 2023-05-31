@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useRef } from 'react'
 import { classNames } from 'utils'
 import {
   ChevronDownIcon,

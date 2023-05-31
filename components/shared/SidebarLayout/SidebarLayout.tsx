@@ -152,12 +152,10 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
             <div className='flex bg-blue-700 items-center pb-10'>
               <div
                 className='flex items-center cursor-pointer'
-                onClick={() => {
-                  logoutMutation()
-                }}
+                onClick={() => logoutMutation()}
               >
                 <p className='text-blue-100 px-2 py-2 pl-4 text-base font-medium'>
-                  Logout
+                  {t('logout')}
                 </p>
 
                 <ArrowLeftOnRectangleIcon className='h-6 w-6 text-white' />
