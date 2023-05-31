@@ -1,14 +1,15 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { Calendar, ScheduleHeader } from 'components'
 import { NextPageWithSidebarLayout } from 'types'
-import { Calendar } from 'components'
 import { GetStaticProps } from 'next'
 import { getLayout } from 'utils'
 
 const Schedule: NextPageWithSidebarLayout = () => {
   return (
-    <div className='w-full h-[82vh]'>
+    <>
+      <ScheduleHeader />
       <Calendar />
-    </div>
+    </>
   )
 }
 

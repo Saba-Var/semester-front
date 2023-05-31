@@ -6,7 +6,14 @@ import Cookies from 'js-cookie'
 export const useApp = () => {
   const [isHydrated, setIsHydrated] = useState(false)
 
-  const [queryClient] = useState(() => new QueryClient())
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: { refetchOnWindowFocus: false },
+        },
+      })
+  )
   const { push, locale, asPath } = useRouter()
 
   useEffect(() => {

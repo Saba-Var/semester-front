@@ -10,5 +10,7 @@
   "thu": "Thu",
   "fri": "Fri",
   "sat": "Sat",
-  "sun": "Sun"
+  "sun": "Sun",
+  "cancel": "Cancel",
+  "save": "Save"
 }
