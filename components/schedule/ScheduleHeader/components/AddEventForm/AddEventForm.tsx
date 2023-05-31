@@ -1,10 +1,13 @@
+import { ModalWrapper, TextInputField, RadioInputField } from 'components'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import useAddEventForm from './useAddEventForm'
-import { ModalWrapper } from 'components'
+import { FormProvider } from 'react-hook-form'
+import { weekdays } from 'CONSTANTS'
 import { useTranslate } from 'hooks'
 
 const AddEventForm = () => {
-  const { openEventForm, setOpenEventForm } = useAddEventForm()
+  const { openEventForm, setOpenEventForm, form, submitHandler } =
+    useAddEventForm()
 
   return (
     <div className='md:ml-4 md:flex md:items-center'>
@@ -19,12 +22,32 @@ const AddEventForm = () => {
 
       <ModalWrapper
         title={useTranslate('schedule:add_learning_activity')}
+        submitHandler={form.handleSubmit(submitHandler)}
         submitText={useTranslate('add')}
         setOpen={setOpenEventForm}
-        submitHandler={() => {}}
         open={openEventForm}
       >
-        <div>hel dsadas as da sd asd asd dsda sa sd asdssssssssssslo</div>
+        <FormProvider {...form}>
+          <form>
+            <TextInputField
+              labelClasses='text-left'
+              name='subject_name'
+              type='text'
+            />
+
+            <TextInputField
+              labelClasses='text-left'
+              name='teacher_name'
+              type='text'
+            />
+          </form>
+
+          <RadioInputField
+            title={useTranslate('schedule:select_week_day')}
+            dataList={weekdays}
+            name='weekday'
+          />
+        </FormProvider>
       </ModalWrapper>
     </div>
   )

@@ -9,9 +9,12 @@ import {
   CheckCircleIcon,
 } from '@heroicons/react/20/solid'
 
-const TextInputField: React.FC<InputFieldProps> = (props) => {
-  const { name, type } = props
-
+const TextInputField: React.FC<InputFieldProps> = ({
+  required = true,
+  labelClasses,
+  name,
+  type,
+}) => {
   const {
     passwordShowHandler,
     isPasswordField,
@@ -27,9 +30,10 @@ const TextInputField: React.FC<InputFieldProps> = (props) => {
       <label
         className={`block text-base select-none font-medium text-gray-700 ${
           isError && 'text-red-900'
-        }`}
+        } ${labelClasses}`}
       >
-        {useTranslate(`inputs:${name}`)}
+        {useTranslate(name)}
+        {required ? '*' : ''}
       </label>
       <div className='mt-2 relative'>
         <input
@@ -40,7 +44,7 @@ const TextInputField: React.FC<InputFieldProps> = (props) => {
           } ${isValid && '!border-green'} ${
             isPasswordField && (isError || isValid) && 'pr-14'
           } lg:text-base`}
-          placeholder={useTranslate(`inputs:${name}`)}
+          placeholder={useTranslate(name)}
           type={inputType}
         />
 

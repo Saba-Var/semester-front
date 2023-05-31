@@ -12,5 +12,7 @@
   "sat": "Sat",
   "sun": "Sun",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "subject_name": "Subject name",
+  "teacher_name": "Teacher/Lecturer name"
 }

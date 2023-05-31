@@ -6,5 +6,6 @@
   "friday_first_letter": "F",
   "saturday_first_letter": "S",
   "sunday_first_letter": "S",
-  "add_learning_activity": "Add learning activity"
+  "add_learning_activity": "Add learning activity",
+  "select_week_day": "Select week day"
 }
