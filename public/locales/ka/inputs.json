@@ -1,8 +1,4 @@
 {
-  "username": "სახელი",
-  "email": "ელ-ფოსტა",
-  "password": "პაროლი",
-  "confirmPassword": "გაიმეორეთ პაროლი",
   "username-required": "სახელის ველი სავალდებულოა",
   "username-min": "შეიყვანეთ მინიმუმ 3 სიმბოლო",
   "username-max": "შეიყვანეთ მაქსიმუმ 20 სიმბოლო",
@@ -22,5 +18,7 @@
   "continue": "გაგრძელება",
   "user-not-found": "ელ-ფოსტა ვერ მოიძებნა",
   "email-sent-failed": "ბმული ვერ გამოიგზავნა",
-  "reset-password": "პაროლის შეცვლა"
+  "reset-password": "პაროლის შეცვლა",
+  "subject_placeholder": "კალკულუსი",
+  "teacher_name_placeholder": "სულხან კვერნაძე"
 }

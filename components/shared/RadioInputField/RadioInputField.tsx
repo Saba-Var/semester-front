@@ -37,21 +37,20 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
       </label>
 
       <fieldset className='mt-4'>
-        <legend className='sr-only'>Notification method</legend>
-        <div className='flex flex-wrap justify-center items-center gap-x-12 gap-4'>
+        <div className='flex flex-wrap items-center gap-x-12 gap-4'>
           {dataList.map((item) => (
-            <div key={item.id} className='flex items-center'>
-              <input
-                className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
-                {...register(name)}
-                value={item.title}
-                id={item.id}
-                type='radio'
-              />
+            <div key={item.value}>
               <label
-                htmlFor={item.id}
-                className='ml-3 block text-sm font-medium leading-6 text-gray-900'
+                htmlFor={item.value}
+                className='ml-3 text-sm gap-2 font-medium flex items-center leading-6 text-gray-900'
               >
+                <input
+                  className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                  {...register(name)}
+                  value={item.title}
+                  id={item.value}
+                  type='radio'
+                />
                 {t(item.title)}
               </label>
             </div>

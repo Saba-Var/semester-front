@@ -1,2 +1,2 @@
 export * from './ScheduleHeader'
-export * from './calendar'
+export * from './Calendar'

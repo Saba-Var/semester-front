@@ -14,5 +14,14 @@
   "cancel": "Cancel",
   "save": "Save",
   "subject_name": "Subject name",
-  "teacher_name": "Teacher/Lecturer name"
+  "teacher_name": "Teacher/Lecturer name",
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm password",
+  "lecture": "Lecture",
+  "seminar": "Seminar",
+  "lab": "Lab",
+  "practice": "Practise",
+  "other": "Other"
 }

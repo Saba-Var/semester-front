@@ -3,7 +3,6 @@ import { ErrorMessage } from '@hookform/error-message'
 import { useInputField } from './useTextInputField'
 import { InputErrorMessage } from 'components'
 import { InputFieldProps } from './types.d'
-import { useTranslate } from 'hooks'
 import {
   ExclamationCircleIcon,
   CheckCircleIcon,
@@ -12,6 +11,7 @@ import {
 const TextInputField: React.FC<InputFieldProps> = ({
   required = true,
   labelClasses,
+  placeholder,
   name,
   type,
 }) => {
@@ -23,6 +23,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
     isError,
     isValid,
     errors,
+    t,
   } = useInputField(name, type)
 
   return (
@@ -32,7 +33,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
           isError && 'text-red-900'
         } ${labelClasses}`}
       >
-        {useTranslate(name)}
+        {t(name)}
         {required ? '*' : ''}
       </label>
       <div className='mt-2 relative'>
@@ -44,7 +45,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
           } ${isValid && '!border-green'} ${
             isPasswordField && (isError || isValid) && 'pr-14'
           } lg:text-base`}
-          placeholder={useTranslate(name)}
+          placeholder={placeholder || t(name)}
           type={inputType}
         />
 

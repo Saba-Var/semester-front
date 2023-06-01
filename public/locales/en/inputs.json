@@ -1,8 +1,4 @@
 {
-  "username": "Username",
-  "email": "Email",
-  "password": "Password",
-  "confirmPassword": "Confirm password",
   "username-required": "Username field is required",
   "username-min": "Enter at least 3 characters",
   "username-max": "Enter maximum 20 characters",
@@ -22,5 +18,7 @@
   "continue": "Continue",
   "user-not-found": "Email not found",
   "email-sent-failed": "Email could not be sent",
-  "reset-password": "Reset password"
+  "reset-password": "Reset password",
+  "subject_placeholder": "Calculus",
+  "teacher_name_placeholder": "Sulkhan kvernadze"
 }
