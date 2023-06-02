@@ -13,7 +13,6 @@ export const navigation = [
     },
     href: '/',
     icon: HomeIcon,
-    current: true,
   },
   {
     name: {
@@ -22,16 +21,14 @@ export const navigation = [
     },
     href: '/profile',
     icon: UsersIcon,
-    current: false,
   },
   {
     name: {
-      ka: 'კალენდარი',
-      en: 'Calendar',
+      ka: 'განრიგი',
+      en: 'Schedule',
     },
-    href: '/calendar',
+    href: '/schedule',
     icon: CalendarIcon,
-    current: false,
   },
   {
     name: {
@@ -40,7 +37,6 @@ export const navigation = [
     },
     href: '/documents',
     icon: InboxIcon,
-    current: false,
   },
 ]
 
@@ -57,6 +53,6 @@ export const userNavigation = [
       ka: 'გასვლა',
       en: 'Sign out',
     },
-    href: '#',
+    href: '/overview',
   },
 ]

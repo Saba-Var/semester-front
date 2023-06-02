@@ -1,8 +1,4 @@
 {
-  "username": "Username",
-  "email": "Email",
-  "password": "Password",
-  "confirmPassword": "Confirm password",
   "username-required": "Username field is required",
   "username-min": "Enter at least 3 characters",
   "username-max": "Enter maximum 20 characters",
@@ -22,5 +18,16 @@
   "continue": "Continue",
   "user-not-found": "Email not found",
   "email-sent-failed": "Email could not be sent",
-  "reset-password": "Reset password"
+  "reset-password": "Reset password",
+  "subject_name_required": "Subject name is required",
+  "subject_name_min": "Subject name must be at least 3 characters",
+  "subject_name_max": "Subject name must be at most 100 characters",
+  "teacher_name_required": "Teacher/Lecturer name is required",
+  "teacher_name_min": "Teacher/Lecturer name must be at least 3 characters",
+  "teacher_name_max": "Teacher/Lecturer name must be at most 30 characters",
+  "weekday-required": "Week day is required",
+  "activity-type-required": "Activity type is required",
+  "starting-time-required": "Starting time is required",
+  "ending-time-required": "Ending time is required",
+  "invalid_ending_time": "Ending time must be greater than starting time"
 }

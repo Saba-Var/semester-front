@@ -16,8 +16,15 @@ import {
 const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
   const { children } = props
 
-  const { setSidebarOpen, sidebarOpen, t, lang, canViewPage, logoutMutation } =
-    useSidebarLayout()
+  const {
+    setSidebarOpen,
+    logoutMutation,
+    sidebarOpen,
+    canViewPage,
+    pathname,
+    lang,
+    t,
+  } = useSidebarLayout()
 
   return (
     <>
@@ -76,11 +83,9 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                       </div>
                     </Transition.Child>
                     <div className='flex flex-shrink-0 items-center px-4'>
-                      <img
-                        className='h-8 w-auto'
-                        src='https://tailwindui.com/img/logos/mark.svg?color=blue&shade=300'
-                        alt='Your Company'
-                      />
+                      <p className='text-gray-200 font-medium text-3xl'>
+                        Semester
+                      </p>
                     </div>
                     <div className='mt-5 h-0 flex-1 overflow-y-auto'>
                       <nav className='space-y-1 px-2'>
@@ -88,11 +93,12 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                           <Link key={item.name.en} href={item.href}>
                             <a
                               className={classNames(
-                                item.current
+                                pathname === item.href
                                   ? 'bg-blue-800 text-white'
                                   : 'text-blue-100 hover:bg-blue-600',
                                 'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                               )}
+                              onClick={() => setSidebarOpen(false)}
                             >
                               <item.icon
                                 className='mr-4 h-6 w-6 flex-shrink-0 text-blue-300'
@@ -115,11 +121,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
           <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
             <div className='flex flex-grow flex-col overflow-y-auto bg-blue-700 pt-5'>
               <div className='flex flex-shrink-0 items-center px-4'>
-                <img
-                  className='h-8 w-auto'
-                  src='https://tailwindui.com/img/logos/mark.svg?color=blue&shade=300'
-                  alt='Your Company'
-                />
+                <p className='text-gray-200 font-medium text-3xl'>Semester</p>
               </div>
               <div className='mt-5 flex flex-1 flex-col'>
                 <nav className='flex-1 space-y-1 px-2 pb-4'>
@@ -127,7 +129,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                     <Link key={item.name.en} href={item.href}>
                       <a
                         className={classNames(
-                          item.current
+                          pathname === item.href
                             ? 'bg-blue-800 text-white'
                             : 'text-blue-100 hover:bg-blue-600',
                           'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
@@ -150,12 +152,10 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
             <div className='flex bg-blue-700 items-center pb-10'>
               <div
                 className='flex items-center cursor-pointer'
-                onClick={() => {
-                  logoutMutation()
-                }}
+                onClick={() => logoutMutation()}
               >
                 <p className='text-blue-100 px-2 py-2 pl-4 text-base font-medium'>
-                  Logout
+                  {t('logout')}
                 </p>
 
                 <ArrowLeftOnRectangleIcon className='h-6 w-6 text-white' />
@@ -211,15 +211,16 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                         {userNavigation.map((item) => (
                           <Menu.Item key={item.name.en}>
                             {() => (
-                              <Link href={item.href}>
-                                <a
-                                  className={
-                                    'block px-4 py-3 text-sm text-gray-700 hover:bg-blue-500 hover:text-white'
-                                  }
-                                >
-                                  {t(item.name[lang])}
-                                </a>
-                              </Link>
+                              <div
+                                onClick={() => {
+                                  item.href === '/overview' && logoutMutation()
+                                }}
+                                className={
+                                  'block px-4 py-3 text-sm text-gray-700 hover:bg-blue-500 hover:text-white'
+                                }
+                              >
+                                {t(item.name[lang])}
+                              </div>
                             )}
                           </Menu.Item>
                         ))}
@@ -231,17 +232,10 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
             </div>
 
             <main>
-              <div className='py-6'>
-                <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
-                  <h1 className='text-2xl font-semibold text-gray-900'>
-                    Dashboard
-                  </h1>
-                </div>
-                <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
+              <div className='py-2'>
+                <div className='mx-auto px-4 sm:px-6 md:px-8'>
                   <div className='py-4'>
-                    <div className='h-96 rounded-lg border-4 border-dashed border-gray-200'>
-                      {children}
-                    </div>
+                    <div>{children}</div>
                   </div>
                 </div>
               </div>

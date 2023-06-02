@@ -1,17 +1,20 @@
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { ErrorMessage } from '@hookform/error-message'
-import { useInputField } from './useInputField'
+import { useInputField } from './useTextInputField'
 import { InputErrorMessage } from 'components'
 import { InputFieldProps } from './types.d'
-import { useTranslate } from 'hooks'
 import {
   ExclamationCircleIcon,
   CheckCircleIcon,
 } from '@heroicons/react/20/solid'
 
-const InputField: React.FC<InputFieldProps> = (props) => {
-  const { name, type } = props
-
+const TextInputField: React.FC<InputFieldProps> = ({
+  required = true,
+  labelClasses,
+  placeholder,
+  name,
+  type,
+}) => {
   const {
     passwordShowHandler,
     isPasswordField,
@@ -20,6 +23,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
     isError,
     isValid,
     errors,
+    t,
   } = useInputField(name, type)
 
   return (
@@ -27,9 +31,10 @@ const InputField: React.FC<InputFieldProps> = (props) => {
       <label
         className={`block text-base select-none font-medium text-gray-700 ${
           isError && 'text-red-900'
-        }`}
+        } ${labelClasses}`}
       >
-        {useTranslate(`inputs:${name}`)}
+        {t(name)}
+        {required ? ' *' : ''}
       </label>
       <div className='mt-2 relative'>
         <input
@@ -40,7 +45,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
           } ${isValid && '!border-green'} ${
             isPasswordField && (isError || isValid) && 'pr-14'
           } lg:text-base`}
-          placeholder={useTranslate(`inputs:${name}`)}
+          placeholder={placeholder || t(name)}
           type={inputType}
         />
 
@@ -86,4 +91,4 @@ const InputField: React.FC<InputFieldProps> = (props) => {
   )
 }
 
-export default InputField
+export default TextInputField

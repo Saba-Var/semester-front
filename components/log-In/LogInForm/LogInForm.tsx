@@ -5,7 +5,7 @@ import {
   CheckboxInputField,
   ForgetPassword,
   SubmitButton,
-  InputField,
+  TextInputField,
 } from 'components'
 
 const LogInForm = () => {
@@ -15,8 +15,8 @@ const LogInForm = () => {
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(submitHandler)}>
         <div className='flex flex-col gap-2'>
-          <InputField name='email' type='text' />
-          <InputField name='password' type='password' />
+          <TextInputField name='email' type='text' />
+          <TextInputField name='password' type='password' />
         </div>
 
         <div className='flex mb-4 mt-4 items-center justify-between'>
