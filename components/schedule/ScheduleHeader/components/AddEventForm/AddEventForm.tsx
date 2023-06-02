@@ -55,7 +55,7 @@ const AddEventForm = () => {
               type='text'
             />
 
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-6 md:gap-2'>
               <RadioInputField
                 title={t('schedule:select_week_day')}
                 dataList={weekdays}

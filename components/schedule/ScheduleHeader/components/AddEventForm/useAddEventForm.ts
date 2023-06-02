@@ -19,12 +19,10 @@ const useAddEventForm = () => {
       ending_time: '',
       weekday: '',
     },
-    mode: 'onChange',
+    mode: 'onTouched',
   })
 
-  const submitHandler = (data) => {
-    console.log(data)
-  }
+  const submitHandler = () => {}
 
   const startingTime = useWatch({
     control: form.control,
@@ -79,6 +77,8 @@ const useAddEventForm = () => {
       message: 'invalid_ending_time',
     })
   }
+
+  console.log(form.formState.errors)
 
   return {
     setOpenEventForm,
