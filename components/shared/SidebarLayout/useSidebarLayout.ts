@@ -29,8 +29,6 @@ export const useSidebarLayout = () => {
 
   const { data } = useQuery('user', getUserData)
 
-  console.log(data)
-
   const { mutate: logoutMutation } = useMutation(logout, {
     onSuccess: () => {
       Cookies.remove('id')

@@ -34,7 +34,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
         } ${labelClasses}`}
       >
         {t(name)}
-        {required ? '*' : ''}
+        {required ? ' *' : ''}
       </label>
       <div className='mt-2 relative'>
         <input

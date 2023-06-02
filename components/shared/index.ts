@@ -1,6 +1,7 @@
 export * from './CheckboxInputField'
 export * from './InputErrorMessage'
 export * from './LanguageSelector'
+export * from './SelectInputField'
 export * from './LottieAnimation'
 export * from './RadioInputField'
 export * from './TextInputField'

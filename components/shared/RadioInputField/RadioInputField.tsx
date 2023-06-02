@@ -19,7 +19,7 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
     <>
       <label className='text-base relative gap-1 flex items-center select-none font-medium text-gray-700'>
         <span className={`${isError && 'text-red-900'}`}>{`${title}${
-          required ? '*' : ''
+          required ? ' *' : ''
         }`}</span>
 
         <div className='w-5 h-5'>
