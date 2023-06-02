@@ -1,3 +1,4 @@
+export * from './learningActivitySchema'
 export * from './resetPasswordSchema'
 export * from './signUpSchema'
 export * from './logInSchema'

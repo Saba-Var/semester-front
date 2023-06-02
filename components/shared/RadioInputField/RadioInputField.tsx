@@ -16,7 +16,7 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
   const { register, t, isError, errors, isValid } = useRadioInputField(name)
 
   return (
-    <>
+    <div className='min-h-[5.5rem]'>
       <label className='text-base relative gap-1 flex items-center select-none font-medium text-gray-700'>
         <span className={`${isError && 'text-red-900'}`}>{`${title}${
           required ? ' *' : ''
@@ -63,7 +63,7 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
           name={name}
         />
       </fieldset>
-    </>
+    </div>
   )
 }
 

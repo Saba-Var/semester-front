@@ -5,7 +5,7 @@ const InputErrorMessage: React.FC<InputErrorMessageProps> = (props) => {
   const { errorMessage } = props
 
   return (
-    <p className='lg:mt-1 text-sm text-red-600'>
+    <p className='lg:mt-1 text-left text-sm text-red-600'>
       {useTranslate(`inputs:${errorMessage}`)}
     </p>
   )

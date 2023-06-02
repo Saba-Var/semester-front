@@ -34,58 +34,61 @@ const AddEventForm = () => {
       <ModalWrapper
         title={t('schedule:add_learning_activity')}
         submitHandler={form.handleSubmit(submitHandler)}
-        submitText={t('add')}
         setOpen={setOpenEventForm}
+        closeHandler={form.reset}
+        submitText={t('add')}
         open={openEventForm}
       >
         <FormProvider {...form}>
-          <form>
+          <form className='flex flex-col gap-2'>
             <TextInputField
-              placeholder={t('inputs:subject_placeholder')}
+              placeholder={t('schedule:subject_placeholder')}
               labelClasses='text-left'
               name='subject_name'
               type='text'
             />
 
             <TextInputField
-              placeholder={t('inputs:teacher_name_placeholder')}
+              placeholder={t('schedule:teacher_name_placeholder')}
               labelClasses='text-left'
               name='teacher_name'
               type='text'
             />
 
-            <RadioInputField
-              title={t('schedule:select_week_day')}
-              dataList={weekdays}
-              name='weekday'
-            />
+            <div className='flex flex-col gap-2'>
+              <RadioInputField
+                title={t('schedule:select_week_day')}
+                dataList={weekdays}
+                name='weekday'
+              />
 
-            <RadioInputField
-              title={t('schedule:select_activity_type')}
-              dataList={activities}
-              name='activity_type'
-            />
+              <RadioInputField
+                title={t('schedule:select_activity_type')}
+                dataList={activities}
+                name='activity_type'
+              />
 
-            <div className='flex justify-between gap-[0.75rem]'>
-              <div className='w-full'>
-                <SelectInputField
-                  optionsList={generateOptions(9)}
-                  title={t('starting_time')}
-                  name='starting_time'
-                />
-              </div>
-
-              <div className='w-full'>
-                {startingTime && (
+              <div className='flex justify-between gap-[0.75rem]'>
+                <div className='w-full'>
                   <SelectInputField
-                    optionsList={generateOptions(
-                      parseInt(startingTime.split(':')[0]),
-                      true
-                    )}
-                    title={t('ending_time')}
-                    name='ending_time'
+                    optionsList={generateOptions(9)}
+                    title={t('schedule:starting_time')}
+                    name='starting_time'
                   />
-                )}
+                </div>
+
+                <div className='w-full'>
+                  {startingTime && (
+                    <SelectInputField
+                      optionsList={generateOptions(
+                        parseInt(startingTime.split(':')[0]),
+                        true
+                      )}
+                      title={t('schedule:ending_time')}
+                      name='ending_time'
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </form>

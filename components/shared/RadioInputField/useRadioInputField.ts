@@ -5,17 +5,17 @@ const useRadioInputField = (name: string) => {
   const { t } = useTranslation()
 
   const {
-    formState: { errors, touchedFields },
+    formState: { errors, dirtyFields },
     register,
   } = useFormContext()
 
-  const isValid = touchedFields[name] && !errors[name]?.message
+  const isValid = dirtyFields[name] && !errors[name]?.message
 
   return {
     isError: !!errors[name]?.message,
     register,
-    errors,
     isValid,
+    errors,
     t,
   }
 }

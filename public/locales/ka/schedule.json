@@ -8,5 +8,9 @@
   "sunday_first_letter": "კ",
   "add_learning_activity": "დაამატე სასწავლო აქტივობა",
   "select_week_day": "აირჩიეთ კვირის დღე",
-  "select_activity_type": "აირჩიეთ აქტივობის ტიპი"
+  "select_activity_type": "აირჩიეთ აქტივობის ტიპი",
+  "starting_time": "დაწყების დრო",
+  "ending_time": "დასრულების დრო",
+  "subject_placeholder": "კალკულუსი",
+  "teacher_name_placeholder": "სულხან კვერნაძე"
 }

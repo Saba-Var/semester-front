@@ -1,4 +1,6 @@
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, useWatch } from 'react-hook-form'
+import { learningActivitySchema } from 'schemas'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
@@ -8,7 +10,16 @@ const useAddEventForm = () => {
   const { t } = useTranslation()
 
   const form = useForm({
-    mode: 'onTouched',
+    resolver: yupResolver(learningActivitySchema),
+    defaultValues: {
+      activity_type: '',
+      starting_time: '',
+      subject_name: '',
+      teacher_name: '',
+      ending_time: '',
+      weekday: '',
+    },
+    mode: 'onChange',
   })
 
   const submitHandler = (data) => {
@@ -64,6 +75,9 @@ const useAddEventForm = () => {
 
   if (startingTime && endingTime && startingTime >= endingTime) {
     form.setValue('ending_time', '')
+    form.setError('ending_time', {
+      message: 'invalid_ending_time',
+    })
   }
 
   return {

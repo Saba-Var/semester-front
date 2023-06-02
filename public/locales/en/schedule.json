@@ -8,5 +8,9 @@
   "sunday_first_letter": "S",
   "add_learning_activity": "Add learning activity",
   "select_week_day": "Select week day",
-  "select_activity_type": "Select activity type"
+  "select_activity_type": "Select activity type",
+  "starting_time": "Starting time",
+  "ending_time": "Ending time",
+  "subject_placeholder": "Calculus",
+  "teacher_name_placeholder": "Sulkhan kvernadze"
 }
