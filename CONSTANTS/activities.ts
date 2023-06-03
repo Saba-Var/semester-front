@@ -1,22 +1,22 @@
 export const activities = [
   {
-    value: 'lecture',
+    value: 'Lecture',
     title: 'lecture',
   },
   {
-    value: 'seminar',
+    value: 'Seminar',
     title: 'seminar',
   },
   {
-    value: 'lab',
+    value: 'Lab',
     title: 'lab',
   },
   {
-    value: 'practice',
+    value: 'Practice',
     title: 'practice',
   },
   {
-    value: 'other',
+    value: 'Other',
     title: 'other',
   },
 ]
