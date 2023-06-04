@@ -44,14 +44,14 @@ const AddEventForm = () => {
             <TextInputField
               placeholder={t('schedule:subject_placeholder')}
               labelClasses='text-left'
-              name='subject_name'
+              name='subjectName'
               type='text'
             />
 
             <TextInputField
               placeholder={t('schedule:teacher_name_placeholder')}
               labelClasses='text-left'
-              name='teacher_name'
+              name='teacherName'
               type='text'
             />
 
