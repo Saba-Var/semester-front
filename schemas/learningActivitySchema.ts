@@ -15,9 +15,9 @@ export const learningActivitySchema = Yup.object({
 
   weekday: Yup.string().required('weekday-required'),
 
-  activity_type: Yup.string().required('activity-type-required'),
+  activityType: Yup.string().required('activity-type-required'),
 
-  starting_time: Yup.string().required('starting-time-required'),
+  startingTime: Yup.string().required('starting-time-required'),
 
   ending_time: Yup.string().when('starting_time', {
     is: (val: string) => !!val,
