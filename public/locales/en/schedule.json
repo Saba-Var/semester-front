@@ -12,5 +12,9 @@
   "starting_time": "Starting time",
   "ending_time": "Ending time",
   "subject_placeholder": "Calculus",
-  "teacher_name_placeholder": "Sulkhan kvernadze"
+  "teacher_name_placeholder": "Sulkhan kvernadze",
+  "semester_name": "Semester name",
+  "create_new_semester": "Create new semester",
+  "your_semesters": "Your semesters",
+  "semester_created_successfully": "Semester created successfully!"
 }

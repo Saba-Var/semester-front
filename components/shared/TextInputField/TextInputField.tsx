@@ -10,10 +10,10 @@ import {
 
 const TextInputField: React.FC<InputFieldProps> = ({
   required = true,
+  type = 'text',
   labelClasses,
   placeholder,
   name,
-  type,
 }) => {
   const {
     passwordShowHandler,
@@ -29,11 +29,11 @@ const TextInputField: React.FC<InputFieldProps> = ({
   return (
     <div className='min-h-[107px]'>
       <label
-        className={`block text-base select-none font-medium text-gray-700 ${
+        className={`block text-base select-none text-left font-medium text-gray-700 ${
           isError && 'text-red-900'
         } ${labelClasses}`}
       >
-        {t(name)}
+        {placeholder || t(name)}
         {required ? ' *' : ''}
       </label>
       <div className='mt-2 relative'>

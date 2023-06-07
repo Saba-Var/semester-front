@@ -15,7 +15,7 @@ const LogInForm = () => {
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(submitHandler)}>
         <div className='flex flex-col gap-2'>
-          <TextInputField name='email' type='text' />
+          <TextInputField name='email' />
           <TextInputField name='password' type='password' />
         </div>
 

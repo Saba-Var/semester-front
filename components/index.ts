@@ -1,5 +1,5 @@
 export * from './reset-password'
-export * from './ErrorBoundary'
+export * from './error-boundary'
 export * from './schedule'
 export * from './sign-up'
 export * from './shared'

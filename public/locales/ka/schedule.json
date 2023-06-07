@@ -12,5 +12,9 @@
   "starting_time": "დაწყების დრო",
   "ending_time": "დასრულების დრო",
   "subject_placeholder": "კალკულუსი",
-  "teacher_name_placeholder": "სულხან კვერნაძე"
+  "teacher_name_placeholder": "სულხან კვერნაძე",
+  "semester_name": "სემესტრის სახელი",
+  "create_new_semester": "შექმენი ახალი სემესტრი",
+  "your_semesters": "შენი სემესტრები",
+  "semester_created_successfully": "სემესტრი წარმატებით შეიქმნა!"
 }

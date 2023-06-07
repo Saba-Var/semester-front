@@ -29,5 +29,7 @@
   "activity-type-required": "აქტივობის ტიპი სავალდებულოა",
   "starting-time-required": "დაწყების დრო სავალდებულოა",
   "ending-time-required": "დასრულების დრო სავალდებულოა",
-  "invalid_ending_time": "დასრულების დრო უნდა იყოს დაწყების დროზე მეტი"
+  "invalid_ending_time": "დასრულების დრო უნდა იყოს დაწყების დროზე მეტი",
+  "semester_name_required": "სემესტრის სახელი სავალდებულოა",
+  "semester_name_max": "სემესტრის სახელი უნდა იყოს მაქს. 40 სიმბოლო"
 }
