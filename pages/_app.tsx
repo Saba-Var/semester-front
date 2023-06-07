@@ -1,7 +1,7 @@
 import { QueryClientProvider, Hydrate } from 'react-query'
+import { ErrorBoundary, ToastContainer } from 'components'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { appWithTranslation } from 'next-i18next'
-import { ErrorBoundary } from 'components'
 import { AppPropsWithLayout } from 'types'
 import type { ReactNode } from 'react'
 import { Provider } from 'react-redux'
@@ -19,6 +19,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
+            <ToastContainer />
             {isHydrated && getLayout(<Component {...pageProps} />)}
             <ReactQueryDevtools />
           </Hydrate>
