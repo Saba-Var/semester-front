@@ -41,7 +41,7 @@ export const useAxiosPrivate = () => {
           requestsExceed()
         }
 
-        if (status === 403 && !prevRequest?.sent) {
+        if (status === 401 && !prevRequest?.sent) {
           const accessToken = await refresh()
 
           if (!accessToken) {

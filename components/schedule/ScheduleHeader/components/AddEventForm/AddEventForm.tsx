@@ -32,8 +32,8 @@ const AddEventForm = () => {
       </button>
 
       <ModalWrapper
-        title={t('schedule:add_learning_activity')}
         submitHandler={form.handleSubmit(submitHandler)}
+        title={t('schedule:add_learning_activity')}
         setOpen={setOpenEventForm}
         closeHandler={form.reset}
         submitText={t('add')}
@@ -44,14 +44,14 @@ const AddEventForm = () => {
             <TextInputField
               placeholder={t('schedule:subject_placeholder')}
               labelClasses='text-left'
-              name='subject_name'
+              name='subjectName'
               type='text'
             />
 
             <TextInputField
               placeholder={t('schedule:teacher_name_placeholder')}
               labelClasses='text-left'
-              name='teacher_name'
+              name='teacherName'
               type='text'
             />
 
@@ -65,7 +65,7 @@ const AddEventForm = () => {
               <RadioInputField
                 title={t('schedule:select_activity_type')}
                 dataList={activities}
-                name='activity_type'
+                name='activityType'
               />
 
               <div className='flex justify-between gap-[0.75rem]'>
@@ -73,7 +73,7 @@ const AddEventForm = () => {
                   <SelectInputField
                     optionsList={generateOptions(9)}
                     title={t('schedule:starting_time')}
-                    name='starting_time'
+                    name='startingTime'
                   />
                 </div>
 
@@ -85,7 +85,7 @@ const AddEventForm = () => {
                         true
                       )}
                       title={t('schedule:ending_time')}
-                      name='ending_time'
+                      name='endingTime'
                     />
                   )}
                 </div>

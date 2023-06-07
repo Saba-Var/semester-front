@@ -12,11 +12,11 @@ const useAddEventForm = () => {
   const form = useForm({
     resolver: yupResolver(learningActivitySchema),
     defaultValues: {
-      activity_type: '',
-      starting_time: '',
-      subject_name: '',
-      teacher_name: '',
-      ending_time: '',
+      activityType: '',
+      startingTime: '',
+      subjectName: '',
+      teacherName: '',
+      endingTime: '',
       weekday: '',
     },
     mode: 'onTouched',
@@ -26,12 +26,12 @@ const useAddEventForm = () => {
 
   const startingTime = useWatch({
     control: form.control,
-    name: 'starting_time',
+    name: 'startingTime',
   })
 
   const endingTime = useWatch({
     control: form.control,
-    name: 'ending_time',
+    name: 'endingTime',
   })
 
   const generateFormattedTime = (hour: number, minute: string) => {
@@ -72,8 +72,8 @@ const useAddEventForm = () => {
   }
 
   if (startingTime && endingTime && startingTime >= endingTime) {
-    form.setValue('ending_time', '')
-    form.setError('ending_time', {
+    form.setValue('endingTime', '')
+    form.setError('endingTime', {
       message: 'invalid_ending_time',
     })
   }
