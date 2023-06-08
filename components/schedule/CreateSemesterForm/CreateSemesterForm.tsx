@@ -35,7 +35,7 @@ export const CreateSemesterForm = () => {
         open={showFormModal}
       >
         <FormProvider {...form}>
-          <form>
+          <form onSubmit={(e) => e.preventDefault()}>
             <TextInputField
               placeholder={useTranslate('schedule:semester_name')}
               name='name'
