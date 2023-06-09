@@ -3,5 +3,6 @@ export type InputFieldProps = {
   labelClasses?: string
   placeholder?: string
   required?: boolean
+  label?: string
   name: string
 }

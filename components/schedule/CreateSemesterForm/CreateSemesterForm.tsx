@@ -38,6 +38,7 @@ export const CreateSemesterForm = () => {
           <form onSubmit={(e) => e.preventDefault()}>
             <TextInputField
               placeholder={useTranslate('schedule:semester_name')}
+              label={useTranslate('schedule:semester_name')}
               name='name'
             />
           </form>

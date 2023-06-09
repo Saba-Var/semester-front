@@ -1,6 +1,6 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { CreateSemesterForm, AllSemesters } from 'components'
 import { NextPageWithSidebarLayout } from 'types'
-import { CreateSemesterForm } from 'components'
 import { GetStaticProps } from 'next'
 import { getLayout } from 'utils'
 
@@ -12,6 +12,8 @@ const Schedule: NextPageWithSidebarLayout = () => {
       </h2>
 
       <CreateSemesterForm />
+
+      <AllSemesters />
     </>
   )
 }

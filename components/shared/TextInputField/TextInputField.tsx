@@ -9,10 +9,11 @@ import {
 } from '@heroicons/react/20/solid'
 
 const TextInputField: React.FC<InputFieldProps> = ({
+  placeholder = '',
   required = true,
   type = 'text',
   labelClasses,
-  placeholder,
+  label = '',
   name,
 }) => {
   const {
@@ -33,7 +34,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
           isError && 'text-red-900'
         } ${labelClasses}`}
       >
-        {placeholder || t(name)}
+        {label || t(name)}
         {required ? ' *' : ''}
       </label>
       <div className='mt-2 relative'>

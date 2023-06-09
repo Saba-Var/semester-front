@@ -1,4 +1,6 @@
 import { useAxiosPrivate } from 'hooks'
+import { AxiosResponse } from 'axios'
+import { Semester } from 'types'
 
 export const useSemesterRequests = () => {
   const axiosPrivate = useAxiosPrivate()
@@ -7,7 +9,7 @@ export const useSemesterRequests = () => {
     return axiosPrivate.post('/semesters', data)
   }
 
-  const getSemestersRequest = async () => {
+  const getSemestersRequest = async (): Promise<AxiosResponse<Semester[]>> => {
     return axiosPrivate.get('/semesters')
   }
 

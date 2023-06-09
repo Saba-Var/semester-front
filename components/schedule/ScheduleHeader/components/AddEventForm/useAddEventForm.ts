@@ -78,8 +78,6 @@ const useAddEventForm = () => {
     })
   }
 
-  console.log(form.formState.errors)
-
   return {
     setOpenEventForm,
     generateOptions,
