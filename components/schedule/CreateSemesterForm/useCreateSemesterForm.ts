@@ -18,6 +18,7 @@ const useCreateSemesterForm = () => {
     resolver: yupResolver(semesterSchema),
     defaultValues: {
       name: '',
+      startDate: '',
     },
     mode: 'onTouched',
   })
@@ -36,7 +37,9 @@ const useCreateSemesterForm = () => {
     }
   )
 
-  const submitHandler: SubmitHandler<{ name: string }> = (values) => {
+  const submitHandler: SubmitHandler<{ name: string; startDate: string }> = (
+    values
+  ) => {
     createSemesterMutation(values)
   }
 

@@ -41,6 +41,22 @@ input:-webkit-autofill:active {
   top: 4.5rem;
 }
 
+.SingleDatePicker {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.SingleDatePicker > div:first-child {
+  width: 100% !important;
+  justify-content: flex-start;
+}
+
+.SingleDatePickerInput {
+  width: 100%;
+  display: flex;
+}
+
 @media (max-width: 480px) {
   .Toastify__toast-container--top-right {
     top: 0;

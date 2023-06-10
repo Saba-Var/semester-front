@@ -1,3 +1,4 @@
+export * from './DatepickerInputField'
 export * from './CheckboxInputField'
 export * from './InputErrorMessage'
 export * from './LanguageSelector'

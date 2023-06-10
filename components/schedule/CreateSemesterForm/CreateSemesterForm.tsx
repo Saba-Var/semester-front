@@ -1,5 +1,5 @@
+import { ModalWrapper, TextInputField, DatepickerInputField } from 'components'
 import useCreateSemesterForm from './useCreateSemesterForm'
-import { ModalWrapper, TextInputField } from 'components'
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { FormProvider } from 'react-hook-form'
 import { useTranslate } from 'hooks'
@@ -41,6 +41,8 @@ export const CreateSemesterForm = () => {
               label={useTranslate('schedule:semester_name')}
               name='name'
             />
+
+            <DatepickerInputField name='startDate' />
           </form>
         </FormProvider>
       </ModalWrapper>
