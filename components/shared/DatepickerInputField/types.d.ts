@@ -5,6 +5,8 @@ export type DatepickerInputFieldProps = {
   showDefaultInputIcon?: boolean
   numberOfMonths?: number
   displayFormat?: string
+  placeholder?: string
+  required?: boolean
   label?: string
   name: string
 }

@@ -1,8 +1,7 @@
 import { ModalWrapper, TextInputField, DatepickerInputField } from 'components'
+import { PlusIcon, AcademicCapIcon } from '@heroicons/react/20/solid'
 import useCreateSemesterForm from './useCreateSemesterForm'
-import { PlusIcon } from '@heroicons/react/24/outline'
 import { FormProvider } from 'react-hook-form'
-import { useTranslate } from 'hooks'
 
 export const CreateSemesterForm = () => {
   const {
@@ -12,23 +11,34 @@ export const CreateSemesterForm = () => {
     handleSubmit,
     resetForm,
     form,
+    t,
   } = useCreateSemesterForm()
 
   return (
     <>
-      <button
-        className='relative block w-64 rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-        onClick={() => setShowFormModal(true)}
-        type='button'
-      >
-        <PlusIcon className='mx-auto h-16 w-16 text-gray-400' />
-        <span className='mt-2 block text-sm font-semibold text-gray-900'>
-          Create a new semester
-        </span>
-      </button>
+      <div className='text-center mb-7 mt-10'>
+        <AcademicCapIcon className='mx-auto h-14 w-14 text-gray-400' />
+
+        <h3 className='mt-2 text-lg font-semibold text-gray-900'>
+          {t('schedule:active_semester_not_found')}
+        </h3>
+        <p className='mt-1 text-base text-gray-500'>
+          {t('schedule:get_started_by_creating_a_new_semester')}
+        </p>
+        <div className='mt-6'>
+          <button
+            className='inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            onClick={() => setShowFormModal(true)}
+            type='button'
+          >
+            <PlusIcon className='-ml-0.5 mr-1.5 h-5 w-5' aria-hidden='true' />
+            {t('schedule:new_semester')}
+          </button>
+        </div>
+      </div>
 
       <ModalWrapper
-        title={useTranslate('schedule:create_new_semester')}
+        title={t('schedule:create_new_semester')}
         submitHandler={handleSubmit(submitHandler)}
         setOpen={setShowFormModal}
         closeHandler={resetForm}
@@ -36,13 +46,9 @@ export const CreateSemesterForm = () => {
       >
         <FormProvider {...form}>
           <form onSubmit={(e) => e.preventDefault()}>
-            <TextInputField
-              placeholder={useTranslate('schedule:semester_name')}
-              label={useTranslate('schedule:semester_name')}
-              name='name'
-            />
+            <DatepickerInputField label={t('start_date')} name='startDate' />
 
-            <DatepickerInputField name='startDate' />
+            <TextInputField label={t('schedule:semester_name')} name='name' />
           </form>
         </FormProvider>
       </ModalWrapper>

@@ -1,4 +1,5 @@
 export * from './useAccountActivation'
+export * from './useGetAllSemesters'
 export * from './useRequestsExceed'
 export * from './useRefreshToken'
 export * from './useAxiosPrivate'

@@ -1,9 +1,10 @@
+import { useSelector, useDispatch } from 'react-redux'
 import { useQuery, useMutation } from 'react-query'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { useUserService } from 'hooks'
+import { setUserData } from 'slices'
 import { RootState } from 'store'
 import { logout } from 'services'
 import Cookies from 'js-cookie'
@@ -15,6 +16,7 @@ export const useSidebarLayout = () => {
   )
 
   const { getUserData } = useUserService()
+  const dispatch = useDispatch()
   const { t } = useTranslation()
   const router = useRouter()
 
@@ -27,7 +29,9 @@ export const useSidebarLayout = () => {
     }
   }, [router, userId])
 
-  useQuery('user', getUserData)
+  useQuery('user', getUserData, {
+    onSuccess: (data) => dispatch(setUserData(data?.data)),
+  })
 
   const { mutate: logoutMutation } = useMutation(logout, {
     onSuccess: () => {

@@ -19,6 +19,13 @@
   "semester_created_successfully": "სემესტრი წარმატებით შეიქმნა!",
   "end_current_semester": "დაასრულე მიმდინარე სემესტრი",
   "do_you_really_want_to_end_current_semester": "ნამდვილად გინდათ დაასრულოთ მიმდინარე სემესტრი",
-  "end_semester_instructions": "სემესტრის დასრულების შემდეგ, სემესტრის ინფორმაცია შეინახება და კვლავ შეძლებ ამ სემესტრის ნახვას და ახალი სემესტრის შექმნას. ახალი სემესტრის შექმნის შემდეგ ძველი სემესტრების ნახვა კვლავ შეგეძლება.",
-  "semester_ended_successfully": "სემესტრი წარმატებით დასრულდა!"
+  "end_semester_instructions": "სემესტრის დასრულების შემდეგ, ამ სემესტრის ინფორმაცია შეინახება და ახალი სემესტრის შექმნასაც შეძლებ.",
+  "semester_ended_successfully": "სემესტრი წარმატებით დასრულდა!",
+  "active_semester_not_found": "მიმდინარე სემესტრი ვერ მოიძებნა",
+  "get_started_by_creating_a_new_semester": "პირველ რიგში შექმენი ახალი სემესტრი",
+  "new_semester": "ახალი სემესტრი",
+  "current_semester": "მიმდინარე სემესტრი",
+  "ended_semesters": "დასრულებული სემესტრები",
+  "total_learning_activities": "სასწავლო აქტივობები",
+  "semester_status": "სემესტრის სტატუსი"
 }

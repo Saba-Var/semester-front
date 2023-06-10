@@ -50,6 +50,7 @@ const useCreateSemesterForm = () => {
     handleSubmit,
     resetForm,
     form,
+    t,
   }
 }
 

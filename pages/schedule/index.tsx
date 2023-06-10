@@ -1,19 +1,25 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { CreateSemesterForm, AllSemesters } from 'components'
 import { NextPageWithSidebarLayout } from 'types'
+import { useGetAllSemesters } from 'hooks'
 import { GetStaticProps } from 'next'
 import { getLayout } from 'utils'
 
 const Schedule: NextPageWithSidebarLayout = () => {
+  const { semestersData, currentSemester, isLoading } = useGetAllSemesters()
+
   return (
     <>
-      <h2 className='text-xl font-semibold leading-6 mb-10 text-gray-900'>
-        Semesters
-      </h2>
+      {!isLoading && (
+        <>
+          {!currentSemester && <CreateSemesterForm />}
 
-      <CreateSemesterForm />
-
-      <AllSemesters />
+          <AllSemesters
+            currentSemester={currentSemester}
+            semestersData={semestersData}
+          />
+        </>
+      )}
     </>
   )
 }

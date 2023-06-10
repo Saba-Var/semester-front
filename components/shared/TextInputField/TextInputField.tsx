@@ -46,7 +46,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
           } ${isValid && '!border-green'} ${
             isPasswordField && (isError || isValid) && 'pr-14'
           } lg:text-base`}
-          placeholder={placeholder || t(name)}
+          placeholder={placeholder || label || t(name)}
           type={inputType}
         />
 

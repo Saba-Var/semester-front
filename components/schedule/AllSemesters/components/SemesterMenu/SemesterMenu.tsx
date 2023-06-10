@@ -19,7 +19,10 @@ const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
   return (
     <>
       <ModalWrapper
-        closeHandler={() => setShowEndSemesterModal(false)}
+        closeHandler={() => {
+          setShowEndSemesterModal(false)
+          form.reset()
+        }}
         title={t('schedule:end_current_semester')}
         setOpen={setShowEndSemesterModal}
         submitText={t('end_semester')}
@@ -30,15 +33,15 @@ const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
         <>
           <p className='text-left'>
             {t('schedule:do_you_really_want_to_end_current_semester')}:{' '}
-            <b>{semester.name}</b>?
-          </p>
-          <p className='text-gray-400 text-left mt-1'>
-            {t('schedule:end_semester_instructions')}
+            <b>{`"${semester?.name}"`}</b>?
+            <span className='text-gray-400 inline-block text-left mt-1'>
+              {t('schedule:end_semester_instructions')}
+            </span>
           </p>
 
           <FormProvider {...form}>
             <form className='mt-4' onSubmit={(e) => e.preventDefault()}>
-              <DatepickerInputField name='endDate' />
+              <DatepickerInputField name='endDate' label={t('end_date')} />
             </form>
           </FormProvider>
         </>
@@ -64,38 +67,34 @@ const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
             <Menu.Items className='absolute top-8 right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-gray-900/5 focus:outline-none'>
               <Menu.Item>
                 {({ active }) => (
-                  <a
-                    href='#'
+                  <div
                     className={classNames(
                       active ? 'bg-gray-50' : '',
-                      'block p-3 py-2 text-sm leading-6 text-gray-900'
+                      'block p-3 py-2 text-sm cursor-pointer leading-6 text-gray-900'
                     )}
                   >
-                    Edit
+                    {t('edit')}
                     <span className='sr-only'>, {semester.name}</span>
-                  </a>
+                  </div>
                 )}
               </Menu.Item>
-              {!semester.endDate && (
-                <>
-                  <hr />
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href='#'
-                        className={classNames(
-                          active ? 'bg-gray-50' : '',
-                          'block p-3 py-2 text-sm leading-6 text-red-700'
-                        )}
-                        onClick={() => setShowEndSemesterModal(true)}
-                      >
-                        End
-                        <span className='sr-only'>, {semester.name}</span>
-                      </a>
+
+              <hr />
+
+              <Menu.Item>
+                {({ active }) => (
+                  <div
+                    className={classNames(
+                      active ? 'bg-gray-50' : '',
+                      'block p-3 py-2 text-sm cursor-pointer leading-6 text-red-700'
                     )}
-                  </Menu.Item>
-                </>
-              )}
+                    onClick={() => setShowEndSemesterModal(true)}
+                  >
+                    {t('end')}
+                    <span className='sr-only'>, {semester.name}</span>
+                  </div>
+                )}
+              </Menu.Item>
             </Menu.Items>
           </Transition>
         </Menu>

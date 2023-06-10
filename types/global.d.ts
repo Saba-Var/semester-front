@@ -84,6 +84,7 @@ export enum ActivityType {
 }
 
 export interface User {
+  activeSemester: string | null
   semesters: Semester[]
   password?: string
   username: string
