@@ -1,12 +1,8 @@
-import { Menu, Transition } from '@headlessui/react'
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { TrashIcon } from '@heroicons/react/24/outline'
 import useAllSemesters from './useAllSemesters'
-import { classNames } from 'utils'
-import { Fragment } from 'react'
+import { SemesterMenu } from './components'
 import Link from 'next/link'
-import {
-  EllipsisHorizontalIcon,
-  ChevronRightIcon,
-} from '@heroicons/react/20/solid'
 
 const AllSemesters = () => {
   const { semestersData } = useAllSemesters()
@@ -26,9 +22,7 @@ const AllSemesters = () => {
               {semester.name}
             </div>
 
-            <div className='font-medium text-yellow-500'>
-              {semester.isCurrentSemester ? 'Current' : 'Past'}
-            </div>
+            <SemesterMenu semester={semester} />
           </div>
 
           <div className='-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6'>
@@ -45,57 +39,45 @@ const AllSemesters = () => {
               </dd>
             </div>
 
+            {semester.endDate && (
+              <div className='flex justify-between gap-x-4 py-3'>
+                <dt className='text-gray-500'>End date</dt>
+                <dd className='text-gray-700'>
+                  <time dateTime={semester.endDate}>
+                    {new Date(semester.endDate).toLocaleDateString('en-US', {
+                      month: 'long',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
+                  </time>
+                </dd>
+              </div>
+            )}
+
             <div className='flex justify-between gap-x-4 py-3'>
-              <Menu as='div' className='relative'>
-                <Menu.Button className='-m-2.5 block p-2.5 text-gray-400 hover:text-gray-500'>
-                  <span className='sr-only'>Semesters</span>
-                  <EllipsisHorizontalIcon
-                    className='h-7 w-7'
-                    aria-hidden='true'
-                  />
-                </Menu.Button>
-                <Transition
-                  as={Fragment}
-                  enter='transition ease-out duration-100'
-                  enterFrom='transform opacity-0 scale-95'
-                  enterTo='transform opacity-100 scale-100'
-                  leave='transition ease-in duration-75'
-                  leaveFrom='transform opacity-100 scale-100'
-                  leaveTo='transform opacity-0 scale-95'
-                >
-                  <Menu.Items className='absolute -top-20 left-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-gray-900/5 focus:outline-none'>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href='#'
-                          className={classNames(
-                            active ? 'bg-gray-50' : '',
-                            'block p-3 py-2 text-sm leading-6 text-gray-900'
-                          )}
-                        >
-                          Edit
-                          <span className='sr-only'>, {semester.name}</span>
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <hr />
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href='#'
-                          className={classNames(
-                            active ? 'bg-gray-50' : '',
-                            'block p-3 py-2 text-sm border-none leading-6 text-red-700'
-                          )}
-                        >
-                          Delete
-                          <span className='sr-only'>, {semester.name}</span>
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
+              <div className='text-gray-500'>Total learning activities</div>
+              <div className='text-gray-700'>
+                {semester.learningActivities.length}
+              </div>
+            </div>
+
+            <div className='flex justify-between items-center gap-x-4 py-3'>
+              <div className='text-gray-500'>Semester status</div>
+              <div
+                className={`bg-emerald-500 py-1 px-3 text-base rounded-md text-white ${
+                  !semester.isCurrentSemester && 'bg-gray-200 text-gray-700'
+                }`}
+              >
+                {semester.isCurrentSemester ? 'Current' : 'Past'}
+              </div>
+            </div>
+
+            <div className='flex justify-between items-center gap-x-4 py-3'>
+              <TrashIcon
+                className='text-red-700 cursor-pointer'
+                width={20}
+                height={20}
+              />
 
               <Link href={`/schedule/${semester._id}`}>
                 <div className='flex text-blue-700 font-medium cursor-pointer items-center'>

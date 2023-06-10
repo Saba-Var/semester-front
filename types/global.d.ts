@@ -96,10 +96,11 @@ export interface User {
 export interface Semester {
   learningActivities: LearningActivity[]
   isCurrentSemester: boolean
-  user: User
+  endDate: string | null
   startDate: string
   name: string
   _id: string
+  user: User
 }
 
 export interface LearningActivity {

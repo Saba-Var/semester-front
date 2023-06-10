@@ -17,9 +17,14 @@ export const useSemesterRequests = () => {
     return axiosPrivate.get(`/semesters/${id}`)
   }
 
+  const endSemesterRequest = async (id: string, data: { endDate: string }) => {
+    return axiosPrivate.put(`/semesters/${id}/end`, data)
+  }
+
   return {
     getSemesterDataRequest,
     createSemesterRequest,
     getSemestersRequest,
+    endSemesterRequest,
   }
 }

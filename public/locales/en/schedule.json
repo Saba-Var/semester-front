@@ -16,5 +16,9 @@
   "semester_name": "Semester name",
   "create_new_semester": "Create new semester",
   "your_semesters": "Your semesters",
-  "semester_created_successfully": "Semester created successfully!"
+  "semester_created_successfully": "Semester created successfully!",
+  "end_current_semester": "End the current semester",
+  "do_you_really_want_to_end_current_semester": "Do you really want to end the current semester",
+  "end_semester_instructions": "When you end the semester, all the data will be saved and you will be able to create a new semester",
+  "semester_ended_successfully": "Semester ended successfully!"
 }
