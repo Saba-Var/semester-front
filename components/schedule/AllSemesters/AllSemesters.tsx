@@ -1,16 +1,12 @@
-import { useTranslation } from 'next-i18next'
+import useAllSemesters from './useAllSemesters'
 import { AllSemestersProps } from './types'
 import { SemesterCard } from './components'
 
 const AllSemesters: React.FC<AllSemestersProps> = ({
+  semestersData = [],
   currentSemester,
-  semestersData,
 }) => {
-  const { t } = useTranslation('schedule')
-
-  const previousSemesters = semestersData?.filter(
-    (semester) => !semester.isCurrentSemester
-  )
+  const { previousSemesters, t } = useAllSemesters(semestersData)
 
   return (
     <div className='pb-8 3xl:pb-0'>
@@ -19,7 +15,7 @@ const AllSemesters: React.FC<AllSemestersProps> = ({
           <h2 className='text-gray-900 text-xl font-medium'>
             {t('current_semester')}
           </h2>
-          <ul className='grid mt-5 grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8'>
+          <ul className='grid mt-5 grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2 3xl:grid-cols-3 xl:gap-x-8'>
             <SemesterCard semester={currentSemester} />
           </ul>
         </div>
@@ -32,7 +28,7 @@ const AllSemesters: React.FC<AllSemestersProps> = ({
           </h2>
 
           <ul
-            className='grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8'
+            className='grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2 3xl:grid-cols-3 xl:gap-x-8'
             role='list'
           >
             {previousSemesters?.map((semester) => (

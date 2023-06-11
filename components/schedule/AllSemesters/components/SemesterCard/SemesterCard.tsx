@@ -1,6 +1,5 @@
-import { SemesterMenu } from 'components/schedule/AllSemesters/components/SemesterMenu'
+import { SemesterMenu, DeleteButtonAndModal } from './components'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
-import { TrashIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'next-i18next'
 import { SemesterCardProps } from './types'
 import Link from 'next/link'
@@ -68,10 +67,9 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
         </div>
 
         <div className='flex justify-between items-center gap-x-4 py-3'>
-          <TrashIcon
-            className='text-red-700 cursor-pointer'
-            width={20}
-            height={20}
+          <DeleteButtonAndModal
+            semesterName={semester.name}
+            semesterId={semester._id}
           />
 
           <Link href={`/schedule/${semester._id}`}>

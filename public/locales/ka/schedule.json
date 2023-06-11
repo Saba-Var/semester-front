@@ -27,5 +27,8 @@
   "current_semester": "მიმდინარე სემესტრი",
   "ended_semesters": "დასრულებული სემესტრები",
   "total_learning_activities": "სასწავლო აქტივობები",
-  "semester_status": "სემესტრის სტატუსი"
+  "semester_status": "სემესტრის სტატუსი",
+  "delete_semester": "სემესტრის წაშლა",
+  "do_you_really_want_to_delete_this_semester": "მართლა გინდა რომ წაშალო სემესტრი",
+  "semester_deleted_successfully": "სემესტრი წარმატებით წაიშალა!"
 }

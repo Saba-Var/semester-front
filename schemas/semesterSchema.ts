@@ -5,4 +5,6 @@ export const semesterSchema = Yup.object({
     .trim()
     .required('semester_name_required')
     .max(40, 'semester_name_max'),
+
+  startDate: Yup.string().trim().required('semester_start_date_required'),
 })

@@ -34,5 +34,7 @@
   "end": "End",
   "calendar": "Calendar",
   "current": "Current",
-  "ended": "Ended"
+  "ended": "Ended",
+  "date_placeholder": "DD/MM/YYYY",
+  "delete": "Delete"
 }

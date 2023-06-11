@@ -7,6 +7,7 @@ export type DatepickerInputFieldProps = {
   displayFormat?: string
   placeholder?: string
   required?: boolean
+  readOnly?: boolean
   label?: string
   name: string
 }

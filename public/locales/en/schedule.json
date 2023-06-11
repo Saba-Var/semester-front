@@ -27,5 +27,8 @@
   "current_semester": "Current semester",
   "ended_semesters": "Ended semesters",
   "total_learning_activities": "Total learning activities",
-  "semester_status": "Semester status"
+  "semester_status": "Semester status",
+  "delete_semester": "Delete semester",
+  "do_you_really_want_to_delete_this_semester": "Do you really want to delete semester",
+  "semester_deleted_successfully": "Semester deleted successfully!"
 }

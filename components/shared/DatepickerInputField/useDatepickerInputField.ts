@@ -5,18 +5,25 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const useDatepickerInputField = (
+  name: string,
   isOutsideRange?: (date: Moment) => boolean
 ) => {
   const [focused, setFocused] = useState<boolean | null>(null)
 
-  const { control } = useFormContext()
+  const {
+    formState: { errors, touchedFields },
+    control,
+  } = useFormContext()
+
   const { locale } = useRouter()
   const { t } = useTranslation()
 
-  const handleDateChange = (date: Moment | null, field: any) => {
-    const formattedDate = date ? date.format('YYYY-MM-DD') : null
+  const isValid = touchedFields[name] && !errors[name]?.message
 
+  const handleDateChange = (date: Moment | null, field: any) => {
+    const formattedDate = date ? date.format('YYYY-MM-DD') : ''
     field.onChange(formattedDate)
+    field.onBlur()
   }
 
   const isOutsideRangeHandler = (date: Moment) => {
@@ -28,11 +35,14 @@ const useDatepickerInputField = (
   moment.locale(locale)
 
   return {
+    isError: !!errors[name]?.message,
     isOutsideRangeHandler,
     handleDateChange,
     setFocused,
+    isValid,
     control,
     focused,
+    errors,
     t,
   }
 }

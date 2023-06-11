@@ -45,7 +45,10 @@ export const CreateSemesterForm = () => {
         open={showFormModal}
       >
         <FormProvider {...form}>
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className='flex flex-col gap-2'
+          >
             <DatepickerInputField label={t('start_date')} name='startDate' />
 
             <TextInputField label={t('schedule:semester_name')} name='name' />
