@@ -9,11 +9,12 @@ import {
 } from '@heroicons/react/20/solid'
 
 const TextInputField: React.FC<InputFieldProps> = ({
+  placeholder = '',
   required = true,
+  type = 'text',
   labelClasses,
-  placeholder,
+  label = '',
   name,
-  type,
 }) => {
   const {
     passwordShowHandler,
@@ -29,11 +30,11 @@ const TextInputField: React.FC<InputFieldProps> = ({
   return (
     <div className='min-h-[107px]'>
       <label
-        className={`block text-base select-none font-medium text-gray-700 ${
+        className={`block text-base select-none text-left font-medium text-gray-700 ${
           isError && 'text-red-900'
         } ${labelClasses}`}
       >
-        {t(name)}
+        {label || t(name)}
         {required ? ' *' : ''}
       </label>
       <div className='mt-2 relative'>
@@ -45,7 +46,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
           } ${isValid && '!border-green'} ${
             isPasswordField && (isError || isValid) && 'pr-14'
           } lg:text-base`}
-          placeholder={placeholder || t(name)}
+          placeholder={placeholder || label || t(name)}
           type={inputType}
         />
 

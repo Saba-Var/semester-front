@@ -26,5 +26,15 @@
   "lab": "Lab",
   "practice": "Practise",
   "other": "Other",
-  "select": "Select"
+  "select": "Select",
+  "end_semester": "End semester",
+  "end_date": "End date",
+  "start_date": "Start date",
+  "edit": "Edit",
+  "end": "End",
+  "calendar": "Calendar",
+  "current": "Current",
+  "ended": "Ended",
+  "date_placeholder": "DD/MM/YYYY",
+  "delete": "Delete"
 }

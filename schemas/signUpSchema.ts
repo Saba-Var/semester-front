@@ -5,7 +5,7 @@ export const signUpSchema = Yup.object({
     .trim()
     .required('username-required')
     .min(3, 'username-min')
-    .max(20, 'username-max'),
+    .max(30, 'username-max'),
 
   email: Yup.string().trim().required('email-required').email('valid-email'),
 

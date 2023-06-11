@@ -63,3 +63,55 @@ export type Passwords = {
   confirmPassword: string
   password: string
 }
+
+export enum Weekday {
+  MONDAY = 'Monday',
+  TUESDAY = 'Tuesday',
+  WEDNESDAY = 'Wednesday',
+  THURSDAY = 'Thursday',
+  FRIDAY = 'Friday',
+  SATURDAY = 'Saturday',
+  SUNDAY = 'Sunday',
+}
+
+export enum ActivityType {
+  PRACTICE = 'Practice',
+  LECTURE = 'Lecture',
+  SEMINAR = 'Seminar',
+  OTHER = 'Other',
+  Exam = 'Exam',
+  LAB = 'Lab',
+}
+
+export interface User {
+  activeSemester: string | null
+  semesters: Semester[]
+  password?: string
+  username: string
+  active: boolean
+  image?: string
+  email: string
+  _id: string
+}
+
+export interface Semester {
+  learningActivities: LearningActivity[]
+  isCurrentSemester: boolean
+  endDate: string | null
+  startDate: string
+  name: string
+  _id: string
+  user: User
+}
+
+export interface LearningActivity {
+  activityType: ActivityType
+  semester: Semester
+  startingTime: string
+  user: User
+  subjectName: string
+  teacherName: string
+  endingTime: string
+  weekday: Weekday
+  _id: string
+}

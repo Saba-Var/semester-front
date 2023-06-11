@@ -234,9 +234,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
             <main>
               <div className='py-2'>
                 <div className='mx-auto px-4 sm:px-6 md:px-8'>
-                  <div className='py-4'>
-                    <div>{children}</div>
-                  </div>
+                  <div className='3xl:py-3'>{children}</div>
                 </div>
               </div>
             </main>

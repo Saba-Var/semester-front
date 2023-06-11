@@ -31,8 +31,8 @@ const SignUpForm = () => {
           onSubmit={handleSubmit(submitHandler)}
           className='flex flex-col gap-1'
         >
-          <TextInputField name='username' type='text' />
-          <TextInputField name='email' type='text' />
+          <TextInputField name='username' />
+          <TextInputField name='email' />
           <TextInputField name='password' type='password' />
           <TextInputField name='confirmPassword' type='password' />
 

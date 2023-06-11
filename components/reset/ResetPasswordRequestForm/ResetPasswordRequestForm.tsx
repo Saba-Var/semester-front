@@ -33,7 +33,7 @@ const ResetPasswordRequestForm = () => {
           onSubmit={handleSubmit(submitHandler)}
           className='flex flex-col gap-1'
         >
-          <TextInputField name='email' type='text' />
+          <TextInputField name='email' />
 
           <SubmitButton disabled={isLoading} title='continue' styles='mt-4' />
         </form>

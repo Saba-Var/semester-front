@@ -45,14 +45,12 @@ const AddEventForm = () => {
               placeholder={t('schedule:subject_placeholder')}
               labelClasses='text-left'
               name='subjectName'
-              type='text'
             />
 
             <TextInputField
               placeholder={t('schedule:teacher_name_placeholder')}
               labelClasses='text-left'
               name='teacherName'
-              type='text'
             />
 
             <div className='flex flex-col gap-6 md:gap-2'>

@@ -1,14 +1,25 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Calendar, ScheduleHeader } from 'components'
+import { CreateSemesterForm, AllSemesters } from 'components'
 import { NextPageWithSidebarLayout } from 'types'
+import { useGetAllSemesters } from 'hooks'
 import { GetStaticProps } from 'next'
 import { getLayout } from 'utils'
 
 const Schedule: NextPageWithSidebarLayout = () => {
+  const { semestersData, currentSemester, isLoading } = useGetAllSemesters()
+
   return (
     <>
-      <ScheduleHeader />
-      <Calendar />
+      {!isLoading && (
+        <>
+          {!currentSemester && <CreateSemesterForm />}
+
+          <AllSemesters
+            currentSemester={currentSemester}
+            semestersData={semestersData}
+          />
+        </>
+      )}
     </>
   )
 }
