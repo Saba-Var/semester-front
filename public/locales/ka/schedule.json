@@ -30,5 +30,7 @@
   "semester_status": "სემესტრის სტატუსი",
   "delete_semester": "სემესტრის წაშლა",
   "do_you_really_want_to_delete_this_semester": "მართლა გინდა რომ წაშალო სემესტრი",
-  "semester_deleted_successfully": "სემესტრი წარმატებით წაიშალა!"
+  "semester_deleted_successfully": "სემესტრი წარმატებით წაიშალა!",
+  "edit_semester": "სემესტრის რედაქტირება",
+  "semester_updated_successfully": " სემესტრები წარმატებით განახლდა!"
 }

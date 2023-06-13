@@ -5,6 +5,7 @@ import { FormProvider } from 'react-hook-form'
 
 export const CreateSemesterForm = () => {
   const {
+    isSemesterCreating,
     setShowFormModal,
     showFormModal,
     submitHandler,
@@ -40,6 +41,7 @@ export const CreateSemesterForm = () => {
       <ModalWrapper
         title={t('schedule:create_new_semester')}
         submitHandler={handleSubmit(submitHandler)}
+        disabled={isSemesterCreating}
         setOpen={setShowFormModal}
         closeHandler={resetForm}
         open={showFormModal}

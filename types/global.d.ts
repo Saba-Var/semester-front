@@ -64,6 +64,8 @@ export type Passwords = {
   password: string
 }
 
+export type SemesterEditData = { startDate: string; name: string }
+
 export enum Weekday {
   MONDAY = 'Monday',
   TUESDAY = 'Tuesday',

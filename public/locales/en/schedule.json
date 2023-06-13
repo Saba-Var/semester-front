@@ -30,5 +30,7 @@
   "semester_status": "Semester status",
   "delete_semester": "Delete semester",
   "do_you_really_want_to_delete_this_semester": "Do you really want to delete semester",
-  "semester_deleted_successfully": "Semester deleted successfully!"
+  "semester_deleted_successfully": "Semester deleted successfully!",
+  "edit_semester": "Edit semester",
+  "semester_updated_successfully": "Semester updated successfully!"
 }

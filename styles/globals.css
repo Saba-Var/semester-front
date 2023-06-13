@@ -80,6 +80,8 @@ input:-webkit-autofill:active {
   border-bottom: none;
   height: 3rem;
   border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 @media (max-width: 480px) {

@@ -7,8 +7,13 @@ const DeleteButtonAndModal: React.FC<DeleteButtonAndModalProps> = ({
   semesterName,
   semesterId,
 }) => {
-  const { setShowDeleteModal, showDeleteModal, t, deleteSemesterMutation } =
-    useDeleteButtonAndModal()
+  const {
+    deleteSemesterMutation,
+    setShowDeleteModal,
+    showDeleteModal,
+    isDeleting,
+    t,
+  } = useDeleteButtonAndModal()
 
   return (
     <>
@@ -18,6 +23,7 @@ const DeleteButtonAndModal: React.FC<DeleteButtonAndModalProps> = ({
         submitHandler={() => deleteSemesterMutation(semesterId)}
         submitText={t('delete')}
         open={showDeleteModal}
+        disabled={isDeleting}
         type='danger'
       >
         <p>

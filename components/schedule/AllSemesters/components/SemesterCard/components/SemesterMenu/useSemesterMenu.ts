@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 const useSemesterMenu = (semesterId: string) => {
   const [showEndSemesterModal, setShowEndSemesterModal] = useState(false)
+  const [showSemesterEditModal, setShowSemesterEditModal] = useState(false)
 
   const { endSemesterRequest } = useSemesterRequests()
   const queryClient = useQueryClient()
@@ -21,16 +22,17 @@ const useSemesterMenu = (semesterId: string) => {
 
   const { handleSubmit } = form
 
-  const { mutate: endSemesterMutation } = useMutation(
-    (data: { endDate: string }) => endSemesterRequest(semesterId, data),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('semesters')
-        emitToast(t('schedule:semester_ended_successfully'))
-        setShowEndSemesterModal(false)
-      },
-    }
-  )
+  const { mutate: endSemesterMutation, isLoading: isSemesterEnding } =
+    useMutation(
+      (data: { endDate: string }) => endSemesterRequest(semesterId, data),
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('semesters')
+          emitToast(t('schedule:semester_ended_successfully'))
+          setShowEndSemesterModal(false)
+        },
+      }
+    )
 
   const submitHandler: SubmitHandler<{ endDate: string }> = (data) => {
     endSemesterMutation(data)
@@ -38,10 +40,11 @@ const useSemesterMenu = (semesterId: string) => {
 
   return {
     submitHandler: handleSubmit(submitHandler),
+    setShowSemesterEditModal,
     setShowEndSemesterModal,
+    showSemesterEditModal,
     showEndSemesterModal,
-    endSemesterMutation,
-    handleSubmit,
+    isSemesterEnding,
     form,
     t,
   }

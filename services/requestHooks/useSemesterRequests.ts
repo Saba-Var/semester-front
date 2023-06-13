@@ -1,6 +1,6 @@
+import { Semester, SemesterEditData } from 'types'
 import { useAxiosPrivate } from 'hooks'
 import { AxiosResponse } from 'axios'
-import { Semester } from 'types'
 
 export const useSemesterRequests = () => {
   const axiosPrivate = useAxiosPrivate()
@@ -21,12 +21,17 @@ export const useSemesterRequests = () => {
     return axiosPrivate.put(`/semesters/${id}/end`, data)
   }
 
+  const updateSemesterRequest = async (id: string, data: SemesterEditData) => {
+    return axiosPrivate.put(`/semesters/${id}`, data)
+  }
+
   const deleteSemesterRequest = async (id: string) => {
     return axiosPrivate.delete(`/semesters/${id}`)
   }
 
   return {
     getSemesterDataRequest,
+    updateSemesterRequest,
     createSemesterRequest,
     deleteSemesterRequest,
     getSemestersRequest,

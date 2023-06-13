@@ -1,6 +1,7 @@
 import { EllipsisHorizontalIcon } from '@heroicons/react/20/solid'
 import { ModalWrapper, DatepickerInputField } from 'components'
 import { Menu, Transition } from '@headlessui/react'
+import { EditSemesterFormModal } from './components'
 import useSemesterMenu from './useSemesterMenu'
 import { FormProvider } from 'react-hook-form'
 import { SemesterMenuProps } from './types'
@@ -9,8 +10,11 @@ import { Fragment } from 'react'
 
 const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
   const {
+    setShowSemesterEditModal,
     setShowEndSemesterModal,
+    showSemesterEditModal,
     showEndSemesterModal,
+    isSemesterEnding,
     submitHandler,
     form,
     t,
@@ -28,6 +32,7 @@ const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
         submitText={t('end_semester')}
         submitHandler={submitHandler}
         open={showEndSemesterModal}
+        disabled={isSemesterEnding}
         type='danger'
       >
         <>
@@ -46,6 +51,14 @@ const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
           </FormProvider>
         </>
       </ModalWrapper>
+
+      <EditSemesterFormModal
+        setShowSemesterEditModal={setShowSemesterEditModal}
+        showSemesterEditModal={showSemesterEditModal}
+        startDate={semester?.startDate}
+        name={semester?.name}
+        id={semester?._id}
+      />
 
       <div className='flex items-center gap-6'>
         <Menu as='div' className='relative'>
@@ -72,6 +85,7 @@ const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
                       active ? 'bg-gray-50' : '',
                       'block p-3 py-2 text-sm cursor-pointer leading-6 text-gray-900'
                     )}
+                    onClick={() => setShowSemesterEditModal(true)}
                   >
                     {t('edit')}
                     <span className='sr-only'>, {semester.name}</span>
