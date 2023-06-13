@@ -7,6 +7,7 @@ export type ModalWrapperProps = {
   closeHandler?: () => void
   children: JSX.Element
   submitText?: string
+  disabled?: boolean
   title: string
   open: boolean
 }

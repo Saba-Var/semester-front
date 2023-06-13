@@ -25,17 +25,15 @@ const useCreateSemesterForm = () => {
 
   const { handleSubmit, reset: resetForm } = form
 
-  const { mutate: createSemesterMutation } = useMutation(
-    createSemesterRequest,
-    {
+  const { mutate: createSemesterMutation, isLoading: isSemesterCreating } =
+    useMutation(createSemesterRequest, {
       onSuccess: () => {
         queryClient.invalidateQueries('semesters')
         emitToast(t('schedule:semester_created_successfully'))
         setShowFormModal(false)
         resetForm()
       },
-    }
-  )
+    })
 
   const submitHandler: SubmitHandler<{ name: string; startDate: string }> = (
     values
@@ -44,6 +42,7 @@ const useCreateSemesterForm = () => {
   }
 
   return {
+    isSemesterCreating,
     setShowFormModal,
     submitHandler,
     showFormModal,

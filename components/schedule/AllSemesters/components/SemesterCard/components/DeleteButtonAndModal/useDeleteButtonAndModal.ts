@@ -11,7 +11,7 @@ const useDeleteButtonAndModal = () => {
 
   const queryClient = useQueryClient()
 
-  const { mutate: deleteSemesterMutation } = useMutation(
+  const { mutate: deleteSemesterMutation, isLoading: isDeleting } = useMutation(
     deleteSemesterRequest,
     {
       onSuccess: () => {
@@ -28,6 +28,7 @@ const useDeleteButtonAndModal = () => {
     deleteSemesterMutation,
     setShowDeleteModal,
     showDeleteModal,
+    isDeleting,
     t,
   }
 }
