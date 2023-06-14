@@ -47,7 +47,7 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
                 <input
                   className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
                   {...register(name)}
-                  value={item.title}
+                  value={item.value}
                   id={item.value}
                   type='radio'
                 />

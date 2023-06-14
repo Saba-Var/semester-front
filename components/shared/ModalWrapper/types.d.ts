@@ -1,9 +1,9 @@
-import { SetState } from 'types'
+import type { SetState } from 'types'
 
 export type ModalWrapperProps = {
   type?: 'danger' | 'normal'
   setOpen: SetState<boolean>
-  submitHandler: () => void
+  submitHandler: (arg?: any) => void
   closeHandler?: () => void
   children: JSX.Element
   submitText?: string

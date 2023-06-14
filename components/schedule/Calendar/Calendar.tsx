@@ -1,12 +1,7 @@
-import { useTranslation } from 'next-i18next'
-import { useRef } from 'react'
+import useCalendar from './useCalendar'
 
 const Calendar = () => {
-  const container = useRef(null)
-  const containerNav = useRef(null)
-  const containerOffset = useRef(null)
-
-  const { t } = useTranslation()
+  const { containerOffset, containerNav, container, t } = useCalendar()
 
   return (
     <div className='w-full mx-auto sm:max-w-[1556px] h-[78vh]'>
