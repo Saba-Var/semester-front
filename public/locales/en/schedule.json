@@ -32,5 +32,6 @@
   "do_you_really_want_to_delete_this_semester": "Do you really want to delete semester",
   "semester_deleted_successfully": "Semester deleted successfully!",
   "edit_semester": "Edit semester",
-  "semester_updated_successfully": "Semester updated successfully!"
+  "semester_updated_successfully": "Semester updated successfully!",
+  "learning_activity_created_successfully": "Learning activity created successfully!"
 }

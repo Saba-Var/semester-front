@@ -1,23 +1,18 @@
-import { useTranslation } from 'next-i18next'
-import { useRef } from 'react'
+import useCalendar from './useCalendar'
 
 const Calendar = () => {
-  const container = useRef(null)
-  const containerNav = useRef(null)
-  const containerOffset = useRef(null)
-
-  const { t } = useTranslation()
+  const { containerOffset, containerNav, container, t } = useCalendar()
 
   return (
-    <div className='w-full h-[78vh]'>
+    <div className='w-full mx-auto sm:max-w-[1556px] h-[78vh]'>
       <div className='flex h-full flex-col'>
         <div
           ref={container}
           className='isolate drop-shadow-lg rounded-lg flex flex-auto flex-col overflow-auto bg-white'
         >
           <div
-            style={{ width: '165%' }}
-            className='flex max-w-full flex-none flex-col sm:max-w-none xl:max-w-full'
+            style={{ width: '1548px' }}
+            className='flex max-w-full flex-none flex-col sm:max-w-none'
           >
             <div
               ref={containerNav}
@@ -84,43 +79,44 @@ const Calendar = () => {
 
               <div className='-mr-px hidden grid-cols-7 divide-x divide-gray-100 border-r border-gray-100 text-sm leading-6 text-gray-500 sm:grid'>
                 <div className='col-end-1 w-14' />
-                <div className='flex items-center justify-center py-3'>
+                <div className='flex items-center w-50 justify-center py-3'>
                   <span className='items-center justify-center font-semibold text-gray-900'>
                     {t('mon')}
                   </span>
                 </div>
-                <div className='flex items-center justify-center py-3'>
+                <div className='flex items-center w-50  justify-center py-3'>
                   <span className='items-center justify-center font-semibold text-gray-900'>
                     {t('tue')}
                   </span>
                 </div>
-                <div className='flex items-center justify-center py-3'>
+                <div className='flex items-center w-50  justify-center py-3'>
                   <span className='items-center justify-center font-semibold text-gray-900'>
                     {t('wed')}
                   </span>
                 </div>
-                <div className='flex items-center justify-center py-3'>
+                <div className='flex items-center w-50  justify-center py-3'>
                   <span className='items-center justify-center font-semibold text-gray-900'>
                     {t('thu')}
                   </span>
                 </div>
-                <div className='flex items-center justify-center py-3'>
+                <div className='flex items-center w-50  justify-center py-3'>
                   <span className='items-center justify-center font-semibold text-gray-900'>
                     {t('fri')}
                   </span>
                 </div>
-                <div className='flex items-center justify-center py-3'>
+                <div className='flex items-center w-50  justify-center py-3'>
                   <span className='items-center justify-center font-semibold text-gray-900'>
                     {t('sat')}
                   </span>
                 </div>
-                <div className='flex items-center justify-center py-3'>
+                <div className='flex items-center w-50  justify-center py-3'>
                   <span className='items-center justify-center font-semibold text-gray-900'>
                     {t('sun')}
                   </span>
                 </div>
               </div>
             </div>
+
             <div className='flex flex-auto'>
               <div className='sticky left-0 z-10 w-14 flex-none bg-white ring-1 ring-gray-100' />
               <div className='grid flex-auto grid-cols-1 grid-rows-1'>

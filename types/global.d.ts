@@ -106,14 +106,18 @@ export interface Semester {
   user: User
 }
 
-export interface LearningActivity {
+export interface LearningActivityFormData {
   activityType: ActivityType
-  semester: Semester
   startingTime: string
-  user: User
   subjectName: string
   teacherName: string
   endingTime: string
   weekday: Weekday
+  semester: string
+}
+
+export interface LearningActivity extends LearningActivityFormData {
+  semester: Semester
+  user: User
   _id: string
 }

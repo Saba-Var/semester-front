@@ -1,13 +1,20 @@
+import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
+import { useLearningActivityRequests } from 'services'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm, useWatch } from 'react-hook-form'
+import type { LearningActivityFormData } from 'types'
 import { learningActivitySchema } from 'schemas'
 import { useTranslation } from 'next-i18next'
+import { useMutation } from 'react-query'
+import { useRouter } from 'next/router'
+import { emitToast } from 'utils'
 import { useState } from 'react'
 
 const useAddEventForm = () => {
   const [openEventForm, setOpenEventForm] = useState(false)
 
+  const { createLearningActivityRequest } = useLearningActivityRequests()
   const { t } = useTranslation()
+  const { query } = useRouter()
 
   const form = useForm({
     resolver: yupResolver(learningActivitySchema),
@@ -18,11 +25,24 @@ const useAddEventForm = () => {
       teacherName: '',
       endingTime: '',
       weekday: '',
+      semester: query?.id,
     },
     mode: 'onTouched',
   })
 
-  const submitHandler = () => {}
+  const { mutate: createLearningActivityMutation } = useMutation(
+    createLearningActivityRequest
+  )
+
+  const submitHandler: SubmitHandler<LearningActivityFormData> = (data) => {
+    createLearningActivityMutation(data, {
+      onSuccess: () => {
+        emitToast(t('schedule:learning_activity_created_successfully'))
+        setOpenEventForm(false)
+        form.reset()
+      },
+    })
+  }
 
   const startingTime = useWatch({
     control: form.control,

@@ -19,7 +19,7 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
 
       <div className='-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6'>
         <div className='flex justify-between gap-x-4 py-3'>
-          <dt className='text-gray-500'>{t('start_date')}</dt>
+          <div className='text-gray-500'>{t('start_date')}</div>
           <dd className='text-gray-700'>
             <time dateTime={semester.startDate}>
               {new Date(semester.startDate).toLocaleDateString('en-US', {
@@ -33,8 +33,8 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
 
         {semester.endDate && (
           <div className='flex justify-between gap-x-4 py-3'>
-            <dt className='text-gray-500'>{t('end_date')}</dt>
-            <dd className='text-gray-700'>
+            <div className='text-gray-500'>{t('end_date')}</div>
+            <div className='text-gray-700'>
               <time dateTime={semester.endDate}>
                 {new Date(semester.endDate).toLocaleDateString('en-US', {
                   month: 'long',
@@ -42,7 +42,7 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
                   year: 'numeric',
                 })}
               </time>
-            </dd>
+            </div>
           </div>
         )}
 
