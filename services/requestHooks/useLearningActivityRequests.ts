@@ -1,5 +1,6 @@
-import type { LearningActivityFormData } from 'types'
+import type { LearningActivityFormData, LearningActivity } from 'types'
 import { useAxiosPrivate } from 'hooks'
+import { AxiosResponse } from 'axios'
 
 export const useLearningActivityRequests = () => {
   const axiosPrivate = useAxiosPrivate()
@@ -10,5 +11,11 @@ export const useLearningActivityRequests = () => {
     return axiosPrivate.post('/learning-activities', data)
   }
 
-  return { createLearningActivityRequest }
+  const getAllLearningActivitiesBySemester = async (
+    id: string
+  ): Promise<AxiosResponse<LearningActivity[]>> => {
+    return axiosPrivate.get(`/learning-activities/semester/${id}`)
+  }
+
+  return { createLearningActivityRequest, getAllLearningActivitiesBySemester }
 }

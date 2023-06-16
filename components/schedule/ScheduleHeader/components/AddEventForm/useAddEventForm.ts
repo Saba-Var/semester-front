@@ -1,10 +1,10 @@
 import type { LearningActivityFormData, ActivityType, Weekday } from 'types'
 import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
+import { useMutation, useQueryClient } from 'react-query'
 import { useLearningActivityRequests } from 'services'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { learningActivitySchema } from 'schemas'
 import { useTranslation } from 'next-i18next'
-import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
 import { emitToast } from 'utils'
 import { useState } from 'react'
@@ -13,19 +13,22 @@ const useAddEventForm = () => {
   const [openEventForm, setOpenEventForm] = useState(false)
 
   const { createLearningActivityRequest } = useLearningActivityRequests()
+  const queryClient = useQueryClient()
   const { t } = useTranslation()
   const { query } = useRouter()
+
+  const semesterId = query?.id as string
 
   const form = useForm({
     resolver: yupResolver(learningActivitySchema),
     defaultValues: {
       activityType: '' as ActivityType,
-      semester: query?.id as string,
+      weekday: '' as Weekday,
+      semester: semesterId,
       startingTime: '',
       subjectName: '',
       teacherName: '',
       endingTime: '',
-      weekday: '' as Weekday,
     },
     mode: 'onTouched',
   })
@@ -38,6 +41,7 @@ const useAddEventForm = () => {
     createLearningActivityMutation(data, {
       onSuccess: () => {
         emitToast(t('schedule:learning_activity_created_successfully'))
+        queryClient.invalidateQueries(['learningActivities', semesterId])
         setOpenEventForm(false)
         form.reset()
       },
