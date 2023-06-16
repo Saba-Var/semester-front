@@ -6,11 +6,11 @@ import { AppPropsWithLayout } from 'types'
 import type { ReactNode } from 'react'
 import { Provider } from 'react-redux'
 import { useApp } from 'hooks'
-import '../styles/globals.css'
+import 'styles/globals.css'
 import { store } from 'store'
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const { queryClient, isHydrated } = useApp()
+  const { queryClient } = useApp()
 
   const getLayout = Component.getLayout || ((page: ReactNode) => page)
 
@@ -20,7 +20,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <ToastContainer />
-            {isHydrated && getLayout(<Component {...pageProps} />)}
+            {getLayout(<Component {...pageProps} />)}
             <ReactQueryDevtools />
           </Hydrate>
         </QueryClientProvider>

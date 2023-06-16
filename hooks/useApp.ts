@@ -4,8 +4,6 @@ import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 
 export const useApp = () => {
-  const [isHydrated, setIsHydrated] = useState(false)
-
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -17,10 +15,6 @@ export const useApp = () => {
   const { push, locale, asPath } = useRouter()
 
   useEffect(() => {
-    if (!isHydrated) {
-      setIsHydrated(true)
-    }
-
     const language = Cookies.get('language')
     const isValidLanguage = language === 'ka' || language === 'en'
 
@@ -36,7 +30,7 @@ export const useApp = () => {
         push(uri, uri, { locale: language })
       }
     }
-  }, [locale, asPath, push, isHydrated])
+  }, [locale, asPath, push])
 
-  return { queryClient, isHydrated }
+  return { queryClient }
 }
