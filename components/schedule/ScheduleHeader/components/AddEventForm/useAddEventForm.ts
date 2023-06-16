@@ -1,7 +1,7 @@
+import type { LearningActivityFormData, ActivityType, Weekday } from 'types'
 import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
 import { useLearningActivityRequests } from 'services'
 import { yupResolver } from '@hookform/resolvers/yup'
-import type { LearningActivityFormData } from 'types'
 import { learningActivitySchema } from 'schemas'
 import { useTranslation } from 'next-i18next'
 import { useMutation } from 'react-query'
@@ -19,13 +19,13 @@ const useAddEventForm = () => {
   const form = useForm({
     resolver: yupResolver(learningActivitySchema),
     defaultValues: {
-      activityType: '',
+      activityType: '' as ActivityType,
+      semester: query?.id as string,
       startingTime: '',
       subjectName: '',
       teacherName: '',
       endingTime: '',
-      weekday: '',
-      semester: query?.id,
+      weekday: '' as Weekday,
     },
     mode: 'onTouched',
   })
