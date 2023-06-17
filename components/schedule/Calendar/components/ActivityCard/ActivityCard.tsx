@@ -6,10 +6,12 @@ import {
   DeleteButtonAndModal,
   SlideOver,
 } from 'components'
+import { LearningActivityFormData } from 'types'
 
-const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
   const {
     deleteLearningActivityMutation,
+    isLearningActivityDeleting,
     updateActivityHandler,
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
@@ -27,11 +29,16 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
       style={{
         gridRow: `${rowPosition} / span ${rowSpan}`,
         gridColumn: `${columnPosition}`,
+        backgroundColor:
+          ACTIVITY_COLORS[activity.activityType]?.[
+            isInfoModalOpen ? 'hover' : 'default'
+          ],
       }}
       onClick={() => setIsInfoModalOpen(true)}
-      className={`mt-px relative flex sm:col-start-3 transition-all overflow-hidden rounded-lg activityCard ${
-        isInfoModalOpen ? 'activityCard-active' : ''
-      }`}
+      className={`mt-2 w-[98%] mx-auto relative flex sm:col-start-3 border-[2px] hover:cursor-pointer hover:shadow-md border-white transition-all overflow-hidden rounded-lg activityCard ${
+        isInfoModalOpen ? 'activityCard-active shadow-md' : ''
+      } 
+    `}
     >
       {isInfoModalOpen && (
         <SlideOver
@@ -39,6 +46,9 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
           submitHandler={form.handleSubmit(updateActivityHandler)}
           setOpen={setIsInfoModalOpen}
           open={isInfoModalOpen}
+          onClose={() =>
+            form.reset(activity as unknown as LearningActivityFormData)
+          }
           openLeft={
             activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
           }
@@ -48,20 +58,10 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
       )}
 
       <div
-        draggable
-        style={{
-          backgroundColor:
-            ACTIVITY_COLORS[activity.activityType]?.[
-              isInfoModalOpen ? 'hover' : 'default'
-            ],
-          height: `${rowSpan * 3.3}rem`,
-        }}
-        className={`group absolute !overflow-hidden inset-1 flex flex-col border-[2px] border-white overflow-y-auto rounded-lg bg-blue-50 p-2 text-xs leading-5 hover:bg-blue-100 hover:shadow-md transition duration-200 ease-in-out hover:cursor-pointer ${
-          isInfoModalOpen ? 'shadow-md' : ''
-        }`}
+        className={`group absolute !overflow-hidden h-full inset-1 flex flex-col overflow-y-auto rounded-lg p-1 text-xs leading-5 duration-200 ease-in-out`}
       >
         <div className='flex flex-wrap'>
-          <div className='flex w-full justify-between'>
+          <div className='flex w-full items-center justify-between'>
             <p className='font-semibold mr-1 text-blue-700 line-clamp-1'>
               {activity.subjectName},
             </p>
@@ -69,10 +69,13 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
             <DeleteButtonAndModal
               submitHandler={deleteLearningActivityMutation}
               title={t('schedule:delete_learning_activity')}
+              disabled={isLearningActivityDeleting}
+              classes={`${!isInfoModalOpen ? 'hidden' : ''} group-hover:block`}
               targetName={activity.subjectName}
               setOpen={setIsDeleteModalOpen}
               open={isDeleteModalOpen}
-              disabled={false}
+              height={17}
+              width={17}
             />
           </div>
           <p className='text-blue-500 group-hover:text-blue-700'>

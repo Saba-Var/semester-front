@@ -4,9 +4,11 @@ import { useTranslation } from 'next-i18next'
 import { ModalWrapper } from 'components'
 
 const DeleteButtonAndModal: React.FC<DeleteButtonAndModalProps> = ({
-  buttonClasses = '',
+  classes = '',
   disabled = false,
   submitHandler,
+  height = 20,
+  width = 20,
   targetName,
   setOpen,
   title,
@@ -33,15 +35,15 @@ const DeleteButtonAndModal: React.FC<DeleteButtonAndModalProps> = ({
         </p>
       </ModalWrapper>
 
-      <TrashIcon
-        className={`text-red-700 cursor-pointer ${buttonClasses}`}
+      <div
+        className={`text-red-700 cursor-pointer transition-all ${classes}`}
         onClick={(e) => {
           e.stopPropagation()
           setOpen(true)
         }}
-        height={20}
-        width={20}
-      />
+      >
+        <TrashIcon height={height} width={width} />
+      </div>
     </>
   )
 }
