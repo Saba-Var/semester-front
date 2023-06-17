@@ -1,14 +1,20 @@
 import { LearningActivity, LearningActivityFormData } from 'types'
+import { useMutation, useQueryClient } from 'react-query'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
-import { useForm } from 'react-hook-form'
 import { weekdays } from 'CONSTANTS'
+import { emitToast } from 'utils'
 import { useState } from 'react'
 
 const useActivityCard = (activity: LearningActivity) => {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
-  const [hovered, setHovered] = useState(false)
 
+  const { updateLearningActivityRequest } = useLearningActivityRequests()
+  const queryClient = useQueryClient()
   const { t } = useTranslation('')
+
+  console.log(activity)
 
   const form = useForm({
     defaultValues: activity as unknown as LearningActivityFormData,
@@ -32,14 +38,28 @@ const useActivityCard = (activity: LearningActivity) => {
     (startingHourMinute && endingHourMinute ? 1 : 0) -
     (startingHourMinute && !endingHourMinute ? 1 : 0)
 
+  const { mutate: updateLearningActivityMutation } = useMutation(
+    (data: LearningActivityFormData) =>
+      updateLearningActivityRequest(data, activity._id)
+  )
+
+  const submitHandler: SubmitHandler<LearningActivityFormData> = (data) => {
+    updateLearningActivityMutation(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['learningActivities', activity.semester])
+        emitToast(t('saved_successfully'))
+        setIsInfoModalOpen(false)
+      },
+    })
+  }
+
   return {
     setIsInfoModalOpen,
     isInfoModalOpen,
     columnPosition,
+    submitHandler,
     rowPosition,
-    setHovered,
     rowSpan,
-    hovered,
     form,
     t,
   }

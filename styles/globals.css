@@ -18,6 +18,14 @@
   .date-picker-valid .SingleDatePickerInput {
     @apply !border-green;
   }
+
+  .activityCard:hover {
+    @apply z-[3];
+  }
+
+  .activityCard-active {
+    @apply z-[2];
+  }
 }
 
 html {

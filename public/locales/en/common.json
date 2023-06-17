@@ -36,5 +36,6 @@
   "current": "Current",
   "ended": "Ended",
   "date_placeholder": "DD/MM/YYYY",
-  "delete": "Delete"
+  "delete": "Delete",
+  "saved_successfully": "Saved successfully!"
 }

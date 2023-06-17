@@ -5,6 +5,7 @@ export type SlideOverProps = {
   submitHandler?: () => void
   children: JSX.Element
   onClose?: () => void
+  openLeft?: boolean
   title: string
   open: boolean
 }

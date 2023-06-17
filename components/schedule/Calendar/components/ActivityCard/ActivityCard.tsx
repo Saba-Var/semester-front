@@ -8,10 +8,9 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
     setIsInfoModalOpen,
     isInfoModalOpen,
     columnPosition,
+    submitHandler,
     rowPosition,
-    setHovered,
     rowSpan,
-    hovered,
     form,
     t,
   } = useActivityCard(activity)
@@ -21,33 +20,33 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
       style={{
         gridRow: `${rowPosition} / span ${rowSpan}`,
         gridColumn: `${columnPosition}`,
-        transform: isInfoModalOpen ? 'scale(1.05)' : 'scale(1)',
-        zIndex: isInfoModalOpen ? 2 : hovered ? 3 : 1,
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       onClick={() => setIsInfoModalOpen(true)}
-      className='mt-px relative flex sm:col-start-3 transition-all overflow-hidden rounded-lg'
+      className={`mt-px relative flex sm:col-start-3 transition-all overflow-hidden rounded-lg activityCard ${
+        isInfoModalOpen ? 'activityCard-active' : ''
+      }`}
     >
       {isInfoModalOpen && (
         <SlideOver
-          onClose={() => {
-            form.reset()
-            setHovered(false)
-          }}
-          title={activity.subjectName}
+          submitHandler={form.handleSubmit(submitHandler)}
+          title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}
+          onClose={() => form.reset()}
           setOpen={setIsInfoModalOpen}
           open={isInfoModalOpen}
+          openLeft={
+            activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
+          }
         >
           <LearningActivityForm form={form} />
         </SlideOver>
       )}
 
       <div
+        draggable
         style={{
           backgroundColor:
             ACTIVITY_COLORS[activity.activityType]?.[
-              hovered || isInfoModalOpen ? 'hover' : 'default'
+              isInfoModalOpen ? 'hover' : 'default'
             ],
           height: `${rowSpan * 3.5}rem`,
         }}

@@ -11,11 +11,22 @@ export const useLearningActivityRequests = () => {
     return axiosPrivate.post('/learning-activities', data)
   }
 
+  const updateLearningActivityRequest = async (
+    data: LearningActivityFormData,
+    id: string
+  ) => {
+    return axiosPrivate.put(`/learning-activities/${id}`, data)
+  }
+
   const getAllLearningActivitiesBySemester = async (
     id: string
   ): Promise<AxiosResponse<LearningActivity[]>> => {
     return axiosPrivate.get(`/learning-activities/semester/${id}`)
   }
 
-  return { createLearningActivityRequest, getAllLearningActivitiesBySemester }
+  return {
+    getAllLearningActivitiesBySemester,
+    createLearningActivityRequest,
+    updateLearningActivityRequest,
+  }
 }

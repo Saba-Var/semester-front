@@ -7,6 +7,7 @@ import { Fragment } from 'react'
 const SlideOver: React.FC<SlideOverProps> = ({
   submitHandler = () => {},
   onClose = () => {},
+  openLeft,
   children,
   setOpen,
   title,
@@ -28,7 +29,11 @@ const SlideOver: React.FC<SlideOverProps> = ({
 
         <div className=' overflow-hidden'>
           <div className='absolute inset-0 overflow-hidden'>
-            <div className='pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:pl-16'>
+            <div
+              className={`pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:pl-16 ${
+                openLeft ? 'left-0 !pl-0' : ''
+              }`}
+            >
               <Transition.Child
                 as={Fragment}
                 enter='transform transition ease-in-out duration-500 sm:duration-700'
@@ -75,7 +80,9 @@ const SlideOver: React.FC<SlideOverProps> = ({
                       </button>
                       <button
                         className='ml-4 inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                        onClick={submitHandler}
+                        onClick={() => {
+                          submitHandler()
+                        }}
                         type='submit'
                       >
                         {t('save')}
