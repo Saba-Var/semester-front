@@ -1,6 +1,7 @@
 import { UseFormReturn, useWatch } from 'react-hook-form'
 import { LearningActivityFormData } from 'types'
 import { useTranslation } from 'next-i18next'
+import { useEffect } from 'react'
 
 const useLearningActivityForm = (
   form: UseFormReturn<LearningActivityFormData>
@@ -54,12 +55,16 @@ const useLearningActivityForm = (
     return options
   }
 
-  if (startingTime && endingTime && startingTime >= endingTime) {
-    form.setValue('endingTime', '')
-    form.setError('endingTime', {
-      message: 'invalid_ending_time',
-    })
-  }
+  useEffect(() => {
+    if (startingTime && endingTime && startingTime >= endingTime) {
+      form.setValue('endingTime', '')
+      form.setError('endingTime', {
+        message: 'invalid_ending_time',
+      })
+    } else if (startingTime && endingTime && startingTime < endingTime) {
+      form.clearErrors('endingTime')
+    }
+  }, [endingTime, form, startingTime])
 
   return { t, startingTime, generateOptions }
 }

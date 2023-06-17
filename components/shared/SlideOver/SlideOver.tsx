@@ -1,15 +1,19 @@
-import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Dialog, Transition } from '@headlessui/react'
+import { useTranslation } from 'next-i18next'
 import { SlideOverProps } from './types'
 import { Fragment } from 'react'
 
 const SlideOver: React.FC<SlideOverProps> = ({
+  submitHandler = () => {},
   onClose = () => {},
   children,
   setOpen,
   title,
   open,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -63,17 +67,18 @@ const SlideOver: React.FC<SlideOverProps> = ({
 
                     <div className='flex flex-shrink-0 justify-end px-4 py-4'>
                       <button
-                        type='submit'
+                        type='button'
                         className='rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
                         onClick={() => setOpen(false)}
                       >
-                        Cancel
+                        {t('cancel')}
                       </button>
                       <button
-                        type='submit'
                         className='ml-4 inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                        onClick={submitHandler}
+                        type='submit'
                       >
-                        Save
+                        {t('save')}
                       </button>
                     </div>
                   </div>

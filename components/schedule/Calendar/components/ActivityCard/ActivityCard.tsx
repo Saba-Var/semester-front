@@ -1,9 +1,7 @@
 import { SlideOver, LearningActivityForm } from 'components'
 import useActivityCard from './useActivityCard'
-import { LearningActivityFormData } from 'types'
 import { ACTIVITY_COLORS } from 'CONSTANTS'
 import { ActivityCardProps } from './types'
-import { useForm } from 'react-hook-form'
 
 const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
   const {
@@ -14,12 +12,9 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
     setHovered,
     rowSpan,
     hovered,
+    form,
     t,
   } = useActivityCard(activity)
-
-  const form = useForm({
-    defaultValues: activity as unknown as LearningActivityFormData,
-  })
 
   return (
     <li

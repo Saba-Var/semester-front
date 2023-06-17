@@ -1,5 +1,6 @@
+import { LearningActivity, LearningActivityFormData } from 'types'
 import { useTranslation } from 'next-i18next'
-import { LearningActivity } from 'types'
+import { useForm } from 'react-hook-form'
 import { weekdays } from 'CONSTANTS'
 import { useState } from 'react'
 
@@ -8,6 +9,10 @@ const useActivityCard = (activity: LearningActivity) => {
   const [hovered, setHovered] = useState(false)
 
   const { t } = useTranslation('')
+
+  const form = useForm({
+    defaultValues: activity as unknown as LearningActivityFormData,
+  })
 
   const startingHour = +activity.startingTime.split(':')[0]
   const startingHourMinute = +activity.startingTime.split(':')[1]
@@ -22,17 +27,21 @@ const useActivityCard = (activity: LearningActivity) => {
     weekdays.findIndex((day) => day.value === activity.weekday) + 1
 
   let rowSpan =
-    (endingHour - startingHour + 1) * 2 - (!endingHourMinute ? 2 : 1)
+    (endingHour - startingHour + 1) * 2 -
+    (!endingHourMinute ? 2 : 1) -
+    (startingHourMinute && endingHourMinute ? 1 : 0) -
+    (startingHourMinute && !endingHourMinute ? 1 : 0)
 
   return {
+    setIsInfoModalOpen,
+    isInfoModalOpen,
     columnPosition,
     rowPosition,
     setHovered,
     rowSpan,
     hovered,
+    form,
     t,
-    isInfoModalOpen,
-    setIsInfoModalOpen,
   }
 }
 

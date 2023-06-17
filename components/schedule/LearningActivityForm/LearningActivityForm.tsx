@@ -11,7 +11,7 @@ const LearningActivityForm: React.FC<LearningActivityFormProps> = ({
 
   return (
     <FormProvider {...form}>
-      <form className='flex flex-col gap-2'>
+      <form className='flex flex-col'>
         <TextInputField
           placeholder={t('schedule:subject_placeholder')}
           labelClasses='text-left'
@@ -24,7 +24,7 @@ const LearningActivityForm: React.FC<LearningActivityFormProps> = ({
           name='teacherName'
         />
 
-        <div className='flex flex-col gap-5'>
+        <div className='flex flex-col gap-4'>
           <RadioInputField
             title={t('schedule:select_week_day')}
             dataList={weekdays}

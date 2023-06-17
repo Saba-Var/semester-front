@@ -44,7 +44,6 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
           isError ? 'ring-red-300' : ''
         } ${isValid ? 'ring-green' : ''}`}
         {...register(name)}
-        id='location'
       >
         <option value=''>{`${t('select')}`}</option>
         {optionsList.map((option) => {
