@@ -8,13 +8,14 @@ import { emitToast } from 'utils'
 import { useState } from 'react'
 
 const useActivityCard = (activity: LearningActivity) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
 
-  const { updateLearningActivityRequest } = useLearningActivityRequests()
+  const { updateLearningActivityRequest, deleteLearningActivityRequest } =
+    useLearningActivityRequests()
+
   const queryClient = useQueryClient()
   const { t } = useTranslation('')
-
-  console.log(activity)
 
   const form = useForm({
     defaultValues: activity as unknown as LearningActivityFormData,
@@ -38,12 +39,25 @@ const useActivityCard = (activity: LearningActivity) => {
     (startingHourMinute && endingHourMinute ? 1 : 0) -
     (startingHourMinute && !endingHourMinute ? 1 : 0)
 
+  const { mutate: deleteLearningActivityMutation } = useMutation(
+    () => deleteLearningActivityRequest(activity._id),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['learningActivities', activity.semester])
+        emitToast(t('deleted_successfully'))
+        setIsDeleteModalOpen(false)
+      },
+    }
+  )
+
   const { mutate: updateLearningActivityMutation } = useMutation(
     (data: LearningActivityFormData) =>
       updateLearningActivityRequest(data, activity._id)
   )
 
-  const submitHandler: SubmitHandler<LearningActivityFormData> = (data) => {
+  const updateActivityHandler: SubmitHandler<LearningActivityFormData> = (
+    data
+  ) => {
     updateLearningActivityMutation(data, {
       onSuccess: () => {
         queryClient.invalidateQueries(['learningActivities', activity.semester])
@@ -54,10 +68,13 @@ const useActivityCard = (activity: LearningActivity) => {
   }
 
   return {
+    deleteLearningActivityMutation,
+    updateActivityHandler,
+    setIsDeleteModalOpen,
     setIsInfoModalOpen,
+    isDeleteModalOpen,
     isInfoModalOpen,
     columnPosition,
-    submitHandler,
     rowPosition,
     rowSpan,
     form,

@@ -1,11 +1,18 @@
-import { SemesterMenu, DeleteButtonAndModal } from './components'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
-import { useTranslation } from 'next-i18next'
+import { DeleteButtonAndModal } from 'components'
+import useSemesterCard from './useSemesterCard'
+import { SemesterMenu } from './components'
 import { SemesterCardProps } from './types'
 import Link from 'next/link'
 
 const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
-  const { t } = useTranslation()
+  const {
+    deleteSemesterMutation,
+    setShowDeleteModal,
+    showDeleteModal,
+    isDeleting,
+    t,
+  } = useSemesterCard(semester)
 
   return (
     <li className='overflow-hidden rounded-xl drop-shadow-lg bg-white border border-gray-200'>
@@ -68,8 +75,12 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
 
         <div className='flex justify-between items-center gap-x-4 py-3'>
           <DeleteButtonAndModal
-            semesterName={semester.name}
-            semesterId={semester._id}
+            submitHandler={deleteSemesterMutation}
+            title={t('schedule:delete_semester')}
+            setOpen={setShowDeleteModal}
+            targetName={semester.name}
+            open={showDeleteModal}
+            disabled={isDeleting}
           />
 
           <Link href={`/schedule/${semester._id}`}>

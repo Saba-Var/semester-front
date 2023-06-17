@@ -24,9 +24,14 @@ export const useLearningActivityRequests = () => {
     return axiosPrivate.get(`/learning-activities/semester/${id}`)
   }
 
+  const deleteLearningActivityRequest = async (id: string) => {
+    return axiosPrivate.delete(`/learning-activities/${id}`)
+  }
+
   return {
     getAllLearningActivitiesBySemester,
     createLearningActivityRequest,
     updateLearningActivityRequest,
+    deleteLearningActivityRequest,
   }
 }

@@ -3,8 +3,9 @@ import { useSemesterRequests } from 'services'
 import { useTranslation } from 'next-i18next'
 import { emitToast } from 'utils'
 import { useState } from 'react'
+import { Semester } from 'types'
 
-const useDeleteButtonAndModal = () => {
+const useSemesterCard = (semester: Semester) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const { deleteSemesterRequest } = useSemesterRequests()
@@ -12,7 +13,7 @@ const useDeleteButtonAndModal = () => {
   const queryClient = useQueryClient()
 
   const { mutate: deleteSemesterMutation, isLoading: isDeleting } = useMutation(
-    deleteSemesterRequest,
+    () => deleteSemesterRequest(semester._id),
     {
       onSuccess: () => {
         queryClient.invalidateQueries('semesters')
@@ -33,4 +34,4 @@ const useDeleteButtonAndModal = () => {
   }
 }
 
-export default useDeleteButtonAndModal
+export default useSemesterCard

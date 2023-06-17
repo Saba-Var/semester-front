@@ -33,5 +33,6 @@
   "semester_deleted_successfully": "Semester deleted successfully!",
   "edit_semester": "Edit semester",
   "semester_updated_successfully": "Semester updated successfully!",
-  "learning_activity_created_successfully": "Learning activity created successfully!"
+  "learning_activity_created_successfully": "Learning activity created successfully!",
+  "delete_learning_activity": "Delete learning activity"
 }

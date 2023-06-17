@@ -37,5 +37,7 @@
   "ended": "Ended",
   "date_placeholder": "DD/MM/YYYY",
   "delete": "Delete",
-  "saved_successfully": "Saved successfully!"
+  "saved_successfully": "Saved successfully!",
+  "do_you_really_want_to_delete": "Do you really want to delete",
+  "deleted_successfully": "Deleted successfully!"
 }

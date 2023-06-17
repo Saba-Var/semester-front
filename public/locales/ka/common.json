@@ -36,5 +36,7 @@
   "ended": "დასრულებული",
   "date_placeholder": "დდ/თთ/წწ",
   "delete": "წაშლა",
-  "saved_successfully": "წარმატებით შეინახა!"
+  "saved_successfully": "წარმატებით შეინახა!",
+  "do_you_really_want_to_delete": "ნამდვილად გსურს რომ წაშალო",
+  "deleted_successfully": "წარმატებით წაიშალა!"
 }
