@@ -1,7 +1,14 @@
+import { useTranslation } from 'next-i18next'
 import { LearningActivity } from 'types'
 import { weekdays } from 'CONSTANTS'
+import { useState } from 'react'
 
 const useActivityCard = (activity: LearningActivity) => {
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  const { t } = useTranslation('')
+
   const startingHour = +activity.startingTime.split(':')[0]
   const startingHourMinute = +activity.startingTime.split(':')[1]
 
@@ -17,7 +24,16 @@ const useActivityCard = (activity: LearningActivity) => {
   let rowSpan =
     (endingHour - startingHour + 1) * 2 - (!endingHourMinute ? 2 : 1)
 
-  return { rowPosition, columnPosition, rowSpan }
+  return {
+    columnPosition,
+    rowPosition,
+    setHovered,
+    rowSpan,
+    hovered,
+    t,
+    isInfoModalOpen,
+    setIsInfoModalOpen,
+  }
 }
 
 export default useActivityCard

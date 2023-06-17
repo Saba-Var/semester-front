@@ -1,24 +1,10 @@
+import { ModalWrapper, LearningActivityForm } from 'components'
 import { PlusIcon } from '@heroicons/react/20/solid'
-import { weekdays, activities } from 'CONSTANTS'
 import useAddEventForm from './useAddEventForm'
-import { FormProvider } from 'react-hook-form'
-import {
-  SelectInputField,
-  RadioInputField,
-  TextInputField,
-  ModalWrapper,
-} from 'components'
 
 const AddEventForm = () => {
-  const {
-    setOpenEventForm,
-    generateOptions,
-    openEventForm,
-    submitHandler,
-    startingTime,
-    form,
-    t,
-  } = useAddEventForm()
+  const { setOpenEventForm, openEventForm, submitHandler, form, t } =
+    useAddEventForm()
 
   return (
     <main className='md:ml-4 md:flex md:items-center'>
@@ -39,58 +25,7 @@ const AddEventForm = () => {
         submitText={t('add')}
         open={openEventForm}
       >
-        <FormProvider {...form}>
-          <form className='flex flex-col gap-2'>
-            <TextInputField
-              placeholder={t('schedule:subject_placeholder')}
-              labelClasses='text-left'
-              name='subjectName'
-            />
-
-            <TextInputField
-              placeholder={t('schedule:teacher_name_placeholder')}
-              labelClasses='text-left'
-              name='teacherName'
-            />
-
-            <div className='flex flex-col gap-6 md:gap-2'>
-              <RadioInputField
-                title={t('schedule:select_week_day')}
-                dataList={weekdays}
-                name='weekday'
-              />
-
-              <RadioInputField
-                title={t('schedule:select_activity_type')}
-                dataList={activities}
-                name='activityType'
-              />
-
-              <div className='flex justify-between gap-[0.75rem]'>
-                <div className='w-full'>
-                  <SelectInputField
-                    optionsList={generateOptions(9)}
-                    title={t('schedule:starting_time')}
-                    name='startingTime'
-                  />
-                </div>
-
-                <div className='w-full'>
-                  {startingTime && (
-                    <SelectInputField
-                      optionsList={generateOptions(
-                        parseInt(startingTime.split(':')[0]),
-                        true
-                      )}
-                      title={t('schedule:ending_time')}
-                      name='endingTime'
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          </form>
-        </FormProvider>
+        <LearningActivityForm form={form} />
       </ModalWrapper>
     </main>
   )

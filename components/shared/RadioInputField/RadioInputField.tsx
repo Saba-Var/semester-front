@@ -37,7 +37,7 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
       </label>
 
       <fieldset className='mt-4'>
-        <div className='flex flex-wrap items-center gap-x-12 gap-4'>
+        <div className='flex flex-wrap items-center gap-4'>
           {dataList.map((item) => (
             <div key={item.value}>
               <label
