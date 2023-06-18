@@ -24,7 +24,7 @@ module.exports = {
       },
 
       animation: {
-        'fade-in': 'fade-in 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
+        'fade-in': 'fade-in 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
       },
 
       keyframes: {

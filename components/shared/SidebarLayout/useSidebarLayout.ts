@@ -14,6 +14,9 @@ export const useSidebarLayout = () => {
   const { accessToken } = useSelector(
     (state: RootState) => state.authentication
   )
+  const { isDesktopSideBarOpen } = useSelector(
+    (state: RootState) => state.sidebar
+  )
 
   const { getUserData } = useUserService()
   const dispatch = useDispatch()
@@ -43,6 +46,7 @@ export const useSidebarLayout = () => {
   return {
     canViewPage: !!accessToken && !!userId,
     pathname: router.pathname,
+    isDesktopSideBarOpen,
     logoutMutation,
     setSidebarOpen,
     sidebarOpen,

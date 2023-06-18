@@ -3,20 +3,19 @@ import { navigation, userNavigation } from 'CONSTANTS'
 import { useSidebarLayout } from './useSidebarLayout'
 import { SidebarLayoutProps } from './types.d'
 import { LanguageSelector } from 'components'
-import React, { Fragment } from 'react'
+import { DesktopSidebar } from './components'
+import { Fragment } from 'react'
 import { classNames } from 'utils'
 import Link from 'next/link'
 import {
-  ArrowLeftOnRectangleIcon,
   Bars3BottomLeftIcon,
   XMarkIcon,
   BellIcon,
 } from '@heroicons/react/24/outline'
 
-const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
-  const { children } = props
-
+const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
   const {
+    isDesktopSideBarOpen,
     setSidebarOpen,
     logoutMutation,
     sidebarOpen,
@@ -117,60 +116,13 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
             </Dialog>
           </Transition.Root>
 
-          {/* Static sidebar for desktop */}
-          <div className='hidden z-50 md:fixed md:inset-y-0 md:flex md:w-20 md:flex-col bg-blue-700'>
-            <p className='w-full text-white cursor-pointer text-4xl border-b-gray-700 border-b flex justify-center items-center h-16'>
-              S
-            </p>
+          <DesktopSidebar logoutMutation={logoutMutation} />
 
-            <div className='flex justify-between items-center py-3 flex-grow flex-col'>
-              <nav className='flex flex-col gap-2 items-center'>
-                {navigation.map((item) => (
-                  <Link key={item.name.en} href={item.href}>
-                    <a
-                      className={`flex relative transition ease-in duration-300 justify-center group items-center bg-blue-600 hover:bg-indigo-500 rounded-full hover:rounded-2xl w-14 h-14 ${
-                        (pathname.includes(item.href) && item.href !== '/') ||
-                        (pathname === '/' && item.name.en === 'Dashboard')
-                          ? 'bg-indigo-500'
-                          : ''
-                      }`}
-                    >
-                      <item.icon
-                        className='h-6 w-6 text-slate-300 group-hover:text-white'
-                        aria-hidden='true'
-                      />
-
-                      <div className='animate-fade-in hidden group-hover:block'>
-                        <span className='absolute top-1/2 -translate-y-[46%] left-20 bg-blue-600 text-white px-2 py-1 rounded-lg'>
-                          {t(item.name[lang])}
-                        </span>
-                        <span className='absolute top-1/2 -translate-y-1/2 bg-transparent text-blue-600 left-[4.3rem]'>
-                          &#9668;
-                        </span>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </nav>
-
-              <div
-                className='flex relative justify-center animate-fade-in group items-center bg-blue-600 hover:bg-indigo-700 rounded-full hover:rounded-2xl w-14 h-14'
-                onClick={() => logoutMutation()}
-              >
-                <div className='animate-fade-in hidden group-hover:block'>
-                  <span className='absolute top-1/2 -translate-y-[46%] left-20 bg-blue-600 text-white px-2 py-1 rounded-lg'>
-                    {t('logout')}
-                  </span>
-                  <span className='absolute top-1/2 -translate-y-1/2 bg-transparent text-blue-600 left-[4.3rem]'>
-                    &#9668;
-                  </span>
-                </div>
-                <ArrowLeftOnRectangleIcon className='h-6 w-6 text-slate-300 group-hover:text-white' />
-              </div>
-            </div>
-          </div>
-
-          <div className='flex flex-1 flex-col md:pl-20'>
+          <div
+            className={`flex flex-1 flex-col ease-anm ${
+              isDesktopSideBarOpen ? 'lg:ml-60' : 'lg:ml-20'
+            }`}
+          >
             <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
               <button
                 type='button'
@@ -237,7 +189,6 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                 </div>
               </div>
             </div>
-
             <main>
               <div className='py-2'>
                 <div className='mx-auto px-4 sm:px-6 md:px-8'>

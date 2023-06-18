@@ -40,5 +40,7 @@
   "do_you_really_want_to_delete": "ნამდვილად გსურს რომ წაშალო",
   "deleted_successfully": "წარმატებით წაიშალა!",
   "semester": "სემესტრი",
-  "end_time": "დასრულების თარიღი"
+  "end_time": "დასრულების თარიღი",
+  "expand": "გაზრდა",
+  "collapse": "დაპატარავება"
 }
