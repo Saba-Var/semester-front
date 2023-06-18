@@ -1,4 +1,4 @@
-name: CI
+name: Build/Lint
 
 on:
   push:
@@ -21,3 +21,6 @@ jobs:
 
       - name: Run linting
         run: npm run lint
+
+      - name: Build
+        run: npm run build
