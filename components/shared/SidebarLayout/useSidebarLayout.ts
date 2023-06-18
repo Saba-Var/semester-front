@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { setUserData, setIsSidebarOpen } from 'slices'
 import { useQuery, useMutation } from 'react-query'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useUserService } from 'hooks'
-import { setUserData } from 'slices'
 import { RootState } from 'store'
 import { logout } from 'services'
 import Cookies from 'js-cookie'
@@ -31,6 +31,14 @@ export const useSidebarLayout = () => {
       router.push('/overview')
     }
   }, [router, userId])
+
+  useEffect(() => {
+    dispatch(
+      setIsSidebarOpen(
+        JSON.parse(localStorage.getItem('isDesktopSideBarOpen') || '')
+      )
+    )
+  }, [dispatch])
 
   useQuery('user', getUserData, {
     onSuccess: (data) => dispatch(setUserData(data?.data)),

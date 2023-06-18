@@ -46,43 +46,55 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ logoutMutation }) => {
       </div>
 
       <div className='flex justify-between items-center py-3 flex-grow flex-col'>
-        <nav className={`flex flex-col gap-2 items-center`}>
-          {navigation.map((item) => (
-            <Link key={item.name.en} href={item.href}>
-              <a
-                className={`flex relative ease-anm overflow-hidden justify-center group items-center bg-blue-600 hover:bg-indigo-500 rounded-full hover:rounded-2xl w-14 h-14 ${
-                  (pathname.includes(item.href) && item.href !== '/') ||
-                  (pathname === '/' && item.name.en === 'Dashboard')
-                    ? 'bg-indigo-500'
-                    : ''
-                } !justify-start gap-5 ${
-                  isDesktopSideBarOpen
-                    ? '!w-full text-white !bg-transparent'
-                    : 'pl-4'
+        <nav className={`flex flex-col gap-2 items-center w-full`}>
+          {navigation.map((item) => {
+            const isCurrentRoute =
+              (pathname.includes(item.href) && item.href !== '/') ||
+              (pathname === '/' && item.name.en === 'Dashboard')
+
+            return (
+              <div
+                key={item.name.en}
+                className={`w-full ease-anm pl-3 ${
+                  isDesktopSideBarOpen ? 'hover:bg-indigo-500' : ''
+                } ${
+                  isCurrentRoute && isDesktopSideBarOpen ? 'bg-indigo-500' : ''
                 }`}
               >
-                <div className='!h-6 !w-6'>
-                  <item.icon
-                    className='!h-6 !w-6 text-slate-300 group-hover:text-white'
-                    aria-hidden='true'
-                  />
-                </div>
+                <Link href={item.href}>
+                  <a
+                    className={`flex relative ease-anm overflow-hidden justify-center group items-center bg-blue-600 hover:bg-indigo-500 rounded-full hover:rounded-2xl w-14 h-14 ${
+                      isCurrentRoute ? 'bg-indigo-500' : ''
+                    } !justify-start gap-5 ${
+                      isDesktopSideBarOpen
+                        ? '!w-full text-white !bg-transparent'
+                        : 'pl-4'
+                    }`}
+                  >
+                    <div className='!h-6 !w-6'>
+                      <item.icon
+                        className='!h-6 !w-6 text-slate-300 group-hover:text-white'
+                        aria-hidden='true'
+                      />
+                    </div>
 
-                <p>{item.name[lang]}</p>
+                    <p>{item.name[lang]}</p>
 
-                {!isDesktopSideBarOpen && (
-                  <div className='animate-fade-in hidden group-hover:block'>
-                    <span className='absolute top-1/2 -translate-y-[46%] left-20 bg-blue-600 text-white px-2 py-1 rounded-lg'>
-                      {t(item.name[lang])}
-                    </span>
-                    <span className='absolute top-1/2 -translate-y-1/2 bg-transparent text-blue-600 left-[4.3rem]'>
-                      &#9668;
-                    </span>
-                  </div>
-                )}
-              </a>
-            </Link>
-          ))}
+                    {!isDesktopSideBarOpen && (
+                      <div className='animate-fade-in hidden group-hover:block'>
+                        <span className='absolute top-1/2 -translate-y-[46%] left-20 bg-blue-600 text-white px-2 py-1 rounded-lg'>
+                          {t(item.name[lang])}
+                        </span>
+                        <span className='absolute top-1/2 -translate-y-1/2 bg-transparent text-blue-600 left-[4.3rem]'>
+                          &#9668;
+                        </span>
+                      </div>
+                    )}
+                  </a>
+                </Link>
+              </div>
+            )
+          })}
         </nav>
 
         {isDesktopSideBarOpen && (
