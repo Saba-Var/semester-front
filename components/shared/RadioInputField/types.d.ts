@@ -6,4 +6,5 @@ export type RadioInputFieldProps = {
   }[]
   title: string
   required?: boolean
+  disabled?: boolean
 }

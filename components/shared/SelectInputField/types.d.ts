@@ -4,6 +4,7 @@ export type SelectInputFieldProps = {
     id: string | number
     title: string
   }[]
-  title: string
   required?: boolean
+  disabled?: boolean
+  title: string
 }

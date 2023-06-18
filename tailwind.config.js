@@ -15,10 +15,15 @@ module.exports = {
       },
 
       spacing: {
+        14: '3.5rem',
         50: '12.5rem',
+      },
+
+      gridTemplateRows: {
+        30: 'repeat(30, minmax(0, 1fr))',
       },
     },
   },
 
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
 }

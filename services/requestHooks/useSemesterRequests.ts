@@ -13,7 +13,9 @@ export const useSemesterRequests = () => {
     return axiosPrivate.get('/semesters')
   }
 
-  const getSemesterDataRequest = async (id: string) => {
+  const getSemesterDataRequest = async (
+    id: string
+  ): Promise<AxiosResponse<Semester>> => {
     return axiosPrivate.get(`/semesters/${id}`)
   }
 

@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/20/solid'
 
 const SelectInputField: React.FC<SelectInputFieldProps> = ({
+  disabled = false,
   required = true,
   optionsList,
   title,
@@ -40,11 +41,11 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
       </label>
 
       <select
-        className={`mt-2 block w-full rounded-md border-1 border-transparent py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+        disabled={disabled}
+        className={`mt-2 block w-full disabled:text-gray-500 disabled:cursor-not-allowed disabled:ring-gray-200 disabled:bg-gray-100 rounded-md border-1 border-transparent py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
           isError ? 'ring-red-300' : ''
         } ${isValid ? 'ring-green' : ''}`}
         {...register(name)}
-        id='location'
       >
         <option value=''>{`${t('select')}`}</option>
         {optionsList.map((option) => {

@@ -18,6 +18,18 @@
   .date-picker-valid .SingleDatePickerInput {
     @apply !border-green;
   }
+
+  .activityCard:hover {
+    @apply z-[3];
+  }
+
+  .activityCard-active {
+    @apply z-[2];
+  }
+
+  .disabled-btn {
+    @apply !bg-gray-400 gap-1 !cursor-not-allowed hover:!bg-gray-500 focus:!ring-gray-500;
+  }
 }
 
 html {

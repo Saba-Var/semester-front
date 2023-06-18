@@ -10,6 +10,7 @@ import {
 
 const TextInputField: React.FC<InputFieldProps> = ({
   placeholder = '',
+  disabled = false,
   required = true,
   type = 'text',
   labelClasses,
@@ -45,8 +46,9 @@ const TextInputField: React.FC<InputFieldProps> = ({
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500'
           } ${isValid && '!border-green'} ${
             isPasswordField && (isError || isValid) && 'pr-14'
-          } lg:text-base`}
+          } disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 disabled:ring-gray-200 lg:text-base`}
           placeholder={placeholder || label || t(name)}
+          disabled={disabled}
           type={inputType}
         />
 

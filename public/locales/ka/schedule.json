@@ -7,8 +7,8 @@
   "saturday_first_letter": "შ",
   "sunday_first_letter": "კ",
   "add_learning_activity": "დაამატე სასწავლო აქტივობა",
-  "select_week_day": "აირჩიეთ კვირის დღე",
-  "select_activity_type": "აირჩიეთ აქტივობის ტიპი",
+  "select_week_day": "კვირის დღე",
+  "select_activity_type": "აქტივობის ტიპი",
   "starting_time": "დაწყების დრო",
   "ending_time": "დასრულების დრო",
   "subject_placeholder": "კალკულუსი",
@@ -33,5 +33,6 @@
   "semester_deleted_successfully": "სემესტრი წარმატებით წაიშალა!",
   "edit_semester": "სემესტრის რედაქტირება",
   "semester_updated_successfully": " სემესტრები წარმატებით განახლდა!",
-  "learning_activity_created_successfully": "სასწავლო აქტივობა წარმატებით შეიქმნა!"
+  "learning_activity_created_successfully": "სასწავლო აქტივობა წარმატებით შეიქმნა!",
+  "delete_learning_activity": "სასწავლო აქტივობის წაშლა"
 }

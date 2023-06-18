@@ -10,7 +10,7 @@ export const useLanguageSelector = () => {
     router.locale === 'en' ? languagesList[1] : languagesList[0]
   )
 
-  let hrefData: HrefData = router.pathname
+  let hrefData: HrefData = router.asPath
 
   const languageChangeHandler = (lan: string) => {
     if (lan === 'en') {

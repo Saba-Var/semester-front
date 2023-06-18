@@ -7,8 +7,8 @@
   "saturday_first_letter": "S",
   "sunday_first_letter": "S",
   "add_learning_activity": "Add learning activity",
-  "select_week_day": "Select week day",
-  "select_activity_type": "Select activity type",
+  "select_week_day": "Week day",
+  "select_activity_type": "Activity type",
   "starting_time": "Starting time",
   "ending_time": "Ending time",
   "subject_placeholder": "Calculus",
@@ -33,5 +33,6 @@
   "semester_deleted_successfully": "Semester deleted successfully!",
   "edit_semester": "Edit semester",
   "semester_updated_successfully": "Semester updated successfully!",
-  "learning_activity_created_successfully": "Learning activity created successfully!"
+  "learning_activity_created_successfully": "Learning activity created successfully!",
+  "delete_learning_activity": "Delete learning activity"
 }
