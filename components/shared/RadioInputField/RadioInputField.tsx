@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/20/solid'
 
 const RadioInputField: React.FC<RadioInputFieldProps> = ({
+  disabled = false,
   required = true,
   dataList,
   title,
@@ -42,16 +43,21 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
             <div key={item.value}>
               <label
                 htmlFor={item.value}
-                className='ml-3 text-sm gap-2 font-medium flex items-center leading-6 text-gray-900'
+                className={`ml-3 text-sm gap-2 font-medium flex items-center leading-6 text-gray-900 ${
+                  disabled ? 'cursor-not-allowed' : ''
+                }`}
               >
                 <input
-                  className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                  className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600 disabled:text-gray-500 disabled:cursor-not-allowed'
                   {...register(name)}
+                  disabled={disabled}
                   value={item.value}
                   id={item.value}
                   type='radio'
                 />
-                {t(item.title)}
+                <p className={disabled ? 'text-gray-500' : ''}>
+                  {t(item.title)}
+                </p>
               </label>
             </div>
           ))}

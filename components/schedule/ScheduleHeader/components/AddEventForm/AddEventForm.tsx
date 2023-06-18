@@ -3,8 +3,14 @@ import { PlusIcon } from '@heroicons/react/20/solid'
 import useAddEventForm from './useAddEventForm'
 
 const AddEventForm = () => {
-  const { setOpenEventForm, openEventForm, submitHandler, form, t } =
-    useAddEventForm()
+  const {
+    isLearningActivityCreating,
+    setOpenEventForm,
+    openEventForm,
+    submitHandler,
+    form,
+    t,
+  } = useAddEventForm()
 
   return (
     <main className='md:ml-4 md:flex md:items-center'>
@@ -20,6 +26,7 @@ const AddEventForm = () => {
       <ModalWrapper
         submitHandler={form.handleSubmit(submitHandler)}
         title={t('schedule:add_learning_activity')}
+        disabled={isLearningActivityCreating}
         setOpen={setOpenEventForm}
         closeHandler={form.reset}
         submitText={t('add')}

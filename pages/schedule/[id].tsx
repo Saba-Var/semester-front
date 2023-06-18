@@ -2,13 +2,29 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Calendar, ScheduleHeader } from 'components'
 import { NextPageWithSidebarLayout } from 'types'
 import { GetStaticProps } from 'next'
+import { useSemesterData } from 'hooks'
+import { useRouter } from 'next/router'
 import { getLayout } from 'utils'
 
 const Schedule: NextPageWithSidebarLayout = () => {
+  const { semester } = useSemesterData(useRouter().query?.id as string)
+
   return (
     <>
-      <ScheduleHeader />
-      <Calendar />
+      {semester && (
+        <>
+          <ScheduleHeader
+            isCurrentSemester={semester.isCurrentSemester}
+            endingDate={semester.endDate}
+            semesterName={semester.name}
+          />
+
+          <Calendar
+            learningActivitiesData={semester.learningActivities}
+            isCurrentSemester={semester.isCurrentSemester}
+          />
+        </>
+      )}
     </>
   )
 }

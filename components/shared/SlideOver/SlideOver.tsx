@@ -6,7 +6,9 @@ import { Fragment } from 'react'
 
 const SlideOver: React.FC<SlideOverProps> = ({
   submitHandler = () => {},
+  showSubmitButton = true,
   onClose = () => {},
+  disabled = false,
   openLeft,
   children,
   setOpen,
@@ -55,7 +57,10 @@ const SlideOver: React.FC<SlideOverProps> = ({
                             <button
                               type='button'
                               className='rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white'
-                              onClick={() => setOpen(false)}
+                              onClick={() => {
+                                setOpen(false)
+                                onClose()
+                              }}
                             >
                               <span className='sr-only'>Close panel</span>
                               <XMarkIcon
@@ -72,21 +77,28 @@ const SlideOver: React.FC<SlideOverProps> = ({
 
                     <div className='flex flex-shrink-0 justify-end px-4 py-4'>
                       <button
-                        type='button'
                         className='rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
-                        onClick={() => setOpen(false)}
-                      >
-                        {t('cancel')}
-                      </button>
-                      <button
-                        className='ml-4 inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                         onClick={() => {
-                          submitHandler()
+                          setOpen(false)
+                          onClose()
                         }}
-                        type='submit'
+                        type='button'
                       >
-                        {t('save')}
+                        {showSubmitButton ? t('cancel') : t('close')}
                       </button>
+
+                      {showSubmitButton && (
+                        <button
+                          className={`ml-4 inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+                            disabled ? 'disabled-btn' : ''
+                          }`}
+                          onClick={submitHandler}
+                          disabled={disabled}
+                          type='submit'
+                        >
+                          {t('save')}
+                        </button>
+                      )}
                     </div>
                   </div>
                 </Dialog.Panel>

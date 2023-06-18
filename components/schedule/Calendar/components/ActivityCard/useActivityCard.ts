@@ -44,15 +44,17 @@ const useActivityCard = (activity: LearningActivity) => {
     isLoading: isLearningActivityDeleting,
   } = useMutation(() => deleteLearningActivityRequest(activity._id), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['learningActivities', activity.semester])
+      queryClient.invalidateQueries(['semesters', activity.semester])
       emitToast(t('deleted_successfully'))
       setIsDeleteModalOpen(false)
     },
   })
 
-  const { mutate: updateLearningActivityMutation } = useMutation(
-    (data: LearningActivityFormData) =>
-      updateLearningActivityRequest(data, activity._id)
+  const {
+    mutate: updateLearningActivityMutation,
+    isLoading: isLearningActivityUpdating,
+  } = useMutation((data: LearningActivityFormData) =>
+    updateLearningActivityRequest(data, activity._id)
   )
 
   const updateActivityHandler: SubmitHandler<LearningActivityFormData> = (
@@ -60,7 +62,7 @@ const useActivityCard = (activity: LearningActivity) => {
   ) => {
     updateLearningActivityMutation(data, {
       onSuccess: () => {
-        queryClient.invalidateQueries(['learningActivities', activity.semester])
+        queryClient.invalidateQueries(['semesters', activity.semester])
         emitToast(t('saved_successfully'))
         form.reset(data)
         setIsInfoModalOpen(false)
@@ -70,6 +72,7 @@ const useActivityCard = (activity: LearningActivity) => {
 
   return {
     deleteLearningActivityMutation,
+    isLearningActivityUpdating,
     isLearningActivityDeleting,
     updateActivityHandler,
     setIsDeleteModalOpen,

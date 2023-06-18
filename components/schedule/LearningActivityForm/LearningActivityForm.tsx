@@ -5,6 +5,7 @@ import { weekdays, activities } from 'CONSTANTS'
 import { FormProvider } from 'react-hook-form'
 
 const LearningActivityForm: React.FC<LearningActivityFormProps> = ({
+  disableForm = false,
   form,
 }) => {
   const { t, startingTime, generateOptions } = useLearningActivityForm(form)
@@ -15,24 +16,28 @@ const LearningActivityForm: React.FC<LearningActivityFormProps> = ({
         <TextInputField
           placeholder={t('schedule:subject_placeholder')}
           labelClasses='text-left'
+          disabled={disableForm}
           name='subjectName'
         />
 
         <TextInputField
           placeholder={t('schedule:teacher_name_placeholder')}
           labelClasses='text-left'
+          disabled={disableForm}
           name='teacherName'
         />
 
         <div className='flex flex-col gap-4'>
           <RadioInputField
             title={t('schedule:select_week_day')}
+            disabled={disableForm}
             dataList={weekdays}
             name='weekday'
           />
 
           <RadioInputField
             title={t('schedule:select_activity_type')}
+            disabled={disableForm}
             dataList={activities}
             name='activityType'
           />
@@ -40,8 +45,9 @@ const LearningActivityForm: React.FC<LearningActivityFormProps> = ({
           <div className='flex justify-between sm:gap-[0.75rem]'>
             <div className='w-full'>
               <SelectInputField
-                optionsList={generateOptions(9)}
                 title={t('schedule:starting_time')}
+                optionsList={generateOptions(9)}
+                disabled={disableForm}
                 name='startingTime'
               />
             </div>
@@ -54,6 +60,7 @@ const LearningActivityForm: React.FC<LearningActivityFormProps> = ({
                     true
                   )}
                   title={t('schedule:ending_time')}
+                  disabled={disableForm}
                   name='endingTime'
                 />
               )}

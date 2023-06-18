@@ -1,14 +1,12 @@
 import { ActivityCard } from './components'
+import { CalendarProps } from './types'
 import useCalendar from './useCalendar'
 
-const Calendar = () => {
-  const {
-    learningActivitiesData,
-    containerOffset,
-    containerNav,
-    container,
-    t,
-  } = useCalendar()
+const Calendar: React.FC<CalendarProps> = ({
+  learningActivitiesData,
+  isCurrentSemester,
+}) => {
+  const { containerOffset, containerNav, container, t } = useCalendar()
 
   return (
     <div className='w-full mx-auto sm:max-w-[1556px] h-[78vh]'>
@@ -246,6 +244,7 @@ const Calendar = () => {
                   {learningActivitiesData?.map((activity, i) => {
                     return (
                       <ActivityCard
+                        isCurrentSemester={isCurrentSemester}
                         activity={activity}
                         key={activity._id}
                         index={i}

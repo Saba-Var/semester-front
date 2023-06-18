@@ -8,10 +8,14 @@ import {
 } from 'components'
 import { LearningActivityFormData } from 'types'
 
-const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({
+  isCurrentSemester,
+  activity,
+}) => {
   const {
     deleteLearningActivityMutation,
     isLearningActivityDeleting,
+    isLearningActivityUpdating,
     updateActivityHandler,
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
@@ -43,6 +47,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
       {isInfoModalOpen && (
         <SlideOver
           title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}
+          disabled={isLearningActivityUpdating || !form.formState.isDirty}
           submitHandler={form.handleSubmit(updateActivityHandler)}
           setOpen={setIsInfoModalOpen}
           open={isInfoModalOpen}
@@ -52,8 +57,9 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
           openLeft={
             activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
           }
+          showSubmitButton={isCurrentSemester}
         >
-          <LearningActivityForm form={form} />
+          <LearningActivityForm disableForm={!isCurrentSemester} form={form} />
         </SlideOver>
       )}
 
@@ -66,17 +72,21 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
               {activity.subjectName},
             </p>
 
-            <DeleteButtonAndModal
-              submitHandler={deleteLearningActivityMutation}
-              title={t('schedule:delete_learning_activity')}
-              disabled={isLearningActivityDeleting}
-              classes={`${!isInfoModalOpen ? 'hidden' : ''} group-hover:block`}
-              targetName={activity.subjectName}
-              setOpen={setIsDeleteModalOpen}
-              open={isDeleteModalOpen}
-              height={17}
-              width={17}
-            />
+            {isCurrentSemester && (
+              <DeleteButtonAndModal
+                submitHandler={deleteLearningActivityMutation}
+                title={t('schedule:delete_learning_activity')}
+                disabled={isLearningActivityDeleting}
+                classes={`${
+                  !isInfoModalOpen ? 'hidden' : ''
+                } group-hover:block`}
+                targetName={activity.subjectName}
+                setOpen={setIsDeleteModalOpen}
+                open={isDeleteModalOpen}
+                height={17}
+                width={17}
+              />
+            )}
           </div>
           <p className='text-blue-500 group-hover:text-blue-700'>
             <time>{activity.startingTime}</time>

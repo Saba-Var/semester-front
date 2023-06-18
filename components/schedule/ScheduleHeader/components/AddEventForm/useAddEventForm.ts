@@ -33,15 +33,16 @@ const useAddEventForm = () => {
     mode: 'onTouched',
   })
 
-  const { mutate: createLearningActivityMutation } = useMutation(
-    createLearningActivityRequest
-  )
+  const {
+    mutate: createLearningActivityMutation,
+    isLoading: isLearningActivityCreating,
+  } = useMutation(createLearningActivityRequest)
 
   const submitHandler: SubmitHandler<LearningActivityFormData> = (data) => {
     createLearningActivityMutation(data, {
       onSuccess: () => {
         emitToast(t('schedule:learning_activity_created_successfully'))
-        queryClient.invalidateQueries(['learningActivities', semesterId])
+        queryClient.invalidateQueries(['semesters', semesterId])
         setOpenEventForm(false)
         form.reset()
       },
@@ -49,6 +50,7 @@ const useAddEventForm = () => {
   }
 
   return {
+    isLearningActivityCreating,
     setOpenEventForm,
     openEventForm,
     submitHandler,
