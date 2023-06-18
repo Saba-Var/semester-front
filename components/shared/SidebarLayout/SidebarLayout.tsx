@@ -118,52 +118,59 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
           </Transition.Root>
 
           {/* Static sidebar for desktop */}
-          <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
-            <div className='flex flex-grow flex-col overflow-y-auto bg-blue-700 pt-5'>
-              <div className='flex flex-shrink-0 items-center px-4'>
-                <p className='text-gray-200 font-medium text-3xl'>Semester</p>
-              </div>
-              <div className='mt-5 flex flex-1 flex-col'>
-                <nav className='flex-1 space-y-1 px-2 pb-4'>
-                  {navigation.map((item) => (
-                    <Link key={item.name.en} href={item.href}>
-                      <a
-                        className={classNames(
-                          pathname === item.href
-                            ? 'bg-blue-800 text-white'
-                            : 'text-blue-100 hover:bg-blue-600',
-                          'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                        )}
-                      >
-                        <>
-                          <item.icon
-                            className='mr-3 h-6 w-6 flex-shrink-0 text-blue-300'
-                            aria-hidden='true'
-                          />
-                          <p>{item.name[lang]}</p>
-                        </>
-                      </a>
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-            </div>
+          <div className='hidden z-50 md:fixed md:inset-y-0 md:flex md:w-20 md:flex-col bg-blue-700'>
+            <p className='w-full text-white cursor-pointer text-4xl border-b-gray-700 border-b flex justify-center items-center h-16'>
+              S
+            </p>
 
-            <div className='flex bg-blue-700 items-center pb-10'>
+            <div className='flex justify-between items-center py-3 flex-grow flex-col'>
+              <nav className='flex flex-col gap-2 items-center'>
+                {navigation.map((item) => (
+                  <Link key={item.name.en} href={item.href}>
+                    <a
+                      className={`flex relative transition ease-in duration-300 justify-center group items-center bg-blue-600 hover:bg-indigo-500 rounded-full hover:rounded-2xl w-14 h-14 ${
+                        (pathname.includes(item.href) && item.href !== '/') ||
+                        (pathname === '/' && item.name.en === 'Dashboard')
+                          ? 'bg-indigo-500'
+                          : ''
+                      }`}
+                    >
+                      <item.icon
+                        className='h-6 w-6 text-slate-300 group-hover:text-white'
+                        aria-hidden='true'
+                      />
+
+                      <div className='animate-fade-in hidden group-hover:block'>
+                        <span className='absolute top-1/2 -translate-y-[46%] left-20 bg-blue-600 text-white px-2 py-1 rounded-lg'>
+                          {t(item.name[lang])}
+                        </span>
+                        <span className='absolute top-1/2 -translate-y-1/2 bg-transparent text-blue-600 left-[4.3rem]'>
+                          &#9668;
+                        </span>
+                      </div>
+                    </a>
+                  </Link>
+                ))}
+              </nav>
+
               <div
-                className='flex items-center cursor-pointer'
+                className='flex relative justify-center animate-fade-in group items-center bg-blue-600 hover:bg-indigo-700 rounded-full hover:rounded-2xl w-14 h-14'
                 onClick={() => logoutMutation()}
               >
-                <p className='text-blue-100 px-2 py-2 pl-4 text-base font-medium'>
-                  {t('logout')}
-                </p>
-
-                <ArrowLeftOnRectangleIcon className='h-6 w-6 text-white' />
+                <div className='animate-fade-in hidden group-hover:block'>
+                  <span className='absolute top-1/2 -translate-y-[46%] left-20 bg-blue-600 text-white px-2 py-1 rounded-lg'>
+                    {t('logout')}
+                  </span>
+                  <span className='absolute top-1/2 -translate-y-1/2 bg-transparent text-blue-600 left-[4.3rem]'>
+                    &#9668;
+                  </span>
+                </div>
+                <ArrowLeftOnRectangleIcon className='h-6 w-6 text-slate-300 group-hover:text-white' />
               </div>
             </div>
           </div>
 
-          <div className='flex flex-1 flex-col md:pl-64'>
+          <div className='flex flex-1 flex-col md:pl-20'>
             <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
               <button
                 type='button'
