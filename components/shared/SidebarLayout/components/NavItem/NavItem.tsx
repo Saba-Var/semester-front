@@ -29,7 +29,9 @@ const NavItem: React.FC<NavItemProps> = ({
         >
           <div className='!h-6 !w-6'>
             <Icon
-              className='!h-6 !w-6 text-slate-300 group-hover:text-white'
+              className={`!h-6 !w-6 text-slate-300 group-hover:text-white ${
+                isCurrentRoute ? '!text-white' : ''
+              }`}
               aria-hidden='true'
             />
           </div>
