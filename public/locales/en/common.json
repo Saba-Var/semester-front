@@ -41,5 +41,7 @@
   "do_you_really_want_to_delete": "Do you really want to delete",
   "deleted_successfully": "Deleted successfully!",
   "semester": "Semester",
-  "end_time": "End time"
+  "end_time": "End time",
+  "expand": "Expand",
+  "collapse": "Collapse"
 }

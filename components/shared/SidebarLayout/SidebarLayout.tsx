@@ -3,20 +3,19 @@ import { navigation, userNavigation } from 'CONSTANTS'
 import { useSidebarLayout } from './useSidebarLayout'
 import { SidebarLayoutProps } from './types.d'
 import { LanguageSelector } from 'components'
-import React, { Fragment } from 'react'
+import { DesktopSidebar } from './components'
+import { Fragment } from 'react'
 import { classNames } from 'utils'
 import Link from 'next/link'
 import {
-  ArrowLeftOnRectangleIcon,
   Bars3BottomLeftIcon,
   XMarkIcon,
   BellIcon,
 } from '@heroicons/react/24/outline'
 
-const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
-  const { children } = props
-
+const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
   const {
+    isDesktopSideBarOpen,
     setSidebarOpen,
     logoutMutation,
     sidebarOpen,
@@ -117,53 +116,13 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
             </Dialog>
           </Transition.Root>
 
-          {/* Static sidebar for desktop */}
-          <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
-            <div className='flex flex-grow flex-col overflow-y-auto bg-blue-700 pt-5'>
-              <div className='flex flex-shrink-0 items-center px-4'>
-                <p className='text-gray-200 font-medium text-3xl'>Semester</p>
-              </div>
-              <div className='mt-5 flex flex-1 flex-col'>
-                <nav className='flex-1 space-y-1 px-2 pb-4'>
-                  {navigation.map((item) => (
-                    <Link key={item.name.en} href={item.href}>
-                      <a
-                        className={classNames(
-                          pathname === item.href
-                            ? 'bg-blue-800 text-white'
-                            : 'text-blue-100 hover:bg-blue-600',
-                          'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                        )}
-                      >
-                        <>
-                          <item.icon
-                            className='mr-3 h-6 w-6 flex-shrink-0 text-blue-300'
-                            aria-hidden='true'
-                          />
-                          <p>{item.name[lang]}</p>
-                        </>
-                      </a>
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-            </div>
+          <DesktopSidebar logoutMutation={logoutMutation} />
 
-            <div className='flex bg-blue-700 items-center pb-10'>
-              <div
-                className='flex items-center cursor-pointer'
-                onClick={() => logoutMutation()}
-              >
-                <p className='text-blue-100 px-2 py-2 pl-4 text-base font-medium'>
-                  {t('logout')}
-                </p>
-
-                <ArrowLeftOnRectangleIcon className='h-6 w-6 text-white' />
-              </div>
-            </div>
-          </div>
-
-          <div className='flex flex-1 flex-col md:pl-64'>
+          <div
+            className={`flex flex-1 flex-col ease-anm ${
+              isDesktopSideBarOpen ? 'md:ml-60' : 'md:ml-20'
+            }`}
+          >
             <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
               <button
                 type='button'
@@ -230,7 +189,6 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = (props) => {
                 </div>
               </div>
             </div>
-
             <main>
               <div className='py-2'>
                 <div className='mx-auto px-4 sm:px-6 md:px-8'>

@@ -1,4 +1,6 @@
+export { default as sidebarSliceReducer } from './sidebarSlice'
 export { default as authSliceReducer } from './authSlice'
 export { default as userSliceReducer } from './userSlice'
+export * from './sidebarSlice'
 export * from './authSlice'
 export * from './userSlice'

@@ -9,16 +9,13 @@ const Calendar: React.FC<CalendarProps> = ({
   const { containerOffset, containerNav, container, t } = useCalendar()
 
   return (
-    <div className='w-full mx-auto sm:max-w-[1556px] h-[78vh]'>
+    <div className='w-full mx-auto h-[78vh]'>
       <div className='flex h-full flex-col'>
         <div
           ref={container}
           className='isolate drop-shadow-lg rounded-lg flex flex-auto flex-col overflow-auto bg-white'
         >
-          <div
-            style={{ width: '1548px' }}
-            className='flex max-w-full flex-none flex-col sm:max-w-none'
-          >
+          <div className='flex max-w-full sm:min-w-[1548px] flex-none flex-col sm:max-w-none'>
             <div
               ref={containerNav}
               className='sticky top-0 z-30 flex-none bg-white shadow ring-1 ring-black ring-opacity-5 sm:pr-8'
