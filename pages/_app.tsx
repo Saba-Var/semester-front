@@ -21,7 +21,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           <Hydrate state={pageProps.dehydratedState}>
             <ToastContainer />
             {getLayout(<Component {...pageProps} />)}
-            <ReactQueryDevtools />
           </Hydrate>
         </QueryClientProvider>
       </Provider>

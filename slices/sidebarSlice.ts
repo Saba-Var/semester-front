@@ -2,14 +2,14 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  isDesktopSideBarOpen: '',
+  isDesktopSideBarOpen: false,
 }
 
 export const sidebarSlice = createSlice({
   name: 'sidebar',
   initialState,
   reducers: {
-    setIsSidebarOpen: (state, action: PayloadAction<string>) => {
+    setIsSidebarOpen: (state, action: PayloadAction<boolean>) => {
       state.isDesktopSideBarOpen = action.payload
       localStorage.setItem(
         'isDesktopSideBarOpen',

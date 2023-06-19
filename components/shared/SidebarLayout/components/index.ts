@@ -1,1 +1,2 @@
-export { default as DesktopSidebar } from './DesktopSidebar'
+export * from './DesktopSidebar'
+export * from './NavItem'

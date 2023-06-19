@@ -33,11 +33,10 @@ export const useSidebarLayout = () => {
   }, [router, userId])
 
   useEffect(() => {
-    dispatch(
-      setIsSidebarOpen(
-        JSON.parse(localStorage.getItem('isDesktopSideBarOpen') || '')
-      )
-    )
+    const isDesktopSideBarOpen =
+      localStorage.getItem('isDesktopSideBarOpen') === 'true'
+
+    dispatch(setIsSidebarOpen(isDesktopSideBarOpen))
   }, [dispatch])
 
   useQuery('user', getUserData, {

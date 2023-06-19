@@ -120,7 +120,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
 
           <div
             className={`flex flex-1 flex-col ease-anm ${
-              isDesktopSideBarOpen ? 'lg:ml-60' : 'lg:ml-20'
+              isDesktopSideBarOpen ? 'md:ml-60' : 'md:ml-20'
             }`}
           >
             <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
