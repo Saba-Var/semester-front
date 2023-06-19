@@ -21,7 +21,7 @@ const NavItem: React.FC<NavItemProps> = ({
     >
       <Link href={href}>
         <a
-          className={`flex relative ease-anm overflow-hidden justify-center group items-center bg-blue-600 hover:bg-indigo-500 rounded-full hover:rounded-2xl w-14 h-14 ${
+          className={`flex relative ease-anm overflow-hidden justify-center group items-center bg-blue-600 hover:bg-indigo-500 rounded-[30px] hover:rounded-2xl w-14 h-14 ${
             isCurrentRoute ? 'bg-indigo-500 !rounded-2xl' : ''
           } !justify-start gap-5 ${
             isDesktopSideBarOpen ? '!w-full text-white !bg-transparent' : 'pl-4'
