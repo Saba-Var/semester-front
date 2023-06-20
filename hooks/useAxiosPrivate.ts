@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { requestsExceed } from 'utils'
 import { useEffect } from 'react'
 import { RootState } from 'store'
+import Cookies from 'js-cookie'
 
 export const useAxiosPrivate = () => {
   const { accessToken } = useSelector(
@@ -20,6 +21,9 @@ export const useAxiosPrivate = () => {
         if (!config.headers['Authorization']) {
           config.headers['Authorization'] = `Bearer ${accessToken}`
         }
+
+        config.headers['Accept-Language'] = Cookies.get('language')
+
         return config
       },
 
