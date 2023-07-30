@@ -43,5 +43,6 @@
   "semester": "Semester",
   "end_time": "End time",
   "expand": "Expand",
-  "collapse": "Collapse"
+  "collapse": "Collapse",
+  "something_went_wrong": "Something went wrong!"
 }

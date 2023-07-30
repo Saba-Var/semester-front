@@ -1,14 +1,22 @@
-import { LearningActivity, LearningActivityFormData } from 'types'
+import { useEffect, useState, useMemo, useCallback } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
-import { useState } from 'react'
+import type {
+  LearningActivityFormData,
+  ActivitiesCollisionsInfo,
+  LearningActivity,
+} from 'types'
 
-const useActivityCard = (activity: LearningActivity) => {
+const useActivityCard = (
+  learningActivityCollisions: ActivitiesCollisionsInfo,
+  activity: LearningActivity
+) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const [openLeftSlideOver, setOpenLeftSlideOver] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
 
   const { updateLearningActivityRequest, deleteLearningActivityRequest } =
@@ -20,6 +28,14 @@ const useActivityCard = (activity: LearningActivity) => {
   const form = useForm({
     defaultValues: activity as unknown as LearningActivityFormData,
   })
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpenLeftSlideOver(
+        activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
+      )
+    }, 800)
+  }, [activity.weekday])
 
   const startingHour = +activity.startingTime.split(':')[0]
   const startingHourMinute = +activity.startingTime.split(':')[1]
@@ -38,6 +54,32 @@ const useActivityCard = (activity: LearningActivity) => {
     (!endingHourMinute ? 2 : 1) -
     (startingHourMinute && endingHourMinute ? 1 : 0) -
     (startingHourMinute && !endingHourMinute ? 1 : 0)
+
+  const getCurrentActivityCollisionIndex = useCallback(() => {
+    const collisionsInTheCurrentDay =
+      learningActivityCollisions[activity.weekday]
+
+    let collisionPosition = 1
+
+    if (!collisionsInTheCurrentDay?.length) return collisionPosition
+
+    collisionsInTheCurrentDay.forEach((collisions) => {
+      const currentActivityCollision = collisions.find(
+        (id) => id === activity._id
+      )
+
+      if (currentActivityCollision) {
+        collisionPosition = collisions.indexOf(currentActivityCollision) + 1
+        return
+      }
+    })
+
+    return collisionPosition
+  }, [activity._id, activity.weekday, learningActivityCollisions])
+
+  const collisionPosition = useMemo(getCurrentActivityCollisionIndex, [
+    getCurrentActivityCollisionIndex,
+  ])
 
   const {
     mutate: deleteLearningActivityMutation,
@@ -77,6 +119,8 @@ const useActivityCard = (activity: LearningActivity) => {
     updateActivityHandler,
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
+    collisionPosition,
+    openLeftSlideOver,
     isDeleteModalOpen,
     isInfoModalOpen,
     columnPosition,

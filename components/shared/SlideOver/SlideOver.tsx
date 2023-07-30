@@ -1,21 +1,21 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Dialog, Transition } from '@headlessui/react'
-import { useTranslation } from 'next-i18next'
+import useSlideOver from './useSlideOver'
 import { SlideOverProps } from './types'
 import { Fragment } from 'react'
 
 const SlideOver: React.FC<SlideOverProps> = ({
   submitHandler = () => {},
   showSubmitButton = true,
+  openFromLeft = false,
   onClose = () => {},
   disabled = false,
-  openLeft,
   children,
   setOpen,
   title,
   open,
 }) => {
-  const { t } = useTranslation()
+  const { isDesktopSideBarOpen, t } = useSlideOver()
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -27,26 +27,32 @@ const SlideOver: React.FC<SlideOverProps> = ({
           onClose()
         }}
       >
-        <div className='' />
+        <div />
 
-        <div className=' overflow-hidden'>
+        <div className='overflow-hidden'>
           <div className='absolute inset-0 overflow-hidden'>
             <div
-              className={`pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:pl-16 ${
-                openLeft ? 'left-0 !pl-0' : ''
+              className={`pointer-events-none fixed inset-y-0 right-0 flex max-w-full ${
+                openFromLeft
+                  ? `left-20 ${isDesktopSideBarOpen && 'left-60'}`
+                  : ''
               }`}
             >
               <Transition.Child
                 as={Fragment}
                 enter='transform transition ease-in-out duration-500 sm:duration-700'
-                enterFrom='translate-x-full'
-                enterTo='translate-x-0'
+                enterFrom={
+                  openFromLeft ? '-translate-x-full' : 'translate-x-full'
+                }
+                enterTo={openFromLeft ? 'translate-x-0' : '-translate-x-0'}
                 leave='transform transition ease-in-out duration-500 sm:duration-700'
-                leaveFrom='translate-x-0'
-                leaveTo='translate-x-full'
+                leaveFrom={openFromLeft ? 'translate-x-0' : '-translate-x-0'}
+                leaveTo={
+                  openFromLeft ? '-translate-x-full' : 'translate-x-full'
+                }
               >
                 <Dialog.Panel className='pointer-events-auto w-screen max-w-md'>
-                  <div className='flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl'>
+                  <div className='flex h-full flex-col z-50 divide-y divide-gray-200 bg-white shadow-xl'>
                     <div className='h-0 flex-1 overflow-y-auto'>
                       <div className='bg-indigo-700 px-4 py-6 sm:px-6'>
                         <div className='flex items-center justify-between'>

@@ -13,7 +13,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ logoutMutation }) => {
 
   return (
     <div
-      className={`hidden z-50 md:fixed ease-anm md:inset-y-0 md:flex md:flex-col bg-blue-700 ${
+      className={`hidden z-40 md:fixed ease-anm md:inset-y-0 md:flex md:flex-col bg-blue-700 ${
         isDesktopSideBarOpen ? 'w-60' : 'w-20'
       }`}
     >

@@ -42,5 +42,6 @@
   "semester": "სემესტრი",
   "end_time": "დასრულების თარიღი",
   "expand": "გაზრდა",
-  "collapse": "დაპატარავება"
+  "collapse": "დაპატარავება",
+  "something_went_wrong": "დაფიქსირდა შეცდომა!"
 }
