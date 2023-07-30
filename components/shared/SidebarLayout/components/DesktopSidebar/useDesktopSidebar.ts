@@ -1,6 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'next-i18next'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
 import { setIsSidebarOpen } from 'slices'
 import { useRouter } from 'next/router'
 import { RootState } from 'store'

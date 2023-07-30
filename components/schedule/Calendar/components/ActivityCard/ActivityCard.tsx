@@ -6,7 +6,6 @@ import {
   DeleteButtonAndModal,
   SlideOver,
 } from 'components'
-import { LearningActivityFormData } from 'types'
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
   isCurrentSemester,
@@ -49,15 +48,13 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
           title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}
           disabled={isLearningActivityUpdating || !form.formState.isDirty}
           submitHandler={form.handleSubmit(updateActivityHandler)}
+          showSubmitButton={isCurrentSemester}
           setOpen={setIsInfoModalOpen}
           open={isInfoModalOpen}
-          onClose={() =>
-            form.reset(activity as unknown as LearningActivityFormData)
-          }
+          onClose={form.reset}
           openLeft={
             activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
           }
-          showSubmitButton={isCurrentSemester}
         >
           <LearningActivityForm disableForm={!isCurrentSemester} form={form} />
         </SlideOver>
