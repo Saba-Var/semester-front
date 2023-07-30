@@ -3,13 +3,23 @@ import { useMutation, useQueryClient } from 'react-query'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
+import { useEffect, useState } from 'react'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
-import { useState } from 'react'
 
 const useActivityCard = (activity: LearningActivity) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
+
+  const [openLeftSlideOver, setOpenLeftSlideOver] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpenLeftSlideOver(
+        activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
+      )
+    }, 800)
+  }, [activity.weekday])
 
   const { updateLearningActivityRequest, deleteLearningActivityRequest } =
     useLearningActivityRequests()
@@ -81,6 +91,7 @@ const useActivityCard = (activity: LearningActivity) => {
     isInfoModalOpen,
     columnPosition,
     rowPosition,
+    openLeftSlideOver,
     rowSpan,
     form,
     t,

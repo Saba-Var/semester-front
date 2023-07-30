@@ -4,9 +4,9 @@ export type SlideOverProps = {
   setOpen: SetState<boolean>
   showSubmitButton?: boolean
   submitHandler?: () => void
+  openFromLeft?: boolean
   children: JSX.Element
   onClose?: () => void
-  openLeft?: boolean
   disabled?: boolean
   title: string
   open: boolean

@@ -18,6 +18,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     updateActivityHandler,
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
+    openLeftSlideOver,
     isDeleteModalOpen,
     isInfoModalOpen,
     columnPosition,
@@ -43,22 +44,18 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
       } 
     `}
     >
-      {isInfoModalOpen && (
-        <SlideOver
-          title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}
-          disabled={isLearningActivityUpdating || !form.formState.isDirty}
-          submitHandler={form.handleSubmit(updateActivityHandler)}
-          showSubmitButton={isCurrentSemester}
-          setOpen={setIsInfoModalOpen}
-          open={isInfoModalOpen}
-          onClose={form.reset}
-          openLeft={
-            activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
-          }
-        >
-          <LearningActivityForm disableForm={!isCurrentSemester} form={form} />
-        </SlideOver>
-      )}
+      <SlideOver
+        title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}
+        disabled={isLearningActivityUpdating || !form.formState.isDirty}
+        submitHandler={form.handleSubmit(updateActivityHandler)}
+        showSubmitButton={isCurrentSemester}
+        openFromLeft={openLeftSlideOver}
+        setOpen={setIsInfoModalOpen}
+        open={isInfoModalOpen}
+        onClose={form.reset}
+      >
+        <LearningActivityForm disableForm={!isCurrentSemester} form={form} />
+      </SlideOver>
 
       <div
         className={`group absolute !overflow-hidden h-full inset-1 flex flex-col overflow-y-auto rounded-lg p-1 text-xs leading-5 duration-200 ease-in-out`}
