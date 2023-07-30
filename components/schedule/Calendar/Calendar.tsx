@@ -6,9 +6,13 @@ const Calendar: React.FC<CalendarProps> = ({
   learningActivitiesData,
   isCurrentSemester,
 }) => {
-  const { containerOffset, containerNav, container, t } = useCalendar(
-    learningActivitiesData
-  )
+  const {
+    learningActivityCollisions,
+    containerOffset,
+    containerNav,
+    container,
+    t,
+  } = useCalendar(learningActivitiesData)
 
   return (
     <div className='w-full mx-auto h-[78vh]'>
@@ -243,6 +247,7 @@ const Calendar: React.FC<CalendarProps> = ({
                   {learningActivitiesData?.map((activity, i) => {
                     return (
                       <ActivityCard
+                        learningActivityCollisions={learningActivityCollisions}
                         isCurrentSemester={isCurrentSemester}
                         activity={activity}
                         key={activity._id}

@@ -8,6 +8,7 @@ import {
 } from 'components'
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
+  learningActivityCollisions,
   isCurrentSemester,
   activity,
 }) => {
@@ -19,6 +20,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
     openLeftSlideOver,
+    collisionPosition,
     isDeleteModalOpen,
     isInfoModalOpen,
     columnPosition,
@@ -26,7 +28,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     rowSpan,
     form,
     t,
-  } = useActivityCard(activity)
+  } = useActivityCard(learningActivityCollisions, activity)
 
   return (
     <li
@@ -37,11 +39,16 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
           ACTIVITY_COLORS[activity.activityType]?.[
             isInfoModalOpen ? 'hover' : 'default'
           ],
+        zIndex: collisionPosition,
+        width: `calc(100% - ${
+          collisionPosition === 1 ? 0 : collisionPosition
+        }rem)`,
+        marginLeft: `${collisionPosition === 1 ? 0 : collisionPosition}rem`,
       }}
       onClick={() => setIsInfoModalOpen(true)}
       className={`mt-2 w-[98%] mx-auto relative flex sm:col-start-3 border-[2px] hover:cursor-pointer hover:shadow-md border-white transition-all overflow-hidden rounded-lg activityCard ${
         isInfoModalOpen ? 'activityCard-active shadow-md' : ''
-      } 
+      }
     `}
     >
       <SlideOver

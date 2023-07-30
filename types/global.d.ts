@@ -127,3 +127,5 @@ export interface LearningActivity extends LearningActivityFormData {
   user: User
   _id: string
 }
+
+export type ActivitiesCollisionsInfo = { [day: string]: string[][] }

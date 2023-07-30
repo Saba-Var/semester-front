@@ -1,7 +1,11 @@
-import type { LearningActivity, ActivityPartial } from 'types'
 import { useRef, useMemo, useCallback } from 'react'
 import { useTranslation } from 'next-i18next'
 import { timeStringToMinutes } from 'utils'
+import type {
+  ActivitiesCollisionsInfo,
+  LearningActivity,
+  ActivityPartial,
+} from 'types'
 
 const useCalendar = (learningActivitiesData: LearningActivity[]) => {
   const containerOffset = useRef(null)
@@ -11,7 +15,7 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
   const { t } = useTranslation()
 
   const detectCollisions = useCallback(
-    (activities: LearningActivity[]): { [day: string]: string[][] } => {
+    (activities: LearningActivity[]): ActivitiesCollisionsInfo => {
       activities.sort((a, b) => a.startingTime.localeCompare(b.startingTime))
 
       const schedule: { [day: string]: ActivityPartial[] } = {
@@ -28,7 +32,7 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
         schedule[activity.weekday].push(activity)
       })
 
-      const result: { [day: string]: string[][] } = {}
+      const result: ActivitiesCollisionsInfo = {}
       for (const day in schedule) {
         const activitiesForDay = schedule[day]
         if (activitiesForDay.length < 2) continue
