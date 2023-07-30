@@ -62,7 +62,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
       >
         <div className='flex flex-wrap'>
           <div className='flex w-full items-center justify-between'>
-            <p className='font-semibold mr-1 text-blue-700 line-clamp-1'>
+            <p className='font-semibold select-none mr-1 text-blue-700 line-clamp-1'>
               {activity.subjectName},
             </p>
 
@@ -82,14 +82,16 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
               />
             )}
           </div>
-          <p className='text-blue-500 group-hover:text-blue-700'>
+          <p className='text-blue-500 select-none group-hover:text-blue-700'>
             <time>{activity.startingTime}</time>
             <span>-</span>
             <time>{activity.endingTime}</time>
           </p>
         </div>
 
-        <p className='text-blue-700 line-clamp-1'>{t(activity.teacherName)}</p>
+        <p className='text-blue-700 line-clamp-1 select-none'>
+          {t(activity.teacherName)}
+        </p>
       </div>
     </li>
   )

@@ -105,6 +105,13 @@ export interface Semester {
   user: User
 }
 
+export interface ActivityPartial {
+  _id: string
+  startingTime: string
+  endingTime: string
+  weekday: Weekday
+}
+
 export interface LearningActivityFormData {
   activityType: ActivityType
   startingTime: string

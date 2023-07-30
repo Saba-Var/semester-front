@@ -6,7 +6,9 @@ const Calendar: React.FC<CalendarProps> = ({
   learningActivitiesData,
   isCurrentSemester,
 }) => {
-  const { containerOffset, containerNav, container, t } = useCalendar()
+  const { containerOffset, containerNav, container, t } = useCalendar(
+    learningActivitiesData
+  )
 
   return (
     <div className='w-full mx-auto h-[78vh]'>

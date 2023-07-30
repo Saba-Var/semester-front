@@ -1,8 +1,9 @@
 import { useRefreshToken } from './useRefreshToken'
+import { requestsExceed, emitToast } from 'utils'
+import { useTranslation } from 'next-i18next'
 import { useSelector } from 'react-redux'
 import { axiosPrivate } from 'services'
 import { useRouter } from 'next/router'
-import { requestsExceed } from 'utils'
 import { useEffect } from 'react'
 import { RootState } from 'store'
 import Cookies from 'js-cookie'
@@ -12,7 +13,7 @@ export const useAxiosPrivate = () => {
     (state: RootState) => state.authentication
   )
   const refresh = useRefreshToken()
-
+  const { t } = useTranslation()
   const router = useRouter()
 
   useEffect(() => {
@@ -38,6 +39,10 @@ export const useAxiosPrivate = () => {
       },
 
       async (error) => {
+        if (error?.response?.status === 500) {
+          emitToast(t('something_went_wrong'), 'error')
+        }
+
         const prevRequest = error?.config
         const status = error?.response?.status
 
@@ -65,7 +70,7 @@ export const useAxiosPrivate = () => {
       axiosPrivate.interceptors.response.eject(responseIntercept)
       axiosPrivate.interceptors.request.eject(requestIntercept)
     }
-  }, [accessToken, refresh, router])
+  }, [accessToken, refresh, router, t])
 
   return axiosPrivate
 }

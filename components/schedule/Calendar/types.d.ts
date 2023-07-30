@@ -1,4 +1,4 @@
-import { LearningActivity } from 'types'
+import type { LearningActivity } from 'types'
 
 export type CalendarProps = {
   learningActivitiesData: LearningActivity[]
