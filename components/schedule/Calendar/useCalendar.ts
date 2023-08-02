@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback } from 'react'
+import { useRef, useMemo, useCallback, type DragEvent } from 'react'
 import { useTranslation } from 'next-i18next'
 import { timeStringToMinutes } from 'utils'
 import type {
@@ -80,9 +80,14 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
     [detectCollisions, learningActivitiesData]
   )
 
+  const onDropHandler = (event: DragEvent<HTMLElement>) => {
+    event.preventDefault()
+  }
+
   return {
     learningActivityCollisions,
     containerOffset,
+    onDropHandler,
     containerNav,
     container,
     t,

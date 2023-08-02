@@ -100,6 +100,12 @@ input:-webkit-autofill:active {
   font-weight: 400;
 }
 
+.hide-draggable-element {
+  transition: 0.1s;
+  opacity: 0;
+  /* transform: translateX(-40rem); */
+}
+
 @media (max-width: 480px) {
   .Toastify__toast-container--top-right {
     top: 0;

@@ -1,10 +1,16 @@
-import { useEffect, useState, useMemo, useCallback } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
+import {
+  type DragEvent,
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react'
 import type {
   LearningActivityFormData,
   ActivitiesCollisionsInfo,
@@ -112,6 +118,17 @@ const useActivityCard = (
     })
   }
 
+  const dragActivity = (event: DragEvent<HTMLElement>) => {
+    let element = event.target as HTMLDivElement
+    element.classList.add('hide-draggable-element')
+    event.dataTransfer.setData('activity', JSON.stringify(activity))
+  }
+
+  const endDragActivity = (event: DragEvent<HTMLElement>) => {
+    const target = event.target as HTMLDivElement
+    target.classList.remove('hide-draggable-element')
+  }
+
   return {
     deleteLearningActivityMutation,
     isLearningActivityUpdating,
@@ -123,7 +140,9 @@ const useActivityCard = (
     openLeftSlideOver,
     isDeleteModalOpen,
     isInfoModalOpen,
+    endDragActivity,
     columnPosition,
+    dragActivity,
     rowPosition,
     rowSpan,
     form,

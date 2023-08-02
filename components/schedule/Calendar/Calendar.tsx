@@ -9,6 +9,7 @@ const Calendar: React.FC<CalendarProps> = ({
   const {
     learningActivityCollisions,
     containerOffset,
+    onDropHandler,
     containerNav,
     container,
     t,
@@ -243,7 +244,11 @@ const Calendar: React.FC<CalendarProps> = ({
                 </div>
 
                 {/* Events */}
-                <ol className='col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:grid-rows-30 sm:pr-8'>
+                <ol
+                  className='col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:grid-rows-30 sm:pr-8'
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={onDropHandler}
+                >
                   {learningActivitiesData?.map((activity, i) => {
                     return (
                       <ActivityCard
