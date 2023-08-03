@@ -18,8 +18,11 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
   const containerNav = useRef(null)
   const container = useRef<HTMLElement | null>(null)
 
-  const [onActivityCardClickYPosition, setOnActivityCardClickYPosition] =
-    useState(0)
+  const [onActivityCardClickPosition, setOnActivityCardClickPosition] =
+    useState({
+      x: 0,
+      y: 0,
+    })
 
   const { t } = useTranslation()
 
@@ -105,11 +108,13 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
       const distanceFromLeft = x + scrollLeft
       const distanceFromTop = y + scrollTop
 
-      const draggedActivity = JSON.parse(event.dataTransfer.getData('activity'))
-      const newDay = weekdays[Math.floor(distanceFromLeft / 213)].value
+      const weekdayIndex = Math.floor(
+        (distanceFromLeft - onActivityCardClickPosition.x / 1.8) / 213
+      )
+      const newDay = weekdays[weekdayIndex].value
 
       let newRowPosition = Math.floor(
-        (distanceFromTop - onActivityCardClickYPosition) / 57.2
+        (distanceFromTop - onActivityCardClickPosition.y) / 57.2
       )
 
       let newStartingTime = 9 + newRowPosition / 2
@@ -120,6 +125,9 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
         'starting'
       )
 
+      const draggedActivity: LearningActivity = JSON.parse(
+        event.dataTransfer.getData('activity')
+      )
       const oldEndingTime = convertStringTimeToNumber(
         draggedActivity.endingTime
       )
@@ -139,11 +147,11 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
 
       console.log(newDay, newStartingTimeString, newEndingTimeString)
     },
-    [onActivityCardClickYPosition]
+    [onActivityCardClickPosition]
   )
 
   return {
-    setOnActivityCardClickYPosition,
+    setOnActivityCardClickPosition,
     learningActivityCollisions,
     containerOffset,
     calendarList,

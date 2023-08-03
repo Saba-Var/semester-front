@@ -6,7 +6,7 @@ import type {
 
 export type ActivityCardProps = {
   learningActivityCollisions: ActivitiesCollisionsInfo
-  setOnActivityCardClickYPosition: SetState<number>
+  setOnActivityCardClickPosition: SetState<{ x: number; y: number }>
   isCurrentSemester: boolean
   activity: LearningActivity
   index: number

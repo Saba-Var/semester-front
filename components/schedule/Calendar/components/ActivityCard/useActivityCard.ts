@@ -20,7 +20,7 @@ import type {
 } from 'types'
 
 const useActivityCard = (
-  setOnActivityCardClickYPosition: SetState<number>,
+  setOnActivityCardClickPosition: SetState<{ x: number; y: number }>,
   learningActivityCollisions: ActivitiesCollisionsInfo,
   activity: LearningActivity
 ) => {
@@ -138,8 +138,12 @@ const useActivityCard = (
   const onMouseDownCapture = (event: MouseEvent<HTMLLIElement>) => {
     const rect = event.currentTarget.getBoundingClientRect()
     const yPosition = event.clientY - rect.top - 5
+    const xPosition = event.clientX - rect.left
 
-    setOnActivityCardClickYPosition(yPosition)
+    setOnActivityCardClickPosition({
+      x: xPosition,
+      y: yPosition,
+    })
   }
 
   return {

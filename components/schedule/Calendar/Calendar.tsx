@@ -7,7 +7,7 @@ const Calendar: React.FC<CalendarProps> = ({
   isCurrentSemester,
 }) => {
   const {
-    setOnActivityCardClickYPosition,
+    setOnActivityCardClickPosition,
     learningActivityCollisions,
     containerOffset,
     onDropHandler,
@@ -255,8 +255,8 @@ const Calendar: React.FC<CalendarProps> = ({
                   {learningActivitiesData?.map((activity, i) => {
                     return (
                       <ActivityCard
-                        setOnActivityCardClickYPosition={
-                          setOnActivityCardClickYPosition
+                        setOnActivityCardClickPosition={
+                          setOnActivityCardClickPosition
                         }
                         learningActivityCollisions={learningActivityCollisions}
                         isCurrentSemester={isCurrentSemester}

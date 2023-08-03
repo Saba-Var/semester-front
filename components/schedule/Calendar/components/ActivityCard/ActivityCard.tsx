@@ -8,7 +8,7 @@ import {
 } from 'components'
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
-  setOnActivityCardClickYPosition,
+  setOnActivityCardClickPosition,
   learningActivityCollisions,
   isCurrentSemester,
   activity,
@@ -33,7 +33,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     form,
     t,
   } = useActivityCard(
-    setOnActivityCardClickYPosition,
+    setOnActivityCardClickPosition,
     learningActivityCollisions,
     activity
   )
