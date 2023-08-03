@@ -102,7 +102,7 @@ export interface Semester {
   startDate: string
   name: string
   _id: string
-  user: User
+  user: string
 }
 
 export interface ActivityPartial {

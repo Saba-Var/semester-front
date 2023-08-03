@@ -8,6 +8,7 @@ import {
 } from 'components'
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
+  setOnActivityCardClickPosition,
   learningActivityCollisions,
   isCurrentSemester,
   activity,
@@ -19,16 +20,23 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     updateActivityHandler,
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
+    onMouseDownCapture,
     openLeftSlideOver,
     collisionPosition,
     isDeleteModalOpen,
+    endDragActivity,
     isInfoModalOpen,
     columnPosition,
+    dragActivity,
     rowPosition,
     rowSpan,
     form,
     t,
-  } = useActivityCard(learningActivityCollisions, activity)
+  } = useActivityCard(
+    setOnActivityCardClickPosition,
+    learningActivityCollisions,
+    activity
+  )
 
   return (
     <li
@@ -46,10 +54,14 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         marginLeft: `${collisionPosition === 1 ? 0 : collisionPosition}rem`,
       }}
       onClick={() => setIsInfoModalOpen(true)}
-      className={`mt-2 w-[98%] mx-auto relative flex sm:col-start-3 border-[2px] hover:cursor-pointer hover:shadow-md border-white transition-all overflow-hidden rounded-lg activityCard ${
+      className={`mt-2 w-[98%] mx-auto relative flex sm:col-start-3 border-[2px] hover:cursor-grab hover:shadow-md border-white transition-all overflow-hidden rounded-lg activityCard ${
         isInfoModalOpen ? 'activityCard-active shadow-md' : ''
       }
     `}
+      onMouseDownCapture={onMouseDownCapture}
+      onDragEnd={endDragActivity}
+      onDragStart={dragActivity}
+      draggable
     >
       <SlideOver
         title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}

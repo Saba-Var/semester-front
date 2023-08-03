@@ -7,9 +7,12 @@ const Calendar: React.FC<CalendarProps> = ({
   isCurrentSemester,
 }) => {
   const {
+    setOnActivityCardClickPosition,
     learningActivityCollisions,
     containerOffset,
+    onDropHandler,
     containerNav,
+    calendarList,
     container,
     t,
   } = useCalendar(learningActivitiesData)
@@ -18,7 +21,7 @@ const Calendar: React.FC<CalendarProps> = ({
     <div className='w-full mx-auto h-[78vh]'>
       <div className='flex h-full flex-col'>
         <div
-          ref={container}
+          ref={container as any}
           className='isolate drop-shadow-lg rounded-lg flex flex-auto flex-col overflow-auto bg-white'
         >
           <div className='flex max-w-full sm:min-w-[1548px] flex-none flex-col sm:max-w-none'>
@@ -243,10 +246,18 @@ const Calendar: React.FC<CalendarProps> = ({
                 </div>
 
                 {/* Events */}
-                <ol className='col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:grid-rows-30 sm:pr-8'>
+                <ol
+                  className='col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:grid-rows-30 sm:pr-8'
+                  onDragOver={(e) => e.preventDefault()}
+                  ref={calendarList as any}
+                  onDrop={onDropHandler}
+                >
                   {learningActivitiesData?.map((activity, i) => {
                     return (
                       <ActivityCard
+                        setOnActivityCardClickPosition={
+                          setOnActivityCardClickPosition
+                        }
                         learningActivityCollisions={learningActivityCollisions}
                         isCurrentSemester={isCurrentSemester}
                         activity={activity}

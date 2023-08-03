@@ -1,17 +1,26 @@
-import { useEffect, useState, useMemo, useCallback } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
+import {
+  type MouseEvent,
+  type DragEvent,
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react'
 import type {
   LearningActivityFormData,
   ActivitiesCollisionsInfo,
   LearningActivity,
+  SetState,
 } from 'types'
 
 const useActivityCard = (
+  setOnActivityCardClickPosition: SetState<{ x: number; y: number }>,
   learningActivityCollisions: ActivitiesCollisionsInfo,
   activity: LearningActivity
 ) => {
@@ -30,11 +39,13 @@ const useActivityCard = (
   })
 
   useEffect(() => {
-    setTimeout(() => {
+    const slideOverTimeout = setTimeout(() => {
       setOpenLeftSlideOver(
         activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
       )
     }, 800)
+
+    return () => clearTimeout(slideOverTimeout)
   }, [activity.weekday])
 
   const startingHour = +activity.startingTime.split(':')[0]
@@ -96,7 +107,7 @@ const useActivityCard = (
     mutate: updateLearningActivityMutation,
     isLoading: isLearningActivityUpdating,
   } = useMutation((data: LearningActivityFormData) =>
-    updateLearningActivityRequest(data, activity._id)
+    updateLearningActivityRequest(activity._id, data)
   )
 
   const updateActivityHandler: SubmitHandler<LearningActivityFormData> = (
@@ -112,18 +123,44 @@ const useActivityCard = (
     })
   }
 
+  const dragActivity = (event: DragEvent<HTMLElement>) => {
+    let element = event.target as HTMLDivElement
+    element.classList.add('hide-draggable-element')
+
+    event.dataTransfer.setData('activity', JSON.stringify(activity))
+  }
+
+  const endDragActivity = (event: DragEvent<HTMLElement>) => {
+    const target = event.target as HTMLDivElement
+    target.classList.remove('hide-draggable-element')
+  }
+
+  const onMouseDownCapture = (event: MouseEvent<HTMLLIElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const yPosition = event.clientY - rect.top - 5
+    const xPosition = event.clientX - rect.left
+
+    setOnActivityCardClickPosition({
+      x: xPosition,
+      y: yPosition,
+    })
+  }
+
   return {
     deleteLearningActivityMutation,
     isLearningActivityUpdating,
     isLearningActivityDeleting,
     updateActivityHandler,
     setIsDeleteModalOpen,
+    onMouseDownCapture,
     setIsInfoModalOpen,
     collisionPosition,
     openLeftSlideOver,
     isDeleteModalOpen,
     isInfoModalOpen,
+    endDragActivity,
     columnPosition,
+    dragActivity,
     rowPosition,
     rowSpan,
     form,

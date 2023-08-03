@@ -1,18 +1,95 @@
-import { useRef, useMemo, useCallback } from 'react'
+import { useRef, useMemo, useCallback, type DragEvent, useState } from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
-import { timeStringToMinutes } from 'utils'
+import { useRouter } from 'next/router'
+import { weekdays } from 'CONSTANTS'
+import { emitToast } from 'utils'
+import {
+  generateNewTimeStringFromNumber,
+  convertStringTimeToNumber,
+  timeStringToMinutes,
+} from 'utils'
 import type {
   ActivitiesCollisionsInfo,
   LearningActivity,
   ActivityPartial,
+  Weekday,
+  Semester,
 } from 'types'
 
 const useCalendar = (learningActivitiesData: LearningActivity[]) => {
+  const calendarList = useRef<HTMLElement | null>(null)
+  const container = useRef<HTMLElement | null>(null)
   const containerOffset = useRef(null)
   const containerNav = useRef(null)
-  const container = useRef(null)
 
+  const [onActivityCardClickPosition, setOnActivityCardClickPosition] =
+    useState({
+      x: 0,
+      y: 0,
+    })
+
+  const { updateLearningActivityRequest } = useLearningActivityRequests()
+  const queryClient = useQueryClient()
   const { t } = useTranslation()
+  const { query } = useRouter()
+
+  const { mutate: updateLearningActivityMutation } = useMutation(
+    ({ id, data }: { id: string; data: LearningActivity }) =>
+      updateLearningActivityRequest(id, data),
+    {
+      onMutate: async ({ id, data }) => {
+        await queryClient.cancelQueries(['semesters', query?.id])
+
+        const previousSemester = queryClient.getQueryData<{ data: Semester }>([
+          'semesters',
+          query?.id,
+        ])
+
+        queryClient.setQueryData<{ data: Semester }>(
+          ['semesters', query?.id],
+          (old): { data: Semester } => {
+            if (!old)
+              return {
+                data: {
+                  learningActivities: [],
+                  isCurrentSemester: false,
+                  startDate: '',
+                  endDate: '',
+                  _id: '',
+                  name: '',
+                  user: '',
+                },
+              }
+
+            const currentActivity = old?.data.learningActivities.find(
+              (activity) => activity._id === id
+            )
+
+            if (!currentActivity) return old
+
+            currentActivity.startingTime = data.startingTime
+            currentActivity.endingTime = data.endingTime
+            currentActivity.weekday = data.weekday
+
+            return { data: old.data }
+          }
+        )
+
+        return { previousSemester }
+      },
+
+      onError: (_error, _variables, context) => {
+        queryClient.setQueryData('semesters', context?.previousSemester)
+        emitToast(t('something_went_wrong'), 'error')
+      },
+
+      onSettled: () => {
+        queryClient.invalidateQueries(['semesters', query?.id])
+      },
+    }
+  )
 
   const detectCollisions = useCallback(
     (activities: LearningActivity[]): ActivitiesCollisionsInfo => {
@@ -80,9 +157,78 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
     [detectCollisions, learningActivitiesData]
   )
 
+  const onDropHandler = useCallback(
+    (event: DragEvent<HTMLElement>) => {
+      event.preventDefault()
+
+      const scrollLeft = container?.current?.scrollLeft || 0
+      const scrollTop = container?.current?.scrollTop || 0
+
+      let x = event.clientX - 168
+      let y = event.clientY - 185
+
+      if (y < 0) y = 0
+      if (x < 0) x = 0
+
+      const distanceFromLeft = x + scrollLeft
+      const distanceFromTop = y + scrollTop
+
+      const weekdayIndex = Math.floor(
+        (distanceFromLeft - onActivityCardClickPosition.x / 1.8) / 213
+      )
+      const newDay = weekdays[weekdayIndex]?.value
+
+      let newRowPosition = Math.floor(
+        (distanceFromTop - onActivityCardClickPosition.y) / 57.2
+      )
+
+      let newStartingTime = 9 + newRowPosition / 2
+      if (newStartingTime < 9) newStartingTime = 9
+
+      let newStartingTimeString = generateNewTimeStringFromNumber(
+        newStartingTime,
+        'starting'
+      )
+
+      const draggedActivity: LearningActivity = JSON.parse(
+        event.dataTransfer.getData('activity')
+      )
+      const oldEndingTime = convertStringTimeToNumber(
+        draggedActivity.endingTime
+      )
+      const oldStartingTime = convertStringTimeToNumber(
+        draggedActivity.startingTime
+      )
+
+      const differenceBetweenOldTimes = oldEndingTime - oldStartingTime
+
+      let newEndingTime = newStartingTime + differenceBetweenOldTimes
+      if (newEndingTime > 23.5) newEndingTime = 23.5
+
+      let newEndingTimeString = generateNewTimeStringFromNumber(
+        newEndingTime,
+        'ending'
+      )
+
+      updateLearningActivityMutation({
+        id: draggedActivity._id,
+        data: {
+          ...draggedActivity,
+          startingTime: newStartingTimeString,
+          endingTime: newEndingTimeString,
+          weekday: newDay as Weekday,
+        },
+      })
+    },
+    [onActivityCardClickPosition, updateLearningActivityMutation]
+  )
+
   return {
+    setOnActivityCardClickPosition,
     learningActivityCollisions,
     containerOffset,
+    calendarList,
+    onDropHandler,
     containerNav,
     container,
     t,

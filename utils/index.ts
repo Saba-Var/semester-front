@@ -1,3 +1,5 @@
+export * from './generateNewTimeStringFromNumber'
+export * from './convertStringTimeToNumber'
 export * from './timeStringToMinutes'
 export * from './requestsExceed'
 export * from './classNames'
