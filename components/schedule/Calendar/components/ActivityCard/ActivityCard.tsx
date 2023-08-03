@@ -8,6 +8,7 @@ import {
 } from 'components'
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
+  setOnActivityCardClickYPosition,
   learningActivityCollisions,
   isCurrentSemester,
   activity,
@@ -19,6 +20,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     updateActivityHandler,
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
+    onMouseDownCapture,
     openLeftSlideOver,
     collisionPosition,
     isDeleteModalOpen,
@@ -30,7 +32,11 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     rowSpan,
     form,
     t,
-  } = useActivityCard(learningActivityCollisions, activity)
+  } = useActivityCard(
+    setOnActivityCardClickYPosition,
+    learningActivityCollisions,
+    activity
+  )
 
   return (
     <li
@@ -52,6 +58,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         isInfoModalOpen ? 'activityCard-active shadow-md' : ''
       }
     `}
+      onMouseDownCapture={onMouseDownCapture}
       onDragEnd={endDragActivity}
       onDragStart={dragActivity}
       draggable

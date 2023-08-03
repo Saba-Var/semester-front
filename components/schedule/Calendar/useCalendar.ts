@@ -1,6 +1,11 @@
-import { useRef, useMemo, useCallback, type DragEvent } from 'react'
+import { useRef, useMemo, useCallback, type DragEvent, useState } from 'react'
 import { useTranslation } from 'next-i18next'
-import { timeStringToMinutes } from 'utils'
+import { weekdays } from 'CONSTANTS'
+import {
+  generateNewTimeStringFromNumber,
+  convertStringTimeToNumber,
+  timeStringToMinutes,
+} from 'utils'
 import type {
   ActivitiesCollisionsInfo,
   LearningActivity,
@@ -8,9 +13,13 @@ import type {
 } from 'types'
 
 const useCalendar = (learningActivitiesData: LearningActivity[]) => {
+  const calendarList = useRef<HTMLElement | null>(null)
   const containerOffset = useRef(null)
   const containerNav = useRef(null)
-  const container = useRef(null)
+  const container = useRef<HTMLElement | null>(null)
+
+  const [onActivityCardClickYPosition, setOnActivityCardClickYPosition] =
+    useState(0)
 
   const { t } = useTranslation()
 
@@ -80,13 +89,64 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
     [detectCollisions, learningActivitiesData]
   )
 
-  const onDropHandler = (event: DragEvent<HTMLElement>) => {
-    event.preventDefault()
-  }
+  const onDropHandler = useCallback(
+    (event: DragEvent<HTMLElement>) => {
+      event.preventDefault()
+
+      const scrollLeft = container?.current?.scrollLeft || 0
+      const scrollTop = container?.current?.scrollTop || 0
+
+      let x = event.clientX - 168
+      let y = event.clientY - 185
+
+      if (y < 0) y = 0
+      if (x < 0) x = 0
+
+      const distanceFromLeft = x + scrollLeft
+      const distanceFromTop = y + scrollTop
+
+      const draggedActivity = JSON.parse(event.dataTransfer.getData('activity'))
+      const newDay = weekdays[Math.floor(distanceFromLeft / 213)].value
+
+      let newRowPosition = Math.floor(
+        (distanceFromTop - onActivityCardClickYPosition) / 57.2
+      )
+
+      let newStartingTime = 9 + newRowPosition / 2
+      if (newStartingTime < 9) newStartingTime = 9
+
+      let newStartingTimeString = generateNewTimeStringFromNumber(
+        newStartingTime,
+        'starting'
+      )
+
+      const oldEndingTime = convertStringTimeToNumber(
+        draggedActivity.endingTime
+      )
+      const oldStartingTime = convertStringTimeToNumber(
+        draggedActivity.startingTime
+      )
+
+      const differenceBetweenOldTimes = oldEndingTime - oldStartingTime
+
+      let newEndingTime = newStartingTime + differenceBetweenOldTimes
+      if (newEndingTime > 23.5) newEndingTime = 23.5
+
+      let newEndingTimeString = generateNewTimeStringFromNumber(
+        newEndingTime,
+        'ending'
+      )
+
+      console.log(newDay, newStartingTimeString, newEndingTimeString)
+    },
+    [onActivityCardClickYPosition]
+  )
 
   return {
+    setOnActivityCardClickYPosition,
     learningActivityCollisions,
     containerOffset,
+    calendarList,
     onDropHandler,
     containerNav,
     container,
