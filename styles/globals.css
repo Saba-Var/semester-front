@@ -103,7 +103,6 @@ input:-webkit-autofill:active {
 .hide-draggable-element {
   transition: 0.01s;
   opacity: 0;
-  /* transform: translateX(-40rem); */
 }
 
 @media (max-width: 480px) {
