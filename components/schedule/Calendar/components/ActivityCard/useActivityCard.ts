@@ -107,7 +107,7 @@ const useActivityCard = (
     mutate: updateLearningActivityMutation,
     isLoading: isLearningActivityUpdating,
   } = useMutation((data: LearningActivityFormData) =>
-    updateLearningActivityRequest(data, activity._id)
+    updateLearningActivityRequest(activity._id, data)
   )
 
   const updateActivityHandler: SubmitHandler<LearningActivityFormData> = (

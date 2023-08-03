@@ -12,8 +12,8 @@ export const useLearningActivityRequests = () => {
   }
 
   const updateLearningActivityRequest = async (
-    data: LearningActivityFormData,
-    id: string
+    id: string,
+    data: LearningActivityFormData | LearningActivity
   ) => {
     return axiosPrivate.put(`/learning-activities/${id}`, data)
   }

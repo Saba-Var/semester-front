@@ -1,6 +1,10 @@
 import { useRef, useMemo, useCallback, type DragEvent, useState } from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import { weekdays } from 'CONSTANTS'
+import { emitToast } from 'utils'
 import {
   generateNewTimeStringFromNumber,
   convertStringTimeToNumber,
@@ -10,13 +14,15 @@ import type {
   ActivitiesCollisionsInfo,
   LearningActivity,
   ActivityPartial,
+  Weekday,
+  Semester,
 } from 'types'
 
 const useCalendar = (learningActivitiesData: LearningActivity[]) => {
   const calendarList = useRef<HTMLElement | null>(null)
+  const container = useRef<HTMLElement | null>(null)
   const containerOffset = useRef(null)
   const containerNav = useRef(null)
-  const container = useRef<HTMLElement | null>(null)
 
   const [onActivityCardClickPosition, setOnActivityCardClickPosition] =
     useState({
@@ -24,7 +30,66 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
       y: 0,
     })
 
+  const { updateLearningActivityRequest } = useLearningActivityRequests()
+  const queryClient = useQueryClient()
   const { t } = useTranslation()
+  const { query } = useRouter()
+
+  const { mutate: updateLearningActivityMutation } = useMutation(
+    ({ id, data }: { id: string; data: LearningActivity }) =>
+      updateLearningActivityRequest(id, data),
+    {
+      onMutate: async ({ id, data }) => {
+        await queryClient.cancelQueries(['semesters', query?.id])
+
+        const previousSemester = queryClient.getQueryData<{ data: Semester }>([
+          'semesters',
+          query?.id,
+        ])
+
+        queryClient.setQueryData<{ data: Semester }>(
+          ['semesters', query?.id],
+          (old): { data: Semester } => {
+            if (!old)
+              return {
+                data: {
+                  learningActivities: [],
+                  isCurrentSemester: false,
+                  startDate: '',
+                  endDate: '',
+                  _id: '',
+                  name: '',
+                  user: '',
+                },
+              }
+
+            const currentActivity = old?.data.learningActivities.find(
+              (activity) => activity._id === id
+            )
+
+            if (!currentActivity) return old
+
+            currentActivity.startingTime = data.startingTime
+            currentActivity.endingTime = data.endingTime
+            currentActivity.weekday = data.weekday
+
+            return { data: old.data }
+          }
+        )
+
+        return { previousSemester }
+      },
+
+      onError: (_error, _variables, context) => {
+        queryClient.setQueryData('semesters', context?.previousSemester)
+        emitToast(t('something_went_wrong'), 'error')
+      },
+
+      onSettled: () => {
+        queryClient.invalidateQueries(['semesters', query?.id])
+      },
+    }
+  )
 
   const detectCollisions = useCallback(
     (activities: LearningActivity[]): ActivitiesCollisionsInfo => {
@@ -111,7 +176,7 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
       const weekdayIndex = Math.floor(
         (distanceFromLeft - onActivityCardClickPosition.x / 1.8) / 213
       )
-      const newDay = weekdays[weekdayIndex].value
+      const newDay = weekdays[weekdayIndex]?.value
 
       let newRowPosition = Math.floor(
         (distanceFromTop - onActivityCardClickPosition.y) / 57.2
@@ -145,9 +210,17 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
         'ending'
       )
 
-      console.log(newDay, newStartingTimeString, newEndingTimeString)
+      updateLearningActivityMutation({
+        id: draggedActivity._id,
+        data: {
+          ...draggedActivity,
+          startingTime: newStartingTimeString,
+          endingTime: newEndingTimeString,
+          weekday: newDay as Weekday,
+        },
+      })
     },
-    [onActivityCardClickPosition]
+    [onActivityCardClickPosition, updateLearningActivityMutation]
   )
 
   return {
