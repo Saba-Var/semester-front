@@ -12,6 +12,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   learningActivityCollisions,
   isCurrentSemester,
   activity,
+  form,
 }) => {
   const {
     deleteLearningActivityMutation,
@@ -30,12 +31,12 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     dragActivity,
     rowPosition,
     rowSpan,
-    form,
     t,
   } = useActivityCard(
     setOnActivityCardClickPosition,
     learningActivityCollisions,
-    activity
+    activity,
+    form
   )
 
   return (
@@ -66,12 +67,15 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
       <SlideOver
         title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}
         disabled={isLearningActivityUpdating || !form.formState.isDirty}
+        headerColor={ACTIVITY_COLORS[activity.activityType]?.hover}
         submitHandler={form.handleSubmit(updateActivityHandler)}
         showSubmitButton={isCurrentSemester}
         openFromLeft={openLeftSlideOver}
-        setOpen={setIsInfoModalOpen}
         open={isInfoModalOpen}
-        onClose={form.reset}
+        onClose={() => {
+          form.reset()
+          setIsInfoModalOpen(false)
+        }}
       >
         <LearningActivityForm disableForm={!isCurrentSemester} form={form} />
       </SlideOver>

@@ -2,6 +2,7 @@ import { useRef, useMemo, useCallback, type DragEvent, useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
+import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
@@ -31,6 +32,7 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
     })
 
   const { updateLearningActivityRequest } = useLearningActivityRequests()
+  const slideOverActivityForm = useForm({})
   const queryClient = useQueryClient()
   const { t } = useTranslation()
   const { query } = useRouter()
@@ -73,6 +75,8 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
             currentActivity.endingTime = data.endingTime
             currentActivity.weekday = data.weekday
 
+            slideOverActivityForm.reset(currentActivity)
+
             return { data: old.data }
           }
         )
@@ -80,9 +84,14 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
         return { previousSemester }
       },
 
-      onError: (_error, _variables, context) => {
+      onError: (_error, variables, context) => {
         queryClient.setQueryData('semesters', context?.previousSemester)
         emitToast(t('something_went_wrong'), 'error')
+        slideOverActivityForm.reset(
+          context?.previousSemester?.data.learningActivities.find(
+            (activity) => activity._id === variables.id
+          )
+        )
       },
 
       onSettled: () => {
@@ -226,10 +235,11 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
   return {
     setOnActivityCardClickPosition,
     learningActivityCollisions,
+    slideOverActivityForm,
     containerOffset,
-    calendarList,
     onDropHandler,
     containerNav,
+    calendarList,
     container,
     t,
   }

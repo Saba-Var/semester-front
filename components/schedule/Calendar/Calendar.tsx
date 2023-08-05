@@ -1,4 +1,4 @@
-import { ActivityCard, ActivityList } from './components'
+import { ActivityList } from './components'
 import { CalendarProps } from './types'
 import useCalendar from './useCalendar'
 
@@ -9,6 +9,7 @@ const Calendar: React.FC<CalendarProps> = ({
   const {
     setOnActivityCardClickPosition,
     learningActivityCollisions,
+    slideOverActivityForm,
     containerOffset,
     onDropHandler,
     containerNav,
@@ -248,6 +249,7 @@ const Calendar: React.FC<CalendarProps> = ({
                 <ActivityList
                   learningActivityCollisions={learningActivityCollisions}
                   learningActivitiesData={learningActivitiesData}
+                  slideOverActivityForm={slideOverActivityForm}
                   isCurrentSemester={isCurrentSemester}
                   calendarListRef={calendarList}
                   onDropHandler={onDropHandler}

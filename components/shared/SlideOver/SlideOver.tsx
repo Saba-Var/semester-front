@@ -10,8 +10,8 @@ const SlideOver: React.FC<SlideOverProps> = ({
   openFromLeft = false,
   onClose = () => {},
   disabled = false,
+  headerColor = '',
   children,
-  setOpen,
   title,
   open,
 }) => {
@@ -19,14 +19,7 @@ const SlideOver: React.FC<SlideOverProps> = ({
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as='div'
-        className='relative z-10'
-        onClose={() => {
-          setOpen(false)
-          onClose()
-        }}
-      >
+      <Dialog as='div' className='relative z-10' onClose={onClose}>
         <div />
 
         <div className='overflow-hidden'>
@@ -54,19 +47,24 @@ const SlideOver: React.FC<SlideOverProps> = ({
                 <Dialog.Panel className='pointer-events-auto w-screen max-w-md'>
                   <div className='flex h-full flex-col z-50 divide-y divide-gray-200 bg-white shadow-xl'>
                     <div className='h-0 flex-1 overflow-y-auto'>
-                      <div className='bg-indigo-700 px-4 py-6 sm:px-6'>
+                      <div
+                        style={{
+                          backgroundColor: headerColor,
+                        }}
+                        className='bg-indigo-700 px-4 py-6 sm:px-6'
+                      >
                         <div className='flex items-center justify-between'>
-                          <Dialog.Title className='text-base font-semibold leading-6 text-white'>
+                          <Dialog.Title className='text-base font-semibold leading-6 text-gray-700'>
                             {title}
                           </Dialog.Title>
                           <div className='ml-3 flex h-7 items-center'>
                             <button
                               type='button'
-                              className='rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none'
-                              onClick={() => {
-                                setOpen(false)
-                                onClose()
+                              style={{
+                                backgroundColor: headerColor,
                               }}
+                              className='rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none'
+                              onClick={onClose}
                             >
                               <span className='sr-only'>Close panel</span>
                               <XMarkIcon
@@ -84,10 +82,7 @@ const SlideOver: React.FC<SlideOverProps> = ({
                     <div className='flex flex-shrink-0 justify-end px-4 py-4'>
                       <button
                         className='rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
-                        onClick={() => {
-                          setOpen(false)
-                          onClose()
-                        }}
+                        onClick={onClose}
                         type='button'
                       >
                         {showSubmitButton ? t('cancel') : t('close')}

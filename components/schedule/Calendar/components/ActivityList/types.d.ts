@@ -1,3 +1,4 @@
+import type { UseFormReturn } from 'react-hook-form'
 import type { DragEventHandler } from 'react'
 import type {
   ActivitiesCollisionsInfo,
@@ -9,6 +10,7 @@ export type ActivityListProps = {
   learningActivityCollisions: ActivitiesCollisionsInfo
   onDropHandler: DragEventHandler<HTMLOListElement>
   learningActivitiesData: LearningActivity[]
+  slideOverActivityForm: UseFormReturn
   isCurrentSemester: boolean
   calendarListRef: any
   setOnActivityCardClickPosition: SetState<{

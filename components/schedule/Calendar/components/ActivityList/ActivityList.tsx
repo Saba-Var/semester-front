@@ -5,6 +5,7 @@ const ActivityList: React.FC<ActivityListProps> = ({
   setOnActivityCardClickPosition,
   learningActivityCollisions,
   learningActivitiesData,
+  slideOverActivityForm,
   isCurrentSemester,
   calendarListRef,
   onDropHandler,
@@ -22,6 +23,7 @@ const ActivityList: React.FC<ActivityListProps> = ({
             setOnActivityCardClickPosition={setOnActivityCardClickPosition}
             learningActivityCollisions={learningActivityCollisions}
             isCurrentSemester={isCurrentSemester}
+            form={slideOverActivityForm}
             activity={activity}
             key={activity._id}
             index={i}
