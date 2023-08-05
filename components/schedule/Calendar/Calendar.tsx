@@ -1,4 +1,4 @@
-import { ActivityCard } from './components'
+import { ActivityCard, ActivityList } from './components'
 import { CalendarProps } from './types'
 import useCalendar from './useCalendar'
 
@@ -245,28 +245,16 @@ const Calendar: React.FC<CalendarProps> = ({
                   <div className='col-start-8 row-span-full w-8' />
                 </div>
 
-                {/* Events */}
-                <ol
-                  className='col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:grid-rows-30 sm:pr-8'
-                  onDragOver={(e) => e.preventDefault()}
-                  ref={calendarList as any}
-                  onDrop={onDropHandler}
-                >
-                  {learningActivitiesData?.map((activity, i) => {
-                    return (
-                      <ActivityCard
-                        setOnActivityCardClickPosition={
-                          setOnActivityCardClickPosition
-                        }
-                        learningActivityCollisions={learningActivityCollisions}
-                        isCurrentSemester={isCurrentSemester}
-                        activity={activity}
-                        key={activity._id}
-                        index={i}
-                      />
-                    )
-                  })}
-                </ol>
+                <ActivityList
+                  learningActivityCollisions={learningActivityCollisions}
+                  learningActivitiesData={learningActivitiesData}
+                  isCurrentSemester={isCurrentSemester}
+                  calendarListRef={calendarList}
+                  onDropHandler={onDropHandler}
+                  setOnActivityCardClickPosition={
+                    setOnActivityCardClickPosition
+                  }
+                />
               </div>
             </div>
           </div>
