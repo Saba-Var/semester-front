@@ -12,12 +12,14 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   learningActivityCollisions,
   isCurrentSemester,
   activity,
+  form,
 }) => {
   const {
     deleteLearningActivityMutation,
     isLearningActivityDeleting,
     isLearningActivityUpdating,
     updateActivityHandler,
+    slideOverStateHandler,
     setIsDeleteModalOpen,
     setIsInfoModalOpen,
     onMouseDownCapture,
@@ -30,12 +32,12 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     dragActivity,
     rowPosition,
     rowSpan,
-    form,
     t,
   } = useActivityCard(
     setOnActivityCardClickPosition,
     learningActivityCollisions,
-    activity
+    activity,
+    form
   )
 
   return (
@@ -53,7 +55,10 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         }rem)`,
         marginLeft: `${collisionPosition === 1 ? 0 : collisionPosition}rem`,
       }}
-      onClick={() => setIsInfoModalOpen(true)}
+      onClick={() => {
+        setIsInfoModalOpen(true)
+        slideOverStateHandler()
+      }}
       className={`mt-2 w-[98%] mx-auto relative flex sm:col-start-3 border-[2px] hover:cursor-grab hover:shadow-md border-white transition-all overflow-hidden rounded-lg activityCard ${
         isInfoModalOpen ? 'activityCard-active shadow-md' : ''
       }
@@ -66,12 +71,16 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
       <SlideOver
         title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}
         disabled={isLearningActivityUpdating || !form.formState.isDirty}
+        headerColor={ACTIVITY_COLORS[activity.activityType]?.hover}
         submitHandler={form.handleSubmit(updateActivityHandler)}
         showSubmitButton={isCurrentSemester}
         openFromLeft={openLeftSlideOver}
-        setOpen={setIsInfoModalOpen}
         open={isInfoModalOpen}
-        onClose={form.reset}
+        onClose={() => {
+          form.reset()
+          setIsInfoModalOpen(false)
+          slideOverStateHandler()
+        }}
       >
         <LearningActivityForm disableForm={!isCurrentSemester} form={form} />
       </SlideOver>

@@ -1,3 +1,4 @@
+import type { UseFormReturn } from 'types'
 import type {
   ActivitiesCollisionsInfo,
   LearningActivity,
@@ -9,5 +10,6 @@ export type ActivityCardProps = {
   setOnActivityCardClickPosition: SetState<{ x: number; y: number }>
   isCurrentSemester: boolean
   activity: LearningActivity
+  form: UseFormReturn
   index: number
 }

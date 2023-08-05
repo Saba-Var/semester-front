@@ -1,7 +1,9 @@
+import type { SubmitHandler, UseFormReturn } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
+import { setIsSlideOverOpen } from 'slices'
+import { useDispatch } from 'react-redux'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
 import {
@@ -22,7 +24,8 @@ import type {
 const useActivityCard = (
   setOnActivityCardClickPosition: SetState<{ x: number; y: number }>,
   learningActivityCollisions: ActivitiesCollisionsInfo,
-  activity: LearningActivity
+  activity: LearningActivity,
+  form: UseFormReturn
 ) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [openLeftSlideOver, setOpenLeftSlideOver] = useState(false)
@@ -33,20 +36,16 @@ const useActivityCard = (
 
   const queryClient = useQueryClient()
   const { t } = useTranslation('')
+  const dispatch = useDispatch()
 
-  const form = useForm({
-    defaultValues: activity as unknown as LearningActivityFormData,
-  })
-
-  useEffect(() => {
-    const slideOverTimeout = setTimeout(() => {
-      setOpenLeftSlideOver(
-        activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
-      )
-    }, 800)
-
-    return () => clearTimeout(slideOverTimeout)
-  }, [activity.weekday])
+  const slideOverStateHandler = () => {
+    dispatch(
+      setIsSlideOverOpen({
+        identifier: activity._id,
+        isSlideOverOpen: true,
+      })
+    )
+  }
 
   const startingHour = +activity.startingTime.split(':')[0]
   const startingHourMinute = +activity.startingTime.split(':')[1]
@@ -65,6 +64,26 @@ const useActivityCard = (
     (!endingHourMinute ? 2 : 1) -
     (startingHourMinute && endingHourMinute ? 1 : 0) -
     (startingHourMinute && !endingHourMinute ? 1 : 0)
+
+  useEffect(() => {
+    const slideOverTimeout = setTimeout(() => {
+      setOpenLeftSlideOver(
+        activity.weekday === 'Saturday' || activity.weekday === 'Sunday'
+      )
+    }, 800)
+
+    return () => clearTimeout(slideOverTimeout)
+  }, [activity])
+
+  useEffect(() => {
+    const formTimeout = setTimeout(() => {
+      if (isInfoModalOpen) {
+        form.reset(activity)
+      }
+    }, 300)
+
+    return () => clearTimeout(formTimeout)
+  }, [activity, form, isInfoModalOpen])
 
   const getCurrentActivityCollisionIndex = useCallback(() => {
     const collisionsInTheCurrentDay =
@@ -150,6 +169,7 @@ const useActivityCard = (
     deleteLearningActivityMutation,
     isLearningActivityUpdating,
     isLearningActivityDeleting,
+    slideOverStateHandler,
     updateActivityHandler,
     setIsDeleteModalOpen,
     onMouseDownCapture,
@@ -163,7 +183,6 @@ const useActivityCard = (
     dragActivity,
     rowPosition,
     rowSpan,
-    form,
     t,
   }
 }
