@@ -1,9 +1,15 @@
-import { authSliceReducer, userSliceReducer, sidebarSliceReducer } from 'slices'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import {
+  sidebarSliceReducer,
+  authSliceReducer,
+  userSliceReducer,
+  slideOverReducer,
+} from 'slices'
 
 const reducer = combineReducers({
   authentication: authSliceReducer,
   sidebar: sidebarSliceReducer,
+  slideOver: slideOverReducer,
   user: userSliceReducer,
 })
 

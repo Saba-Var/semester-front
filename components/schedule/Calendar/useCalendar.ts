@@ -3,7 +3,9 @@ import { useMutation, useQueryClient } from 'react-query'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
 import { useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
+import type { RootState } from 'store'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
 import {
@@ -36,6 +38,8 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
   const queryClient = useQueryClient()
   const { t } = useTranslation()
   const { query } = useRouter()
+
+  const activitySlideOver = useSelector((state: RootState) => state.slideOver)
 
   const { mutate: updateLearningActivityMutation } = useMutation(
     ({ id, data }: { id: string; data: LearningActivity }) =>
@@ -75,7 +79,9 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
             currentActivity.endingTime = data.endingTime
             currentActivity.weekday = data.weekday
 
-            slideOverActivityForm.reset(currentActivity)
+            if (activitySlideOver.identifier === currentActivity._id) {
+              slideOverActivityForm.reset(currentActivity)
+            }
 
             return { data: old.data }
           }

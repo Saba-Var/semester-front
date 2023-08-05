@@ -2,6 +2,8 @@ import type { SubmitHandler, UseFormReturn } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { useLearningActivityRequests } from 'services'
 import { useTranslation } from 'next-i18next'
+import { setIsSlideOverOpen } from 'slices'
+import { useDispatch } from 'react-redux'
 import { weekdays } from 'CONSTANTS'
 import { emitToast } from 'utils'
 import {
@@ -34,6 +36,16 @@ const useActivityCard = (
 
   const queryClient = useQueryClient()
   const { t } = useTranslation('')
+  const dispatch = useDispatch()
+
+  const slideOverStateHandler = () => {
+    dispatch(
+      setIsSlideOverOpen({
+        identifier: activity._id,
+        isSlideOverOpen: true,
+      })
+    )
+  }
 
   const startingHour = +activity.startingTime.split(':')[0]
   const startingHourMinute = +activity.startingTime.split(':')[1]
@@ -157,6 +169,7 @@ const useActivityCard = (
     deleteLearningActivityMutation,
     isLearningActivityUpdating,
     isLearningActivityDeleting,
+    slideOverStateHandler,
     updateActivityHandler,
     setIsDeleteModalOpen,
     onMouseDownCapture,
@@ -170,7 +183,6 @@ const useActivityCard = (
     dragActivity,
     rowPosition,
     rowSpan,
-    form,
     t,
   }
 }
