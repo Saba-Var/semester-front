@@ -1,6 +1,7 @@
 export * from './generateNewTimeStringFromNumber'
 export * from './convertStringTimeToNumber'
 export * from './timeStringToMinutes'
+export * from './longDateFormat'
 export * from './requestsExceed'
 export * from './classNames'
 export * from './getLayout'

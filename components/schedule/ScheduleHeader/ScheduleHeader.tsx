@@ -1,11 +1,13 @@
 import { ScheduleHeaderProps } from './types'
 import { useTranslation } from 'next-i18next'
 import { AddEventForm } from './components'
+import { longDateFormat } from 'utils'
 
 const ScheduleHeader: React.FC<ScheduleHeaderProps> = ({
   isCurrentSemester,
   semesterName,
   endingDate,
+  startDate,
 }) => {
   const { t } = useTranslation('')
 
@@ -15,29 +17,21 @@ const ScheduleHeader: React.FC<ScheduleHeaderProps> = ({
         {t('semester')}: <span className='!text-gray-900'>{semesterName}</span>
       </h2>
 
-      {!isCurrentSemester && (
+      <div>
         <div className='text-sm text-gray-500'>
-          {t('end_date')}:{' '}
-          <time dateTime={endingDate!}>
-            {new Date(endingDate!).toLocaleDateString('en-US', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric',
-            })}
-          </time>
-        </div>
-      )}
-
-      <div className='flex items-center'>
-        <div className='relative flex items-center rounded-md bg-white shadow-sm md:items-stretch'>
-          <div
-            className='pointer-events-none absolute inset-0 rounded-md ring-1 ring-inset ring-gray-300'
-            aria-hidden='true'
-          />
+          {t('start_date')}:{' '}
+          <time dateTime={startDate}>{longDateFormat(startDate)}</time>
         </div>
 
-        {isCurrentSemester && <AddEventForm />}
+        {endingDate && (
+          <div className='text-sm text-gray-500'>
+            {t('end_date')}:{' '}
+            <time dateTime={endingDate!}>{longDateFormat(endingDate)}</time>
+          </div>
+        )}
       </div>
+
+      {isCurrentSemester && <AddEventForm />}
     </header>
   )
 }
