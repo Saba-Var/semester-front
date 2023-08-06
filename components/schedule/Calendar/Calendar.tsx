@@ -16,7 +16,7 @@ const Calendar: React.FC<CalendarProps> = ({
     calendarList,
     container,
     t,
-  } = useCalendar(learningActivitiesData)
+  } = useCalendar(learningActivitiesData, isCurrentSemester)
 
   return (
     <div className='w-full mx-auto h-[78vh]'>
