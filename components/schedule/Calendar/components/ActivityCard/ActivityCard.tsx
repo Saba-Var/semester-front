@@ -59,14 +59,14 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         setIsInfoModalOpen(true)
         slideOverStateHandler()
       }}
-      className={`mt-2 w-[98%] mx-auto relative flex sm:col-start-3 border-[2px] hover:cursor-grab hover:shadow-md border-white transition-all overflow-hidden rounded-lg activityCard ${
+      className={`mt-2 w-[98%] mx-auto relative flex sm:col-start-3 border-[2px] hover:shadow-md border-white transition-all overflow-hidden rounded-lg activityCard ${
         isInfoModalOpen ? 'activityCard-active shadow-md' : ''
-      }
+      } ${isCurrentSemester ? 'cursor-grab' : 'cursor-pointer'}
     `}
       onMouseDownCapture={onMouseDownCapture}
+      draggable={isCurrentSemester}
       onDragEnd={endDragActivity}
       onDragStart={dragActivity}
-      draggable
     >
       <SlideOver
         title={`${activity.subjectName}, ${activity.startingTime}-${activity.endingTime}`}

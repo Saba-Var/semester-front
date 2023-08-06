@@ -15,6 +15,7 @@ const Schedule: NextPageWithSidebarLayout = () => {
         <>
           <ScheduleHeader
             isCurrentSemester={semester.isCurrentSemester}
+            startDate={semester.startDate}
             endingDate={semester.endDate}
             semesterName={semester.name}
           />

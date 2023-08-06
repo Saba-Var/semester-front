@@ -13,9 +13,9 @@ const AddEventForm = () => {
   } = useAddEventForm()
 
   return (
-    <main className='md:ml-4 md:flex md:items-center'>
+    <>
       <button
-        className='ml-6 rounded-md items-center justify-center flex gap-1 bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+        className='rounded-md items-center justify-center flex gap-1 bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
         onClick={() => setOpenEventForm(true)}
         type='button'
       >
@@ -34,7 +34,7 @@ const AddEventForm = () => {
       >
         <LearningActivityForm form={form} />
       </ModalWrapper>
-    </main>
+    </>
   )
 }
 

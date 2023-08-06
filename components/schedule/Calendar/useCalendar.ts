@@ -21,7 +21,10 @@ import type {
   Semester,
 } from 'types'
 
-const useCalendar = (learningActivitiesData: LearningActivity[]) => {
+const useCalendar = (
+  learningActivitiesData: LearningActivity[],
+  isCurrentSemester: boolean
+) => {
   const calendarList = useRef<HTMLElement | null>(null)
   const container = useRef<HTMLElement | null>(null)
   const containerOffset = useRef(null)
@@ -176,66 +179,72 @@ const useCalendar = (learningActivitiesData: LearningActivity[]) => {
     (event: DragEvent<HTMLElement>) => {
       event.preventDefault()
 
-      const scrollLeft = container?.current?.scrollLeft || 0
-      const scrollTop = container?.current?.scrollTop || 0
+      if (isCurrentSemester) {
+        const scrollLeft = container?.current?.scrollLeft || 0
+        const scrollTop = container?.current?.scrollTop || 0
 
-      let x = event.clientX - 168
-      let y = event.clientY - 185
+        let x = event.clientX - 168
+        let y = event.clientY - 185
 
-      if (y < 0) y = 0
-      if (x < 0) x = 0
+        if (y < 0) y = 0
+        if (x < 0) x = 0
 
-      const distanceFromLeft = x + scrollLeft
-      const distanceFromTop = y + scrollTop
+        const distanceFromLeft = x + scrollLeft
+        const distanceFromTop = y + scrollTop
 
-      const weekdayIndex = Math.floor(
-        (distanceFromLeft - onActivityCardClickPosition.x / 1.8) / 213
-      )
-      const newDay = weekdays[weekdayIndex]?.value
+        const weekdayIndex = Math.floor(
+          (distanceFromLeft - onActivityCardClickPosition.x / 1.8) / 213
+        )
+        const newDay = weekdays[weekdayIndex]?.value
 
-      let newRowPosition = Math.floor(
-        (distanceFromTop - onActivityCardClickPosition.y) / 57.2
-      )
+        let newRowPosition = Math.floor(
+          (distanceFromTop - onActivityCardClickPosition.y) / 57.2
+        )
 
-      let newStartingTime = 9 + newRowPosition / 2
-      if (newStartingTime < 9) newStartingTime = 9
+        let newStartingTime = 9 + newRowPosition / 2
+        if (newStartingTime < 9) newStartingTime = 9
 
-      let newStartingTimeString = generateNewTimeStringFromNumber(
-        newStartingTime,
-        'starting'
-      )
+        let newStartingTimeString = generateNewTimeStringFromNumber(
+          newStartingTime,
+          'starting'
+        )
 
-      const draggedActivity: LearningActivity = JSON.parse(
-        event.dataTransfer.getData('activity')
-      )
-      const oldEndingTime = convertStringTimeToNumber(
-        draggedActivity.endingTime
-      )
-      const oldStartingTime = convertStringTimeToNumber(
-        draggedActivity.startingTime
-      )
+        const draggedActivity: LearningActivity = JSON.parse(
+          event.dataTransfer.getData('activity')
+        )
+        const oldEndingTime = convertStringTimeToNumber(
+          draggedActivity.endingTime
+        )
+        const oldStartingTime = convertStringTimeToNumber(
+          draggedActivity.startingTime
+        )
 
-      const differenceBetweenOldTimes = oldEndingTime - oldStartingTime
+        const differenceBetweenOldTimes = oldEndingTime - oldStartingTime
 
-      let newEndingTime = newStartingTime + differenceBetweenOldTimes
-      if (newEndingTime > 23.5) newEndingTime = 23.5
+        let newEndingTime = newStartingTime + differenceBetweenOldTimes
+        if (newEndingTime > 23.5) newEndingTime = 23.5
 
-      let newEndingTimeString = generateNewTimeStringFromNumber(
-        newEndingTime,
-        'ending'
-      )
+        let newEndingTimeString = generateNewTimeStringFromNumber(
+          newEndingTime,
+          'ending'
+        )
 
-      updateLearningActivityMutation({
-        id: draggedActivity._id,
-        data: {
-          ...draggedActivity,
-          startingTime: newStartingTimeString,
-          endingTime: newEndingTimeString,
-          weekday: newDay as Weekday,
-        },
-      })
+        updateLearningActivityMutation({
+          id: draggedActivity._id,
+          data: {
+            ...draggedActivity,
+            startingTime: newStartingTimeString,
+            endingTime: newEndingTimeString,
+            weekday: newDay as Weekday,
+          },
+        })
+      }
     },
-    [onActivityCardClickPosition, updateLearningActivityMutation]
+    [
+      updateLearningActivityMutation,
+      onActivityCardClickPosition,
+      isCurrentSemester,
+    ]
   )
 
   return {
