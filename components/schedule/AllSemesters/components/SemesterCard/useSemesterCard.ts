@@ -23,9 +23,10 @@ const useSemesterCard = (semester: Semester) => {
     }
   )
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return {
+    language: i18n.language,
     deleteSemesterMutation,
     setShowDeleteModal,
     showDeleteModal,

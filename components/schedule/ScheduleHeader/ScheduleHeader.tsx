@@ -9,7 +9,7 @@ const ScheduleHeader: React.FC<ScheduleHeaderProps> = ({
   endingDate,
   startDate,
 }) => {
-  const { t } = useTranslation('')
+  const { t, i18n } = useTranslation('')
 
   return (
     <header className='flex flex-none items-center justify-between border-gray-200 pb-4'>
@@ -20,13 +20,17 @@ const ScheduleHeader: React.FC<ScheduleHeaderProps> = ({
       <div>
         <div className='text-sm text-gray-500'>
           {t('start_date')}:{' '}
-          <time dateTime={startDate}>{longDateFormat(startDate)}</time>
+          <time dateTime={startDate}>
+            {longDateFormat(startDate, i18n.language)}
+          </time>
         </div>
 
         {endingDate && (
           <div className='text-sm text-gray-500'>
             {t('end_date')}:{' '}
-            <time dateTime={endingDate!}>{longDateFormat(endingDate)}</time>
+            <time dateTime={endingDate!}>
+              {longDateFormat(endingDate, i18n.language)}
+            </time>
           </div>
         )}
       </div>

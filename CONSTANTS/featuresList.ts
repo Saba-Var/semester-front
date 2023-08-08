@@ -42,4 +42,4 @@ export const featuresList = [
       'აპლიკაციის დიზაინი სრულად არის მორგებული ნებისმიერი სახის მოწყობილობისთვის',
     icon: DevicePhoneMobileIcon,
   },
-]
+] as const

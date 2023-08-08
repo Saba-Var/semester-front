@@ -55,4 +55,4 @@ export const userNavigation = [
     },
     href: '/overview',
   },
-]
+] as const

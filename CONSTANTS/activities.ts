@@ -45,4 +45,4 @@ export const ACTIVITY_COLORS = {
     default: '#e2e8f0',
     hover: '#cbd5e1',
   },
-}
+} as const

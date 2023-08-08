@@ -3,6 +3,7 @@ import { DeleteButtonAndModal } from 'components'
 import useSemesterCard from './useSemesterCard'
 import { SemesterMenu } from './components'
 import { SemesterCardProps } from './types'
+import { longDateFormat } from 'utils'
 import Link from 'next/link'
 
 const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
@@ -11,6 +12,7 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
     setShowDeleteModal,
     showDeleteModal,
     isDeleting,
+    language,
     t,
   } = useSemesterCard(semester)
 
@@ -29,11 +31,7 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
           <div className='text-gray-500'>{t('start_date')}</div>
           <dd className='text-gray-700'>
             <time dateTime={semester.startDate}>
-              {new Date(semester.startDate).toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-              })}
+              {longDateFormat(semester.startDate, language)}
             </time>
           </dd>
         </div>
@@ -43,11 +41,7 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
             <div className='text-gray-500'>{t('end_date')}</div>
             <div className='text-gray-700'>
               <time dateTime={semester.endDate}>
-                {new Date(semester.endDate).toLocaleDateString('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
+                {longDateFormat(semester.endDate, language)}
               </time>
             </div>
           </div>
