@@ -27,4 +27,4 @@ export const weekdays = [
     value: 'Sunday',
     title: 'sun',
   },
-]
+] as const

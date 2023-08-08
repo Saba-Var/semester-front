@@ -11,4 +11,4 @@ export const languagesList = [
     locale: 'en',
     image: britainFlag,
   },
-]
+] as const
