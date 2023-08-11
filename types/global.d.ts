@@ -132,3 +132,11 @@ export interface LearningActivity extends LearningActivityFormData {
 }
 
 export type ActivitiesCollisionsInfo = { [day: string]: string[][] }
+
+export type ButtonProps = {
+  children?: JSX.Element
+  onClick?: () => void
+  disabled?: boolean
+  styles?: string
+  title?: string
+}
