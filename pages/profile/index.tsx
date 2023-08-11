@@ -1,13 +1,13 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { NextPageWithSidebarLayout } from 'types'
 import type { GetStaticProps } from 'next'
-import { UserAvatar } from 'components'
+import { Avatar } from 'components'
 import { getLayout } from 'utils'
 
 const Dashboard: NextPageWithSidebarLayout = () => {
   return (
     <>
-      <UserAvatar />
+      <Avatar src='' />
     </>
   )
 }
