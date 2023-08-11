@@ -1,4 +1,4 @@
 export type LoginResponseData = {
   accessToken: string
-  id: string
+  _id: string
 }

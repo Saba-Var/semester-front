@@ -90,7 +90,10 @@ export interface User {
   password?: string
   username: string
   active: boolean
-  image?: string
+  image?: {
+    url: string
+    type: 'dicebear' | 'upload'
+  } | null
   email: string
   _id: string
 }

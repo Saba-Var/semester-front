@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dicebear/collection": "^6.0.4",
+    "@dicebear/core": "^6.0.4",
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^2.0.11",
     "@hookform/error-message": "^2.0.1",

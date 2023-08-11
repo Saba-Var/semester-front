@@ -35,7 +35,7 @@ export const useLogInForm = () => {
 
         const { rememberMe } = variables
 
-        Cookies.set('id', response?.data?.id, {
+        Cookies.set('_id', response?.data?._id, {
           expires: rememberMe ? 30 : undefined,
           sameSite: 'Strict',
           secure: true,

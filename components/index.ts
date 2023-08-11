@@ -1,6 +1,7 @@
 export * from './reset-password'
 export * from './error-boundary'
 export * from './schedule'
+export * from './profile'
 export * from './sign-up'
 export * from './shared'
 export * from './log-In'

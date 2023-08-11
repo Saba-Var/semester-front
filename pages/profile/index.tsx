@@ -1,13 +1,15 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { NextPageWithSidebarLayout } from 'types'
-import { useTranslation } from 'next-i18next'
 import type { GetStaticProps } from 'next'
+import { UserAvatar } from 'components'
 import { getLayout } from 'utils'
 
 const Dashboard: NextPageWithSidebarLayout = () => {
-  const { t } = useTranslation()
-
-  return <>{t('dashboard')}</>
+  return (
+    <>
+      <UserAvatar />
+    </>
+  )
 }
 
 Dashboard.getLayout = getLayout

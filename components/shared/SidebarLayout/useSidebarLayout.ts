@@ -24,7 +24,7 @@ export const useSidebarLayout = () => {
   const router = useRouter()
 
   const lang = (Cookies.get('language') || 'ka') as 'ka' | 'en'
-  const userId = Cookies.get('id')
+  const userId = Cookies.get('_id')
 
   useEffect(() => {
     if (!userId) {
@@ -45,7 +45,7 @@ export const useSidebarLayout = () => {
 
   const { mutate: logoutMutation } = useMutation(logout, {
     onSuccess: () => {
-      Cookies.remove('id')
+      Cookies.remove('_id')
       router.push('/overview')
     },
   })
