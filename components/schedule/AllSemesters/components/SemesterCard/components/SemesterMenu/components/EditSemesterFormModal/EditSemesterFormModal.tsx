@@ -27,7 +27,6 @@ const EditSemesterFormModal: React.FC<EditSemesterFormModalProps> = ({
       disabled={isSemesterUpdating || !form.formState.isDirty}
       submitHandler={form.handleSubmit(submitHandler)}
       title={useTranslate('schedule:edit_semester')}
-      setOpen={setShowSemesterEditModal}
       submitText={useTranslate('save')}
       open={showSemesterEditModal}
     >

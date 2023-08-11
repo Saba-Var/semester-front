@@ -42,8 +42,10 @@ export const CreateSemesterForm = () => {
         title={t('schedule:create_new_semester')}
         submitHandler={handleSubmit(submitHandler)}
         disabled={isSemesterCreating}
-        setOpen={setShowFormModal}
-        closeHandler={resetForm}
+        closeHandler={() => {
+          resetForm()
+          setShowFormModal(false)
+        }}
         open={showFormModal}
       >
         <FormProvider {...form}>

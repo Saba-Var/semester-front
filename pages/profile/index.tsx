@@ -6,9 +6,9 @@ import { getLayout } from 'utils'
 
 const Dashboard: NextPageWithSidebarLayout = () => {
   return (
-    <>
+    <div className='mt-10'>
       <UserAvatarSection />
-    </>
+    </div>
   )
 }
 

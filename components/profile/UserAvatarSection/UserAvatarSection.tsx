@@ -1,14 +1,28 @@
 import useUserAvatarSection from './useUserAvatarSection'
-import { Avatar, SecondaryButton } from 'components'
+import { Avatar, CustomButton, ModalWrapper } from 'components'
 
 const UserAvatarSection = () => {
-  const { avatarSrc } = useUserAvatarSection()
+  const { avatarSrc, isAvatarModalOpen, setIsAvatarModalOpen, t } =
+    useUserAvatarSection()
 
   return (
     <div className='flex justify-center'>
       <Avatar src={avatarSrc}>
-        <SecondaryButton title='change text' />
+        <CustomButton
+          onClick={() => setIsAvatarModalOpen(true)}
+          title={t('change_avatar')}
+          type='soft-btn'
+        />
       </Avatar>
+
+      <ModalWrapper
+        closeHandler={() => setIsAvatarModalOpen(false)}
+        title={t('change_avatar')}
+        open={isAvatarModalOpen}
+        submitHandler={() => {}}
+      >
+        <div>Hello</div>
+      </ModalWrapper>
     </div>
   )
 }

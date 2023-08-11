@@ -29,7 +29,6 @@ const SemesterMenu: React.FC<SemesterMenuProps> = ({ semester }) => {
         }}
         disabled={isSemesterEnding || !form.formState.isDirty}
         title={t('schedule:end_current_semester')}
-        setOpen={setShowEndSemesterModal}
         submitText={t('end_semester')}
         submitHandler={submitHandler}
         open={showEndSemesterModal}

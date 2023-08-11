@@ -10,7 +10,6 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
   submitHandler,
   submitText,
   children,
-  setOpen,
   title,
   open,
   type,
@@ -24,10 +23,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
         as='div'
         className='relative z-10'
         initialFocus={cancelButtonRef}
-        onClose={() => {
-          setOpen(false)
-          closeHandler()
-        }}
+        onClose={closeHandler}
       >
         <Transition.Child
           as={Fragment}
@@ -57,10 +53,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
                   <button
                     type='button'
                     className='rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                    onClick={() => {
-                      setOpen(false)
-                      closeHandler()
-                    }}
+                    onClick={closeHandler}
                   >
                     <span className='sr-only'>Close</span>
                     <XMarkIcon className='h-6 w-6' aria-hidden='true' />
@@ -96,10 +89,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
                     <button
                       type='button'
                       className='mt-3 outline-none inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0'
-                      onClick={() => {
-                        setOpen(false)
-                        closeHandler()
-                      }}
+                      onClick={closeHandler}
                       ref={cancelButtonRef}
                     >
                       {t('cancel')}
