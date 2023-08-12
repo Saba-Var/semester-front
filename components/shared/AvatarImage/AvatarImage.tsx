@@ -2,7 +2,7 @@ import { blurredBackground } from 'public'
 import type { AvatarProps } from './types'
 import Image from 'next/image'
 
-const Avatar: React.FC<AvatarProps> = ({
+const AvatarImage: React.FC<AvatarProps> = ({
   containerStyles,
   sharedStyles,
   avatarStyles,
@@ -18,7 +18,7 @@ const Avatar: React.FC<AvatarProps> = ({
         <div
           className={`w-32 h-32 relative pointer-events-none ${avatarStyles} ${sharedStyles}`}
         >
-          <Image src={src} alt='user avatar' layout='fill' />
+          <Image src={src} alt='user AvatarImage' layout='fill' />
         </div>
       ) : (
         <div
@@ -34,4 +34,4 @@ const Avatar: React.FC<AvatarProps> = ({
   )
 }
 
-export default Avatar
+export default AvatarImage

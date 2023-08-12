@@ -45,5 +45,7 @@
   "expand": "Expand",
   "collapse": "Collapse",
   "something_went_wrong": "Something went wrong!",
-  "change_avatar": "Change avatar"
+  "change_avatar": "Change avatar",
+  "update": "Update",
+  "change": "Change"
 }
