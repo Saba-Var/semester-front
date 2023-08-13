@@ -46,7 +46,7 @@ const useChangeAvatarModal = () => {
         propertyName: key,
         values:
           typeof properties.default === 'number'
-            ? [properties.default, properties.minimum, properties.maximum]
+            ? [properties.minimum, properties.maximum]
             : properties.default,
       })
 
@@ -65,16 +65,32 @@ const useChangeAvatarModal = () => {
     ]
   }, [activeTab, avatarStyle])
 
+  const formValues = form.watch()
+
+  const selectedProperties = useMemo(() => {
+    const properties = {}
+
+    for (const key in formValues) {
+      if (key !== 'style') {
+        properties[key] = [formValues[key]]
+      }
+    }
+
+    return properties
+  }, [formValues])
+
   const previewAvatarSrc: string = useMemo(() => {
     return createAvatar(selectedCollection.collection, {
       size: 128,
       seed: user.username,
+      ...selectedProperties,
     }).toDataUriSync()
-  }, [selectedCollection, user.username])
+  }, [selectedCollection.collection, selectedProperties, user.username])
 
   return {
     selectedTabPropertiesList,
     availablePropertyNames,
+    selectedProperties,
     selectedCollection,
     previewAvatarSrc,
     propertiesList,

@@ -11,6 +11,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
   const {
     selectedTabPropertiesList,
     availablePropertyNames,
+    selectedProperties,
     selectedCollection,
     previewAvatarSrc,
     propertiesList,
@@ -25,9 +26,9 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
   return (
     <ModalWrapper
       closeHandler={() => {
-        form.reset()
         setActiveTab('style')
         closeHandler()
+        form.reset()
       }}
       title={t('change_avatar')}
       submitHandler={form.handleSubmit((data) => {
@@ -38,8 +39,12 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
       containerClassName='!mt-0'
     >
       <>
-        <div className='flex relative justify-center mb-3'>
-          <img alt='avatar' className='w-1/3' src={user.image?.url} />
+        <div className='flex relative justify-center mb-3 mt-2'>
+          <img
+            className='w-1/3 rounded-xl'
+            src={previewAvatarSrc}
+            alt='avatar'
+          />
         </div>
 
         <div className='mb-3 h-12'>
@@ -53,7 +58,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
         <FormProvider {...form}>
           <form
-            className={`py-4 max-h-[25rem] grid grid-cols-5 gap-3 overflow-y-auto pl-1 pr-4 ${
+            className={`py-4 min-h-[25rem] max-h-[26rem] items-start grid grid-cols-5 gap-3 overflow-y-auto pl-1 pr-4 ${
               avatarCollection.length > 4 && ''
             }`}
           >
@@ -62,10 +67,10 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
                   return (
                     <AvatarItem
                       collectionItem={collectionItem}
+                      properties={selectedProperties}
                       value={collectionItem.title}
                       key={collectionItem.title}
                       fieldName={'style'}
-                      properties={{}}
                       form={form}
                       user={user}
                     />
@@ -73,17 +78,18 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
                 })
               : selectedTabPropertiesList?.map((propertyValue, i) => {
                   return (
-                    <div key={`${propertyValue}-${i}`}>
-                      <AvatarItem
-                        properties={{ [activeTab]: [propertyValue] }}
-                        collectionItem={selectedCollection}
-                        value={propertyValue}
-                        fieldName={activeTab}
-                        form={form}
-                        user={user}
-                      />
-                      {propertyValue}
-                    </div>
+                    <AvatarItem
+                      key={`${propertyValue}-${i}`}
+                      properties={{
+                        [activeTab]: [propertyValue],
+                        ...selectedProperties,
+                      }}
+                      collectionItem={selectedCollection}
+                      value={propertyValue}
+                      fieldName={activeTab}
+                      form={form}
+                      user={user}
+                    />
                   )
                 })}
           </form>

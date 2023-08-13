@@ -1,26 +1,38 @@
-import { UseFormReturn, useWatch } from 'react-hook-form'
 import { createAvatar } from '@dicebear/core'
+import { useWatch } from 'react-hook-form'
+import { AvatarItemProps } from './types'
 import { useMemo } from 'react'
-import { User } from 'types'
 
-const useAvatarItem = (
-  collectionItem: { title: string; collection: string },
-  user: User,
-  name: string,
-  form: UseFormReturn<{ style: string }>,
-  properties: object
-) => {
+const useAvatarItem = ({
+  collectionItem,
+  properties,
+  fieldName,
+  value,
+  user,
+  form,
+}: AvatarItemProps) => {
   const avatarSrc: string = useMemo(() => {
-    return createAvatar(collectionItem.collection as any, {
+    const baseOptions = {
       size: 128,
       seed: user.username,
+    }
+
+    const options = {
+      ...baseOptions,
       ...properties,
-    }).toDataUriSync()
-  }, [collectionItem.collection, properties, user.username])
+      [fieldName]: [value],
+    }
+    console.log(fieldName === 'styles' ? baseOptions : options)
+
+    return createAvatar(
+      collectionItem.collection as any,
+      fieldName === 'styles' ? baseOptions : options
+    ).toDataUriSync()
+  }, [collectionItem.collection, fieldName, properties, user.username, value])
 
   const currentFieldValue = useWatch({
     control: form.control,
-    name: name,
+    name: fieldName,
   })
 
   return { avatarSrc, currentFieldValue }

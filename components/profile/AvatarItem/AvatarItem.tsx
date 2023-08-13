@@ -10,17 +10,21 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
   user,
   form,
 }) => {
-  const { avatarSrc, currentFieldValue } = useAvatarItem(
+  const { avatarSrc, currentFieldValue } = useAvatarItem({
     collectionItem,
-    user,
+    properties,
     fieldName,
+    value,
+    user,
     form,
-    properties
-  )
+  })
 
   return (
     <div
       onClick={() => {
+        if (fieldName === 'style') {
+          form.reset()
+        }
         form.setValue(fieldName, value)
       }}
       className={`text-sm select-none cursor-pointer border-transparent font-medium justify-center flex items-center leading-6 text-gray-900`}
@@ -38,6 +42,7 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
           height={100}
           width={100}
         />
+        d
       </div>
     </div>
   )
