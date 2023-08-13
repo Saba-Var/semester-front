@@ -1,8 +1,9 @@
-import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useForm, type SubmitHandler, useWatch } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
+import { avatarCollection } from 'CONSTANTS'
 import { useSelector } from 'react-redux'
+import { useMemo, useState } from 'react'
 import { RootState } from 'store'
-import { useState } from 'react'
 
 const useChangeAvatarModal = () => {
   const { t } = useTranslation()
@@ -18,9 +19,48 @@ const useChangeAvatarModal = () => {
     mode: 'onTouched',
   })
 
-  console.log(user.image?.collectionName)
+  const avatarStyle = useWatch({
+    control: form.control,
+    name: 'style',
+  })
 
-  return { t, user, activeTab, setActiveTab, form }
+  const [selectedCollection, propertiesList, availablePropertyNames] =
+    useMemo((): any => {
+      const collection = avatarCollection.find(
+        (item) => item.title === avatarStyle
+      )?.collection
+
+      const selectedCollectionProperties = collection?.schema?.properties as any
+
+      const propertiesList = []
+      const availablePropertyNames = []
+
+      for (const key in selectedCollectionProperties) {
+        const properties = selectedCollectionProperties[key]
+
+        propertiesList.push({
+          collectionName: key,
+          properties:
+            typeof properties.default === 'number'
+              ? [properties.default, properties.minimum, properties.maximum]
+              : properties.default,
+        })
+
+        availablePropertyNames.push(t(`profile:${key}`))
+      }
+
+      return [collection, propertiesList, availablePropertyNames]
+    }, [avatarStyle, t])
+
+  return {
+    availablePropertyNames,
+    setActiveTab,
+    avatarStyle,
+    activeTab,
+    user,
+    form,
+    t,
+  }
 }
 
 export default useChangeAvatarModal
