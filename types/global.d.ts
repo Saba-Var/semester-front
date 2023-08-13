@@ -93,6 +93,7 @@ export interface User {
   image?: {
     url: string
     type: 'dicebear' | 'upload'
+    collectionName: string
   } | null
   email: string
   _id: string
