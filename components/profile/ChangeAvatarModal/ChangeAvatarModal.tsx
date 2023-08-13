@@ -1,14 +1,14 @@
 import useChangeAvatarModal from './useChangeAvatarModal'
-import * as collection from '@dicebear/collection'
 import { ChangeAvatarModalProps } from './types'
 import { createAvatar } from '@dicebear/core'
+import { avatarCollection } from 'CONSTANTS'
 import { ModalWrapper } from 'components'
 
 const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
   closeHandler,
   isOpen,
 }) => {
-  const { t } = useChangeAvatarModal()
+  const { user, t } = useChangeAvatarModal()
 
   return (
     <ModalWrapper
@@ -19,18 +19,19 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
       open={isOpen}
     >
       <div className='flex gap-2 flex-wrap'>
-        {Object.keys(collection).map((key) => {
-          const avatar = createAvatar(collection[key], {
+        {avatarCollection.map((collectionItem) => {
+          const avatar = createAvatar(collectionItem.collection as any, {
             size: 128,
+            seed: user.username,
           }).toDataUriSync()
 
           return (
             <img
-              key={key}
-              width={100}
+              key={collectionItem.title}
+              alt={collectionItem.title}
               height={100}
               src={avatar}
-              alt={`Avatar ${key}`}
+              width={100}
             />
           )
         })}

@@ -1,3 +1,4 @@
+export * from './avatarCollection'
 export * from './languagesList'
 export * from './featuresList'
 export * from './navigation'
