@@ -1,20 +1,22 @@
+import { ModalWrapper, TabsInPills, AvatarItem } from 'components'
 import useChangeAvatarModal from './useChangeAvatarModal'
-import { ModalWrapper, TabsInPills } from 'components'
 import { ChangeAvatarModalProps } from './types'
-import { createAvatar } from '@dicebear/core'
+import { FormProvider } from 'react-hook-form'
 import { avatarCollection } from 'CONSTANTS'
 
 const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
   closeHandler,
   isOpen,
 }) => {
-  const { user, t, activeTab, setActiveTab } = useChangeAvatarModal()
+  const { user, t, activeTab, setActiveTab, form } = useChangeAvatarModal()
 
   return (
     <ModalWrapper
       closeHandler={closeHandler}
       title={t('change_avatar')}
-      submitHandler={() => {}}
+      submitHandler={form.handleSubmit((data) => {
+        console.log(data)
+      })}
       submitText={t('change')}
       open={isOpen}
     >
@@ -31,27 +33,20 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
           />
         </div>
 
-        <div className='flex gap-2 flex-wrap'>
-          {avatarCollection.map((collectionItem) => {
-            const avatar: string = createAvatar(
-              collectionItem.collection as any,
-              {
-                size: 128,
-                seed: user.username,
-              }
-            ).toDataUriSync()
-
-            return (
-              <img
-                key={collectionItem.title}
-                alt={collectionItem.title}
-                height={70}
-                src={avatar}
-                width={70}
-              />
-            )
-          })}
-        </div>
+        <FormProvider {...form}>
+          <form className='flex gap-2 flex-wrap'>
+            {avatarCollection.map((collectionItem) => {
+              return (
+                <AvatarItem
+                  collectionItem={collectionItem}
+                  key={collectionItem.title}
+                  form={form}
+                  user={user}
+                />
+              )
+            })}
+          </form>
+        </FormProvider>
       </>
     </ModalWrapper>
   )

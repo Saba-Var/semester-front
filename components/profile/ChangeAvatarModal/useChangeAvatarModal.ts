@@ -1,3 +1,4 @@
+import { useForm, type SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store'
@@ -10,7 +11,14 @@ const useChangeAvatarModal = () => {
 
   const user = useSelector((state: RootState) => state.user)
 
-  return { t, user, activeTab, setActiveTab }
+  const form = useForm({
+    defaultValues: {
+      style: user.image?.collectionName as string,
+    },
+    mode: 'onTouched',
+  })
+
+  return { t, user, activeTab, setActiveTab, form }
 }
 
 export default useChangeAvatarModal
