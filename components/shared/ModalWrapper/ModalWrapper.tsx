@@ -6,6 +6,7 @@ import { Fragment, useRef } from 'react'
 
 const ModalWrapper: React.FC<ModalWrapperProps> = ({
   closeHandler = () => {},
+  containerClassName,
   disabled = false,
   submitHandler,
   submitText,
@@ -69,7 +70,9 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
                       >
                         {title}
                       </Dialog.Title>
-                      <div className='mt-6'>{children}</div>
+                      <div className={`mt-6 ${containerClassName}`}>
+                        {children}
+                      </div>
                     </div>
                   </div>
 

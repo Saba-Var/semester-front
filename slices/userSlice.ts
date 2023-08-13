@@ -10,6 +10,7 @@ const initialState: User = {
   image: {
     type: 'dicebear',
     url: '',
+    collectionName: '',
   },
   activeSemester: null,
 }

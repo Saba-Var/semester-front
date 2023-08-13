@@ -6,6 +6,7 @@ export type AvatarItemProps = {
     title: string
     collection: any
   }
-  user: User
   form: UseFormReturn<{ style: string }>
+  fieldName: string
+  user: User
 }

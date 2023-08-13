@@ -1,6 +1,7 @@
 export type ModalWrapperProps = {
-  type?: 'danger' | 'normal'
   submitHandler: (arg?: any) => void
+  containerClassName?: string
+  type?: 'danger' | 'normal'
   closeHandler?: () => void
   children: JSX.Element
   submitText?: string

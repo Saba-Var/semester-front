@@ -14,6 +14,7 @@ const useUserAvatarSection = () => {
     avatarSrc: user.image?.url,
     setIsAvatarModalOpen,
     isAvatarModalOpen,
+    user,
     t,
   }
 }

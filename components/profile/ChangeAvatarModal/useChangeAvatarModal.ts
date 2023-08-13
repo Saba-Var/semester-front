@@ -18,6 +18,8 @@ const useChangeAvatarModal = () => {
     mode: 'onTouched',
   })
 
+  console.log(user.image?.collectionName)
+
   return { t, user, activeTab, setActiveTab, form }
 }
 

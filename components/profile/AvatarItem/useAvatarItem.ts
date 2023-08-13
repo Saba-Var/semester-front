@@ -1,10 +1,13 @@
+import { UseFormReturn, useWatch } from 'react-hook-form'
 import { createAvatar } from '@dicebear/core'
 import { useMemo } from 'react'
 import { User } from 'types'
 
 const useAvatarItem = (
   collectionItem: { title: string; collection: string },
-  user: User
+  user: User,
+  name: string,
+  form: UseFormReturn<{ style: string }>
 ) => {
   const avatarSrc: string = useMemo(() => {
     return createAvatar(collectionItem.collection as any, {
@@ -13,7 +16,12 @@ const useAvatarItem = (
     }).toDataUriSync()
   }, [collectionItem.collection, user.username])
 
-  return { avatarSrc }
+  const currentFieldValue = useWatch({
+    control: form.control,
+    name: name,
+  })
+
+  return { avatarSrc, currentFieldValue }
 }
 
 export default useAvatarItem

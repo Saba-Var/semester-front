@@ -2,7 +2,7 @@ import { ChangeAvatarModal, CustomButton, AvatarImage } from 'components'
 import useUserAvatarSection from './useUserAvatarSection'
 
 const UserAvatarSection = () => {
-  const { avatarSrc, isAvatarModalOpen, setIsAvatarModalOpen, t } =
+  const { avatarSrc, isAvatarModalOpen, setIsAvatarModalOpen, t, user } =
     useUserAvatarSection()
 
   return (
@@ -15,10 +15,12 @@ const UserAvatarSection = () => {
         />
       </AvatarImage>
 
-      <ChangeAvatarModal
-        closeHandler={() => setIsAvatarModalOpen(false)}
-        isOpen={isAvatarModalOpen}
-      />
+      {user?.image?.collectionName && (
+        <ChangeAvatarModal
+          closeHandler={() => setIsAvatarModalOpen(false)}
+          isOpen={isAvatarModalOpen}
+        />
+      )}
     </div>
   )
 }

@@ -4,24 +4,38 @@ import Image from 'next/image'
 
 const AvatarItem: React.FC<AvatarItemProps> = ({
   collectionItem,
+  fieldName,
   user,
   form,
 }) => {
-  const { avatarSrc } = useAvatarItem(collectionItem, user)
+  const { avatarSrc, currentFieldValue } = useAvatarItem(
+    collectionItem,
+    user,
+    fieldName,
+    form
+  )
 
   return (
     <div
       onClick={() => {
-        form.setValue('style', avatarSrc)
+        form.setValue(fieldName, collectionItem.title)
       }}
-      className='relative'
+      className={`text-sm cursor-pointer border-transparent font-medium justify-center flex items-center leading-6 text-gray-900`}
     >
-      <Image
-        src={avatarSrc}
-        alt={collectionItem.title}
-        height={70}
-        width={70}
-      />
+      <div
+        className={`relative flex items-center p-2 ${
+          currentFieldValue === collectionItem.title &&
+          'ring-offset-2 rounded-xl ring-4'
+        }`}
+      >
+        <Image
+          alt={collectionItem.title}
+          className='rounded-xl'
+          src={avatarSrc}
+          height={115}
+          width={115}
+        />
+      </div>
     </div>
   )
 }
