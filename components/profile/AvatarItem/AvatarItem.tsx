@@ -20,7 +20,7 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
       onClick={() => {
         form.setValue(fieldName, collectionItem.title)
       }}
-      className={`text-sm cursor-pointer border-transparent font-medium justify-center flex items-center leading-6 text-gray-900`}
+      className={`text-sm select-none cursor-pointer border-transparent font-medium justify-center flex items-center leading-6 text-gray-900`}
     >
       <div
         className={`relative flex items-center p-2 ${
@@ -31,6 +31,7 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
         <Image
           alt={collectionItem.title}
           className='rounded-xl'
+          draggable={false}
           src={avatarSrc}
           height={115}
           width={115}

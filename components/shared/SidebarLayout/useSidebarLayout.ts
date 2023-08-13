@@ -39,7 +39,7 @@ export const useSidebarLayout = () => {
     dispatch(setIsSidebarOpen(isDesktopSideBarOpen))
   }, [dispatch])
 
-  useQuery('user', getUserData, {
+  const { data: userData } = useQuery('user', getUserData, {
     onSuccess: (data) => dispatch(setUserData(data?.data)),
   })
 
@@ -54,9 +54,11 @@ export const useSidebarLayout = () => {
     canViewPage: !!accessToken && !!userId,
     pathname: router.pathname,
     isDesktopSideBarOpen,
+    user: userData?.data,
     logoutMutation,
     setSidebarOpen,
     sidebarOpen,
+    router,
     lang,
     t,
   }
