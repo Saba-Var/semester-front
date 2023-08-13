@@ -23,9 +23,8 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
       className={`text-sm select-none cursor-pointer border-transparent font-medium justify-center flex items-center leading-6 text-gray-900`}
     >
       <div
-        className={`relative flex items-center p-2 ${
-          currentFieldValue === collectionItem.title &&
-          'ring-offset-2 rounded-xl ring-4'
+        className={`relative transition-all rounded-xl ring-0 flex items-center p-2 ${
+          currentFieldValue === collectionItem.title && '!ring-8'
         }`}
       >
         <Image
@@ -33,8 +32,8 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
           className='rounded-xl'
           draggable={false}
           src={avatarSrc}
-          height={115}
-          width={115}
+          height={100}
+          width={100}
         />
       </div>
     </div>

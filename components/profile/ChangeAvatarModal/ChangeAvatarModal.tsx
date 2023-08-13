@@ -40,7 +40,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
         <FormProvider {...form}>
           <form
-            className={`py-3 max-h-[26rem] grid grid-cols-5 gap-2 overflow-y-auto pl-1 pr-4 ${
+            className={`py-4 max-h-[25rem] grid grid-cols-5 gap-3 overflow-y-auto pl-2 pr-4 ${
               avatarCollection.length > 4 && ''
             }`}
           >
