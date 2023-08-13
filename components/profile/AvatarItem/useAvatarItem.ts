@@ -7,14 +7,16 @@ const useAvatarItem = (
   collectionItem: { title: string; collection: string },
   user: User,
   name: string,
-  form: UseFormReturn<{ style: string }>
+  form: UseFormReturn<{ style: string }>,
+  properties: object
 ) => {
   const avatarSrc: string = useMemo(() => {
     return createAvatar(collectionItem.collection as any, {
       size: 128,
       seed: user.username,
+      ...properties,
     }).toDataUriSync()
-  }, [collectionItem.collection, user.username])
+  }, [collectionItem.collection, properties, user.username])
 
   const currentFieldValue = useWatch({
     control: form.control,

@@ -1,11 +1,15 @@
+import { useTranslation } from 'next-i18next'
 import { TabsInPillsProps } from './types'
 import { classNames } from 'utils'
 
 const TabsInPills: React.FC<TabsInPillsProps> = ({
+  translationLocation,
   setActiveTab,
   activeTab,
   tabs,
 }) => {
+  const { t } = useTranslation(translationLocation)
+
   return (
     <div>
       <div className='sm:hidden'>
@@ -20,7 +24,7 @@ const TabsInPills: React.FC<TabsInPillsProps> = ({
           id='tabs'
         >
           {tabs.map((tab) => (
-            <option key={tab}>{tab}</option>
+            <option key={tab}>{t(`${translationLocation}:${tab}`)}</option>
           ))}
         </select>
       </div>
@@ -38,7 +42,7 @@ const TabsInPills: React.FC<TabsInPillsProps> = ({
                   'rounded-md px-3 py-2 min-w-fit flex items-center justify-center text-sm font-medium cursor-pointer'
                 )}
               >
-                {tab}
+                {t(`${translationLocation}:${tab}`)}
               </div>
             )
           })}

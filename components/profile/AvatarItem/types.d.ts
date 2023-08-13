@@ -7,6 +7,8 @@ export type AvatarItemProps = {
     collection: any
   }
   form: UseFormReturn<{ style: string }>
+  value: string | number
+  properties: object
   fieldName: string
   user: User
 }

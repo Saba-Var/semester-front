@@ -9,20 +9,24 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
   isOpen,
 }) => {
   const {
-    user,
-    t,
-    activeTab,
-    setActiveTab,
-    form,
-    avatarStyle,
+    selectedTabPropertiesList,
     availablePropertyNames,
+    selectedCollection,
+    previewAvatarSrc,
+    propertiesList,
+    setActiveTab,
+    avatarStyle,
+    activeTab,
+    user,
+    form,
+    t,
   } = useChangeAvatarModal()
 
   return (
     <ModalWrapper
       closeHandler={() => {
         form.reset()
-        setActiveTab(t('style'))
+        setActiveTab('style')
         closeHandler()
       }}
       title={t('change_avatar')}
@@ -40,7 +44,8 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
         <div className='mb-3 h-12'>
           <TabsInPills
-            tabs={[t('style'), ...availablePropertyNames]}
+            tabs={['style', ...availablePropertyNames]}
+            translationLocation='profile'
             setActiveTab={setActiveTab}
             activeTab={activeTab}
           />
@@ -52,20 +57,35 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
               avatarCollection.length > 4 && ''
             }`}
           >
-            {activeTab === t('style') &&
-              avatarCollection.map((collectionItem) => {
-                return (
-                  <AvatarItem
-                    fieldName={
-                      activeTab === t('style') ? 'style' : collectionItem.title
-                    }
-                    collectionItem={collectionItem}
-                    key={collectionItem.title}
-                    form={form}
-                    user={user}
-                  />
-                )
-              })}
+            {activeTab === 'style'
+              ? avatarCollection.map((collectionItem) => {
+                  return (
+                    <AvatarItem
+                      collectionItem={collectionItem}
+                      value={collectionItem.title}
+                      key={collectionItem.title}
+                      fieldName={'style'}
+                      properties={{}}
+                      form={form}
+                      user={user}
+                    />
+                  )
+                })
+              : selectedTabPropertiesList?.map((propertyValue, i) => {
+                  return (
+                    <div key={`${propertyValue}-${i}`}>
+                      <AvatarItem
+                        properties={{ [activeTab]: [propertyValue] }}
+                        collectionItem={selectedCollection}
+                        value={propertyValue}
+                        fieldName={activeTab}
+                        form={form}
+                        user={user}
+                      />
+                      {propertyValue}
+                    </div>
+                  )
+                })}
           </form>
         </FormProvider>
       </>

@@ -1,7 +1,8 @@
 import { SetState } from 'types'
 
 export type TabsInPillsProps = {
-  setActiveTab: SetState<(() => never) | string>
-  activeTab: (() => string | never) | string
+  setActiveTab: SetState<string>
+  translationLocation: string
+  activeTab: string
   tabs: string[]
 }
