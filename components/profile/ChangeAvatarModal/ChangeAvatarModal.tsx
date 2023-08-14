@@ -33,14 +33,15 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
       submitHandler={form.handleSubmit((data) => {
         console.log(data)
       })}
+      childrenContainerClassName='!mt-0'
+      mainContainerClassName='md:w-[90vw] lg:w-[85vw] 2xl:w-[80vw] xl:w-[90vw] 3xl:w-[60hw]'
       submitText={t('change')}
       open={isOpen}
-      containerClassName='!mt-0'
     >
       <>
         <div className='flex relative justify-center my-4'>
           <img
-            className='w-1/4 rounded-xl'
+            className='w-1/6 rounded-xl'
             src={previewAvatarSrc}
             alt='avatar'
           />
@@ -57,7 +58,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
         <FormProvider {...form}>
           <form
-            className={`py-4 h-[28.5rem] items-start grid grid-cols-5 gap-5 overflow-y-auto pl-2 pr-4 ${
+            className={`py-4 h-[19rem] items-start grid grid-cols-8 gap-5 overflow-y-auto pl-2 pr-4 ${
               avatarCollection.length > 4 && ''
             }`}
           >
