@@ -27,13 +27,11 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
         }
         form.setValue(fieldName, value)
       }}
-      className={`text-sm select-none cursor-pointer border-transparent font-medium justify-center flex items-center leading-6 text-gray-900`}
+      className={`text-sm select-none transition-all cursor-pointer rounded-xl hover:ring-8 ${
+        currentFieldValue === value && '!ring-8'
+      } border-transparent w-32 h-32 font-medium justify-center flex items-center leading-6 text-gray-900`}
     >
-      <div
-        className={`relative transition-all rounded-xl hover:ring-8 ring-0 flex items-center p-2 ${
-          currentFieldValue === value && '!ring-8'
-        }`}
-      >
+      <div className={`relative flex items-center`}>
         <Image
           alt={collectionItem.title}
           className='rounded-xl'

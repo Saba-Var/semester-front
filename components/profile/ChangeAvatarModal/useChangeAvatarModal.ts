@@ -15,7 +15,7 @@ const useChangeAvatarModal = () => {
 
   const form = useForm({
     defaultValues: {
-      style: user.image?.collectionName as string,
+      style: 'adventurer-neutral',
     },
     mode: 'onTouched',
   })
@@ -39,7 +39,7 @@ const useChangeAvatarModal = () => {
       ?.properties as any
 
     const propertiesList = []
-    const availablePropertyNames = []
+    const availablePropertyNames = ['style']
 
     for (const key in selectedCollectionProperties) {
       const properties = selectedCollectionProperties[key]

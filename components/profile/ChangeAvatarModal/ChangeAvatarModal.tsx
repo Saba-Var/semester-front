@@ -48,7 +48,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
         <div className='mb-3 h-12'>
           <TabsInPills
-            tabs={['style', ...availablePropertyNames]}
+            tabs={availablePropertyNames}
             translationLocation='profile'
             setActiveTab={setActiveTab}
             activeTab={activeTab}

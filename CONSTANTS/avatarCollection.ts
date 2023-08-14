@@ -2,13 +2,13 @@ import * as collection from '@dicebear/collection'
 
 export const avatarCollection = [
   {
-    title: 'adventurer',
-    collection: collection.adventurer,
+    title: 'adventurer-neutral',
+    collection: collection.adventurerNeutral,
   },
 
   {
-    title: 'adventurer-neutral',
-    collection: collection.adventurerNeutral,
+    title: 'adventurer',
+    collection: collection.adventurer,
   },
 
   {
