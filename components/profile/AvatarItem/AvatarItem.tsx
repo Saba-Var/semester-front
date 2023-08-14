@@ -30,7 +30,7 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
       className={`text-sm select-none cursor-pointer border-transparent font-medium justify-center flex items-center leading-6 text-gray-900`}
     >
       <div
-        className={`relative transition-all rounded-xl ring-0 flex items-center p-2 ${
+        className={`relative transition-all rounded-xl hover:ring-8 ring-0 flex items-center p-2 ${
           currentFieldValue === value && '!ring-8'
         }`}
       >
@@ -39,10 +39,9 @@ const AvatarItem: React.FC<AvatarItemProps> = ({
           className='rounded-xl'
           draggable={false}
           src={avatarSrc}
-          height={100}
-          width={100}
+          height={115}
+          width={115}
         />
-        d
       </div>
     </div>
   )

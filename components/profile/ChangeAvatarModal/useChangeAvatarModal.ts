@@ -1,7 +1,7 @@
+import { avatarCollection, propertiesWithProbability } from 'CONSTANTS'
 import { useForm, useWatch } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
 import { createAvatar } from '@dicebear/core'
-import { avatarCollection } from 'CONSTANTS'
 import { useSelector } from 'react-redux'
 import { useMemo, useState } from 'react'
 import { RootState } from 'store'
@@ -24,6 +24,8 @@ const useChangeAvatarModal = () => {
     control: form.control,
     name: 'style',
   })
+
+  const formValues = form.watch()
 
   const [
     selectedCollection,
@@ -50,7 +52,15 @@ const useChangeAvatarModal = () => {
             : properties.default,
       })
 
-      availablePropertyNames.push(key)
+      if (propertiesWithProbability[key]) {
+        const probability = propertiesWithProbability[key]
+
+        if (formValues[probability]) {
+          availablePropertyNames.push(key)
+        }
+      } else if (key !== 'style') {
+        availablePropertyNames.push(key)
+      }
     }
 
     const selectedTabPropertiesList = propertiesList.find(
@@ -63,9 +73,7 @@ const useChangeAvatarModal = () => {
       availablePropertyNames,
       selectedTabPropertiesList,
     ]
-  }, [activeTab, avatarStyle])
-
-  const formValues = form.watch()
+  }, [activeTab, avatarStyle, formValues])
 
   const selectedProperties = useMemo(() => {
     const properties = {}

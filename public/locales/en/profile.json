@@ -28,6 +28,7 @@
   "frontHair": "Front Hair",
   "sideburn": "Sideburn",
   "features": "Features",
+  "hat": "Hat",
   "featuresProbability": "Features Probability",
   "backgroundColor": "Background Color",
   "hairProbability": "Hair Probability",
@@ -112,5 +113,6 @@
   "shape": "Shape",
   "shapeOffsetX": "Shape Offset X",
   "shapeOffsetY": "Shape Offset Y",
-  "shapeRotation": "Shape Rotation"
+  "shapeRotation": "Shape Rotation",
+  "shapeColor": "Shape Color"
 }

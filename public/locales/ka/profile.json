@@ -57,6 +57,7 @@
   "accessoriesColor": "სამკაულის ფერი",
   "clothesColor": "ტანსაცმლის ფერი",
   "style": "სტილი",
+  "hat": "ქუდი",
   "mustache": "ულვაში",
   "mustacheProbability": "ულვაშის ქონა",
   "topColor": "ზედა ნაწილის ფერი",
@@ -112,5 +113,6 @@
   "shape": "ფორმა",
   "shapeOffsetX": "ფორმა Offset X",
   "shapeOffsetY": "ფორმა Offset Y",
-  "shapeRotation": "ფორმა გადატრიალება"
+  "shapeRotation": "ფორმა გადატრიალება",
+  "shapeColor": "ფორმის ფერი"
 }

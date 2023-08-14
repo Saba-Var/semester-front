@@ -22,11 +22,10 @@ const useAvatarItem = ({
       ...properties,
       [fieldName]: [value],
     }
-    console.log(fieldName === 'styles' ? baseOptions : options)
 
     return createAvatar(
       collectionItem.collection as any,
-      fieldName === 'styles' ? baseOptions : options
+      fieldName === 'style' ? baseOptions : options
     ).toDataUriSync()
   }, [collectionItem.collection, fieldName, properties, user.username, value])
 

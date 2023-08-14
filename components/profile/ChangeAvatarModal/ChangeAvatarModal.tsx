@@ -16,7 +16,6 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
     previewAvatarSrc,
     propertiesList,
     setActiveTab,
-    avatarStyle,
     activeTab,
     user,
     form,
@@ -39,9 +38,9 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
       containerClassName='!mt-0'
     >
       <>
-        <div className='flex relative justify-center mb-3 mt-2'>
+        <div className='flex relative justify-center my-4'>
           <img
-            className='w-1/3 rounded-xl'
+            className='w-1/4 rounded-xl'
             src={previewAvatarSrc}
             alt='avatar'
           />
@@ -58,18 +57,18 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
         <FormProvider {...form}>
           <form
-            className={`py-4 min-h-[25rem] max-h-[26rem] items-start grid grid-cols-5 gap-3 overflow-y-auto pl-1 pr-4 ${
+            className={`py-4 h-[28.5rem] items-start grid grid-cols-5 gap-5 overflow-y-auto pl-2 pr-4 ${
               avatarCollection.length > 4 && ''
             }`}
           >
             {activeTab === 'style'
-              ? avatarCollection.map((collectionItem) => {
+              ? avatarCollection.map((collectionItem, i) => {
                   return (
                     <AvatarItem
                       collectionItem={collectionItem}
                       properties={selectedProperties}
                       value={collectionItem.title}
-                      key={collectionItem.title}
+                      key={`${collectionItem.title}-${i}`}
                       fieldName={'style'}
                       form={form}
                       user={user}
