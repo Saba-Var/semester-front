@@ -138,3 +138,16 @@ export interface LearningActivity extends LearningActivityFormData {
 export type ActivitiesCollisionsInfo = { [day: string]: string[][] }
 
 export type AvatarProperties = typeof avatarProperties
+
+export type AvatarCollectionProperties = {
+  [key: string]: {
+    default: string[] | number
+    items?: {
+      type: string
+      enum: string[]
+    }
+    maximum?: number
+    minimum?: number
+    type: string
+  }
+}

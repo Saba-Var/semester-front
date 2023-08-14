@@ -3,6 +3,8 @@ import useChangeAvatarModal from './useChangeAvatarModal'
 import { ChangeAvatarModalProps } from './types'
 import { FormProvider } from 'react-hook-form'
 import { avatarCollection } from 'CONSTANTS'
+import type { CollectionItem } from './types'
+import Image from 'next/image'
 
 const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
   closeHandler,
@@ -11,6 +13,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
   const {
     selectedTabPropertiesList,
     availablePropertyNames,
+    isUserDataUpdating,
     selectedProperties,
     selectedCollection,
     closeModalHandler,
@@ -29,15 +32,17 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
       submitHandler={form.handleSubmit(submitHandler)}
       childrenContainerClassName='!mt-0'
       closeHandler={closeModalHandler}
+      disabled={isUserDataUpdating}
       title={t('change_avatar')}
       submitText={t('change')}
       open={isOpen}
     >
       <>
-        <div className='flex relative justify-center my-4'>
-          <img
-            className='w-[15rem] 2xl:w-1/6 rounded-xl'
+        <div className='flex relative h-40 w-40 xl:h-64 xl:w-64 mx-auto justify-center my-4'>
+          <Image
+            className='rounded-xl'
             src={previewAvatarSrc}
+            layout='fill'
             alt='avatar'
           />
         </div>
@@ -74,16 +79,16 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
               : selectedTabPropertiesList?.map((propertyValue, i) => {
                   return (
                     <AvatarItem
+                      collectionItem={selectedCollection as CollectionItem}
                       key={`${propertyValue}-${i}`}
-                      properties={{
-                        [activeTab]: [propertyValue],
-                        ...selectedProperties,
-                      }}
-                      collectionItem={selectedCollection}
                       value={propertyValue}
                       fieldName={activeTab}
                       form={form}
                       user={user}
+                      properties={{
+                        [activeTab]: [propertyValue],
+                        ...selectedProperties,
+                      }}
                     />
                   )
                 })}

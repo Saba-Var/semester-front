@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next'
+import type { AvatarProperties } from 'types'
 import { TabsInPillsProps } from './types'
 import { classNames } from 'utils'
 
@@ -18,7 +19,9 @@ const TabsInPills: React.FC<TabsInPillsProps> = ({
         </label>
         <select
           className='block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
-          onChange={(e) => setActiveTab(e.target.value)}
+          onChange={(e) =>
+            setActiveTab(e.target.value as keyof AvatarProperties)
+          }
           defaultValue={activeTab as unknown as string}
           name='tabs'
           id='tabs'
@@ -35,7 +38,7 @@ const TabsInPills: React.FC<TabsInPillsProps> = ({
           {tabs.map((tab) => {
             return (
               <div
-                onClick={() => setActiveTab(tab)}
+                onClick={() => setActiveTab(tab as keyof AvatarProperties)}
                 key={tab}
                 className={classNames(
                   tab === (activeTab as unknown as string)

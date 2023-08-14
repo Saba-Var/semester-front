@@ -1,9 +1,10 @@
+import type { AvatarProperties, AvatarCollectionProperties } from 'types'
 import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
 import { propertiesWithProbability, avatarCollection } from 'CONSTANTS'
 import { useMutation, useQueryClient } from 'react-query'
+import { createAvatar, type Style } from '@dicebear/core'
 import { useTranslation } from 'next-i18next'
-import type { AvatarProperties } from 'types'
-import { createAvatar } from '@dicebear/core'
+import type { PropertiesList } from './types'
 import { useSelector } from 'react-redux'
 import { useMemo, useState } from 'react'
 import { useUserService } from 'hooks'
@@ -11,7 +12,7 @@ import { emitToast } from 'utils'
 import { RootState } from 'store'
 
 const useChangeAvatarModal = (closeHandler: () => void) => {
-  const [activeTab, setActiveTab] = useState('style')
+  const [activeTab, setActiveTab] = useState<keyof AvatarProperties>('style')
 
   const user = useSelector((state: RootState) => state.user)
   const { updateUserData } = useUserService()
@@ -36,13 +37,14 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
     selectedCollection,
     availablePropertyNames,
     selectedTabPropertiesList,
-  ] = useMemo((): any => {
+  ] = useMemo(() => {
     const avatar = avatarCollection.find((item) => item.title === avatarStyle)
 
     const selectedCollectionProperties = avatar?.collection?.schema
-      ?.properties as any
+      ?.properties as AvatarCollectionProperties
 
-    const propertiesList = []
+    const propertiesList: PropertiesList = []
+
     const availablePropertyNames = ['style']
 
     for (const key in selectedCollectionProperties) {
@@ -51,9 +53,10 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
       propertiesList.push({
         propertyName: key,
         values:
-          typeof properties.default === 'number'
+          typeof properties.minimum === 'number' &&
+          typeof properties.maximum === 'number'
             ? [properties.minimum, properties.maximum]
-            : properties.default,
+            : (properties.default as string[]),
       })
 
       const probability =
@@ -76,7 +79,7 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
   }, [activeTab, avatarStyle, formValues])
 
   const selectedProperties = useMemo(() => {
-    const properties = {}
+    const properties: { [key: string]: number[] | string[] } = {}
 
     for (const key in formValues) {
       if (key !== 'style') {
@@ -88,25 +91,28 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
   }, [formValues])
 
   const previewAvatarSrc: string = useMemo(() => {
-    return createAvatar(selectedCollection.collection, {
-      size: 128,
-      seed: user.username,
-      ...selectedProperties,
-    }).toDataUriSync()
-  }, [selectedCollection.collection, selectedProperties, user.username])
+    return selectedCollection?.collection
+      ? createAvatar(selectedCollection?.collection as Style<object>, {
+          size: 128,
+          seed: user.username,
+          ...selectedProperties,
+        }).toDataUriSync()
+      : ''
+  }, [selectedCollection?.collection, selectedProperties, user.username])
 
   const closeModalHandler = () => {
     closeHandler()
     setActiveTab('style')
   }
 
-  const { mutate: updateUserDataMutation } = useMutation(updateUserData, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('user')
-      closeModalHandler()
-      emitToast(t('profile:avatar_changed_successfully'), 'success')
-    },
-  })
+  const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
+    useMutation(updateUserData, {
+      onSuccess: () => {
+        queryClient.invalidateQueries('user')
+        closeModalHandler()
+        emitToast(t('profile:avatar_changed_successfully'), 'success')
+      },
+    })
 
   const submitHandler: SubmitHandler<AvatarProperties> = (values) => {
     let baseUri = `${process.env.NEXT_PUBLIC_DICEBEAR_API_URI}/6.x/${values.style}/svg?seed=${user.username}`
@@ -130,6 +136,7 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
     selectedTabPropertiesList,
     availablePropertyNames,
     selectedProperties,
+    isUserDataUpdating,
     selectedCollection,
     closeModalHandler,
     previewAvatarSrc,

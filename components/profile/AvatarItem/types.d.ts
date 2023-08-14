@@ -1,14 +1,15 @@
-import type { User } from 'types'
+import type { AvatarProperties, User } from 'types'
 import { UseFormReturn } from 'react-hook-form'
+import { Style } from '@dicebear/core'
 
 export type AvatarItemProps = {
   collectionItem: {
     title: string
-    collection: any
+    collection: Style<any>
   }
-  form: UseFormReturn<{ style: string }>
+  form: UseFormReturn<AvatarProperties>
+  fieldName: keyof AvatarProperties
   value: string | number
   properties: object
-  fieldName: string
   user: User
 }
