@@ -24,7 +24,7 @@ export const useSidebarLayout = () => {
   const router = useRouter()
 
   const lang = (Cookies.get('language') || 'ka') as 'ka' | 'en'
-  const userId = Cookies.get('id')
+  const userId = Cookies.get('_id')
 
   useEffect(() => {
     if (!userId) {
@@ -39,13 +39,13 @@ export const useSidebarLayout = () => {
     dispatch(setIsSidebarOpen(isDesktopSideBarOpen))
   }, [dispatch])
 
-  useQuery('user', getUserData, {
+  const { data: userData } = useQuery('user', getUserData, {
     onSuccess: (data) => dispatch(setUserData(data?.data)),
   })
 
   const { mutate: logoutMutation } = useMutation(logout, {
     onSuccess: () => {
-      Cookies.remove('id')
+      Cookies.remove('_id')
       router.push('/overview')
     },
   })
@@ -54,9 +54,11 @@ export const useSidebarLayout = () => {
     canViewPage: !!accessToken && !!userId,
     pathname: router.pathname,
     isDesktopSideBarOpen,
+    user: userData?.data,
     logoutMutation,
     setSidebarOpen,
     sidebarOpen,
+    router,
     lang,
     t,
   }

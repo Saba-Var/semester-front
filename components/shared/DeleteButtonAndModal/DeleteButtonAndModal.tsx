@@ -19,10 +19,10 @@ const DeleteButtonAndModal: React.FC<DeleteButtonAndModalProps> = ({
   return (
     <>
       <ModalWrapper
+        closeHandler={() => setOpen(false)}
         submitHandler={submitHandler}
         submitText={t('delete')}
         disabled={disabled}
-        setOpen={setOpen}
         title={title}
         type='danger'
         open={open}

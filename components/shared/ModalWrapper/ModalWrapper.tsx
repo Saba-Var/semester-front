@@ -5,12 +5,13 @@ import { ModalWrapperProps } from './types'
 import { Fragment, useRef } from 'react'
 
 const ModalWrapper: React.FC<ModalWrapperProps> = ({
+  childrenContainerClassName,
   closeHandler = () => {},
+  mainContainerClassName,
   disabled = false,
   submitHandler,
   submitText,
   children,
-  setOpen,
   title,
   open,
   type,
@@ -24,10 +25,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
         as='div'
         className='relative z-10'
         initialFocus={cancelButtonRef}
-        onClose={() => {
-          setOpen(false)
-          closeHandler()
-        }}
+        onClose={closeHandler}
       >
         <Transition.Child
           as={Fragment}
@@ -42,7 +40,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
         </Transition.Child>
 
         <div className='fixed inset-0 z-10 overflow-y-auto'>
-          <div className='flex min-h-full justify-center md:p-4 text-center items-center'>
+          <div className='flex min-h-full justify-center text-center items-center'>
             <Transition.Child
               as={Fragment}
               enter='ease-out duration-300'
@@ -52,15 +50,14 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
-              <Dialog.Panel className='relative w-screen min-h-screen 3xl:py-10 md:min-h-fit md:w-[85vw] lg:w-[75vw] xl:w-[50vw] 3xl:w-[42vw] transform   rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all md:my-8 sm:w-full sm:p-6'>
+              <Dialog.Panel
+                className={`relative w-screen min-h-screen 3xl:py-10 md:min-h-fit md:w-[85vw] lg:w-[75vw] xl:w-[50vw] 3xl:w-[70vw] transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all md:my-8 sm:w-full sm:p-6 ${mainContainerClassName}`}
+              >
                 <div className='absolute right-0 top-0 pr-4 pt-4'>
                   <button
                     type='button'
                     className='rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                    onClick={() => {
-                      setOpen(false)
-                      closeHandler()
-                    }}
+                    onClick={closeHandler}
                   >
                     <span className='sr-only'>Close</span>
                     <XMarkIcon className='h-6 w-6' aria-hidden='true' />
@@ -76,7 +73,9 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
                       >
                         {title}
                       </Dialog.Title>
-                      <div className='mt-6'>{children}</div>
+                      <div className={`mt-6 ${childrenContainerClassName}`}>
+                        {children}
+                      </div>
                     </div>
                   </div>
 
@@ -96,10 +95,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
                     <button
                       type='button'
                       className='mt-3 outline-none inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0'
-                      onClick={() => {
-                        setOpen(false)
-                        closeHandler()
-                      }}
+                      onClick={closeHandler}
                       ref={cancelButtonRef}
                     >
                       {t('cancel')}

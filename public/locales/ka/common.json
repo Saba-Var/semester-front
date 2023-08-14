@@ -43,5 +43,10 @@
   "end_time": "დასრულების თარიღი",
   "expand": "გაზრდა",
   "collapse": "დაპატარავება",
-  "something_went_wrong": "დაფიქსირდა შეცდომა!"
+  "something_went_wrong": "დაფიქსირდა შეცდომა!",
+  "change_avatar": "შეცვალე ავატარი",
+  "update": "განახლება",
+  "change": "შეცვლა",
+  "style": "სტილი",
+  "background_color": "ფონის ფერი"
 }

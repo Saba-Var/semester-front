@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import { Dispatch, SetStateAction } from 'react'
 import { DehydratedState } from 'react-query'
+import { avatarProperties } from 'CONSTANTS'
 import type { AppProps } from 'next/app'
 import type { NextPage } from 'next'
 
@@ -84,13 +85,19 @@ export enum ActivityType {
   LAB = 'Lab',
 }
 
+export type UserImage = {
+  url: string
+  type: 'dicebear' | 'upload'
+  collectionName: string
+}
+
 export interface User {
   activeSemester: string | null
   semesters: Semester[]
   password?: string
   username: string
   active: boolean
-  image?: string
+  image?: UserImage | null
   email: string
   _id: string
 }
@@ -129,3 +136,18 @@ export interface LearningActivity extends LearningActivityFormData {
 }
 
 export type ActivitiesCollisionsInfo = { [day: string]: string[][] }
+
+export type AvatarProperties = typeof avatarProperties
+
+export type AvatarCollectionProperties = {
+  [key: string]: {
+    default: string[] | number
+    items?: {
+      type: string
+      enum: string[]
+    }
+    maximum?: number
+    minimum?: number
+    type: string
+  }
+}

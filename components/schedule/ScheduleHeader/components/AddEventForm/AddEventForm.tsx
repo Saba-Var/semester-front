@@ -27,8 +27,10 @@ const AddEventForm = () => {
         submitHandler={form.handleSubmit(submitHandler)}
         title={t('schedule:add_learning_activity')}
         disabled={isLearningActivityCreating}
-        setOpen={setOpenEventForm}
-        closeHandler={form.reset}
+        closeHandler={() => {
+          form.reset()
+          setOpenEventForm(false)
+        }}
         submitText={t('add')}
         open={openEventForm}
       >

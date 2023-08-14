@@ -4,8 +4,8 @@ import { useSidebarLayout } from './useSidebarLayout'
 import { SidebarLayoutProps } from './types.d'
 import { LanguageSelector } from 'components'
 import { DesktopSidebar } from './components'
-import { Fragment } from 'react'
 import { classNames } from 'utils'
+import { Fragment } from 'react'
 import Link from 'next/link'
 import {
   Bars3BottomLeftIcon,
@@ -21,7 +21,9 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
     sidebarOpen,
     canViewPage,
     pathname,
+    router,
     lang,
+    user,
     t,
   } = useSidebarLayout()
 
@@ -148,15 +150,19 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
                   {/* Profile dropdown */}
                   <Menu as='div' className='relative ml-3'>
                     <div>
-                      <Menu.Button className='flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
+                      <Menu.Button className='flex h-8 w-8 relative  max-w-xs items-center justify-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
                         <span className='sr-only'>Open user menu</span>
-                        <img
-                          className='h-8 w-8 rounded-full'
-                          src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                          alt=''
-                        />
+                        {user?.image?.url && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            className='rounded-full'
+                            src={user?.image?.url}
+                            alt={user.username}
+                          />
+                        )}
                       </Menu.Button>
                     </div>
+
                     <Transition
                       as={Fragment}
                       enter='transition ease-out duration-100'
@@ -172,10 +178,14 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
                             {() => (
                               <div
                                 onClick={() => {
-                                  item.href === '/overview' && logoutMutation()
+                                  if (item.href === '/overview') {
+                                    logoutMutation()
+                                  } else {
+                                    router.push(item.href)
+                                  }
                                 }}
                                 className={
-                                  'block px-4 py-3 text-sm text-gray-700 hover:bg-blue-500 hover:text-white'
+                                  'block px-4 py-3 cursor-pointer text-sm text-gray-700 hover:bg-blue-500 hover:text-white'
                                 }
                               >
                                 {t(item.name[lang])}

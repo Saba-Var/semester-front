@@ -1,5 +1,4 @@
-import type { PayloadAction } from '@reduxjs/toolkit'
-import { createSlice } from '@reduxjs/toolkit'
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { User } from 'types'
 
 const initialState: User = {
@@ -8,7 +7,11 @@ const initialState: User = {
   active: false,
   semesters: [],
   username: '',
-  image: '',
+  image: {
+    type: 'dicebear',
+    url: '',
+    collectionName: '',
+  },
   activeSemester: null,
 }
 
