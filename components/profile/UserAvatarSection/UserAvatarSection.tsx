@@ -7,7 +7,7 @@ const UserAvatarSection = () => {
 
   return (
     <div className='flex justify-center'>
-      <AvatarImage src={avatarSrc}>
+      <AvatarImage sharedClassName='mb-2' src={avatarSrc}>
         <CustomButton
           onClick={() => setIsAvatarModalOpen(true)}
           title={t('change_avatar')}
