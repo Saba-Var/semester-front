@@ -24,7 +24,9 @@ const TabsInPills: React.FC<TabsInPillsProps> = ({
           id='tabs'
         >
           {tabs.map((tab) => (
-            <option key={tab}>{t(`${translationLocation}:${tab}`)}</option>
+            <option value={tab} key={tab}>
+              {t(`${translationLocation}:${tab}`)}
+            </option>
           ))}
         </select>
       </div>

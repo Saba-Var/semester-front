@@ -14,7 +14,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
     selectedProperties,
     selectedCollection,
     previewAvatarSrc,
-    propertiesList,
+    submitHandler,
     setActiveTab,
     activeTab,
     user,
@@ -30,18 +30,16 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
         form.reset()
       }}
       title={t('change_avatar')}
-      submitHandler={form.handleSubmit((data) => {
-        console.log(data)
-      })}
-      childrenContainerClassName='!mt-0'
       mainContainerClassName='md:w-[90vw] lg:w-[85vw] 2xl:w-[80vw] xl:w-[90vw] 3xl:w-[60hw]'
+      submitHandler={form.handleSubmit(submitHandler)}
+      childrenContainerClassName='!mt-0'
       submitText={t('change')}
       open={isOpen}
     >
       <>
         <div className='flex relative justify-center my-4'>
           <img
-            className='w-1/6 rounded-xl'
+            className='w-[15rem] 2xl:w-1/6 rounded-xl'
             src={previewAvatarSrc}
             alt='avatar'
           />
@@ -58,7 +56,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
         <FormProvider {...form}>
           <form
-            className={`py-4 h-[19rem] items-start grid grid-cols-8 gap-5 overflow-y-auto pl-2 pr-4 ${
+            className={`py-4 h-[19rem] items-start lg:grid-cols-4 xl:grid-cols-5 xl:justify-items-start grid grid-cols-2 sm:grid-cols-3 2xl:grid-cols-8 gap-5 overflow-y-auto pl-2 2xl:pr-4 ${
               avatarCollection.length > 4 && ''
             }`}
           >
@@ -66,10 +64,10 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
               ? avatarCollection.map((collectionItem, i) => {
                   return (
                     <AvatarItem
+                      key={`${collectionItem.title}-${i}`}
                       collectionItem={collectionItem}
                       properties={selectedProperties}
                       value={collectionItem.title}
-                      key={`${collectionItem.title}-${i}`}
                       fieldName={'style'}
                       form={form}
                       user={user}

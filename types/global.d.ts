@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import { Dispatch, SetStateAction } from 'react'
 import { DehydratedState } from 'react-query'
+import { avatarProperties } from 'CONSTANTS'
 import type { AppProps } from 'next/app'
 import type { NextPage } from 'next'
 
@@ -133,3 +134,5 @@ export interface LearningActivity extends LearningActivityFormData {
 }
 
 export type ActivitiesCollisionsInfo = { [day: string]: string[][] }
+
+export type AvatarProperties = typeof avatarProperties

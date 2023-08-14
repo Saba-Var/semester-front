@@ -1,6 +1,7 @@
-import { avatarCollection, propertiesWithProbability } from 'CONSTANTS'
-import { useForm, useWatch } from 'react-hook-form'
+import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
+import { propertiesWithProbability, avatarCollection } from 'CONSTANTS'
 import { useTranslation } from 'next-i18next'
+import type { AvatarProperties } from 'types'
 import { createAvatar } from '@dicebear/core'
 import { useSelector } from 'react-redux'
 import { useMemo, useState } from 'react'
@@ -16,7 +17,7 @@ const useChangeAvatarModal = () => {
   const form = useForm({
     defaultValues: {
       style: 'adventurer-neutral',
-    },
+    } as any,
     mode: 'onTouched',
   })
 
@@ -29,7 +30,6 @@ const useChangeAvatarModal = () => {
 
   const [
     selectedCollection,
-    propertiesList,
     availablePropertyNames,
     selectedTabPropertiesList,
   ] = useMemo((): any => {
@@ -67,12 +67,7 @@ const useChangeAvatarModal = () => {
       (el) => el.propertyName === activeTab
     )?.values
 
-    return [
-      avatar,
-      propertiesList,
-      availablePropertyNames,
-      selectedTabPropertiesList,
-    ]
+    return [avatar, availablePropertyNames, selectedTabPropertiesList]
   }, [activeTab, avatarStyle, formValues])
 
   const selectedProperties = useMemo(() => {
@@ -95,15 +90,26 @@ const useChangeAvatarModal = () => {
     }).toDataUriSync()
   }, [selectedCollection.collection, selectedProperties, user.username])
 
+  const submitHandler: SubmitHandler<AvatarProperties> = (values) => {
+    let baseUri = `${process.env.NEXT_PUBLIC_DICEBEAR_API_URI}/6.x/${values.style}/svg?seed=${user.username}`
+
+    for (const key in values) {
+      if (key !== 'style') {
+        baseUri += `&${key}=${values[key]}`
+      }
+    }
+
+    console.log(baseUri)
+  }
+
   return {
     selectedTabPropertiesList,
     availablePropertyNames,
     selectedProperties,
     selectedCollection,
     previewAvatarSrc,
-    propertiesList,
+    submitHandler,
     setActiveTab,
-    avatarStyle,
     activeTab,
     user,
     form,
