@@ -6,7 +6,6 @@ import { LanguageSelector } from 'components'
 import { DesktopSidebar } from './components'
 import { classNames } from 'utils'
 import { Fragment } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import {
   Bars3BottomLeftIcon,
@@ -154,11 +153,11 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
                       <Menu.Button className='flex h-8 w-8 relative  max-w-xs items-center justify-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
                         <span className='sr-only'>Open user menu</span>
                         {user?.image?.url && (
-                          <Image
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
                             className='rounded-full'
                             src={user?.image?.url}
                             alt={user.username}
-                            layout='fill'
                           />
                         )}
                       </Menu.Button>

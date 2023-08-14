@@ -114,5 +114,6 @@
   "shapeOffsetX": "ფორმა Offset X",
   "shapeOffsetY": "ფორმა Offset Y",
   "shapeRotation": "ფორმა გადატრიალება",
-  "shapeColor": "ფორმის ფერი"
+  "shapeColor": "ფორმის ფერი",
+  "avatar_changed_successfully": "ავატარი წარმატებით შეიცვალა"
 }

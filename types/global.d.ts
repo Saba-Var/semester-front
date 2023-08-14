@@ -85,17 +85,19 @@ export enum ActivityType {
   LAB = 'Lab',
 }
 
+export type UserImage = {
+  url: string
+  type: 'dicebear' | 'upload'
+  collectionName: string
+}
+
 export interface User {
   activeSemester: string | null
   semesters: Semester[]
   password?: string
   username: string
   active: boolean
-  image?: {
-    url: string
-    type: 'dicebear' | 'upload'
-    collectionName: string
-  } | null
+  image?: UserImage | null
   email: string
   _id: string
 }

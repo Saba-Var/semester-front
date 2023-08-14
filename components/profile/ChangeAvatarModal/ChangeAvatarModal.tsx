@@ -13,6 +13,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
     availablePropertyNames,
     selectedProperties,
     selectedCollection,
+    closeModalHandler,
     previewAvatarSrc,
     submitHandler,
     setActiveTab,
@@ -20,19 +21,15 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
     user,
     form,
     t,
-  } = useChangeAvatarModal()
+  } = useChangeAvatarModal(closeHandler)
 
   return (
     <ModalWrapper
-      closeHandler={() => {
-        setActiveTab('style')
-        closeHandler()
-        form.reset()
-      }}
-      title={t('change_avatar')}
       mainContainerClassName='md:w-[90vw] lg:w-[85vw] 2xl:w-[80vw] xl:w-[90vw] 3xl:w-[60hw]'
       submitHandler={form.handleSubmit(submitHandler)}
       childrenContainerClassName='!mt-0'
+      closeHandler={closeModalHandler}
+      title={t('change_avatar')}
       submitText={t('change')}
       open={isOpen}
     >

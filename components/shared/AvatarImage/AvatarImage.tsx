@@ -1,6 +1,5 @@
 import { blurredBackground } from 'public'
 import type { AvatarProps } from './types'
-import Image from 'next/image'
 
 const AvatarImage: React.FC<AvatarProps> = ({
   containerStyles,
@@ -18,7 +17,8 @@ const AvatarImage: React.FC<AvatarProps> = ({
         <div
           className={`w-32 h-32 relative pointer-events-none ${avatarStyles} ${sharedStyles}`}
         >
-          <Image src={src} alt='user AvatarImage' layout='fill' />
+          {/*  eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} className='rounded-xl' alt='user avatar' />
         </div>
       ) : (
         <div

@@ -1,18 +1,22 @@
 import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
 import { propertiesWithProbability, avatarCollection } from 'CONSTANTS'
+import { useMutation, useQueryClient } from 'react-query'
 import { useTranslation } from 'next-i18next'
 import type { AvatarProperties } from 'types'
 import { createAvatar } from '@dicebear/core'
 import { useSelector } from 'react-redux'
 import { useMemo, useState } from 'react'
+import { useUserService } from 'hooks'
+import { emitToast } from 'utils'
 import { RootState } from 'store'
 
-const useChangeAvatarModal = () => {
-  const { t } = useTranslation()
-
+const useChangeAvatarModal = (closeHandler: () => void) => {
   const [activeTab, setActiveTab] = useState('style')
 
   const user = useSelector((state: RootState) => state.user)
+  const { updateUserData } = useUserService()
+  const queryClient = useQueryClient()
+  const { t } = useTranslation()
 
   const form = useForm({
     defaultValues: {
@@ -52,9 +56,10 @@ const useChangeAvatarModal = () => {
             : properties.default,
       })
 
-      if (propertiesWithProbability[key]) {
-        const probability = propertiesWithProbability[key]
+      const probability =
+        propertiesWithProbability[key as keyof typeof propertiesWithProbability]
 
+      if (probability) {
         if (formValues[probability]) {
           availablePropertyNames.push(key)
         }
@@ -90,16 +95,35 @@ const useChangeAvatarModal = () => {
     }).toDataUriSync()
   }, [selectedCollection.collection, selectedProperties, user.username])
 
+  const closeModalHandler = () => {
+    closeHandler()
+    setActiveTab('style')
+  }
+
+  const { mutate: updateUserDataMutation } = useMutation(updateUserData, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('user')
+      closeModalHandler()
+      emitToast(t('profile:avatar_changed_successfully'), 'success')
+    },
+  })
+
   const submitHandler: SubmitHandler<AvatarProperties> = (values) => {
     let baseUri = `${process.env.NEXT_PUBLIC_DICEBEAR_API_URI}/6.x/${values.style}/svg?seed=${user.username}`
 
     for (const key in values) {
       if (key !== 'style') {
-        baseUri += `&${key}=${values[key]}`
+        baseUri += `&${key}=${values[key as keyof typeof values]}`
       }
     }
 
-    console.log(baseUri)
+    updateUserDataMutation({
+      image: {
+        collectionName: values.style,
+        type: 'dicebear',
+        url: baseUri,
+      },
+    })
   }
 
   return {
@@ -107,6 +131,7 @@ const useChangeAvatarModal = () => {
     availablePropertyNames,
     selectedProperties,
     selectedCollection,
+    closeModalHandler,
     previewAvatarSrc,
     submitHandler,
     setActiveTab,
