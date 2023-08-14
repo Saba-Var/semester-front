@@ -1,4 +1,3 @@
-import type { AvatarProperties, AvatarCollectionProperties } from 'types'
 import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
 import { propertiesWithProbability, avatarCollection } from 'CONSTANTS'
 import { useMutation, useQueryClient } from 'react-query'
@@ -10,6 +9,12 @@ import { useMemo, useState } from 'react'
 import { useUserService } from 'hooks'
 import { emitToast } from 'utils'
 import { RootState } from 'store'
+import type {
+  AvatarCollectionProperties,
+  AvatarProperties,
+  User,
+  UserImage,
+} from 'types'
 
 const useChangeAvatarModal = (closeHandler: () => void) => {
   const [activeTab, setActiveTab] = useState<keyof AvatarProperties>('style')
@@ -107,10 +112,32 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
     useMutation(updateUserData, {
+      onMutate: async (newUserData) => {
+        await queryClient.cancelQueries('user')
+
+        const userPreviousData = queryClient.getQueryData('user')
+
+        queryClient.setQueryData<{ data: User }>(
+          'user',
+          (old): { data: User } => {
+            closeModalHandler()
+
+            return { data: { ...old?.data, ...newUserData } as User }
+          }
+        )
+
+        return { userPreviousData }
+      },
+
       onSuccess: () => {
         queryClient.invalidateQueries('user')
         closeModalHandler()
         emitToast(t('profile:avatar_changed_successfully'), 'success')
+      },
+
+      onError: (_error, _newUserData, context) => {
+        emitToast(t('profile:avatar_change_failed'), 'error')
+        queryClient.setQueryData('user', context?.userPreviousData)
       },
     })
 

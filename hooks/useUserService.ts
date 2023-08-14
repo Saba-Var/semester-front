@@ -9,9 +9,13 @@ export const useUserService = () => {
     return privateAxios.get('/user')
   }
 
-  const updateUserData = (data: {
-    image: UserImage
-  }): Promise<AxiosResponse<Message>> => {
+  const updateUserData = (
+    data:
+      | {
+          image: UserImage
+        }
+      | User
+  ): Promise<AxiosResponse<Message>> => {
     return privateAxios.put('/user', data)
   }
 

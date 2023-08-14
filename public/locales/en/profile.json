@@ -115,5 +115,6 @@
   "shapeOffsetY": "Shape Offset Y",
   "shapeRotation": "Shape Rotation",
   "shapeColor": "Shape Color",
-  "avatar_changed_successfully": "Avatar changed successfully"
+  "avatar_changed_successfully": "Avatar changed successfully",
+  "avatar_change_failed": "Avatar change failed"
 }
