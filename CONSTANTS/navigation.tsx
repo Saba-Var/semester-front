@@ -1,9 +1,4 @@
-import {
-  CalendarIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
-} from '@heroicons/react/24/outline'
+import { CalendarIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline'
 
 export const navigation = [
   {
@@ -29,14 +24,6 @@ export const navigation = [
     },
     href: '/schedule',
     icon: CalendarIcon,
-  },
-  {
-    name: {
-      ka: 'დოკუმენტები',
-      en: 'Documents',
-    },
-    href: '/documents',
-    icon: InboxIcon,
   },
 ]
 
