@@ -103,6 +103,11 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
   const closeModalHandler = () => {
     closeHandler()
     setActiveTab('style')
+
+    const timeoutId = setTimeout(() => {
+      form.reset()
+    }, 400)
+    return () => clearTimeout(timeoutId)
   }
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
