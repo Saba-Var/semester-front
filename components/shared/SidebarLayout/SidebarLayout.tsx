@@ -155,7 +155,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
                         {user?.image?.url && (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
-                            className='rounded-full'
+                            className='rounded-full select-none'
                             src={user?.image?.url}
                             alt={user.username}
                           />
@@ -173,6 +173,16 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
                       leaveTo='transform opacity-0 scale-95'
                     >
                       <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                        <div
+                          className={
+                            'block px-4 py-4 cursor-pointer text-sm text-gray-700 border-b-2 line-clamp-1d'
+                          }
+                        >
+                          <p className='truncate font-medium text-gray-700'>
+                            {user?.username}
+                          </p>
+                        </div>
+
                         {userNavigation.map((item) => (
                           <Menu.Item key={item.name.en}>
                             {() => (
