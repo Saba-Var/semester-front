@@ -1,4 +1,3 @@
-import type { AvatarCollectionProperties, AvatarProperties, User } from 'types'
 import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
 import { propertiesWithProbability, avatarCollection } from 'CONSTANTS'
 import { useMutation, useQueryClient } from 'react-query'
@@ -10,6 +9,12 @@ import { useMemo, useState } from 'react'
 import { useUserService } from 'hooks'
 import { emitToast } from 'utils'
 import { RootState } from 'store'
+import type {
+  AvatarCollectionProperties,
+  AvatarProperties,
+  UserDataObj,
+  User,
+} from 'types'
 
 const useChangeAvatarModal = (closeHandler: () => void) => {
   const [activeTab, setActiveTab] = useState<keyof AvatarProperties>('style')
@@ -117,14 +122,11 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
 
         const userPreviousData = queryClient.getQueryData('user')
 
-        queryClient.setQueryData<{ data: User }>(
-          'user',
-          (old): { data: User } => {
-            closeModalHandler()
+        queryClient.setQueryData<UserDataObj>('user', (old): UserDataObj => {
+          closeModalHandler()
 
-            return { data: { ...old?.data, ...newUserData } as User }
-          }
-        )
+          return { data: { ...old?.data, ...newUserData } as User }
+        })
 
         return { userPreviousData }
       },

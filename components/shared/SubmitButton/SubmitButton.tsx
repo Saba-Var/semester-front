@@ -3,7 +3,7 @@ import { LoadingIcon } from 'components'
 import { useTranslate } from 'hooks'
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({
-  showLoadingIndicator = false,
+  showLoadingIndicator = true,
   disabled = false,
   styles,
   title,

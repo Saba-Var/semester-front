@@ -151,3 +151,9 @@ export type AvatarCollectionProperties = {
     type: string
   }
 }
+
+export type UserUpdateData = { username?: string; image?: UserImage }
+
+export type UserDataObj = {
+  data: User
+}

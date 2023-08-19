@@ -48,5 +48,6 @@
   "update": "განახლება",
   "change": "შეცვლა",
   "style": "სტილი",
-  "background_color": "ფონის ფერი"
+  "background_color": "ფონის ფერი",
+  "updated_successfully": "წარმატებით განახლდა!"
 }

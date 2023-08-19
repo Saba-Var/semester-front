@@ -28,7 +28,7 @@ const ChangeAvatarModal: React.FC<ChangeAvatarModalProps> = ({
 
   return (
     <ModalWrapper
-      mainContainerClassName='md:w-[90vw] lg:w-[85vw] 2xl:w-[80vw] xl:w-[90vw] 3xl:w-[60hw]'
+      mainContainerClassName='md:w-[90vw] lg:w-[85vw] 2xl:w-[80vw] xl:w-[90vw] 3xl:!w-[65vw]'
       submitHandler={form.handleSubmit(submitHandler)}
       childrenContainerClassName='!mt-0'
       closeHandler={closeModalHandler}

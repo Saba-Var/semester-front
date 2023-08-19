@@ -1,4 +1,4 @@
-import type { User, Message, UserImage } from 'types'
+import type { User, Message, UserUpdateData } from 'types'
 import { useAxiosPrivate } from 'hooks'
 import { AxiosResponse } from 'axios'
 
@@ -10,11 +10,7 @@ export const useUserService = () => {
   }
 
   const updateUserData = (
-    data:
-      | {
-          image: UserImage
-        }
-      | User
+    data: UserUpdateData
   ): Promise<AxiosResponse<Message>> => {
     return privateAxios.put('/user', data)
   }
