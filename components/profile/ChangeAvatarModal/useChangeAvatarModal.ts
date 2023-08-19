@@ -2,13 +2,11 @@ import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
 import { propertiesWithProbability, avatarCollection } from 'CONSTANTS'
 import { useMutation, useQueryClient } from 'react-query'
 import { createAvatar, type Style } from '@dicebear/core'
+import { useUserService, useGetUserData } from 'hooks'
 import { useTranslation } from 'next-i18next'
 import type { PropertiesList } from './types'
-import { useSelector } from 'react-redux'
 import { useMemo, useState } from 'react'
-import { useUserService } from 'hooks'
 import { emitToast } from 'utils'
-import { RootState } from 'store'
 import type {
   AvatarCollectionProperties,
   AvatarProperties,
@@ -19,9 +17,9 @@ import type {
 const useChangeAvatarModal = (closeHandler: () => void) => {
   const [activeTab, setActiveTab] = useState<keyof AvatarProperties>('style')
 
-  const user = useSelector((state: RootState) => state.user)
   const { updateUserData } = useUserService()
   const queryClient = useQueryClient()
+  const { user } = useGetUserData()
   const { t } = useTranslation()
 
   const form = useForm({

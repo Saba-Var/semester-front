@@ -1,30 +1,27 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
+import { useUserService, useGetUserData } from 'hooks'
 import { useTranslation } from 'next-i18next'
-import { useSelector } from 'react-redux'
 import type { UserDataObj } from 'types'
-import type { RootState } from 'store'
-import { useUserService } from 'hooks'
 import { emitToast } from 'utils'
 
 const useProfileForm = () => {
-  const user = useSelector((state: RootState) => state.user)
-
   const { updateUserData } = useUserService()
   const queryClient = useQueryClient()
+  const { user } = useGetUserData()
   const { t } = useTranslation()
 
   const form = useForm({
     defaultValues: {
-      username: user.username,
-      email: user.email,
+      username: user?.username,
+      email: user?.email,
     },
     mode: 'onSubmit',
   })
 
   const {
-    handleSubmit,
     formState: { isDirty },
+    handleSubmit,
   } = form
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =

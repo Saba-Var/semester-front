@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { setUserData, setIsSidebarOpen } from 'slices'
-import { useQuery, useMutation } from 'react-query'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
+import { setIsSidebarOpen } from 'slices'
+import { useMutation } from 'react-query'
+import { useGetUserData } from 'hooks'
 import { useRouter } from 'next/router'
-import { useUserService } from 'hooks'
 import { RootState } from 'store'
 import { logout } from 'services'
 import Cookies from 'js-cookie'
@@ -18,7 +18,7 @@ export const useSidebarLayout = () => {
     (state: RootState) => state.sidebar
   )
 
-  const { getUserData } = useUserService()
+  const { user } = useGetUserData()
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const router = useRouter()
@@ -39,10 +39,6 @@ export const useSidebarLayout = () => {
     dispatch(setIsSidebarOpen(isDesktopSideBarOpen))
   }, [dispatch])
 
-  const { data: userData } = useQuery('user', getUserData, {
-    onSuccess: (data) => dispatch(setUserData(data?.data)),
-  })
-
   const { mutate: logoutMutation } = useMutation(logout, {
     onSuccess: () => {
       Cookies.remove('_id')
@@ -54,11 +50,11 @@ export const useSidebarLayout = () => {
     canViewPage: !!accessToken && !!userId,
     pathname: router.pathname,
     isDesktopSideBarOpen,
-    user: userData?.data,
     logoutMutation,
     setSidebarOpen,
     sidebarOpen,
     router,
+    user,
     lang,
     t,
   }

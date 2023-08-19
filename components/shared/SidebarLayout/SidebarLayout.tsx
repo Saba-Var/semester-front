@@ -4,7 +4,6 @@ import { useSidebarLayout } from './useSidebarLayout'
 import { SidebarLayoutProps } from './types.d'
 import { LanguageSelector } from 'components'
 import { DesktopSidebar } from './components'
-import { useGetUserData } from 'hooks'
 import { classNames } from 'utils'
 import { Fragment } from 'react'
 import Link from 'next/link'
@@ -24,9 +23,9 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
     pathname,
     router,
     lang,
+    user,
     t,
   } = useSidebarLayout()
-  const { user } = useGetUserData()
 
   return (
     <>
