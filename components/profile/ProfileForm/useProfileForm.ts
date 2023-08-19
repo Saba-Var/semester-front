@@ -1,9 +1,9 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { useUserService, useGetUserData } from 'hooks'
+import { emitToast, setValidationErrors } from 'utils'
 import { useTranslation } from 'next-i18next'
 import type { UserDataObj } from 'types'
-import { emitToast } from 'utils'
 
 const useProfileForm = () => {
   const { updateUserData } = useUserService()
@@ -41,6 +41,10 @@ const useProfileForm = () => {
             }
           }
         )
+      },
+
+      onError: (error: any) => {
+        setValidationErrors(error, form)
       },
     })
 

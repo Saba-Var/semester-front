@@ -17,9 +17,11 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
       disabled={disabled}
       type='submit'
     >
-      <p>{useTranslate(`inputs:${title}`)}</p>
+      <p className='pl-5'>{useTranslate(`inputs:${title}`)}</p>
 
-      {disabled && showLoadingIndicator && <LoadingIcon styles='h-5 w-5' />}
+      <span className='w-5 h-5'>
+        {disabled && showLoadingIndicator && <LoadingIcon styles='h-5 w-5' />}
+      </span>
     </button>
   )
 }
