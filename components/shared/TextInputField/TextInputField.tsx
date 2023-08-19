@@ -9,6 +9,7 @@ import {
 } from '@heroicons/react/20/solid'
 
 const TextInputField: React.FC<InputFieldProps> = ({
+  showEyeIcon = true,
   placeholder = '',
   disabled = false,
   required = true,
@@ -75,7 +76,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
           </div>
         )}
 
-        {isPasswordField && (
+        {isPasswordField && showEyeIcon && (
           <div
             className='absolute text-gray-600 hover:scale-110 w-[18px] h-[18px] active:scale-95 transition-transform right-3 top-[50%] -translate-y-1/2 cursor-pointer'
             onClick={passwordShowHandler}

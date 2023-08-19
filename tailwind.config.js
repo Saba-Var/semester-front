@@ -14,6 +14,10 @@ module.exports = {
         '3xl': '1920px',
       },
 
+      height: {
+        12.5: '3.125rem',
+      },
+
       spacing: {
         14: '3.5rem',
         50: '12.5rem',

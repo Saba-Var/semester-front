@@ -32,5 +32,6 @@
   "invalid_ending_time": "Ending time must be greater than starting time",
   "semester_name_required": "Semester name is required",
   "semester_name_max": "Semester name must be at most 40 characters",
-  "semester_start_date_required": "Semester start date is required"
+  "semester_start_date_required": "Semester start date is required",
+  "update": "Update"
 }

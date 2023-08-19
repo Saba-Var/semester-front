@@ -8,11 +8,11 @@ export const useInputField = (name: string, type: string) => {
   const { t } = useTranslation()
 
   const {
-    formState: { errors, touchedFields },
+    formState: { errors, touchedFields, isDirty },
     register,
   } = useFormContext()
 
-  const isValid = touchedFields[name] && !errors[name]?.message
+  const isValid = touchedFields[name] && !errors[name]?.message && isDirty
 
   const passwordShowHandler = () => {
     if (inputType === 'password') {

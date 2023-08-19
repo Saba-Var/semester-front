@@ -32,5 +32,6 @@
   "invalid_ending_time": "დასრულების დრო უნდა იყოს დაწყების დროზე მეტი",
   "semester_name_required": "სემესტრის სახელი სავალდებულოა",
   "semester_name_max": "სემესტრის სახელი უნდა იყოს მაქს. 40 სიმბოლო",
-  "semester_start_date_required": "დაწყების თარიღი სავალდებულოა"
+  "semester_start_date_required": "დაწყების თარიღი სავალდებულოა",
+  "update": "განახლება"
 }
