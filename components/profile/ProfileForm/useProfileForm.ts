@@ -1,7 +1,7 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { useUserService, useGetUserData } from 'hooks'
-import { emitToast, setValidationErrors } from 'utils'
+import { emitToast, setServerValidationErrors } from 'utils'
 import { useTranslation } from 'next-i18next'
 import type { UserDataObj } from 'types'
 
@@ -44,7 +44,7 @@ const useProfileForm = () => {
       },
 
       onError: (error: any) => {
-        setValidationErrors(error, form)
+        setServerValidationErrors(error, form)
       },
     })
 

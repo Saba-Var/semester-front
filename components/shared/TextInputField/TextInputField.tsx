@@ -87,7 +87,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
       </div>
 
       <ErrorMessage
-        render={({ message }) => <InputErrorMessage errorMessage={message} />}
+        render={() => <InputErrorMessage errorMessage={errors[name]} />}
         errors={errors}
         name={name}
       />
