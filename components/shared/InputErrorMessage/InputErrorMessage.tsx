@@ -5,7 +5,6 @@ const InputErrorMessage: React.FC<InputErrorMessageProps> = ({
   errorMessage,
 }) => {
   const { t } = useTranslation('inputs')
-  // TODO: move error translations into common file
 
   return (
     <p className='lg:mt-1 text-left text-sm text-red-600'>

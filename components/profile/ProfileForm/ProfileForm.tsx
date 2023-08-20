@@ -3,7 +3,7 @@ import { FormProvider } from 'react-hook-form'
 import useProfileForm from './useProfileForm'
 
 const ProfileForm = () => {
-  const { form, handleSubmit, submitHandler, isUserDataUpdating } =
+  const { form, handleSubmit, isUserDataUpdating, submitHandler } =
     useProfileForm()
 
   return (

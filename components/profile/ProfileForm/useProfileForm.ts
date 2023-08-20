@@ -1,7 +1,7 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { emitToast, setServerValidationErrors } from 'utils'
 import { useMutation, useQueryClient } from 'react-query'
 import { useUserService, useGetUserData } from 'hooks'
-import { emitToast, setServerValidationErrors } from 'utils'
 import { useTranslation } from 'next-i18next'
 import type { UserDataObj } from 'types'
 
@@ -13,10 +13,9 @@ const useProfileForm = () => {
 
   const form = useForm({
     defaultValues: {
-      username: user?.username,
-      email: user?.email,
+      username: user?.username!,
+      email: user?.email!,
     },
-    mode: 'onSubmit',
   })
 
   const {
@@ -48,11 +47,13 @@ const useProfileForm = () => {
       },
     })
 
-  const submitHandler: SubmitHandler<{ username: string }> = ({ username }) => {
+  const submitHandler: SubmitHandler<{ username: string; email: string }> = ({
+    username,
+  }) => {
     updateUserDataMutation({ username })
   }
 
-  return { form, submitHandler, handleSubmit, isDirty, isUserDataUpdating }
+  return { form, submitHandler, handleSubmit, isUserDataUpdating }
 }
 
 export default useProfileForm
