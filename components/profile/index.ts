@@ -1,3 +1,4 @@
+export * from './ProfileInputWrapper'
 export * from './UserAvatarSection'
 export * from './ChangeAvatarModal'
 export * from './ProfileForm'

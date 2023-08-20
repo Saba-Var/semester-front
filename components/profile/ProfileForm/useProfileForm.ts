@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 const useProfileForm = () => {
   const initialDisabledInputs = {
-    showFormActionButtons: true,
+    showFormActionButtons: false,
     username: true,
     password: true,
     email: true,
@@ -20,6 +20,16 @@ const useProfileForm = () => {
 
   const disableAllInputFields = () => {
     setDisabledInputFields(initialDisabledInputs)
+  }
+
+  const enableInputEdit = (inputName: string) => {
+    setDisabledInputFields((prev) => {
+      return {
+        ...prev,
+        [inputName]: false,
+        showFormActionButtons: true,
+      }
+    })
   }
 
   const { updateUserData } = useUserService()
@@ -38,8 +48,6 @@ const useProfileForm = () => {
     formState: { isDirty },
     handleSubmit,
   } = form
-
-  console.log(form.formState.isDirty)
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
     useMutation(updateUserData, {
@@ -76,6 +84,7 @@ const useProfileForm = () => {
     disableAllInputFields,
     disabledInputFields,
     isUserDataUpdating,
+    enableInputEdit,
     submitHandler,
     handleSubmit,
     isDirty,

@@ -30,7 +30,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
   } = useInputField(name, type)
 
   return (
-    <div className='min-h-[107px]'>
+    <div className='min-h-[107px] w-full'>
       <label
         className={`block text-base select-none text-left font-medium text-gray-700 ${
           isError && 'text-red-900'

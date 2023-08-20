@@ -1,6 +1,11 @@
-import { TextInputField, SubmitButton, CustomButton } from 'components'
 import { FormProvider } from 'react-hook-form'
 import useProfileForm from './useProfileForm'
+import {
+  ProfileInputWrapper,
+  TextInputField,
+  SubmitButton,
+  CustomButton,
+} from 'components'
 
 const ProfileForm = () => {
   const {
@@ -8,6 +13,7 @@ const ProfileForm = () => {
     disableAllInputFields,
     disabledInputFields,
     isUserDataUpdating,
+    enableInputEdit,
     submitHandler,
     handleSubmit,
     form,
@@ -18,25 +24,34 @@ const ProfileForm = () => {
     <>
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(submitHandler)} className='mt-8'>
-          <TextInputField
-            disabled={disabledInputFields.username}
-            name='username'
-          />
+          <ProfileInputWrapper onClick={() => enableInputEdit('username')}>
+            <TextInputField
+              disabled={disabledInputFields.username}
+              name='username'
+            />
+          </ProfileInputWrapper>
 
-          <TextInputField name='email' disabled />
+          <ProfileInputWrapper onClick={() => enableInputEdit('email')}>
+            <TextInputField name='email' disabled />
+          </ProfileInputWrapper>
 
-          <TextInputField
-            placeholder='***************'
-            showEyeIcon={false}
-            name='password'
-            type='password'
-            disabled
-          />
+          <ProfileInputWrapper onClick={() => enableInputEdit('password')}>
+            <TextInputField
+              placeholder='***************'
+              showEyeIcon={false}
+              name='password'
+              type='password'
+              disabled
+            />
+          </ProfileInputWrapper>
 
           {disabledInputFields.showFormActionButtons && (
             <div className='flex gap-4 items-center mt-10'>
               <CustomButton
-                onClick={disableAllInputFields}
+                onClick={() => {
+                  disableAllInputFields()
+                  form.reset()
+                }}
                 stylesType='secondary-btn'
                 title={t('cancel')}
                 styles='h-12.5'
