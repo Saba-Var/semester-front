@@ -4,8 +4,24 @@ import { useMutation, useQueryClient } from 'react-query'
 import { useUserService, useGetUserData } from 'hooks'
 import { useTranslation } from 'next-i18next'
 import type { UserDataObj } from 'types'
+import { useState } from 'react'
 
 const useProfileForm = () => {
+  const initialDisabledInputs = {
+    showFormActionButtons: true,
+    username: true,
+    password: true,
+    email: true,
+  }
+
+  const [disabledInputFields, setDisabledInputFields] = useState(
+    initialDisabledInputs
+  )
+
+  const disableAllInputFields = () => {
+    setDisabledInputFields(initialDisabledInputs)
+  }
+
   const { updateUserData } = useUserService()
   const queryClient = useQueryClient()
   const { user } = useGetUserData()
@@ -22,6 +38,8 @@ const useProfileForm = () => {
     formState: { isDirty },
     handleSubmit,
   } = form
+
+  console.log(form.formState.isDirty)
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
     useMutation(updateUserData, {
@@ -53,7 +71,17 @@ const useProfileForm = () => {
     updateUserDataMutation({ username })
   }
 
-  return { form, submitHandler, handleSubmit, isUserDataUpdating }
+  return {
+    setDisabledInputFields,
+    disableAllInputFields,
+    disabledInputFields,
+    isUserDataUpdating,
+    submitHandler,
+    handleSubmit,
+    isDirty,
+    form,
+    t,
+  }
 }
 
 export default useProfileForm
