@@ -33,5 +33,8 @@
   "semester_name_required": "Semester name is required",
   "semester_name_max": "Semester name must be at most 40 characters",
   "semester_start_date_required": "Semester start date is required",
-  "update": "Update"
+  "update": "Update",
+  "current_password": "Current password",
+  "new_password": "New password",
+  "confirm_new_password": "Confirm new password"
 }

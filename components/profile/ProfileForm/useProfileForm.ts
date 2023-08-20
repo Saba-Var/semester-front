@@ -44,10 +44,7 @@ const useProfileForm = () => {
     },
   })
 
-  const {
-    formState: { isDirty },
-    handleSubmit,
-  } = form
+  const { handleSubmit } = form
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
     useMutation(updateUserData, {
@@ -80,14 +77,12 @@ const useProfileForm = () => {
   }
 
   return {
-    setDisabledInputFields,
     disableAllInputFields,
     disabledInputFields,
     isUserDataUpdating,
     enableInputEdit,
     submitHandler,
     handleSubmit,
-    isDirty,
     form,
     t,
   }

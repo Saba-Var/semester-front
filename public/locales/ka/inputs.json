@@ -33,5 +33,8 @@
   "semester_name_required": "სემესტრის სახელი სავალდებულოა",
   "semester_name_max": "სემესტრის სახელი უნდა იყოს მაქს. 40 სიმბოლო",
   "semester_start_date_required": "დაწყების თარიღი სავალდებულოა",
-  "update": "განახლება"
+  "update": "განახლება",
+  "current_password": "მიმდინარე პაროლი",
+  "new_password": "ახალი პაროლი",
+  "confirm_new_password": "გაიმეორეთ ახალი პაროლი"
 }
