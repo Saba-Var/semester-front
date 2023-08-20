@@ -36,5 +36,6 @@
   "update": "განახლება",
   "current_password": "მიმდინარე პაროლი",
   "new_password": "ახალი პაროლი",
-  "confirm_new_password": "გაიმეორეთ ახალი პაროლი"
+  "confirm_new_password": "გაიმეორეთ ახალი პაროლი",
+  "save": "შენახვა"
 }

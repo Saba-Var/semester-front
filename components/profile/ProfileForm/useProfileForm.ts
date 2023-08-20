@@ -63,6 +63,11 @@ const useProfileForm = () => {
             }
           }
         )
+
+        form.reset({
+          ...variables,
+        })
+        disableAllInputFields()
       },
 
       onError: (error: any) => {

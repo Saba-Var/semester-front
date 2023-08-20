@@ -16,7 +16,7 @@ const Dashboard: NextPageWithSidebarLayout = () => {
           <ProfileForm />
         </div>
       ) : (
-        <LoadingIcon centered={true} />
+        <LoadingIcon centered />
       )}
     </div>
   )

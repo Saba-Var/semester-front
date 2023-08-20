@@ -53,7 +53,7 @@ const ProfileForm = () => {
           {!disabledInputFields.password && (
             <>
               <ProfileInputWrapper showEditButton={false}>
-                <div className='mb-5 border w-full p-6 rounded-md'>
+                <div className='mb-5 border w-full p-6 rounded-md shadow-sm'>
                   <p>Passwords should contain:</p>
 
                   <ul>
@@ -102,23 +102,25 @@ const ProfileForm = () => {
           )}
 
           {disabledInputFields.showFormActionButtons && (
-            <div className='flex gap-4 items-center mt-10'>
-              <CustomButton
-                onClick={() => {
-                  disableAllInputFields()
-                  form.reset()
-                }}
-                stylesType='secondary-btn'
-                title={t('cancel')}
-                styles='h-12.5'
-              />
+            <ProfileInputWrapper showEditButton={false}>
+              <div className='flex gap-4 items-center mt-10 w-[50%] ml-auto'>
+                <CustomButton
+                  onClick={() => {
+                    disableAllInputFields()
+                    form.reset()
+                  }}
+                  stylesType='secondary-btn'
+                  title={t('cancel')}
+                  styles='h-12.5'
+                />
 
-              <SubmitButton
-                showLoadingIndicator={isUserDataUpdating}
-                disabled={isUserDataUpdating}
-                title='update'
-              />
-            </div>
+                <SubmitButton
+                  showLoadingIndicator={isUserDataUpdating}
+                  disabled={isUserDataUpdating}
+                  title='save'
+                />
+              </div>
+            </ProfileInputWrapper>
           )}
         </form>
       </FormProvider>
