@@ -5,7 +5,7 @@
   "email-required": "Email field is required",
   "valid-email": "Please provide a valid email",
   "password-required": "Password field is required",
-  "password-min": "Enter at least 8 characters",
+  "password-min": "Enter at least 6 characters",
   "password-match": "Password don't match",
   "confirmPassword-required": "Confirm password field is required",
   "google-sign-up": "Sign up with Google",
@@ -42,5 +42,8 @@
   "uppercase_character": "Uppercase character",
   "lowercase_character": "Lowercase character",
   "at_least_one_symbol": "At least 1 symbol",
-  "new_password_should_contain": "New password should contain"
+  "new_password_should_contain": "New password should contain",
+  "old_password_required": "Current password is required",
+  "new_password_required": "New password is required",
+  "password_complexity": "New password should include: uppercase and lowercase characters, at least 1 symbol"
 }

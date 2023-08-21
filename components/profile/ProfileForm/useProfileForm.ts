@@ -3,8 +3,10 @@ import { emitToast, setServerValidationErrors } from 'utils'
 import { useMutation, useQueryClient } from 'react-query'
 import type { UserDataObj, UserUpdateData } from 'types'
 import { useUserService, useGetUserData } from 'hooks'
+import { yupResolver } from '@hookform/resolvers/yup'
 import type { ProfileFormValues } from './types'
 import { useTranslation } from 'next-i18next'
+import { profileFormSchema } from 'schemas'
 import { useState } from 'react'
 
 const useProfileForm = () => {
@@ -39,6 +41,7 @@ const useProfileForm = () => {
   const { t } = useTranslation()
 
   const form = useForm<ProfileFormValues>({
+    resolver: yupResolver(profileFormSchema),
     defaultValues: {
       username: user?.username!,
       email: user?.email!,
@@ -46,6 +49,7 @@ const useProfileForm = () => {
       newPassword: '',
       confirmPassword: '',
     },
+    mode: 'onTouched',
   })
 
   const { handleSubmit } = form

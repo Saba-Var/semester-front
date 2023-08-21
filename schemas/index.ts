@@ -1,5 +1,6 @@
 export * from './learningActivitySchema'
 export * from './resetPasswordSchema'
+export * from './profileFormSchema'
 export * from './semesterSchema'
 export * from './signUpSchema'
 export * from './logInSchema'
