@@ -2,6 +2,7 @@ import { FormProvider } from 'react-hook-form'
 import useProfileForm from './useProfileForm'
 import {
   ProfileInputWrapper,
+  PasswordRequirement,
   TextInputField,
   SubmitButton,
   CustomButton,
@@ -10,6 +11,7 @@ import {
 const ProfileForm = () => {
   const {
     disableAllInputFields,
+    newPasswordValidation,
     disabledInputFields,
     isUserDataUpdating,
     enableInputEdit,
@@ -38,8 +40,8 @@ const ProfileForm = () => {
           </ProfileInputWrapper>
 
           <ProfileInputWrapper
-            showEditButton={disabledInputFields.password}
-            onClick={() => enableInputEdit('password')}
+            showEditButton={disabledInputFields.passwordChange}
+            onClick={() => enableInputEdit('passwordChange')}
           >
             <TextInputField
               placeholder='***************'
@@ -50,27 +52,31 @@ const ProfileForm = () => {
             />
           </ProfileInputWrapper>
 
-          {!disabledInputFields.password && (
+          {!disabledInputFields.passwordChange && (
             <>
               <ProfileInputWrapper showEditButton={false}>
                 <div className='mb-5 border w-full p-6 rounded-md shadow-sm'>
-                  <p>Passwords should contain:</p>
+                  <p className='text-lg text-gray-700'>
+                    {t('inputs:new_password_should_contain')}:
+                  </p>
 
                   <ul>
-                    <li className='flex text-gray-500 items-center gap-2'>
-                      <div className='text-sm text-gray-500'>&#9679;</div>
-                      <div>6 or more characters</div>
-                    </li>
-
-                    <li className='flex text-gray-500 items-center gap-2'>
-                      <div className='text-sm text-gray-500'>&#9679;</div>
-                      <div>Uppercase and lowercase characters</div>
-                    </li>
-
-                    <li className='flex text-gray-500 items-center gap-2'>
-                      <div className='text-sm text-gray-500'>&#9679;</div>
-                      <div>At least 1 symbol</div>
-                    </li>
+                    <PasswordRequirement
+                      title={t('inputs:6_or_more_characters')}
+                      isValid={newPasswordValidation.length}
+                    />
+                    <PasswordRequirement
+                      isValid={newPasswordValidation.hasUpperCaseChar}
+                      title={t('inputs:uppercase_character')}
+                    />
+                    <PasswordRequirement
+                      isValid={newPasswordValidation.hasLowerCaseChar}
+                      title={t('inputs:lowercase_character')}
+                    />
+                    <PasswordRequirement
+                      isValid={newPasswordValidation.hasSymbol}
+                      title={t('inputs:at_least_one_symbol')}
+                    />
                   </ul>
                 </div>
               </ProfileInputWrapper>

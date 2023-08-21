@@ -37,5 +37,10 @@
   "current_password": "მიმდინარე პაროლი",
   "new_password": "ახალი პაროლი",
   "confirm_new_password": "გაიმეორეთ ახალი პაროლი",
-  "save": "შენახვა"
+  "save": "შენახვა",
+  "6_or_more_characters": "6 ან მეტი ასოს",
+  "uppercase_character": "მაღალი რეგისტრის ასოს",
+  "lowercase_character": "დაბალი რეგისტრის ასოს",
+  "at_least_one_symbol": "მინიმუმ ერთი სიმბოლოს",
+  "new_password_should_contain": "ახალი პაროლი უნდა შეიცავდეს"
 }

@@ -1,4 +1,4 @@
-import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useForm, type SubmitHandler, useWatch } from 'react-hook-form'
 import { emitToast, setServerValidationErrors } from 'utils'
 import { useMutation, useQueryClient } from 'react-query'
 import type { UserDataObj, UserUpdateData } from 'types'
@@ -10,8 +10,8 @@ import { useState } from 'react'
 const useProfileForm = () => {
   const initialDisabledInputs = {
     showFormActionButtons: false,
+    passwordChange: true,
     username: true,
-    password: true,
     email: true,
   }
 
@@ -49,6 +49,18 @@ const useProfileForm = () => {
   })
 
   const { handleSubmit } = form
+
+  const newPassword = useWatch({
+    control: form.control,
+    name: 'newPassword',
+  })
+
+  const newPasswordValidation = {
+    length: newPassword?.length >= 6,
+    hasLowerCaseChar: /[a-z]/.test(newPassword!),
+    hasUpperCaseChar: /[A-Z]/.test(newPassword!),
+    hasSymbol: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]/.test(newPassword!),
+  }
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
     useMutation(updateUserData, {
@@ -91,7 +103,7 @@ const useProfileForm = () => {
       data.username = username
     }
 
-    if (!disabledInputFields.password) {
+    if (!disabledInputFields.passwordChange) {
       data.oldPassword = oldPassword
       data.newPassword = newPassword
       data.confirmPassword = confirmPassword
@@ -102,6 +114,7 @@ const useProfileForm = () => {
 
   return {
     disableAllInputFields,
+    newPasswordValidation,
     disabledInputFields,
     isUserDataUpdating,
     enableInputEdit,

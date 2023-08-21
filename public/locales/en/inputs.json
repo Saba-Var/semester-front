@@ -37,5 +37,10 @@
   "current_password": "Current password",
   "new_password": "New password",
   "confirm_new_password": "Confirm new password",
-  "save": "Save"
+  "save": "Save",
+  "6_or_more_characters": "6 or more characters",
+  "uppercase_character": "Uppercase character",
+  "lowercase_character": "Lowercase character",
+  "at_least_one_symbol": "At least 1 symbol",
+  "new_password_should_contain": "New password should contain"
 }
