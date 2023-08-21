@@ -9,6 +9,7 @@ import {
 } from '@heroicons/react/20/solid'
 
 const TextInputField: React.FC<InputFieldProps> = ({
+  showValidation = true,
   showEyeIcon = true,
   placeholder = '',
   disabled = false,
@@ -27,7 +28,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
     isValid,
     errors,
     t,
-  } = useInputField(name, type)
+  } = useInputField(name, type, showValidation)
 
   return (
     <div className='min-h-[107px] w-full'>

@@ -1,5 +1,6 @@
 export type InputFieldProps = {
   type?: 'text' | 'password'
+  showValidation?: boolean
   labelClasses?: string
   showEyeIcon?: boolean
   placeholder?: string

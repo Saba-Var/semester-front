@@ -2,7 +2,11 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
-export const useInputField = (name: string, type: string) => {
+export const useInputField = (
+  name: string,
+  type: string,
+  showValidation: boolean
+) => {
   const [inputType, setInputType] = useState(type)
 
   const { t } = useTranslation()
@@ -22,8 +26,8 @@ export const useInputField = (name: string, type: string) => {
   }
 
   return {
+    isError: !!errors[name]?.message && showValidation,
     isPasswordField: type === 'password',
-    isError: !!errors[name]?.message,
     passwordShowHandler,
     inputType,
     register,

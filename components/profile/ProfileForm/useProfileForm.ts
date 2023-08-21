@@ -1,9 +1,10 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { emitToast, setServerValidationErrors } from 'utils'
 import { useMutation, useQueryClient } from 'react-query'
+import type { UserDataObj, UserUpdateData } from 'types'
 import { useUserService, useGetUserData } from 'hooks'
+import type { ProfileFormValues } from './types'
 import { useTranslation } from 'next-i18next'
-import type { UserDataObj } from 'types'
 import { useState } from 'react'
 
 const useProfileForm = () => {
@@ -37,10 +38,13 @@ const useProfileForm = () => {
   const { user } = useGetUserData()
   const { t } = useTranslation()
 
-  const form = useForm({
+  const form = useForm<ProfileFormValues>({
     defaultValues: {
       username: user?.username!,
       email: user?.email!,
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: '',
     },
   })
 
@@ -75,10 +79,25 @@ const useProfileForm = () => {
       },
     })
 
-  const submitHandler: SubmitHandler<{ username: string; email: string }> = ({
+  const submitHandler: SubmitHandler<ProfileFormValues> = ({
+    confirmPassword,
+    oldPassword,
+    newPassword,
     username,
   }) => {
-    updateUserDataMutation({ username })
+    const data: UserUpdateData = {}
+
+    if (!disabledInputFields.username) {
+      data.username = username
+    }
+
+    if (!disabledInputFields.password) {
+      data.oldPassword = oldPassword
+      data.newPassword = newPassword
+      data.confirmPassword = confirmPassword
+    }
+
+    updateUserDataMutation(data)
   }
 
   return {
