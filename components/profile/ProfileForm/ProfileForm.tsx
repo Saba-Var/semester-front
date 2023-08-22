@@ -1,6 +1,7 @@
 import { FormProvider } from 'react-hook-form'
 import useProfileForm from './useProfileForm'
 import {
+  EmailChangeModalForm,
   ProfileInputWrapper,
   PasswordRequirement,
   TextInputField,
@@ -10,8 +11,10 @@ import {
 
 const ProfileForm = () => {
   const {
+    setShowEmailChangeModal,
     disableAllInputFields,
     newPasswordValidation,
+    showEmailChangeModal,
     disabledInputFields,
     isUserDataUpdating,
     enableInputEdit,
@@ -23,6 +26,11 @@ const ProfileForm = () => {
 
   return (
     <>
+      <EmailChangeModalForm
+        setOpen={setShowEmailChangeModal}
+        open={showEmailChangeModal}
+      />
+
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(submitHandler)} className='mt-8'>
           <ProfileInputWrapper
@@ -35,7 +43,10 @@ const ProfileForm = () => {
             />
           </ProfileInputWrapper>
 
-          <ProfileInputWrapper onClick={() => enableInputEdit('email')}>
+          <ProfileInputWrapper
+            onClick={() => setShowEmailChangeModal(true)}
+            showEditButton={!showEmailChangeModal}
+          >
             <TextInputField name='email' disabled />
           </ProfileInputWrapper>
 

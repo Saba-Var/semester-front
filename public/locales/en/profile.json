@@ -116,5 +116,7 @@
   "shapeRotation": "Shape Rotation",
   "shapeColor": "Shape Color",
   "avatar_changed_successfully": "Avatar changed successfully",
-  "avatar_change_failed": "Avatar change failed"
+  "avatar_change_failed": "Avatar change failed",
+  "change_email": "Change Email",
+  "new_email": "New Email"
 }

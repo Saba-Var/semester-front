@@ -15,9 +15,9 @@ const useProfileForm = () => {
     showFormActionButtons: false,
     passwordChange: true,
     username: true,
-    email: true,
   }
 
+  const [showEmailChangeModal, setShowEmailChangeModal] = useState(false)
   const [disabledInputFields, setDisabledInputFields] = useState(
     initialDisabledInputs
   )
@@ -31,7 +31,6 @@ const useProfileForm = () => {
     if (inputName === 'passwordChange') {
       form.setValue('passwordChange', true)
     }
-    console.log(inputName)
 
     setDisabledInputFields((prev) => {
       return {
@@ -122,8 +121,10 @@ const useProfileForm = () => {
   }
 
   return {
+    setShowEmailChangeModal,
     disableAllInputFields,
     newPasswordValidation,
+    showEmailChangeModal,
     disabledInputFields,
     isUserDataUpdating,
     enableInputEdit,
