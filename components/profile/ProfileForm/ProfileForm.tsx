@@ -4,6 +4,7 @@ import {
   EmailChangeModalForm,
   ProfileInputWrapper,
   PasswordRequirement,
+  EmailActivation,
   TextInputField,
   SubmitButton,
   CustomButton,
@@ -30,6 +31,8 @@ const ProfileForm = () => {
         setOpen={setShowEmailChangeModal}
         open={showEmailChangeModal}
       />
+
+      <EmailActivation profileForm={form} />
 
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(submitHandler)} className='mt-8'>

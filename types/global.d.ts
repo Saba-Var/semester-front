@@ -163,3 +163,12 @@ export type UserUpdateData = {
 export type UserDataObj = {
   data: User
 }
+
+export type ProfileFormValues = {
+  confirmPassword: string
+  passwordChange: boolean
+  oldPassword: string
+  newPassword: string
+  username: string
+  email: string
+}
