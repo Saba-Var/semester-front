@@ -11,7 +11,7 @@ const Dashboard: NextPageWithSidebarLayout = () => {
   return (
     <div className='mt-10'>
       {user ? (
-        <div className='bg-white p-14 mt-10 rounded-md shadow-md w-[60%] mx-auto'>
+        <div className='bg-white p-4 pt-8 xl:px-10 rounded-md shadow-md w-full mx-auto mb-10 sm:w-10/12 sm:px-8 lg:w-8/12 2.5xl:w-1/2'>
           <UserAvatarSection />
           <ProfileForm />
         </div>

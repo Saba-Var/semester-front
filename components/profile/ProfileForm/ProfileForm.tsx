@@ -124,7 +124,7 @@ const ProfileForm = () => {
 
           {disabledInputFields.showFormActionButtons && (
             <ProfileInputWrapper showEditButton={false}>
-              <div className='flex gap-4 items-center mt-10 w-[50%] ml-auto'>
+              <div className='grid grid-cols-2 gap-4 items-center justify-items-center mb-6 w-full mt-2 sm:mt-4 ml-auto'>
                 <CustomButton
                   onClick={() => {
                     disableAllInputFields()

@@ -12,6 +12,7 @@ module.exports = {
 
       screens: {
         '3xl': '1920px',
+        '2.5xl': '1745px',
       },
 
       height: {
