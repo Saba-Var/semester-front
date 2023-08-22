@@ -15,18 +15,16 @@ const ResetPasswordRequestForm = () => {
 
   return (
     <>
-      {successModal && (
-        <SuccessModal
-          linkActionText={t('auth:go-to-gmail')}
-          description={t('reset:check-email')}
-          title={t('reset:reset-lin-sent')}
-          actionText='reset:reset-password'
-          setSuccess={setSuccessModal}
-          isSuccess={successModal}
-          linkAction={true}
-          closeWithOverlay
-        />
-      )}
+      <SuccessModal
+        linkActionText={t('auth:go-to-gmail')}
+        description={t('reset:check-email')}
+        title={t('reset:reset-lin-sent')}
+        actionText='reset:reset-password'
+        setSuccess={setSuccessModal}
+        show={successModal}
+        linkAction={true}
+        closeWithOverlay
+      />
 
       <FormProvider {...form}>
         <form

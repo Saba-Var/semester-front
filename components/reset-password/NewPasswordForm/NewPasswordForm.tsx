@@ -23,17 +23,15 @@ const NewPasswordForm = () => {
 
   return (
     <>
-      {successModal && (
-        <SuccessModal
-          description={t('auth:reset-success-text')}
-          title={t('auth:password-reset-success')}
-          clickHandler={logInClickHandler}
-          actionText={t('auth:log-in')}
-          setSuccess={setSuccessModal}
-          isSuccess={successModal}
-          closeWithOverlay
-        />
-      )}
+      <SuccessModal
+        description={t('auth:reset-success-text')}
+        title={t('auth:password-reset-success')}
+        clickHandler={logInClickHandler}
+        actionText={t('auth:log-in')}
+        setSuccess={setSuccessModal}
+        show={successModal}
+        closeWithOverlay
+      />
 
       {fetchError && (
         <ErrorModal

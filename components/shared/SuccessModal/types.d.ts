@@ -8,6 +8,6 @@ export type SuccessModalProps = {
   linkAction?: boolean
   description: string
   actionText?: string
-  isSuccess: boolean
   title: string
+  show: boolean
 }

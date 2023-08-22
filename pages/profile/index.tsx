@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         'common',
         'profile',
         'inputs',
+        'auth',
       ])),
     },
   }

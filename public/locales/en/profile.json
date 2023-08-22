@@ -119,5 +119,6 @@
   "avatar_change_failed": "Avatar change failed",
   "change_email": "Change Email",
   "new_email": "New Email",
-  "email_confirmation_sent": "Email confirmation sent"
+  "email_confirmation_sent": "Email confirmation sent",
+  "email_change_instructions": "Check you email (new one) to confirm the change"
 }

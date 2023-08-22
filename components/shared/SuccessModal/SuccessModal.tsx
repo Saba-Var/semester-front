@@ -14,14 +14,14 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
     linkAction,
     actionText,
     setSuccess,
-    isSuccess,
     title,
+    show,
   } = props
 
   const { cancelButtonRef } = useSuccessModal()
 
   return (
-    <Transition.Root show={isSuccess} as={Fragment}>
+    <Transition.Root show={show} as={Fragment}>
       <Dialog
         as='div'
         onClose={closeWithOverlay ? setSuccess : () => {}}
