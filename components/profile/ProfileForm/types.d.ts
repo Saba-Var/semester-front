@@ -1,7 +1,8 @@
 export type ProfileFormValues = {
-  username: string
-  email: string
+  confirmPassword: string
+  passwordChange: boolean
   oldPassword: string
   newPassword: string
-  confirmPassword: string
+  username: string
+  email: string
 }

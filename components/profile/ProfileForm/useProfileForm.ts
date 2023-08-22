@@ -23,10 +23,16 @@ const useProfileForm = () => {
   )
 
   const disableAllInputFields = () => {
+    form.setValue('passwordChange', false)
     setDisabledInputFields(initialDisabledInputs)
   }
 
   const enableInputEdit = (inputName: string) => {
+    if (inputName === 'passwordChange') {
+      form.setValue('passwordChange', true)
+    }
+    console.log(inputName)
+
     setDisabledInputFields((prev) => {
       return {
         ...prev,
@@ -49,6 +55,7 @@ const useProfileForm = () => {
       oldPassword: '',
       newPassword: '',
       confirmPassword: '',
+      passwordChange: false,
     },
     mode: 'onTouched',
   })
@@ -97,6 +104,7 @@ const useProfileForm = () => {
     })
 
   const submitHandler: SubmitHandler<ProfileFormValues> = ({
+    passwordChange,
     confirmPassword,
     oldPassword,
     newPassword,
@@ -104,7 +112,7 @@ const useProfileForm = () => {
   }) => {
     const data: UserUpdateData = { username }
 
-    if (!disabledInputFields.passwordChange) {
+    if (passwordChange) {
       data.oldPassword = oldPassword
       data.newPassword = newPassword
       data.confirmPassword = confirmPassword
