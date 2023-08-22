@@ -118,5 +118,6 @@
   "avatar_changed_successfully": "ავატარი წარმატებით შეიცვალა",
   "avatar_change_failed": "ავატარის ვერ შეიცვალა",
   "change_email": "ელ.ფოსტის შეცვლა",
-  "new_email": "ახალი ელ.ფოსტა"
+  "new_email": "ახალი ელ.ფოსტა",
+  "email_confirmation_sent": "ელ.ფოსტაზე დადასტურების ბმული გაიგზავნა"
 }

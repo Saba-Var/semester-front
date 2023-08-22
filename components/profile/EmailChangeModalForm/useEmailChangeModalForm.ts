@@ -1,10 +1,14 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { setServerValidationErrors, emitToast } from 'utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useTranslation } from 'next-i18next'
+import { useMutation } from 'react-query'
+import { useUserService } from 'hooks'
 import { emailSchema } from 'schemas'
 import { SetState } from 'types'
 
 const useEmailChangeModalForm = (setOpen: SetState<boolean>) => {
+  const { changeUseEmailRequest } = useUserService()
   const { t } = useTranslation()
 
   const form = useForm({
@@ -20,11 +24,25 @@ const useEmailChangeModalForm = (setOpen: SetState<boolean>) => {
     setOpen(false)
   }
 
-  const submitHandler: SubmitHandler<{ email: string }> = (values) => {
-    console.log(values)
+  const { mutate: changeUserEmailMutation, isLoading } = useMutation(
+    changeUseEmailRequest,
+    {
+      onSuccess: () => {
+        emitToast(t('profile:email_confirmation_sent'), 'success')
+        closeHandler()
+      },
+
+      onError: (error: any) => {
+        setServerValidationErrors(error, form)
+      },
+    }
+  )
+
+  const submitHandler: SubmitHandler<{ email: string }> = ({ email }) => {
+    changeUserEmailMutation(email)
   }
 
-  return { t, form, closeHandler, submitHandler }
+  return { t, form, closeHandler, submitHandler, isLoading }
 }
 
 export default useEmailChangeModalForm

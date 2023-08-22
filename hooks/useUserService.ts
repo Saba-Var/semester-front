@@ -9,11 +9,17 @@ export const useUserService = () => {
     return privateAxios.get('/user')
   }
 
+  const changeUseEmailRequest = (
+    email: string
+  ): Promise<AxiosResponse<Message>> => {
+    return privateAxios.get(`/user/change-email?newEmail=${email}`)
+  }
+
   const updateUserData = (
     data: UserUpdateData
   ): Promise<AxiosResponse<Message>> => {
     return privateAxios.put('/user', data)
   }
 
-  return { getUserData, updateUserData }
+  return { getUserData, updateUserData, changeUseEmailRequest }
 }

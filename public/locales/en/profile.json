@@ -118,5 +118,6 @@
   "avatar_changed_successfully": "Avatar changed successfully",
   "avatar_change_failed": "Avatar change failed",
   "change_email": "Change Email",
-  "new_email": "New Email"
+  "new_email": "New Email",
+  "email_confirmation_sent": "Email confirmation sent"
 }

@@ -18,4 +18,17 @@ export const setServerValidationErrors = (
       })
     })
   }
+
+  if (status === 409) {
+    const conflictErrors = error?.response?.data
+
+    if (!!conflictErrors) {
+      for (const key in conflictErrors) {
+        form.setError(key, {
+          message: conflictErrors[key],
+          type: 'server',
+        })
+      }
+    }
+  }
 }
