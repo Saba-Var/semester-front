@@ -1,4 +1,5 @@
 export type InputFieldProps = {
+  autoComplete?: 'off' | 'on' | 'new-password'
   type?: 'text' | 'password'
   showValidation?: boolean
   labelClasses?: string

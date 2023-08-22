@@ -41,9 +41,9 @@
   "6_or_more_characters": "6 ან მეტი ასოს",
   "uppercase_character": "მაღალი რეგისტრის ასოს",
   "lowercase_character": "დაბალი რეგისტრის ასოს",
-  "at_least_one_symbol": "მინიმუმ ერთი სიმბოლოს",
+  "at_least_one_symbol": "მინიმუმ ერთი სიმბოლოს ან რიცხვს",
   "new_password_should_contain": "ახალი პაროლი უნდა შეიცავდეს",
   "old_password_required": "მინდინარე პაროლი სავალდებულოა",
   "new_password_required": "ახალი პაროლი სავალდებულოა",
-  "password_complexity": "ახალი პაროლი უნდა შეიცავდეს: მაღალი და დაბალი რეგისტრის სიმბოლოებს, მინ. 1 სიმბოლოს"
+  "password_complexity": "ახალი პაროლი უნდა შეიცავდეს: მაღალი და დაბალი რეგისტრის სიმბოლოებს, მინ. 1 სიმბოლოს ან რიცხვს"
 }

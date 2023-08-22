@@ -1,3 +1,4 @@
+import { lowerCaseRegex, upperCaseRegex, symbolOrNumberRegex } from 'CONSTANTS'
 import { useForm, type SubmitHandler, useWatch } from 'react-hook-form'
 import { emitToast, setServerValidationErrors } from 'utils'
 import { useMutation, useQueryClient } from 'react-query'
@@ -61,9 +62,9 @@ const useProfileForm = () => {
 
   const newPasswordValidation = {
     length: newPassword?.length >= 6,
-    hasLowerCaseChar: /[a-z]/.test(newPassword!),
-    hasUpperCaseChar: /[A-Z]/.test(newPassword!),
-    hasSymbol: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]/.test(newPassword!),
+    hasLowerCaseChar: lowerCaseRegex.test(newPassword!),
+    hasUpperCaseChar: upperCaseRegex.test(newPassword!),
+    hasSymbol: symbolOrNumberRegex.test(newPassword!),
   }
 
   const { mutate: updateUserDataMutation, isLoading: isUserDataUpdating } =
@@ -101,11 +102,7 @@ const useProfileForm = () => {
     newPassword,
     username,
   }) => {
-    const data: UserUpdateData = {}
-
-    if (!disabledInputFields.username) {
-      data.username = username
-    }
+    const data: UserUpdateData = { username }
 
     if (!disabledInputFields.passwordChange) {
       data.oldPassword = oldPassword

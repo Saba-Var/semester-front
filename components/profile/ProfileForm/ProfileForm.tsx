@@ -84,6 +84,7 @@ const ProfileForm = () => {
               <ProfileInputWrapper showEditButton={false}>
                 <TextInputField
                   label={t('inputs:current_password')}
+                  autoComplete='new-password'
                   name='oldPassword'
                   type='password'
                 />

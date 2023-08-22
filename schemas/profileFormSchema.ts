@@ -1,3 +1,4 @@
+import { passwordComplexityRegex } from 'CONSTANTS'
 import * as Yup from 'yup'
 
 export const profileFormSchema = Yup.object({
@@ -13,18 +14,10 @@ export const profileFormSchema = Yup.object({
     .required('new_password_required')
     .min(6, 'password-min')
     .test('password-complexity', 'password_complexity', (value) => {
-      const lowercaseRegex = /[a-z]/
-      const uppercaseRegex = /[A-Z]/
-      const specialSymbolRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/
-
-      return (
-        lowercaseRegex.test(value!) &&
-        uppercaseRegex.test(value!) &&
-        specialSymbolRegex.test(value!)
-      )
+      return passwordComplexityRegex.test(value!)
     }),
 
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'password-match')
+    .oneOf([Yup.ref('newPassword'), null], 'password-match')
     .required('confirmPassword-required'),
 })
