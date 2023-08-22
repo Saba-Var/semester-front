@@ -116,5 +116,12 @@
   "shapeRotation": "Shape Rotation",
   "shapeColor": "Shape Color",
   "avatar_changed_successfully": "Avatar changed successfully",
-  "avatar_change_failed": "Avatar change failed"
+  "avatar_change_failed": "Avatar change failed",
+  "change_email": "Change Email",
+  "new_email": "New Email",
+  "email_confirmation_sent": "Email confirmation sent",
+  "email_change_instructions": "Check you email (new one) to confirm the change",
+  "email_changed_successfully": "Email changed successfully",
+  "email_change_failed": "Email change failed",
+  "email_change_failed_instructions": "You can request a new change from the profile page"
 }

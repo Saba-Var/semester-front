@@ -1,12 +1,17 @@
 import { InputErrorMessageProps } from './types.d'
-import { useTranslate } from 'hooks'
+import { useTranslation } from 'next-i18next'
 
-const InputErrorMessage: React.FC<InputErrorMessageProps> = (props) => {
-  const { errorMessage } = props
+const InputErrorMessage: React.FC<InputErrorMessageProps> = ({
+  errorMessage,
+}) => {
+  const { t } = useTranslation('inputs')
 
   return (
     <p className='lg:mt-1 text-left text-sm text-red-600'>
-      {useTranslate(`inputs:${errorMessage}`)}
+      {typeof errorMessage?.message === 'string' &&
+      errorMessage?.type === 'server'
+        ? errorMessage?.message
+        : t(errorMessage?.message! as string)}
     </p>
   )
 }

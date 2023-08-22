@@ -151,3 +151,24 @@ export type AvatarCollectionProperties = {
     type: string
   }
 }
+
+export type UserUpdateData = {
+  username?: string
+  image?: UserImage
+  oldPassword?: string
+  newPassword?: string
+  confirmPassword?: string
+}
+
+export type UserDataObj = {
+  data: User
+}
+
+export type ProfileFormValues = {
+  confirmPassword: string
+  passwordChange: boolean
+  oldPassword: string
+  newPassword: string
+  username: string
+  email: string
+}

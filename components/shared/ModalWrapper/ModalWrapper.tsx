@@ -51,7 +51,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
               <Dialog.Panel
-                className={`relative w-screen min-h-screen 3xl:py-10 md:min-h-fit md:w-[85vw] lg:w-[75vw] xl:w-[50vw] 3xl:w-[70vw] transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all md:my-8 sm:w-full sm:p-6 ${mainContainerClassName}`}
+                className={`relative w-screen min-h-screen 3xl:py-10 md:min-h-fit md:w-[85vw] lg:w-[75vw] xl:w-[50vw] 3xl:w-[50vw] transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all md:my-8 sm:w-full sm:p-6 ${mainContainerClassName}`}
               >
                 <div className='absolute right-0 top-0 pr-4 pt-4'>
                   <button
@@ -82,7 +82,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
                   <div className='mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3'>
                     <button
                       type='button'
-                      className={`inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2 ${
+                      className={`inline-flex h-12 items-center w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2 ${
                         type === 'danger' &&
                         'bg-red-600 text-gray-900 hover:bg-red-500'
                       } ${disabled && 'disabled-btn'}`}
@@ -94,7 +94,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
 
                     <button
                       type='button'
-                      className='mt-3 outline-none inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0'
+                      className='mt-3 outline-none h-12 items-center inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0'
                       onClick={closeHandler}
                       ref={cancelButtonRef}
                     >

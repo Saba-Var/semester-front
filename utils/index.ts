@@ -1,4 +1,5 @@
 export * from './generateNewTimeStringFromNumber'
+export * from './setServerValidationErrors'
 export * from './convertStringTimeToNumber'
 export * from './timeStringToMinutes'
 export * from './longDateFormat'

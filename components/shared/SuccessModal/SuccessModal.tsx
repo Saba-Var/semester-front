@@ -1,4 +1,4 @@
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Dialog, Transition } from '@headlessui/react'
 import { useSuccessModal } from './useSuccessModal'
 import { SuccessModalProps } from './types.d'
@@ -7,6 +7,7 @@ import { Fragment } from 'react'
 
 const SuccessModal: React.FC<SuccessModalProps> = (props) => {
   const {
+    showOnlyCloseButton = false,
     closeWithOverlay,
     linkActionText,
     clickHandler,
@@ -14,14 +15,14 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
     linkAction,
     actionText,
     setSuccess,
-    isSuccess,
     title,
+    show,
   } = props
 
   const { cancelButtonRef } = useSuccessModal()
 
   return (
-    <Transition.Root show={isSuccess} as={Fragment}>
+    <Transition.Root show={show} as={Fragment}>
       <Dialog
         as='div'
         onClose={closeWithOverlay ? setSuccess : () => {}}
@@ -51,7 +52,22 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
-              <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
+              <Dialog.Panel
+                className={`relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 ${
+                  showOnlyCloseButton && 'w-full sm:w-[50%]'
+                }`}
+              >
+                <div className='absolute right-0 top-0 pr-4 pt-4'>
+                  <button
+                    type='button'
+                    className='rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                    onClick={() => setSuccess(false)}
+                  >
+                    <span className='sr-only'>Close</span>
+                    <XMarkIcon className='h-6 w-6' aria-hidden='true' />
+                  </button>
+                </div>
+
                 <div>
                   <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100'>
                     <CheckIcon
@@ -71,8 +87,12 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className='mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3'>
-                  {linkAction ? (
+                <div
+                  className={`mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3 ${
+                    showOnlyCloseButton && 'sm:!grid-cols-1'
+                  }`}
+                >
+                  {linkAction && !showOnlyCloseButton && (
                     <a
                       href='https://gmail.com'
                       className='inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:col-start-2 sm:text-sm'
@@ -80,7 +100,9 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
                     >
                       {linkActionText}
                     </a>
-                  ) : (
+                  )}
+
+                  {!linkAction && !showOnlyCloseButton && (
                     <button
                       className='inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:col-start-2 sm:text-sm'
                       onClick={clickHandler}
@@ -91,7 +113,7 @@ const SuccessModal: React.FC<SuccessModalProps> = (props) => {
                   )}
 
                   <button
-                    className='mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 sm:col-start-1 sm:mt-0 sm:text-sm'
+                    className={`mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 sm:col-start-1 sm:mt-0 sm:text-sm`}
                     onClick={() => setSuccess(false)}
                     ref={cancelButtonRef}
                   >

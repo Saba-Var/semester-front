@@ -11,7 +11,7 @@ const UserAvatarSection = () => {
         <CustomButton
           onClick={() => setIsAvatarModalOpen(true)}
           title={t('change_avatar')}
-          type='soft-btn'
+          stylesType='soft-btn'
         />
       </AvatarImage>
 

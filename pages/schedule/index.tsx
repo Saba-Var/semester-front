@@ -1,5 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { CreateSemesterForm, AllSemesters } from 'components'
+import { CreateSemesterForm, AllSemesters, LoadingIcon } from 'components'
 import { NextPageWithSidebarLayout } from 'types'
 import { useGetAllSemesters } from 'hooks'
 import { GetStaticProps } from 'next'
@@ -10,7 +10,7 @@ const Schedule: NextPageWithSidebarLayout = () => {
 
   return (
     <>
-      {!isLoading && (
+      {!isLoading ? (
         <>
           {!currentSemester && <CreateSemesterForm />}
 
@@ -19,6 +19,8 @@ const Schedule: NextPageWithSidebarLayout = () => {
             semestersData={semestersData}
           />
         </>
+      ) : (
+        <LoadingIcon centered />
       )}
     </>
   )

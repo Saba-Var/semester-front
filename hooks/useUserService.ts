@@ -1,4 +1,5 @@
-import type { User, Message, UserImage } from 'types'
+import type { User, Message, UserUpdateData } from 'types'
+import type { ActivateEmailResponse } from './types'
 import { useAxiosPrivate } from 'hooks'
 import { AxiosResponse } from 'axios'
 
@@ -9,15 +10,28 @@ export const useUserService = () => {
     return privateAxios.get('/user')
   }
 
+  const changeUseEmailRequest = (
+    email: string
+  ): Promise<AxiosResponse<Message>> => {
+    return privateAxios.get(`/user/change-email?newEmail=${email}`)
+  }
+
   const updateUserData = (
-    data:
-      | {
-          image: UserImage
-        }
-      | User
+    data: UserUpdateData
   ): Promise<AxiosResponse<Message>> => {
     return privateAxios.put('/user', data)
   }
 
-  return { getUserData, updateUserData }
+  const activateEmailRequest = (
+    token: string
+  ): Promise<AxiosResponse<ActivateEmailResponse>> => {
+    return privateAxios.put(`/user/activate-email?token=${token}`)
+  }
+
+  return {
+    changeUseEmailRequest,
+    activateEmailRequest,
+    updateUserData,
+    getUserData,
+  }
 }

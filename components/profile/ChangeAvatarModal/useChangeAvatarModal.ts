@@ -1,22 +1,25 @@
-import type { AvatarCollectionProperties, AvatarProperties, User } from 'types'
 import { useForm, useWatch, type SubmitHandler } from 'react-hook-form'
 import { propertiesWithProbability, avatarCollection } from 'CONSTANTS'
 import { useMutation, useQueryClient } from 'react-query'
 import { createAvatar, type Style } from '@dicebear/core'
+import { useUserService, useGetUserData } from 'hooks'
 import { useTranslation } from 'next-i18next'
 import type { PropertiesList } from './types'
-import { useSelector } from 'react-redux'
 import { useMemo, useState } from 'react'
-import { useUserService } from 'hooks'
 import { emitToast } from 'utils'
-import { RootState } from 'store'
+import type {
+  AvatarCollectionProperties,
+  AvatarProperties,
+  UserDataObj,
+  User,
+} from 'types'
 
 const useChangeAvatarModal = (closeHandler: () => void) => {
   const [activeTab, setActiveTab] = useState<keyof AvatarProperties>('style')
 
-  const user = useSelector((state: RootState) => state.user)
   const { updateUserData } = useUserService()
   const queryClient = useQueryClient()
+  const { user } = useGetUserData()
   const { t } = useTranslation()
 
   const form = useForm({
@@ -117,14 +120,11 @@ const useChangeAvatarModal = (closeHandler: () => void) => {
 
         const userPreviousData = queryClient.getQueryData('user')
 
-        queryClient.setQueryData<{ data: User }>(
-          'user',
-          (old): { data: User } => {
-            closeModalHandler()
+        queryClient.setQueryData<UserDataObj>('user', (old): UserDataObj => {
+          closeModalHandler()
 
-            return { data: { ...old?.data, ...newUserData } as User }
-          }
-        )
+          return { data: { ...old?.data, ...newUserData } as User }
+        })
 
         return { userPreviousData }
       },

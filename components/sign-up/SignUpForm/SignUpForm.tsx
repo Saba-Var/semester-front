@@ -15,16 +15,14 @@ const SignUpForm = () => {
 
   return (
     <>
-      {signUpSuccess && (
-        <SuccessModal
-          description={t('auth:confirmation-instructions')}
-          linkActionText={t('auth:go-to-gmail')}
-          title={t('auth:confirmation-sent')}
-          setSuccess={setSignUpSuccess}
-          isSuccess={signUpSuccess}
-          linkAction={true}
-        />
-      )}
+      <SuccessModal
+        description={t('auth:confirmation-instructions')}
+        linkActionText={t('auth:go-to-gmail')}
+        title={t('auth:confirmation-sent')}
+        setSuccess={setSignUpSuccess}
+        show={signUpSuccess}
+        linkAction={true}
+      />
 
       <FormProvider {...form}>
         <form

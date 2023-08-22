@@ -116,5 +116,12 @@
   "shapeRotation": "ფორმა გადატრიალება",
   "shapeColor": "ფორმის ფერი",
   "avatar_changed_successfully": "ავატარი წარმატებით შეიცვალა",
-  "avatar_change_failed": "ავატარის ვერ შეიცვალა"
+  "avatar_change_failed": "ავატარის ვერ შეიცვალა",
+  "change_email": "ელ.ფოსტის შეცვლა",
+  "new_email": "ახალი ელ.ფოსტა",
+  "email_confirmation_sent": "ელ.ფოსტაზე დადასტურების ბმული გაიგზავნა",
+  "email_change_instructions": "შეამოწმე შენი ელ.ფოსტა (ახალი) და მიჰყევი ინსტრუქციას, რათა გააქტიურო ახალი ელ.ფოსტა",
+  "email_changed_successfully": "ელ.ფოსტა წარმატებით შეიცვალა",
+  "email_change_failed": "ელ.ფოსტა ვერ შეიცვალა",
+  "email_change_failed_instructions": "შენ კვლავ შეგიძლია რომ მოითხოვო ელ.ფოსტის შეცვლა პროფილის გვერდიდან"
 }

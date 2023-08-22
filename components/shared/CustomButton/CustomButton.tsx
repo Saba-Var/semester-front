@@ -1,7 +1,7 @@
 import { CustomButtonProps } from './types'
 
 const CustomButton: React.FC<CustomButtonProps> = ({
-  type = 'primary-btn',
+  stylesType = 'primary-btn',
   onClick = () => {},
   disabled = false,
   styles = '',
@@ -11,7 +11,9 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${styles} ${type} ${disabled ? 'disabled-btn' : ''}`}
+      className={`${styles} ${stylesType} ${
+        disabled ? 'disabled-btn' : ''
+      } w-full`}
       disabled={disabled}
       onClick={onClick}
       {...props}

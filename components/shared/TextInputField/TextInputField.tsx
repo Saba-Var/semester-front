@@ -9,6 +9,9 @@ import {
 } from '@heroicons/react/20/solid'
 
 const TextInputField: React.FC<InputFieldProps> = ({
+  showValidation = true,
+  showEyeIcon = true,
+  autoComplete = 'on',
   placeholder = '',
   disabled = false,
   required = true,
@@ -26,10 +29,10 @@ const TextInputField: React.FC<InputFieldProps> = ({
     isValid,
     errors,
     t,
-  } = useInputField(name, type)
+  } = useInputField(name, type, showValidation)
 
   return (
-    <div className='min-h-[107px]'>
+    <div className='min-h-[107px] w-full'>
       <label
         className={`block text-base select-none text-left font-medium text-gray-700 ${
           isError && 'text-red-900'
@@ -48,6 +51,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
             isPasswordField && (isError || isValid) && 'pr-14'
           } disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 disabled:ring-gray-200 lg:text-base`}
           placeholder={placeholder || label || t(name)}
+          autoComplete={autoComplete}
           disabled={disabled}
           type={inputType}
         />
@@ -75,7 +79,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
           </div>
         )}
 
-        {isPasswordField && (
+        {isPasswordField && showEyeIcon && (
           <div
             className='absolute text-gray-600 hover:scale-110 w-[18px] h-[18px] active:scale-95 transition-transform right-3 top-[50%] -translate-y-1/2 cursor-pointer'
             onClick={passwordShowHandler}
@@ -86,7 +90,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
       </div>
 
       <ErrorMessage
-        render={({ message }) => <InputErrorMessage errorMessage={message} />}
+        render={() => <InputErrorMessage errorMessage={errors[name]} />}
         errors={errors}
         name={name}
       />
