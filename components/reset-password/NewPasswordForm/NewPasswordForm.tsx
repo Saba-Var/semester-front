@@ -33,14 +33,12 @@ const NewPasswordForm = () => {
         closeWithOverlay
       />
 
-      {fetchError && (
-        <ErrorModal
-          description={t('reset:reset-fail-description')}
-          title={t('reset:reset-fail')}
-          setShowModal={setFetchError}
-          showModal={fetchError}
-        />
-      )}
+      <ErrorModal
+        description={t('reset:reset-fail-description')}
+        title={t('reset:reset-fail')}
+        setShowModal={setFetchError}
+        showModal={fetchError}
+      />
 
       <FormProvider {...form}>
         <form

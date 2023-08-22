@@ -11,6 +11,7 @@ import { useUserService } from 'hooks'
 const useEmailActivation = (profileForm: ProfileForm) => {
   const [showActivationSuccessModal, setShowActivationSuccessModal] =
     useState(false)
+  const [showActivationFailModal, setShowActivationFailModal] = useState(false)
 
   const { activateEmailRequest } = useUserService()
   const { t } = useTranslation('profile')
@@ -44,8 +45,9 @@ const useEmailActivation = (profileForm: ProfileForm) => {
         router.replace('/profile')
       },
 
-      onError: (error) => {
-        console.log(error)
+      onError: () => {
+        setShowActivationFailModal(true)
+        router.replace('/profile')
       },
 
       retry: false,
@@ -58,7 +60,13 @@ const useEmailActivation = (profileForm: ProfileForm) => {
     }
   }, [activateEmailMutation, emailToken, showActivationSuccessModal])
 
-  return { t, showActivationSuccessModal, setShowActivationSuccessModal }
+  return {
+    setShowActivationSuccessModal,
+    showActivationSuccessModal,
+    setShowActivationFailModal,
+    showActivationFailModal,
+    t,
+  }
 }
 
 export default useEmailActivation

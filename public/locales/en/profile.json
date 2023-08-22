@@ -123,5 +123,5 @@
   "email_change_instructions": "Check you email (new one) to confirm the change",
   "email_changed_successfully": "Email changed successfully",
   "email_change_failed": "Email change failed",
-  "email_change_failed_instructions": "You can request a new change"
+  "email_change_failed_instructions": "You can request a new change from the profile page"
 }
