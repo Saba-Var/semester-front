@@ -37,9 +37,7 @@ export const accountActivation = (
 export const resetPasswordEmailReq = (
   data: Email
 ): Promise<AxiosResponse<Message>> => {
-  return axios.get(
-    `/authentication/change-password-request?email=${data.email}`
-  )
+  return axios.get(`/authentication/change-password?email=${data.email}`)
 }
 
 export const resetPassword = (
