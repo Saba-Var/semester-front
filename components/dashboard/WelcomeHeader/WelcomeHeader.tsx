@@ -4,7 +4,7 @@ const WelcomeHeader = () => {
   const { greeting, t, username } = useWelcomeHeader()
 
   return (
-    <div className='h-9 text-2xl text-center font-medium my-10'>
+    <div className='h-9 text-2xl text-center font-medium my-10 mb-7'>
       {username && t(greeting, { username })}
     </div>
   )
