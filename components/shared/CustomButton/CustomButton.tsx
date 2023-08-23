@@ -3,6 +3,7 @@ import { CustomButtonProps } from './types'
 const CustomButton: React.FC<CustomButtonProps> = ({
   stylesType = 'primary-btn',
   onClick = () => {},
+  fullWidth = true,
   disabled = false,
   styles = '',
   children,
@@ -13,7 +14,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     <button
       className={`${styles} ${stylesType} ${
         disabled ? 'disabled-btn' : ''
-      } w-full h-12.5`}
+      } h-12.5 transition-all ${fullWidth ? 'w-full' : ''}`}
       disabled={disabled}
       onClick={onClick}
       {...props}
