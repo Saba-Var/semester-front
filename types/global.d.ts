@@ -172,3 +172,9 @@ export type ProfileFormValues = {
   username: string
   email: string
 }
+
+export enum DayGreetings {
+  Morning = 'morning_greeting',
+  Afternoon = 'afternoon_greeting',
+  Evening = 'evening_greeting',
+}
