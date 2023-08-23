@@ -1,6 +1,5 @@
 import { SubmitButtonProps } from './types.d'
 import { LoadingIcon } from 'components'
-import { useTranslate } from 'hooks'
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({
   showLoadingIndicator = true,
@@ -17,7 +16,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
       disabled={disabled}
       type='submit'
     >
-      <p>{useTranslate(`inputs:${title}`)}</p>
+      <p>{title}</p>
 
       {disabled && showLoadingIndicator && (
         <span className='w-5 h-5'>

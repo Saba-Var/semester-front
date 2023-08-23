@@ -33,7 +33,11 @@ const ResetPasswordRequestForm = () => {
         >
           <TextInputField name='email' />
 
-          <SubmitButton disabled={isLoading} title='continue' styles='mt-4' />
+          <SubmitButton
+            title={t('inputs:continue')}
+            disabled={isLoading}
+            styles='mt-4'
+          />
         </form>
       </FormProvider>
     </>

@@ -49,7 +49,7 @@ const NewPasswordForm = () => {
           <TextInputField name='confirmPassword' type='password' />
 
           <SubmitButton
-            title='reset-password'
+            title={t('inputs:reset-password')}
             disabled={isLoading}
             styles='mt-4'
           />

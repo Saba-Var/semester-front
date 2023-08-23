@@ -3,7 +3,7 @@ import { CustomButton, LoadingIcon } from 'components'
 
 const meta: Meta<typeof CustomButton> = {
   component: CustomButton,
-  title: 'Buttons/CustomButton',
+  title: 'Core/CustomButton',
   tags: ['autodocs'],
   argTypes: {
     stylesType: {
@@ -13,6 +13,7 @@ const meta: Meta<typeof CustomButton> = {
 }
 
 export default meta
+
 type Story = StoryObj<typeof CustomButton>
 
 export const Primary: Story = {

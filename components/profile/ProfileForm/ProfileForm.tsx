@@ -138,7 +138,7 @@ const ProfileForm = () => {
                 <SubmitButton
                   showLoadingIndicator={isUserDataUpdating}
                   disabled={isUserDataUpdating}
-                  title='save'
+                  title={t('inputs:save')}
                 />
               </div>
             </ProfileInputWrapper>

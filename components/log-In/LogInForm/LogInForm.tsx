@@ -9,7 +9,7 @@ import {
 } from 'components'
 
 const LogInForm = () => {
-  const { submitHandler, handleSubmit, authorizing, form } = useLogInForm()
+  const { submitHandler, handleSubmit, authorizing, form, t } = useLogInForm()
 
   return (
     <FormProvider {...form}>
@@ -27,7 +27,7 @@ const LogInForm = () => {
           <ForgetPassword />
         </div>
 
-        <SubmitButton disabled={authorizing} title='log-in' />
+        <SubmitButton disabled={authorizing} title={t('inputs:log-in')} />
       </form>
     </FormProvider>
   )

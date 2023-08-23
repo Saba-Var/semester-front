@@ -35,8 +35,8 @@ const SignUpForm = () => {
           <TextInputField name='confirmPassword' type='password' />
 
           <SubmitButton
+            title={t('inputs:sign-up')}
             disabled={userRegistering}
-            title='sign-up'
             styles='mt-4'
           />
         </form>
