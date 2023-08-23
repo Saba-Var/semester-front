@@ -1,6 +1,6 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { DashboardNavigation, WelcomeHeader } from 'components'
 import { NextPageWithSidebarLayout } from 'types'
-import { DashboardNavigation } from 'components'
 import { useTranslation } from 'next-i18next'
 import type { GetStaticProps } from 'next'
 import { getLayout } from 'utils'
@@ -10,6 +10,7 @@ const Dashboard: NextPageWithSidebarLayout = () => {
 
   return (
     <>
+      <WelcomeHeader />
       <DashboardNavigation />
     </>
   )

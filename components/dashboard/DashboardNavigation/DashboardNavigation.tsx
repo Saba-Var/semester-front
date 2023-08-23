@@ -1,16 +1,14 @@
-import { useTranslation } from 'next-i18next'
+import useDashboardNavigation from './useDashboardNavigation'
 import { CustomButton } from 'components'
 import { navigation } from 'CONSTANTS'
-import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const DashboardNavigation = () => {
-  const { t } = useTranslation('dashboard')
-  const { language } = Cookies.get()
+  const { t, language } = useDashboardNavigation()
 
   return (
-    <div className='flex gap-20 w-full justify-center mt-32 flex-wrap'>
+    <div className='flex gap-20 w-full justify-center flex-wrap'>
       {navigation.map((navItem) =>
         navItem.image ? (
           <Link key={navItem.name.en} href={navItem.href}>
