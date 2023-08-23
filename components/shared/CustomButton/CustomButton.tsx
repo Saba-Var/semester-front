@@ -3,7 +3,7 @@ import { CustomButtonProps } from './types'
 const CustomButton: React.FC<CustomButtonProps> = ({
   stylesType = 'primary-btn',
   onClick = () => {},
-  fullWidth = true,
+  fullWidth = false,
   disabled = false,
   styles = '',
   children,

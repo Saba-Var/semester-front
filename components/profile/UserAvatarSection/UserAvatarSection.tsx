@@ -13,6 +13,7 @@ const UserAvatarSection = () => {
           title={t('change_avatar')}
           stylesType='soft-btn'
           styles='!h-8'
+          fullWidth
         />
       </AvatarImage>
 

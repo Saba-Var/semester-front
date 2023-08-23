@@ -132,6 +132,7 @@ const ProfileForm = () => {
                   }}
                   stylesType='secondary-btn'
                   title={t('cancel')}
+                  fullWidth
                 />
 
                 <SubmitButton

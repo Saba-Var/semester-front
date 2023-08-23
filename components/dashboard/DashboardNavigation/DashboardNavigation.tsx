@@ -40,9 +40,10 @@ const DashboardNavigation = () => {
 
                 <Link href={navItem.href}>
                   <CustomButton
+                    title={t('check_out')}
                     stylesType='soft-btn'
                     styles='text-base'
-                    title={t('check_out')}
+                    fullWidth
                   />
                 </Link>
               </div>
