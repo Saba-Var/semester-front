@@ -9,7 +9,7 @@ const CheckboxInputField: React.FC<CheckboxInputFieldProps> = (props) => {
       <input
         {...register(props.name)}
         className='h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-transparent'
-        name='remember-me'
+        name='rememberMe'
         type='checkbox'
       />
       <span className='select-none'>{props.text}</span>

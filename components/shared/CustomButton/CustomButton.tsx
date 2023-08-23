@@ -13,7 +13,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     <button
       className={`${styles} ${stylesType} ${
         disabled ? 'disabled-btn' : ''
-      } w-full`}
+      } w-full h-12.5`}
       disabled={disabled}
       onClick={onClick}
       {...props}
