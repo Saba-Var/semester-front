@@ -1,5 +1,5 @@
 import { CalendarIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline'
-import { profile, cardSchedule } from 'public'
+import { businessTasklist, manWorkingOnLaptop } from 'public'
 
 export const navigation = [
   {
@@ -17,7 +17,7 @@ export const navigation = [
     },
     href: '/profile',
     icon: UsersIcon,
-    image: profile,
+    image: manWorkingOnLaptop,
     descriptionTranslationKey: 'profile_navigation_description',
   },
   {
@@ -27,7 +27,7 @@ export const navigation = [
     },
     href: '/schedule',
     icon: CalendarIcon,
-    image: cardSchedule,
+    image: businessTasklist,
     descriptionTranslationKey: 'schedule_navigation_description',
   },
 ]

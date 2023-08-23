@@ -18,17 +18,15 @@ const DashboardNavigation = () => {
               className='bg-white border group border-gray-200 overflow-hidden rounded-lg shadow hover:shadow-lg transition-all cursor-default'
               key={navItem.name.en}
             >
-              <div className='bg-blue-600 py-4 h-80 overflow-hidden'>
-                <div className='relative h-full w-[75%] mx-auto group-hover:scale-110 transition-all'>
-                  <Image
-                    alt={navItem.name[language as 'ka' | 'en']}
-                    className='object-contain select-none'
-                    src={navItem.image}
-                    draggable={false}
-                    layout='fill'
-                    priority
-                  />
-                </div>
+              <div className='relative h-80 bg-blue-500 w-full mx-auto'>
+                <Image
+                  alt={navItem.name[language as 'ka' | 'en']}
+                  className='object-contain select-none group-hover:scale-110 transition-all'
+                  src={navItem.image}
+                  draggable={false}
+                  layout='fill'
+                  priority
+                />
               </div>
 
               <div className='p-5'>

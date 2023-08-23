@@ -1,4 +1,6 @@
+export { default as manWorkingOnLaptop } from './man-working-on-laptop.png'
 export { default as blurredBackground } from './blurred-background.jpg'
+export { default as businessTasklist } from './business-tasklist.png'
 export { default as georgianFlag } from './georgian-flag.png'
 export { default as cardSchedule } from './card-schedule.png'
 export { default as britainFlag } from './britain-flag.png'
