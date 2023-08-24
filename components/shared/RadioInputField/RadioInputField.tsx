@@ -38,12 +38,12 @@ const RadioInputField: React.FC<RadioInputFieldProps> = ({
       </label>
 
       <fieldset className='mt-4'>
-        <div className='flex flex-wrap items-center gap-4'>
+        <div className='flex flex-wrap items-center gap-5'>
           {dataList.map((item) => (
-            <div key={item.value}>
+            <div className='flex justify-start items-center' key={item.value}>
               <label
                 htmlFor={item.value}
-                className={`ml-3 text-sm gap-2 font-medium flex items-center leading-6 text-gray-900 ${
+                className={`text-sm gap-2 font-medium flex items-center leading-6 text-gray-900 ${
                   disabled ? 'cursor-not-allowed' : ''
                 }`}
               >

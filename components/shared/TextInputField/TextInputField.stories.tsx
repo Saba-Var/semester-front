@@ -29,11 +29,8 @@ const meta: Meta<typeof TextInputField> = {
       description: 'The classes to apply to the label',
     },
     showValidation: {
-      description: 'Whether to show the validation for the input field',
-    },
-    isValidField: {
       description:
-        "Set this to true in order to show the input field as 'valid'. Warning: This will not validate the field. It will only show the input field as valid. Use this only when you want to show the input field as valid without validating it.",
+        'Whether to show the validation for the input field. If validation error exists, it will be shown',
     },
     autoComplete: {
       description: 'The autocomplete attribute of the input field',
