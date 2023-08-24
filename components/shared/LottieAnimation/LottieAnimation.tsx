@@ -1,12 +1,19 @@
 import { LottieAnimationProps } from './types.d'
 import Lottie from 'react-lottie'
 
-const LottieAnimation: React.FC<LottieAnimationProps> = (props) => {
-  const { animationData, styles, disableLoop } = props
-
+const LottieAnimation: React.FC<LottieAnimationProps> = ({
+  disableLoop = false,
+  animationData,
+  style = {},
+}) => {
   return (
     <Lottie
-      style={{ height: '100%', width: '100%', cursor: 'default', ...styles }}
+      style={{
+        height: '100%',
+        width: '100%',
+        cursor: 'default',
+        ...style,
+      }}
       isClickToPauseDisabled
       options={{
         loop: disableLoop ? false : true,

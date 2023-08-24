@@ -5,7 +5,6 @@ const meta: Meta<typeof TextInputField> = {
   component: TextInputField,
   title: 'Core/TextInputField',
   tags: ['autodocs'],
-  parameters: { layout: 'centered' },
   args: {
     name: 'username',
     placeholder: 'Enter your name',

@@ -5,7 +5,6 @@ const meta: Meta<typeof CheckboxInputField> = {
   component: CheckboxInputField,
   title: 'Core/CheckboxInputField',
   tags: ['autodocs'],
-  parameters: { layout: 'centered' },
   args: {
     name: 'rememberMe',
     text: 'Remember me',

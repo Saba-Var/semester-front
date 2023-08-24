@@ -5,7 +5,6 @@ const meta: Meta<typeof Button> = {
   component: Button,
   title: 'Core/Button',
   tags: ['autodocs'],
-  parameters: { layout: 'centered' },
   args: {
     title: 'Button',
     onClick: () => alert('Button clicked'),

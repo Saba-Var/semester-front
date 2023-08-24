@@ -6,7 +6,6 @@ const meta: Meta<typeof InputErrorMessage> = {
   component: InputErrorMessage,
   title: 'Core/InputErrorMessage',
   tags: ['autodocs'],
-  parameters: { layout: 'centered' },
   args: {
     errorMessage: {
       message: 'This is an error message' as unknown as FieldError,
