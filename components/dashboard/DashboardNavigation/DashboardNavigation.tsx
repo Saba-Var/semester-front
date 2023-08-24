@@ -42,7 +42,7 @@ const DashboardNavigation = () => {
                   <Button
                     title={t('check_out')}
                     stylesType='soft-btn'
-                    styles='text-base'
+                    className='text-base'
                     fullWidth
                   />
                 </Link>

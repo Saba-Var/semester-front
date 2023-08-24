@@ -1,12 +1,14 @@
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
+import { UseTextInputParams } from './types'
 import { useState } from 'react'
 
-export const useInputField = (
-  name: string,
-  type: string,
-  showValidation: boolean
-) => {
+export const useInputField = ({
+  showValidation,
+  isValidField,
+  name,
+  type,
+}: UseTextInputParams) => {
   const [inputType, setInputType] = useState(type)
 
   const { t } = useTranslation()
@@ -16,7 +18,8 @@ export const useInputField = (
     register,
   } = useFormContext()
 
-  const isValid = touchedFields[name] && !errors[name]?.message && isDirty
+  const isValid =
+    (touchedFields[name] && !errors[name]?.message && isDirty) || isValidField
 
   const passwordShowHandler = () => {
     if (inputType === 'password') {

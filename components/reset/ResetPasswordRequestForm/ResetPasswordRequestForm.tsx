@@ -37,7 +37,7 @@ const ResetPasswordRequestForm = () => {
             title={t('inputs:continue')}
             disabled={isLoading}
             showLoadingIndicator
-            styles='mt-4'
+            className='mt-4'
             type='submit'
           />
         </form>

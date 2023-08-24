@@ -8,6 +8,7 @@ const meta: Meta<typeof Button> = {
   parameters: { layout: 'centered' },
   args: {
     title: 'Button',
+    onClick: () => alert('Button clicked'),
   },
   argTypes: {
     stylesType: {
@@ -17,10 +18,11 @@ const meta: Meta<typeof Button> = {
       description: 'Whether the button is disabled',
     },
     fullWidth: {
-      description: 'Whether the button should take up the full width',
+      description:
+        'Whether the button should take up the full width of the parent container',
     },
-    styles: {
-      description: 'Custom styles to apply to the button',
+    className: {
+      description: 'The classes to apply to the button',
     },
     title: {
       description: 'The title of the button',
@@ -42,52 +44,53 @@ export default meta
 
 type Story = StoryObj<typeof Button>
 
-export const Primary: Story = {
-  args: {
-    onClick: () => alert('Primary button clicked'),
-  },
-}
+export const Primary: Story = {}
 
 export const Soft: Story = {
   args: {
     stylesType: 'soft-btn',
-    onClick: () => alert('Soft button clicked'),
   },
 }
 
 export const Secondary: Story = {
   args: {
     stylesType: 'secondary-btn',
-    onClick: () => alert('Secondary button clicked'),
   },
 }
 
 export const Danger: Story = {
   args: {
     stylesType: 'danger-btn',
-    onClick: () => alert('Danger button clicked'),
   },
 }
 
 export const Disabled: Story = {
   args: {
     disabled: true,
+    onClick: () => {},
   },
+}
+
+export const FullWidth: Story = {
+  args: {
+    fullWidth: true,
+  },
+  parameters: { layout: 'fullscreen' },
 }
 
 export const DisabledAndLoading: Story = {
   args: {
     disabled: true,
     showLoadingIndicator: true,
+    onClick: () => {},
   },
 }
 
 export const CustomStyling: Story = {
   args: {
     title: 'Custom Styling',
-    styles: 'bg-red-500 hover:bg-green',
+    className: 'bg-red-500 hover:bg-green',
     fullWidth: true,
-    onClick: () => alert('Custom styling button clicked'),
   },
 }
 
@@ -95,7 +98,7 @@ export const Children: Story = {
   args: {
     stylesType: 'secondary-btn',
     title: '',
-    styles: 'py-12 w-24',
+    className: 'py-12 w-24',
     children: (
       <div className='flex flex-col'>
         <p>Button</p>
@@ -103,6 +106,5 @@ export const Children: Story = {
         <p>children</p>
       </div>
     ),
-    onClick: () => alert('Button with children clicked'),
   },
 }

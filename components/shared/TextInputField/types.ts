@@ -1,12 +1,16 @@
-export type InputFieldProps = {
-  autoComplete?: 'off' | 'on' | 'new-password'
+export type UseTextInputParams = {
   type?: 'text' | 'password'
   showValidation?: boolean
+  isValidField?: boolean
+  name: string
+}
+
+export interface InputFieldProps extends UseTextInputParams {
+  autoComplete?: 'off' | 'on' | 'new-password'
   labelClasses?: string
   showEyeIcon?: boolean
   placeholder?: string
   required?: boolean
   disabled?: boolean
   label?: string
-  name: string
 }

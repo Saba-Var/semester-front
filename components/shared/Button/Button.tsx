@@ -8,16 +8,16 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   disabled = false,
   type = 'button',
-  styles = '',
+  className = '',
   title = '',
   children,
   ...props
 }) => {
   return (
     <button
-      className={`h-12.5 flex items-center justify-center transition-all ${
-        fullWidth ? 'w-full' : ''
-      } ${styles} ${stylesType} ${disabled ? 'disabled-btn' : ''}`}
+      className={`h-12.5 flex items-center justify-center transition-all ${className} ${stylesType} ${
+        disabled ? 'disabled-btn' : ''
+      } ${fullWidth ? '!w-full' : ''}`}
       disabled={disabled}
       onClick={onClick}
       type={type}

@@ -38,7 +38,7 @@ const SignUpForm = () => {
             title={t('inputs:sign-up')}
             disabled={userRegistering}
             showLoadingIndicator
-            styles='mt-4'
+            className='mt-4'
             type='submit'
           />
         </form>

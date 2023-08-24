@@ -2,7 +2,7 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { ErrorMessage } from '@hookform/error-message'
 import { useInputField } from './useTextInputField'
 import { InputErrorMessage } from 'components'
-import { InputFieldProps } from './types.d'
+import { InputFieldProps } from './types'
 import {
   ExclamationCircleIcon,
   CheckCircleIcon,
@@ -10,8 +10,9 @@ import {
 
 const TextInputField: React.FC<InputFieldProps> = ({
   showValidation = true,
-  showEyeIcon = true,
+  isValidField = false,
   autoComplete = 'on',
+  showEyeIcon = true,
   placeholder = '',
   disabled = false,
   required = true,
@@ -29,7 +30,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
     isValid,
     errors,
     t,
-  } = useInputField(name, type, showValidation)
+  } = useInputField({ name, type, showValidation, isValidField })
 
   return (
     <div className='min-h-[107px] w-full'>
