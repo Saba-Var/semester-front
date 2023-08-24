@@ -7,7 +7,7 @@ type StoryInputTemplateProps = {
   inputName?: string
 }
 
-const StoryInputTemplate: React.FC<StoryInputTemplateProps> = ({
+const StoryFormTemplate: React.FC<StoryInputTemplateProps> = ({
   generateError,
   inputName,
   children,
@@ -32,4 +32,4 @@ const StoryInputTemplate: React.FC<StoryInputTemplateProps> = ({
   )
 }
 
-export default StoryInputTemplate
+export default StoryFormTemplate

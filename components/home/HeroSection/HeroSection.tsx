@@ -1,5 +1,5 @@
 import { Header, LottieAnimation } from 'components'
-import { HeroSectionProps } from './types.d'
+import { HeroSectionProps } from './types'
 import { calendarAnimation } from 'public'
 import { useTranslate } from 'hooks'
 import Link from 'next/link'

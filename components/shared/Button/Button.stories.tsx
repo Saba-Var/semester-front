@@ -89,7 +89,7 @@ export const DisabledAndLoading: Story = {
 export const CustomStyling: Story = {
   args: {
     title: 'Custom Styling',
-    className: 'bg-red-500 hover:bg-green',
+    className: 'bg-yellow-500 hover:bg-green',
     fullWidth: true,
   },
 }

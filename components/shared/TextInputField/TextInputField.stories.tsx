@@ -1,10 +1,11 @@
-import { TextInputField, StoryInputTemplate } from 'components'
+import { TextInputField, StoryFormTemplate } from 'components'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof TextInputField> = {
   component: TextInputField,
   title: 'Core/TextInputField',
   tags: ['autodocs'],
+  parameters: { layout: 'centered' },
   args: {
     name: 'username',
     placeholder: 'Enter your name',
@@ -49,9 +50,9 @@ const meta: Meta<typeof TextInputField> = {
     },
   },
   render: (args) => (
-    <StoryInputTemplate>
+    <StoryFormTemplate>
       <TextInputField {...args} />
-    </StoryInputTemplate>
+    </StoryFormTemplate>
   ),
 }
 
@@ -66,11 +67,22 @@ export const Optional: Story = {
 }
 
 export const Password: Story = {
-  args: { type: 'password' },
+  args: {
+    placeholder: 'Enter your password',
+    label: 'Password',
+    name: 'password',
+    type: 'password',
+  },
 }
 
 export const PasswordWithoutIcon: Story = {
-  args: { type: 'password', showEyeIcon: false },
+  args: {
+    placeholder: 'Enter your password',
+    showEyeIcon: false,
+    label: 'Password',
+    name: 'password',
+    type: 'password',
+  },
 }
 
 export const CustomLabel: Story = {
@@ -85,9 +97,9 @@ export const Valid: Story = {
 
 export const Error: Story = {
   render: (args) => (
-    <StoryInputTemplate generateError inputName={args.name}>
+    <StoryFormTemplate generateError inputName={args.name}>
       <TextInputField {...args} />
-    </StoryInputTemplate>
+    </StoryFormTemplate>
   ),
 }
 

@@ -1,7 +1,6 @@
 export * from './DatepickerInputField'
 export * from './DeleteButtonAndModal'
 export * from './CheckboxInputField'
-export * from './StoryInputTemplate'
 export * from './InputErrorMessage'
 export * from './LanguageSelector'
 export * from './SelectInputField'
