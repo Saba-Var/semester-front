@@ -4,8 +4,8 @@ import { useTranslate } from 'hooks'
 import {
   CheckboxInputField,
   ForgetPassword,
-  SubmitButton,
   TextInputField,
+  Button,
 } from 'components'
 
 const LogInForm = () => {
@@ -27,7 +27,13 @@ const LogInForm = () => {
           <ForgetPassword />
         </div>
 
-        <SubmitButton disabled={authorizing} title={t('inputs:log-in')} />
+        <Button
+          title={t('inputs:log-in')}
+          disabled={authorizing}
+          showLoadingIndicator
+          type={'submit'}
+          fullWidth
+        />
       </form>
     </FormProvider>
   )

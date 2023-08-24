@@ -1,5 +1,6 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { setServerValidationErrors } from 'utils'
 import { useTranslation } from 'next-i18next'
 import type { SignUpFormValues } from 'types'
 import { useMutation } from 'react-query'
@@ -35,11 +36,7 @@ export const useSignUpForm = () => {
       },
 
       onError: (error: any) => {
-        if (error?.response?.status === 409) {
-          setError('email', {
-            message: 'email-exists',
-          })
-        }
+        setServerValidationErrors(error, form)
       },
     })
   }

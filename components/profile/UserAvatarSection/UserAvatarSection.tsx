@@ -1,4 +1,4 @@
-import { ChangeAvatarModal, CustomButton, AvatarImage } from 'components'
+import { ChangeAvatarModal, Button, AvatarImage } from 'components'
 import useUserAvatarSection from './useUserAvatarSection'
 
 const UserAvatarSection = () => {
@@ -8,7 +8,7 @@ const UserAvatarSection = () => {
   return (
     <div className='flex justify-center'>
       <AvatarImage sharedClassName='mb-2' src={avatarSrc}>
-        <CustomButton
+        <Button
           onClick={() => setIsAvatarModalOpen(true)}
           title={t('change_avatar')}
           stylesType='soft-btn'

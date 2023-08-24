@@ -1,5 +1,5 @@
 import { useResetPasswordRequestForm } from './useResetPasswordRequestForm'
-import { TextInputField, SubmitButton, SuccessModal } from 'components'
+import { TextInputField, SuccessModal, Button } from 'components'
 import { FormProvider } from 'react-hook-form'
 
 const ResetPasswordRequestForm = () => {
@@ -33,10 +33,12 @@ const ResetPasswordRequestForm = () => {
         >
           <TextInputField name='email' />
 
-          <SubmitButton
+          <Button
             title={t('inputs:continue')}
             disabled={isLoading}
+            showLoadingIndicator
             styles='mt-4'
+            type='submit'
           />
         </form>
       </FormProvider>

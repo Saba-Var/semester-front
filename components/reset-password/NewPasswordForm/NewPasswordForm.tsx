@@ -1,9 +1,4 @@
-import {
-  TextInputField,
-  SubmitButton,
-  SuccessModal,
-  ErrorModal,
-} from 'components'
+import { TextInputField, Button, SuccessModal, ErrorModal } from 'components'
 import { useNewPasswordForm } from './useNewPasswordForm'
 import { FormProvider } from 'react-hook-form'
 
@@ -48,10 +43,12 @@ const NewPasswordForm = () => {
           <TextInputField name='password' type='password' />
           <TextInputField name='confirmPassword' type='password' />
 
-          <SubmitButton
+          <Button
             title={t('inputs:reset-password')}
             disabled={isLoading}
+            showLoadingIndicator
             styles='mt-4'
+            type='submit'
           />
         </form>
       </FormProvider>
