@@ -15,11 +15,10 @@ import {
 
 const DatepickerInputField: React.FC<DatepickerInputFieldProps> = ({
   displayFormat = 'DD/MM/YYYY',
-  showDefaultInputIcon = false,
   numberOfMonths = 1,
   placeholder = '',
+  disabled = false,
   required = true,
-  readOnly = true,
   isOutsideRange,
   label = '',
   name,
@@ -61,14 +60,14 @@ const DatepickerInputField: React.FC<DatepickerInputFieldProps> = ({
             onDateChange={(date) => handleDateChange(date, field)}
             onFocusChange={({ focused }) => setFocused(focused)}
             date={field.value ? moment(field.value) : null}
-            showDefaultInputIcon={showDefaultInputIcon}
             isOutsideRange={isOutsideRangeHandler}
             numberOfMonths={numberOfMonths}
             displayFormat={displayFormat}
+            showDefaultInputIcon={false}
             hideKeyboardShortcutsPanel
             id={`datepicker-${name}`}
             focused={!!focused}
-            readOnly={readOnly}
+            disabled={disabled}
           />
         )}
       />
