@@ -49,11 +49,13 @@ const meta: Meta<typeof TextInputField> = {
       description: 'The type of the input field: text or password.',
     },
   },
-  render: (args) => (
-    <StoryFormTemplate>
-      <TextInputField {...args} />
-    </StoryFormTemplate>
-  ),
+  decorators: [
+    (Story, { args: { name } }) => (
+      <StoryFormTemplate inputName={name}>
+        <Story />
+      </StoryFormTemplate>
+    ),
+  ],
 }
 
 export default meta
@@ -91,16 +93,15 @@ export const CustomLabel: Story = {
   },
 }
 
-export const Valid: Story = {
-  args: { isValidField: true },
-}
-
+/** Error is extracted automatically from useFormContext inside the component custom hook */
 export const Error: Story = {
-  render: (args) => (
-    <StoryFormTemplate generateError inputName={args.name}>
-      <TextInputField {...args} />
-    </StoryFormTemplate>
-  ),
+  decorators: [
+    (Story, { args: { name } }) => (
+      <StoryFormTemplate generateError inputName={name}>
+        <Story />
+      </StoryFormTemplate>
+    ),
+  ],
 }
 
 export const Disabled: Story = {

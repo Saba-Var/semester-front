@@ -10,7 +10,6 @@ import {
 
 const TextInputField: React.FC<InputFieldProps> = ({
   showValidation = true,
-  isValidField = false,
   autoComplete = 'on',
   showEyeIcon = true,
   placeholder = '',
@@ -30,7 +29,7 @@ const TextInputField: React.FC<InputFieldProps> = ({
     isValid,
     errors,
     t,
-  } = useInputField({ name, type, showValidation, isValidField })
+  } = useInputField({ name, type, showValidation })
 
   return (
     <div className='min-h-[107px] w-full'>

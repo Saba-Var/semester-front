@@ -10,11 +10,14 @@ const meta: Meta<typeof CheckboxInputField> = {
     name: 'rememberMe',
     text: 'Remember me',
   },
-  render: (args) => (
-    <StoryFormTemplate>
-      <CheckboxInputField {...args} />
-    </StoryFormTemplate>
-  ),
+  decorators: [
+    (Story) => (
+      <StoryFormTemplate>
+        <Story />
+      </StoryFormTemplate>
+    ),
+  ],
+
   argTypes: {
     name: {
       description:

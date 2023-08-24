@@ -35,13 +35,15 @@ const meta: Meta<typeof DatepickerInputField> = {
     name: 'date',
     label: 'Date',
   },
-  render: (args) => (
-    <StoryFormTemplate inputName={args.name}>
-      <div className='h-96'>
-        <DatepickerInputField {...args} />
-      </div>
-    </StoryFormTemplate>
-  ),
+  decorators: [
+    (Story, { args: { name } }) => (
+      <StoryFormTemplate inputName={name}>
+        <div className='h-96'>
+          <Story />
+        </div>
+      </StoryFormTemplate>
+    ),
+  ],
 }
 
 export default meta
@@ -64,25 +66,28 @@ export const MultipleMonths: Story = {
 }
 
 export const Error: Story = {
-  render: (args) => (
-    <StoryFormTemplate generateError inputName='date'>
-      <div className='h-96'>
-        <DatepickerInputField {...args} />
-      </div>
-    </StoryFormTemplate>
-  ),
+  decorators: [
+    (Story, { args: { name } }) => (
+      <StoryFormTemplate generateError inputName={name}>
+        <div className='h-96'>
+          <Story />
+        </div>
+      </StoryFormTemplate>
+    ),
+  ],
 }
 
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
-
-  render: (args) => (
-    <StoryFormTemplate customValue='02/08/2023' inputName='date'>
-      <div className='h-96'>
-        <DatepickerInputField {...args} />
-      </div>
-    </StoryFormTemplate>
-  ),
+  decorators: [
+    (Story, { args: { name } }) => (
+      <StoryFormTemplate customValue='02/08/2023' inputName={name}>
+        <div className='h-96'>
+          <Story />
+        </div>
+      </StoryFormTemplate>
+    ),
+  ],
 }

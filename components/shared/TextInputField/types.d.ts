@@ -1,7 +1,6 @@
 export type UseTextInputParams = {
   type?: 'text' | 'password'
   showValidation?: boolean
-  isValidField?: boolean
   name: string
 }
 

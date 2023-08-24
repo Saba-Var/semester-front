@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 export const useInputField = ({
   showValidation,
-  isValidField,
   name,
   type,
 }: UseTextInputParams) => {
@@ -18,8 +17,7 @@ export const useInputField = ({
     register,
   } = useFormContext()
 
-  const isValid =
-    (touchedFields[name] && !errors[name]?.message && isDirty) || isValidField
+  const isValid = touchedFields[name] && !errors[name]?.message && isDirty
 
   const passwordShowHandler = () => {
     if (inputType === 'password') {
