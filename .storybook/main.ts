@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
+    'storybook-addon-state',
     {
       name: '@storybook/addon-styling',
       options: {
@@ -25,7 +26,7 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: true,
   },
 }
 export default config

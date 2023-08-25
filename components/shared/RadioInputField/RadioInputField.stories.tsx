@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta: Meta<typeof RadioInputField> = {
   component: RadioInputField,
   title: 'Core/RadioInputField',
-  tags: ['autodocs'],
   args: {
     name: 'radio',
     title: 'Choose subject',

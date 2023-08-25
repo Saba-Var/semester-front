@@ -76,6 +76,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         showSubmitButton={isCurrentSemester}
         openFromLeft={openLeftSlideOver}
         open={isInfoModalOpen}
+        addExtraSpace
         onClose={() => {
           form.reset()
           setIsInfoModalOpen(false)

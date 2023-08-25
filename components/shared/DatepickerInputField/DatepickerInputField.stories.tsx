@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta: Meta<typeof DatepickerInputField> = {
   component: DatepickerInputField,
   title: 'Core/DatepickerInputField',
-  tags: ['autodocs'],
   argTypes: {
     name: {
       description:

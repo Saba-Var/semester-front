@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta: Meta<typeof SelectInputField> = {
   component: SelectInputField,
   title: 'Core/SelectInputField',
-  tags: ['autodocs'],
   args: {
     name: 'select',
     title: 'Choose subject',

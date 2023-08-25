@@ -5,7 +5,6 @@ import { partyPop } from 'public'
 const meta: Meta<typeof LottieAnimation> = {
   component: LottieAnimation,
   title: 'Core/LottieAnimation',
-  tags: ['autodocs'],
   args: {
     animationData: partyPop,
   },

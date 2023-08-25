@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta: Meta<typeof CheckboxInputField> = {
   component: CheckboxInputField,
   title: 'Core/CheckboxInputField',
-  tags: ['autodocs'],
   args: {
     name: 'rememberMe',
     text: 'Remember me',

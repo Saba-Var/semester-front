@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta: Meta<typeof TextInputField> = {
   component: TextInputField,
   title: 'Core/TextInputField',
-  tags: ['autodocs'],
   args: {
     name: 'username',
     placeholder: 'Enter your name',

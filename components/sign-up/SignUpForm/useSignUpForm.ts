@@ -26,7 +26,7 @@ export const useSignUpForm = () => {
     mode: 'onTouched',
   })
 
-  const { handleSubmit, reset: resetForm, setError } = form
+  const { handleSubmit, reset: resetForm } = form
 
   const submitHandler: SubmitHandler<SignUpFormValues> = (values) => {
     mutate(values, {

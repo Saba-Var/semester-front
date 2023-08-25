@@ -4,7 +4,6 @@ import { Button } from 'components'
 const meta: Meta<typeof Button> = {
   component: Button,
   title: 'Core/Button',
-  tags: ['autodocs'],
   args: {
     title: 'Button',
     onClick: () => alert('Button clicked'),
