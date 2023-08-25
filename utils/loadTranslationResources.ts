@@ -1,8 +1,8 @@
 import type { Resource } from 'i18next'
 
 export const loadTranslationResources = async (): Promise<Resource> => {
-  const supportedLanguages: string[] = ['en', 'ka']
-  const supportedNamespaces: string[] = ['common']
+  const supportedLanguages = ['en', 'ka']
+  const supportedNamespaces = ['common']
   const resources: Resource = {}
 
   for (const lang of supportedLanguages) {
