@@ -3,99 +3,12 @@ import { useArgs } from '@storybook/client-api'
 import { SlideOver, Button } from 'components'
 import { SlideOverProps } from './types'
 
-export const Basic: StoryFn<typeof SlideOver> = () => {
-  const [args, updateArgs] = useArgs<SlideOverProps>()
-
-  const setOpen = (open: boolean) => {
-    updateArgs({
-      ...args,
-      open,
-    })
-  }
-
-  return (
-    <>
-      <Button onClick={() => setOpen(true)} title='Open slide over' />
-      <SlideOver
-        submitHandler={() => setOpen(false)}
-        onClose={() => setOpen(false)}
-        titleColor={args.titleColor}
-        title='Basic Slide Over'
-        open={args.open}
-      >
-        <div>Content</div>
-      </SlideOver>
-    </>
-  )
-}
-
-export const OpenLeft: StoryFn<typeof SlideOver> = () => {
-  const [args, updateArgs] = useArgs<SlideOverProps>()
-
-  const setOpen = (open: boolean) => {
-    updateArgs({
-      ...args,
-      open,
-    })
-  }
-
-  return (
-    <>
-      <Button
-        onClick={() => {
-          updateArgs({
-            ...args,
-            open: true,
-          })
-        }}
-        title='Open slide over'
-      />
-      <SlideOver
-        submitHandler={() => setOpen(false)}
-        onClose={() => setOpen(false)}
-        titleColor={args.titleColor}
-        title='Basic Slide Over'
-        openFromLeft={true}
-        open={args.open}
-      >
-        <div>Content</div>
-      </SlideOver>
-    </>
-  )
-}
-
-export const ReadOnly: StoryFn<typeof SlideOver> = () => {
-  const [args, updateArgs] = useArgs<SlideOverProps>()
-
-  const setOpen = (open: boolean) => {
-    updateArgs({
-      ...args,
-      open,
-    })
-  }
-
-  return (
-    <>
-      <Button onClick={() => setOpen(true)} title='Open slide over' />
-      <SlideOver
-        onClose={() => setOpen(false)}
-        title='Read Only Slide Over'
-        titleColor={args.titleColor}
-        showSubmitButton={false}
-        open={args.open}
-        disabled={true}
-      >
-        <div>Content</div>
-      </SlideOver>
-    </>
-  )
-}
-
 const meta: Meta<typeof SlideOver> = {
+  component: SlideOver,
   title: 'Core/SlideOver',
   args: {
     titleColor: 'text-white',
-    openFromLeft: false,
+    title: 'Slide over title',
     open: false,
   },
   argTypes: {
@@ -118,7 +31,56 @@ const meta: Meta<typeof SlideOver> = {
       description: 'Whether the slide over should open from the left',
       control: 'boolean',
     },
+    headerColor: {
+      description:
+        'Color of the header. Note: not tailwind colors class names. Used to style inline',
+      control: 'text',
+    },
+    disabled: {
+      description: 'Whether the slide over submit button is disabled',
+      control: 'boolean',
+    },
+    showSubmitButton: {
+      description: 'Whether to show the submit button',
+      control: 'boolean',
+    },
+    title: {
+      description: 'Title of the slide over',
+      control: 'text',
+    },
+    submitHandler: {
+      description: 'Function to run when the submit button is clicked',
+    },
+    onClose: {
+      description: 'Setter function to close the slide over',
+    },
   },
 }
 
 export default meta
+
+export const SlideOverStory: StoryFn<typeof SlideOver> = () => {
+  const [args, updateArgs] = useArgs<SlideOverProps>()
+
+  const setOpen = (open: boolean) => {
+    updateArgs({
+      ...args,
+      open,
+    })
+  }
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)} title='Open slide over' />
+      <SlideOver
+        {...args}
+        submitHandler={() => setOpen(false)}
+        onClose={() => setOpen(false)}
+        titleColor={args.titleColor}
+        open={args.open}
+      >
+        <div>Content</div>
+      </SlideOver>
+    </>
+  )
+}
