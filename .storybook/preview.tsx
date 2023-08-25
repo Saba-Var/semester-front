@@ -1,6 +1,5 @@
+import { QueryAndReduxProvider } from '../components'
 import type { Preview } from '@storybook/react'
-import { Provider } from 'react-redux'
-import { store } from '../store'
 import '../styles/globals.css'
 import React from 'react'
 
@@ -18,9 +17,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <Provider store={store}>
+      <QueryAndReduxProvider>
         <Story />
-      </Provider>
+      </QueryAndReduxProvider>
     ),
   ],
 }

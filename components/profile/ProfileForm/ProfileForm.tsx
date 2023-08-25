@@ -138,6 +138,7 @@ const ProfileForm = () => {
                   disabled={isUserDataUpdating}
                   title={t('inputs:save')}
                   showLoadingIndicator
+                  type='submit'
                   fullWidth
                 />
               </div>

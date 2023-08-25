@@ -31,7 +31,7 @@ const LogInForm = () => {
           title={t('inputs:log-in')}
           disabled={authorizing}
           showLoadingIndicator
-          type={'submit'}
+          type='submit'
           fullWidth
         />
       </form>

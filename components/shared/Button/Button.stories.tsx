@@ -6,7 +6,6 @@ const meta: Meta<typeof Button> = {
   title: 'Core/Button',
   args: {
     title: 'Button',
-    onClick: () => alert('Button clicked'),
   },
   argTypes: {
     stylesType: {
@@ -27,6 +26,7 @@ const meta: Meta<typeof Button> = {
     },
     onClick: {
       description: 'The click handler for the button',
+      action: 'clicked',
     },
     children: {
       description: 'The children of the button',
