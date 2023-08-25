@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
-import { DeleteButtonAndModal } from 'components'
+import { DeleteModal } from 'components'
 import useSemesterCard from './useSemesterCard'
 import { SemesterMenu } from './components'
 import { SemesterCardProps } from './types'
@@ -68,13 +68,14 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semester }) => {
         </div>
 
         <div className='flex justify-between items-center gap-x-4 py-3'>
-          <DeleteButtonAndModal
+          <DeleteModal
             submitHandler={deleteSemesterMutation}
             title={t('schedule:delete_semester')}
             setOpen={setShowDeleteModal}
             targetName={semester.name}
             open={showDeleteModal}
             disabled={isDeleting}
+            withTrashIconOpener
           />
 
           <Link href={`/schedule/${semester._id}`}>

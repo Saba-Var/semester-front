@@ -3,12 +3,13 @@ import { DeleteButtonAndModalProps } from './types'
 import { useTranslation } from 'next-i18next'
 import { ModalWrapper } from 'components'
 
-const DeleteButtonAndModal: React.FC<DeleteButtonAndModalProps> = ({
-  classes = '',
+const DeleteModal: React.FC<DeleteButtonAndModalProps> = ({
+  withTrashIconOpener = false,
+  trashIconHeight = 20,
+  trashIconWidth = 20,
   disabled = false,
   submitHandler,
-  height = 20,
-  width = 20,
+  classes = '',
   targetName,
   setOpen,
   title,
@@ -35,17 +36,19 @@ const DeleteButtonAndModal: React.FC<DeleteButtonAndModalProps> = ({
         </p>
       </ModalWrapper>
 
-      <div
-        className={`text-red-700 cursor-pointer transition-all ${classes}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          setOpen(true)
-        }}
-      >
-        <TrashIcon height={height} width={width} />
-      </div>
+      {withTrashIconOpener && (
+        <div
+          className={`text-red-700 cursor-pointer transition-all ${classes}`}
+          onClick={(e) => {
+            e.stopPropagation()
+            setOpen(true)
+          }}
+        >
+          <TrashIcon height={trashIconHeight} width={trashIconWidth} />
+        </div>
+      )}
     </>
   )
 }
 
-export default DeleteButtonAndModal
+export default DeleteModal
