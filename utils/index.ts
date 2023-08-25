@@ -1,6 +1,7 @@
 export * from './generateNewTimeStringFromNumber'
 export * from './setServerValidationErrors'
 export * from './convertStringTimeToNumber'
+export * from './loadTranslationResources'
 export * from './timeStringToMinutes'
 export * from './longDateFormat'
 export * from './requestsExceed'

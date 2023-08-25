@@ -11,7 +11,6 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
-    'storybook-addon-state',
     {
       name: '@storybook/addon-styling',
       options: {
@@ -27,6 +26,17 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: true,
+  },
+  core: {
+    builder: '@storybook/builder-webpack5',
+  },
+  webpackFinal: async (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'next-i18next': 'react-i18next',
+    }
+
+    return config
   },
 }
 export default config

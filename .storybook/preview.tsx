@@ -1,7 +1,9 @@
 import { QueryAndReduxProvider } from '../components'
 import type { Preview } from '@storybook/react'
+import { I18nextProvider } from 'react-i18next'
+import React, { Suspense } from 'react'
 import '../styles/globals.css'
-import React from 'react'
+import i18n from './i18n'
 
 const preview: Preview = {
   parameters: {
@@ -18,7 +20,11 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <QueryAndReduxProvider>
-        <Story />
+        <I18nextProvider i18n={i18n}>
+          <div className='flex justify-center'>
+            <Story />
+          </div>
+        </I18nextProvider>
       </QueryAndReduxProvider>
     ),
   ],
