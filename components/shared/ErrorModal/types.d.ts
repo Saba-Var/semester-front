@@ -1,7 +1,7 @@
 import { SetState } from 'types'
 
 export type ErrorModalProps = {
-  setShowModal: SetState<boolean> | ((show: boolean) => void)
+  setShowModal: SetState<boolean>
   clickHandler?: () => void
   description: string
   actionText?: string

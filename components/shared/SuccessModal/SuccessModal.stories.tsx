@@ -2,6 +2,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { SuccessModal, Button } from 'components'
 import { useArgs } from '@storybook/client-api'
 import { SuccessModalProps } from './types'
+import { SetState } from 'types'
 
 const meta: Meta<typeof SuccessModal> = {
   component: SuccessModal,
@@ -65,7 +66,11 @@ export const SuccessModalStory: StoryFn<typeof SuccessModal> = () => {
 
   return (
     <>
-      <SuccessModal {...args} show={args.show} setSuccess={setOpen} />
+      <SuccessModal
+        {...args}
+        show={args.show}
+        setSuccess={setOpen as SetState<boolean>}
+      />
 
       <Button onClick={() => setOpen(true)} title='Show success modal' />
     </>

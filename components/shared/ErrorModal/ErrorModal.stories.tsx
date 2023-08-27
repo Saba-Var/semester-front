@@ -2,6 +2,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { ErrorModal, Button } from 'components'
 import { useArgs } from '@storybook/client-api'
 import { ErrorModalProps } from './types'
+import { SetState } from 'types'
 
 const meta: Meta<typeof ErrorModal> = {
   component: ErrorModal,
@@ -50,7 +51,11 @@ export const ErrorModalStory: StoryFn<typeof ErrorModal> = () => {
 
   return (
     <>
-      <ErrorModal {...args} showModal={args.showModal} setShowModal={setOpen} />
+      <ErrorModal
+        {...args}
+        setShowModal={setOpen as SetState<boolean>}
+        showModal={args.showModal}
+      />
 
       <Button
         onClick={() => setOpen(true)}
