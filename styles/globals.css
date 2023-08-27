@@ -126,15 +126,6 @@ input:-webkit-autofill:active {
   justify-content: center;
 }
 
-.sb-main-padded,
-.sb-show-main {
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  min-height: 100vh;
-}
-
 @media (max-width: 480px) {
   .Toastify__toast-container--top-right {
     top: 0;

@@ -11,8 +11,13 @@ const meta: Meta<typeof ToastContainer> = {
         <Story />
 
         <Button
-          onClick={() => emitToast('Toast message', 'success')}
-          title='Show toast'
+          onClick={() => emitToast('Error toast', 'error')}
+          title='Error toast'
+        />
+
+        <Button
+          onClick={() => emitToast('Success toast', 'success')}
+          title='Success toast'
         />
       </>
     ),

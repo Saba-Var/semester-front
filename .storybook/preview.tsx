@@ -15,6 +15,7 @@ const preview: Preview = {
       },
       expanded: true,
     },
+    layout: 'centered',
   },
   decorators: [
     (Story) => {
