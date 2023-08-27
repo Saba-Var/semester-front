@@ -31,9 +31,11 @@ const config: StorybookConfig = {
     builder: '@storybook/builder-webpack5',
   },
   webpackFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'next-i18next': 'react-i18next',
+    if (config?.resolve?.alias) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'next-i18next': 'react-i18next',
+      }
     }
 
     return config

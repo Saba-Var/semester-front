@@ -5,20 +5,18 @@ import { SuccessModalProps } from './types.d'
 import { useTranslate } from 'hooks'
 import { Fragment } from 'react'
 
-const SuccessModal: React.FC<SuccessModalProps> = (props) => {
-  const {
-    showOnlyCloseButton = false,
-    closeWithOverlay,
-    linkActionText,
-    clickHandler,
-    description,
-    linkAction,
-    actionText,
-    setSuccess,
-    title,
-    show,
-  } = props
-
+const SuccessModal: React.FC<SuccessModalProps> = ({
+  showOnlyCloseButton = false,
+  closeWithOverlay,
+  linkActionText,
+  clickHandler,
+  description,
+  linkAction,
+  actionText,
+  setSuccess,
+  title,
+  show,
+}) => {
   const { cancelButtonRef } = useSuccessModal()
 
   return (

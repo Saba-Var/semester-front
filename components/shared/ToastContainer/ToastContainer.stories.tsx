@@ -10,15 +10,18 @@ const meta: Meta<typeof ToastContainer> = {
       <>
         <Story />
 
-        <Button
-          onClick={() => emitToast('Error toast', 'error')}
-          title='Error toast'
-        />
+        <div className='flex gap-5 h-screen items-center justify-center'>
+          <Button
+            onClick={() => emitToast('Error toast', 'error')}
+            title='Error toast'
+          />
 
-        <Button
-          onClick={() => emitToast('Success toast', 'success')}
-          title='Success toast'
-        />
+          <Button
+            onClick={() => emitToast('Success toast', 'success')}
+            stylesType='danger-btn'
+            title='Success toast'
+          />
+        </div>
       </>
     ),
   ],
@@ -28,4 +31,4 @@ export default meta
 
 type Story = StoryObj<typeof ToastContainer>
 
-export const Success: Story = {}
+export const ToastContainerStory: Story = {}

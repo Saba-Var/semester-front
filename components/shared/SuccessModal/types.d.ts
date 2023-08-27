@@ -1,7 +1,7 @@
 import { SetState } from 'types'
 
 export type SuccessModalProps = {
-  setSuccess: SetState<boolean>
+  setSuccess: SetState<boolean> | ((show: boolean) => void)
   showOnlyCloseButton?: boolean
   closeWithOverlay?: boolean
   clickHandler?: () => void
