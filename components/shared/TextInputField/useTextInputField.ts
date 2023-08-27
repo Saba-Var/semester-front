@@ -1,12 +1,13 @@
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
+import { UseTextInputParams } from './types'
 import { useState } from 'react'
 
-export const useInputField = (
-  name: string,
-  type: string,
-  showValidation: boolean
-) => {
+export const useInputField = ({
+  showValidation,
+  name,
+  type,
+}: UseTextInputParams) => {
   const [inputType, setInputType] = useState(type)
 
   const { t } = useTranslation()

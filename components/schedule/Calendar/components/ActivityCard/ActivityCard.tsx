@@ -1,11 +1,7 @@
 import useActivityCard from './useActivityCard'
 import { ACTIVITY_COLORS } from 'CONSTANTS'
 import { ActivityCardProps } from './types'
-import {
-  LearningActivityForm,
-  DeleteButtonAndModal,
-  SlideOver,
-} from 'components'
+import { LearningActivityForm, DeleteModal, SlideOver } from 'components'
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
   setOnActivityCardClickPosition,
@@ -76,6 +72,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         showSubmitButton={isCurrentSemester}
         openFromLeft={openLeftSlideOver}
         open={isInfoModalOpen}
+        addExtraSpace
         onClose={() => {
           form.reset()
           setIsInfoModalOpen(false)
@@ -95,7 +92,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
             </p>
 
             {isCurrentSemester && (
-              <DeleteButtonAndModal
+              <DeleteModal
                 submitHandler={deleteLearningActivityMutation}
                 title={t('schedule:delete_learning_activity')}
                 disabled={isLearningActivityDeleting}
@@ -105,8 +102,9 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
                 targetName={activity.subjectName}
                 setOpen={setIsDeleteModalOpen}
                 open={isDeleteModalOpen}
-                height={17}
-                width={17}
+                trashIconHeight={17}
+                trashIconWidth={17}
+                withTrashIconOpener
               />
             )}
           </div>

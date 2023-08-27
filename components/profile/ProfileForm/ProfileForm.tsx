@@ -6,8 +6,7 @@ import {
   PasswordRequirement,
   EmailActivation,
   TextInputField,
-  SubmitButton,
-  CustomButton,
+  Button,
 } from 'components'
 
 const ProfileForm = () => {
@@ -125,19 +124,22 @@ const ProfileForm = () => {
           {disabledInputFields.showFormActionButtons && (
             <ProfileInputWrapper showEditButton={false}>
               <div className='grid grid-cols-2 gap-4 items-center justify-items-center mb-6 w-full mt-2 sm:mt-4 ml-auto'>
-                <CustomButton
+                <Button
                   onClick={() => {
                     disableAllInputFields()
                     form.reset()
                   }}
                   stylesType='secondary-btn'
                   title={t('cancel')}
+                  fullWidth
                 />
 
-                <SubmitButton
-                  showLoadingIndicator={isUserDataUpdating}
+                <Button
                   disabled={isUserDataUpdating}
-                  title='save'
+                  title={t('inputs:save')}
+                  showLoadingIndicator
+                  type='submit'
+                  fullWidth
                 />
               </div>
             </ProfileInputWrapper>

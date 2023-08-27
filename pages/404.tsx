@@ -19,7 +19,7 @@ const NotFound: NextPage = () => {
       </Head>
 
       <div className='flex flex-col h-screen items-center justify-center gap-6 sm:gap-2'>
-        <div className=''>
+        <div>
           <LottieAnimation animationData={PageNotFount} />
         </div>
 

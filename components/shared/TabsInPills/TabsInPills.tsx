@@ -26,7 +26,7 @@ const TabsInPills: React.FC<TabsInPillsProps> = ({
           name='tabs'
           id='tabs'
         >
-          {tabs.map((tab) => (
+          {tabs?.map((tab) => (
             <option value={tab} key={tab}>
               {t(`${translationLocation}:${tab}`)}
             </option>
@@ -35,7 +35,7 @@ const TabsInPills: React.FC<TabsInPillsProps> = ({
       </div>
       <div className='hidden sm:block'>
         <nav className='flex overflow-x-auto pb-2' aria-label='Tabs'>
-          {tabs.map((tab) => {
+          {tabs?.map((tab) => {
             return (
               <div
                 onClick={() => setActiveTab(tab as keyof AvatarProperties)}

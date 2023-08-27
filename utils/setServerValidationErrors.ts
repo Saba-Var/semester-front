@@ -6,7 +6,7 @@ export const setServerValidationErrors = (
 ) => {
   const status = error?.response?.status
 
-  const errors: {} = error?.response?.data?.errors || {}
+  let errors: {} = error?.response?.data?.errors || {}
 
   if (status === 422 && Object.keys(errors)?.length > 0) {
     const errorsArray: [string, string[]][] = Object.entries(errors) || []
@@ -20,7 +20,8 @@ export const setServerValidationErrors = (
   }
 
   if (status === 409) {
-    const conflictErrors = error?.response?.data
+    let conflictErrors =
+      Object.keys(errors)?.length > 0 ? errors : error?.response?.data
 
     if (!!conflictErrors) {
       for (const key in conflictErrors) {

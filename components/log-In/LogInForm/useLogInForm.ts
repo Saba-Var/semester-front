@@ -1,6 +1,7 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import type { SignInformValues } from 'types'
+import { useTranslation } from 'next-i18next'
 import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { authorization } from 'services'
@@ -14,6 +15,7 @@ export const useLogInForm = () => {
     useMutation(authorization)
 
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const router = useRouter()
 
   const form = useForm({
@@ -76,5 +78,6 @@ export const useLogInForm = () => {
     handleSubmit,
     authorizing,
     form,
+    t,
   }
 }

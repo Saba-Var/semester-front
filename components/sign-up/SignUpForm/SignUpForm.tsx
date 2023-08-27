@@ -1,4 +1,4 @@
-import { SubmitButton, SuccessModal, TextInputField } from 'components'
+import { SuccessModal, TextInputField, Button } from 'components'
 import { useSignUpForm } from './useSignUpForm'
 import { FormProvider } from 'react-hook-form'
 
@@ -34,10 +34,12 @@ const SignUpForm = () => {
           <TextInputField name='password' type='password' />
           <TextInputField name='confirmPassword' type='password' />
 
-          <SubmitButton
+          <Button
+            title={t('inputs:sign-up')}
             disabled={userRegistering}
-            title='sign-up'
-            styles='mt-4'
+            showLoadingIndicator
+            className='mt-4'
+            type='submit'
           />
         </form>
       </FormProvider>

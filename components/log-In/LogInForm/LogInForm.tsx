@@ -4,12 +4,12 @@ import { useTranslate } from 'hooks'
 import {
   CheckboxInputField,
   ForgetPassword,
-  SubmitButton,
   TextInputField,
+  Button,
 } from 'components'
 
 const LogInForm = () => {
-  const { submitHandler, handleSubmit, authorizing, form } = useLogInForm()
+  const { submitHandler, handleSubmit, authorizing, form, t } = useLogInForm()
 
   return (
     <FormProvider {...form}>
@@ -27,7 +27,13 @@ const LogInForm = () => {
           <ForgetPassword />
         </div>
 
-        <SubmitButton disabled={authorizing} title='log-in' />
+        <Button
+          title={t('inputs:log-in')}
+          disabled={authorizing}
+          showLoadingIndicator
+          type='submit'
+          fullWidth
+        />
       </form>
     </FormProvider>
   )

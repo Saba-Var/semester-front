@@ -1,17 +1,8 @@
-import { useEffect, useState } from 'react'
-import { QueryClient } from 'react-query'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 
 export const useApp = () => {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: { refetchOnWindowFocus: false },
-        },
-      })
-  )
   const { push, locale, asPath } = useRouter()
 
   useEffect(() => {
@@ -31,6 +22,4 @@ export const useApp = () => {
       }
     }
   }, [locale, asPath, push])
-
-  return { queryClient }
 }

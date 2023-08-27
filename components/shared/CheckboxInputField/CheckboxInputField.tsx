@@ -1,18 +1,31 @@
 import useCheckboxInputField from './useCheckboxInputField'
 import { CheckboxInputFieldProps } from './types'
 
-const CheckboxInputField: React.FC<CheckboxInputFieldProps> = (props) => {
+const CheckboxInputField: React.FC<CheckboxInputFieldProps> = ({
+  disabled = false,
+  name,
+  text,
+  ...props
+}) => {
   const { register } = useCheckboxInputField()
 
   return (
-    <label className='text-sm lg:text-base text-gray-900 flex gap-2 items-center cursor-pointer'>
+    <label
+      className={`text-sm lg:text-base text-gray-900 flex gap-2 items-center cursor-pointer ${
+        disabled && '!cursor-not-allowed'
+      }`}
+    >
       <input
-        {...register(props.name)}
-        className='h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-transparent'
+        disabled={disabled}
+        {...register(name)}
+        className={`h-4 w-4 rounded border-gray-300 focus:ring-blue-600 ${
+          disabled && 'cursor-not-allowed accent-inherit !bg-gray-400'
+        }`}
         name='rememberMe'
         type='checkbox'
+        {...props}
       />
-      <span className='select-none'>{props.text}</span>
+      <span className='select-none'>{text}</span>
     </label>
   )
 }

@@ -48,7 +48,7 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
         {...register(name)}
       >
         <option value=''>{`${t('select')}`}</option>
-        {optionsList.map((option) => {
+        {optionsList?.map((option) => {
           return <option key={option.id}>{option.title}</option>
         })}
       </select>

@@ -1,5 +1,5 @@
 import useDashboardNavigation from './useDashboardNavigation'
-import { CustomButton } from 'components'
+import { Button } from 'components'
 import { navigation } from 'CONSTANTS'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -39,10 +39,11 @@ const DashboardNavigation = () => {
                 </p>
 
                 <Link href={navItem.href}>
-                  <CustomButton
-                    stylesType='soft-btn'
-                    styles='text-base'
+                  <Button
                     title={t('check_out')}
+                    stylesType='soft-btn'
+                    className='text-base'
+                    fullWidth
                   />
                 </Link>
               </div>

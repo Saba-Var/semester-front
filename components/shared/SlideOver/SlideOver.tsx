@@ -7,10 +7,12 @@ import { Fragment } from 'react'
 const SlideOver: React.FC<SlideOverProps> = ({
   submitHandler = () => {},
   showSubmitButton = true,
+  addExtraSpace = false,
   openFromLeft = false,
   onClose = () => {},
   disabled = false,
   headerColor = '',
+  titleColor = '',
   children,
   title,
   open,
@@ -27,7 +29,9 @@ const SlideOver: React.FC<SlideOverProps> = ({
             <div
               className={`pointer-events-none fixed inset-y-0 right-0 flex max-w-full ${
                 openFromLeft
-                  ? `left-20 ${isDesktopSideBarOpen && 'left-60'}`
+                  ? `${addExtraSpace ? 'left-20' : 'left-0'} ${
+                      isDesktopSideBarOpen && 'left-60'
+                    }`
                   : ''
               }`}
             >
@@ -54,7 +58,9 @@ const SlideOver: React.FC<SlideOverProps> = ({
                         className='bg-indigo-700 px-4 py-6 sm:px-6'
                       >
                         <div className='flex items-center justify-between'>
-                          <Dialog.Title className='text-base font-semibold leading-6 text-gray-700'>
+                          <Dialog.Title
+                            className={`text-base font-semibold leading-6 text-gray-700 ${titleColor}`}
+                          >
                             {title}
                           </Dialog.Title>
                           <div className='ml-3 flex h-7 items-center'>

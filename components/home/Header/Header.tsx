@@ -1,7 +1,7 @@
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { LanguageSelector, AuthQuestion } from 'components'
 import { Popover, Transition } from '@headlessui/react'
-import { HeaderProps } from './types.d'
+import { HeaderProps } from './types'
 import { useTranslate } from 'hooks'
 import { Fragment } from 'react'
 import Link from 'next/link'

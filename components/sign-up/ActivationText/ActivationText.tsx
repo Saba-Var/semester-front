@@ -5,7 +5,7 @@ const ActivationText: React.FC<ActivationTextProps> = (props) => {
   const { activationSuccess, alreadyActivated, accountNotFound } = props
 
   return (
-    <h1 className='text-xl sm:text-3xl px-2 text-center'>
+    <h2 className='text-xl sm:text-3xl px-2 text-center'>
       {useTranslate(
         `auth:account-${
           activationSuccess
@@ -17,7 +17,7 @@ const ActivationText: React.FC<ActivationTextProps> = (props) => {
             : 'activation-failed'
         }`
       )}
-    </h1>
+    </h2>
   )
 }
 
