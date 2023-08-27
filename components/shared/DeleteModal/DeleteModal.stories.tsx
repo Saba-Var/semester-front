@@ -76,8 +76,6 @@ export const DeleteModalStory: StoryFn<typeof DeleteModal> = () => {
       title='Delete Modal'
       setOpen={setOpen}
       open={args.open}
-    >
-      <div>Content</div>
-    </DeleteModal>
+    />
   )
 }
