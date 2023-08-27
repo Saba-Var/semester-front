@@ -5,7 +5,7 @@ import i18n from 'i18next'
 i18n.use(initReactI18next).init({
   debug: true,
   fallbackLng: 'en',
-  lng: 'ka',
+  lng: 'en',
   interpolation: {
     escapeValue: false,
   },

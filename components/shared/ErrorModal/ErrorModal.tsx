@@ -4,16 +4,14 @@ import { useErrorModal } from './useErrorModal'
 import { ErrorModalProps } from './types.d'
 import { Fragment } from 'react'
 
-const ErrorModal: React.FC<ErrorModalProps> = (props) => {
-  const {
-    setShowModal,
-    clickHandler,
-    description,
-    actionText,
-    showModal,
-    title,
-  } = props
-
+const ErrorModal: React.FC<ErrorModalProps> = ({
+  setShowModal,
+  clickHandler,
+  description,
+  actionText,
+  showModal,
+  title,
+}) => {
   const { closeButtonRef, t } = useErrorModal()
 
   return (
