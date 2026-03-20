@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@dicebear/collection": "^6.0.4",
-    "@dicebear/core": "^6.0.4",
+    "@dicebear/core": "^6.3.0",
     "@headlessui/react": "1.7.17",
     "@heroicons/react": "^2.0.11",
     "@hookform/error-message": "^2.0.1",
@@ -26,7 +26,7 @@
     "axios": "^1.12.0",
     "caniuse-lite": "^1.0.30001491",
     "date-fns": "^2.30.0",
-    "dicebear": "^6.0.4",
+    "dicebear": "^6.3.0",
     "i18next": "^22.5.0",
     "i18next-http-backend": "^2.2.1",
     "install": "^0.13.0",
